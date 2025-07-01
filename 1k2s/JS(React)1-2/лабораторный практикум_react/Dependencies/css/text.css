@@ -1,0 +1,96 @@
+.text p{
+  padding-left: 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+}
+
+.highlighted-text{
+    color: brown;
+}
+
+li{
+margin-top: 8px;
+}
+
+.abbr{
+  color: coral;
+}
+
+.code-block {
+  display: inline-block;
+  background-color: #282c34;
+  font-size: 14px;
+  margin-left: 25px;
+  border-radius: 5px;
+  padding: 10px;
+  font-family: 'Courier New', Courier, monospace;
+  line-height: 1.4;
+  overflow-x: auto; /* Добавляет горизонтальную прокрутку при необходимости */
+}
+
+.cd{
+  color:yellow;
+}
+/* Стили для ключевых слов (например, import, class) */
+.keyword {
+  color: #71a9e1;
+}
+.skobki{
+  color: #88c6be;
+}
+/* Стили для имени класса */
+.class-name {
+  color: #d73a49;
+}
+.hex{
+  color: #E0E0E0;
+}
+/* Стили для ключевого слова extends */
+.extends {
+  color: #795da3;
+}
+
+/* Стили для методов */
+.method {
+  color: #22863a;
+}
+
+/* Стили для оператора return */
+.return-statement {
+  color: #d73a49;
+}
+
+/* Стили для JSX элементов */
+.jsx-element {
+  color: #e34c26;
+}
+.intro {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 24px;
+  color: #D3D3D3;
+  text-align: center;
+  margin-top: 30px;
+}
+
+
+.section{
+  font-size: 26px;
+  margin:10px;
+  color: #0b94ae;
+  font-family: 'Roboto Condensed', sans-serif;
+  
+}
+
+.lr-img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.lr-img1 {
+  width: 500px;
+  height: 300px;
+  }
+.lr-img2 {
+width: 1000px;
+height: 300px;
+}

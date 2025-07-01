@@ -1,0 +1,5 @@
+﻿  Index.cpp
+C:\Users\vugor\OneDrive\Рабочий стол\C++(OAuP)\laba9\Index\Index.cpp(6,14): warning C4244: return: преобразование "double" в "float", возможна потеря данных
+C:\Users\vugor\OneDrive\Рабочий стол\C++(OAuP)\laba9\Index\Index.cpp(43,33): warning C4305: инициализация: усечение из "double" в "float"
+C:\Users\vugor\OneDrive\Рабочий стол\C++(OAuP)\laba9\Index\Index.cpp(59,1): warning C4326: возвращаемый тип "main" должен быть "int", а не "void"
+  Index.vcxproj -> C:\Users\vugor\OneDrive\Рабочий стол\C++(OAuP)\laba9\Debug\Index.exe

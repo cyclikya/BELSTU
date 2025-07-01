@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="root">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="footer">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="footerContent">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="footerSection" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="title" type="xs:string" />
+													<xs:element name="text" minOccurs="0" type="xs:string" />
+													<xs:element name="links" minOccurs="0">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="link" maxOccurs="unbounded">
+																	<xs:complexType>
+																		<xs:simpleContent>
+																			<xs:extension base="xs:string">
+																				<xs:attribute name="href" use="required" />
+																			</xs:extension>
+																		</xs:simpleContent>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+												<xs:attribute name="class" use="required" />
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="footerBottom">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="copyright" type="xs:string" />
+										<xs:element name="author" type="xs:string" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

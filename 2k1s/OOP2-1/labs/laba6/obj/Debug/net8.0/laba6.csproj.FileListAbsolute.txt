@@ -1,0 +1,14 @@
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\laba6\bin\Debug\net8.0\laba6.exe
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\laba6\bin\Debug\net8.0\laba6.deps.json
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\laba6\bin\Debug\net8.0\laba6.runtimeconfig.json
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\laba6\bin\Debug\net8.0\laba6.dll
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\laba6\bin\Debug\net8.0\laba6.pdb
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\laba6\obj\Debug\net8.0\laba6.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\laba6\obj\Debug\net8.0\laba6.AssemblyInfoInputs.cache
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\laba6\obj\Debug\net8.0\laba6.AssemblyInfo.cs
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\laba6\obj\Debug\net8.0\laba6.csproj.CoreCompileInputs.cache
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\laba6\obj\Debug\net8.0\laba6.dll
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\laba6\obj\Debug\net8.0\refint\laba6.dll
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\laba6\obj\Debug\net8.0\laba6.pdb
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\laba6\obj\Debug\net8.0\laba6.genruntimeconfig.cache
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\laba6\obj\Debug\net8.0\ref\laba6.dll

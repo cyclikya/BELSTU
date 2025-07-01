@@ -1,0 +1,7 @@
+﻿  Combi.cpp
+  Lab3.cpp
+  Salesman.cpp
+  Создание кода...
+C:\Users\vugor\OneDrive\Рабочий стол\Камилла матпрога\Lab3(мой варик)\Lab3\Salesman.cpp(41,11): warning C4244: инициализация: преобразование "__int64" в "int", возможна потеря данных
+C:\Users\vugor\OneDrive\Рабочий стол\Камилла матпрога\Lab3(мой варик)\Lab3\Salesman.cpp(49,22): warning C4244: =: преобразование "__int64" в "int", возможна потеря данных
+  Lab3.vcxproj -> C:\Users\vugor\OneDrive\Рабочий стол\Камилла матпрога\Lab3(мой варик)\x64\Debug\Lab3.exe

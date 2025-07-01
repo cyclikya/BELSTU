@@ -1,0 +1,5 @@
+Имя сборки: laba11, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+Есть ли публичные конструкторы: True
+Публичные методы: get_Number, set_Number, get_Text, set_Text, PrintInfo, AddNumbers, GetType, ToString, Equals, GetHashCode
+Поля и свойства: Property: Number, Property: Text
+Реализованные интерфейсы: 

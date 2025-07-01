@@ -1,0 +1,5 @@
+﻿  Index.cpp
+C:\Users\vugor\OneDrive\Рабочий стол\1k2s\C++(OAuP)1-2\laba12\Index\Index.cpp(60,17): error C2535: Heap Heap::create(int,heap::CMP (__cdecl *)(void *,void *)): функция-член уже определена или объявлена
+  C:\Users\vugor\OneDrive\Рабочий стол\1k2s\C++(OAuP)1-2\laba12\Index\Index.cpp(50,17):
+   см. объявление "Heap::create"
+  

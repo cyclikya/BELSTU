@@ -1,0 +1,42 @@
+body{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #232930;
+}
+
+.main{
+    height: 80%;
+    margin-left: 10%;
+    width: 80%;
+}
+
+.header{
+    height: 10%;
+}
+.main-main{
+    height: 63vh;
+}
+
+.footer{
+    height: 10%;
+}
+a {
+    font-size: 18px;
+    font-family: 'Montserrat', sans-serif;
+    text-decoration: dotted;
+    color: #00d8ff;
+    transition: color 0.3s ease;
+  }
+
+  a:hover {
+    color: #0056b3;
+  }
+
+
+  .image-container img {
+
+    margin-left: 30px;
+}   
+
+

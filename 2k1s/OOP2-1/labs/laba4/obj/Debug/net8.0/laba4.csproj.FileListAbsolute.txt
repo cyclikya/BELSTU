@@ -1,0 +1,14 @@
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\laba4\obj\Debug\net8.0\laba4.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\laba4\obj\Debug\net8.0\laba4.AssemblyInfoInputs.cache
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\laba4\obj\Debug\net8.0\laba4.AssemblyInfo.cs
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\laba4\obj\Debug\net8.0\laba4.csproj.CoreCompileInputs.cache
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\laba4\bin\Debug\net8.0\laba4.exe
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\laba4\bin\Debug\net8.0\laba4.deps.json
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\laba4\bin\Debug\net8.0\laba4.runtimeconfig.json
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\laba4\bin\Debug\net8.0\laba4.dll
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\laba4\bin\Debug\net8.0\laba4.pdb
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\laba4\obj\Debug\net8.0\laba4.dll
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\laba4\obj\Debug\net8.0\refint\laba4.dll
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\laba4\obj\Debug\net8.0\laba4.pdb
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\laba4\obj\Debug\net8.0\laba4.genruntimeconfig.cache
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\laba4\obj\Debug\net8.0\ref\laba4.dll

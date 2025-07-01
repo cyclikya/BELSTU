@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Документ</title>
+</head>
+<body>
+    <form name="test">
+        Выберите функцию
+        <input type="radio" id="f1" name="f">y=x^2
+        <input type="radio" id="f2" name="f">y=x^3
+        <input type="radio" id="f3" name="f">y=sin(x)
+        <input type="radio" id="f4" name="f">y=cos(x)
+        <button type="button" onclick="draw()">Рисовать</button>
+        <canvas id="area" width="500px" height="500px"></canvas>     
+    </form>
+</body>
+<script>
+    var f1 = document.getElementById('f1'),
+        f2 = document.getElementById('f2'),
+        f3 = document.getElementById('f3'),
+        f4 = document.getElementById('f4');
+    var cant = document.getElementById('area').getContext('2d'); //вызов холста в 2d
+    var func;
+
+    function on(func) {
+        for (let i = -100; i <= 100; i += 0.1) {
+            cant.fillRect(250 + i * 10, func(i), 1, 1);
+        }
+    }
+
+    function clear() {
+        cant.clearRect(0, 0, 500, 500);
+    }
+
+    function draw() {
+        clear();
+
+        if (f1.checked) {
+            func = (i) => 250 - Math.pow(i, 2);
+        }
+        if(f2.checked){
+            func = (i) => 250 - Math.pow(i, 3);
+        }
+        if(f3.checked){
+            func = (i) => 250 - 10 * Math.sin(i);
+        }
+        if(f4.checked){
+            func = (i) => 250 - 10 * Math.cos(i);
+        };
+        on(func);
+    }
+</script>
+</html>

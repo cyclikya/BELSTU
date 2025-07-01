@@ -1,0 +1,19 @@
+[
+  {
+    "Name": "ООП",
+    "AgeGroup": 10,
+    "Difficulty": "\u0421\u0440\u0435\u0434\u043D\u0438\u0439",
+    "DataStart": "2025-03-07T17:34:58",
+    "LectureCount": 6,
+    "LabCount": 3,
+    "ControlType": "\u042D\u043A\u0437\u0430\u043C\u0435\u043D",
+    "Teacher": "\u0421\u0435\u0432\u0435\u0440",
+    "Literature": [
+      {
+        "Title": "\u0438\u0430",
+        "Author": "\u0432\u0430\u0438\u043C",
+        "Year": 1903
+      }
+    ]
+  }
+]

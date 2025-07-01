@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="footer.xsl"?>
+<root>
+    <footer>
+        <footerContent>
+            <footerSection class="about">
+                <title>О нас</title>
+                <text>Мы - ваш партнер в создании пространства, отражающего ваш уникальный стиль и комфорт. В нашем магазине вы найдете не просто мебель, а вдохновение и решения для каждого уголка вашего дома.</text>
+            </footerSection>
+            <footerSection class="contact">
+                <title>Контакты</title>
+                <text>Почта: uyt.furniture@gmail.com Тел: +375-(44)-490-54-22</text>
+            </footerSection>
+            <footerSection class="links">
+                <title>Навигация</title>
+                <links>
+                    <link href="index.html">Главная</link>
+                    <link href="katalog.html">Каталог</link>
+                </links>
+            </footerSection>
+        </footerContent>
+				<footerBottom>
+					<copyright>© 2024 YUT. All rights reserved.</copyright>
+					<author>автор сайта: Угоренко Виолетта Романовна (ФИТ 1-1)</author>
+			</footerBottom>
+    </footer>
+</root>

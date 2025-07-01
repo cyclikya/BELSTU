@@ -1,0 +1,6 @@
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\MatProgr2-2\Lab3\Lab3\x64\Debug\Lab3.vcxproj.MdMergeInputs.cache
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\MatProgr2-2\Lab3\Lab3\x64\Debug\Lab3.vcxproj.cppwinrt_plat.cache
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\MatProgr2-2\Lab3\Lab3\x64\Debug\Lab3.vcxproj.cppwinrt_comp.cache
+C:\Users\vugor\OneDrive\Рабочий стол\Камилла матпрога\Lab3(мой варик)\Lab3\x64\Debug\Lab3.vcxproj.MdMergeInputs.cache
+C:\Users\vugor\OneDrive\Рабочий стол\Камилла матпрога\Lab3(мой варик)\Lab3\x64\Debug\Lab3.vcxproj.cppwinrt_plat.cache
+C:\Users\vugor\OneDrive\Рабочий стол\Камилла матпрога\Lab3(мой варик)\Lab3\x64\Debug\Lab3.vcxproj.cppwinrt_comp.cache

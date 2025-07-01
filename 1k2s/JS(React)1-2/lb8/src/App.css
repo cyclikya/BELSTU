@@ -1,0 +1,64 @@
+/* App.css */
+
+.catalog {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 20px;
+}
+
+.product {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  width: 250px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.product img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+}
+
+.product h2 {
+  font-weight: bold;
+  margin-top: 0;
+}
+
+.product p {
+  margin-bottom: 10px;
+}
+
+.price {
+  font-weight: bold;
+  color: #337ab7;
+}
+
+.discount {
+  font-weight: bold;
+  color: #ff69b4;
+}
+
+.new {
+  background-color: #ff69b4;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  width: 150px;
+}
+
+label {
+  margin-right: 10px;
+}

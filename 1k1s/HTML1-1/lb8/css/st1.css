@@ -1,0 +1,4 @@
+.zd1 .first:hover {transform: scale(0.5);}
+.zd1 .second:hover {transform: rotate(45deg);}
+.zd1 .third:hover {transform: translateX(50px);}
+.zd1 .fourth:hover {transform: skewY(-20deg);}

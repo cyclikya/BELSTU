@@ -1,0 +1,45 @@
+C:\Users\Tin\Desktop\lab04\CashCelebrities\bin\Debug\net8.0\CashCelebrities.deps.json
+C:\Users\Tin\Desktop\lab04\CashCelebrities\bin\Debug\net8.0\CashCelebrities.dll
+C:\Users\Tin\Desktop\lab04\CashCelebrities\bin\Debug\net8.0\CashCelebrities.pdb
+C:\Users\Tin\Desktop\lab04\CashCelebrities\bin\Debug\net8.0\DAL_LES.dll
+C:\Users\Tin\Desktop\lab04\CashCelebrities\bin\Debug\net8.0\DAL_LES.pdb
+C:\Users\Tin\Desktop\lab04\CashCelebrities\obj\Debug\net8.0\CashCelebrities.csproj.AssemblyReference.cache
+C:\Users\Tin\Desktop\lab04\CashCelebrities\obj\Debug\net8.0\CashCelebrities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Tin\Desktop\lab04\CashCelebrities\obj\Debug\net8.0\CashCelebrities.AssemblyInfoInputs.cache
+C:\Users\Tin\Desktop\lab04\CashCelebrities\obj\Debug\net8.0\CashCelebrities.AssemblyInfo.cs
+C:\Users\Tin\Desktop\lab04\CashCelebrities\obj\Debug\net8.0\CashCelebrities.csproj.CoreCompileInputs.cache
+C:\Users\Tin\Desktop\lab04\CashCelebrities\obj\Debug\net8.0\CashCele.EE6BF461.Up2Date
+C:\Users\Tin\Desktop\lab04\CashCelebrities\obj\Debug\net8.0\CashCelebrities.dll
+C:\Users\Tin\Desktop\lab04\CashCelebrities\obj\Debug\net8.0\refint\CashCelebrities.dll
+C:\Users\Tin\Desktop\lab04\CashCelebrities\obj\Debug\net8.0\CashCelebrities.pdb
+C:\Users\Tin\Desktop\lab04\CashCelebrities\obj\Debug\net8.0\ref\CashCelebrities.dll
+D:\4sem\pp\lab04\CashCelebrities\bin\Debug\net8.0\CashCelebrities.deps.json
+D:\4sem\pp\lab04\CashCelebrities\bin\Debug\net8.0\CashCelebrities.dll
+D:\4sem\pp\lab04\CashCelebrities\bin\Debug\net8.0\CashCelebrities.pdb
+D:\4sem\pp\lab04\CashCelebrities\bin\Debug\net8.0\DAL_LES.dll
+D:\4sem\pp\lab04\CashCelebrities\bin\Debug\net8.0\DAL_LES.pdb
+D:\4sem\pp\lab04\CashCelebrities\obj\Debug\net8.0\CashCelebrities.csproj.AssemblyReference.cache
+D:\4sem\pp\lab04\CashCelebrities\obj\Debug\net8.0\CashCelebrities.GeneratedMSBuildEditorConfig.editorconfig
+D:\4sem\pp\lab04\CashCelebrities\obj\Debug\net8.0\CashCelebrities.AssemblyInfoInputs.cache
+D:\4sem\pp\lab04\CashCelebrities\obj\Debug\net8.0\CashCelebrities.AssemblyInfo.cs
+D:\4sem\pp\lab04\CashCelebrities\obj\Debug\net8.0\CashCelebrities.csproj.CoreCompileInputs.cache
+D:\4sem\pp\lab04\CashCelebrities\obj\Debug\net8.0\CashCele.EE6BF461.Up2Date
+D:\4sem\pp\lab04\CashCelebrities\obj\Debug\net8.0\CashCelebrities.dll
+D:\4sem\pp\lab04\CashCelebrities\obj\Debug\net8.0\refint\CashCelebrities.dll
+D:\4sem\pp\lab04\CashCelebrities\obj\Debug\net8.0\CashCelebrities.pdb
+D:\4sem\pp\lab04\CashCelebrities\obj\Debug\net8.0\ref\CashCelebrities.dll
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab04\CashCelebrities\bin\Debug\net8.0\CashCelebrities.deps.json
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab04\CashCelebrities\bin\Debug\net8.0\CashCelebrities.dll
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab04\CashCelebrities\bin\Debug\net8.0\CashCelebrities.pdb
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab04\CashCelebrities\bin\Debug\net8.0\DAL_LES.dll
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab04\CashCelebrities\bin\Debug\net8.0\DAL_LES.pdb
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab04\CashCelebrities\obj\Debug\net8.0\CashCelebrities.csproj.AssemblyReference.cache
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab04\CashCelebrities\obj\Debug\net8.0\CashCelebrities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab04\CashCelebrities\obj\Debug\net8.0\CashCelebrities.AssemblyInfoInputs.cache
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab04\CashCelebrities\obj\Debug\net8.0\CashCelebrities.AssemblyInfo.cs
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab04\CashCelebrities\obj\Debug\net8.0\CashCelebrities.csproj.CoreCompileInputs.cache
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab04\CashCelebrities\obj\Debug\net8.0\CashCele.EE6BF461.Up2Date
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab04\CashCelebrities\obj\Debug\net8.0\CashCelebrities.dll
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab04\CashCelebrities\obj\Debug\net8.0\refint\CashCelebrities.dll
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab04\CashCelebrities\obj\Debug\net8.0\CashCelebrities.pdb
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab04\CashCelebrities\obj\Debug\net8.0\ref\CashCelebrities.dll

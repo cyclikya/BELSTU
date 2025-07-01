@@ -1,0 +1,14 @@
+C:\Users\pahal\Desktop\Лабы\ООП\l14\l14\obj\Debug\net8.0\l14.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\pahal\Desktop\Лабы\ООП\l14\l14\obj\Debug\net8.0\l14.AssemblyInfoInputs.cache
+C:\Users\pahal\Desktop\Лабы\ООП\l14\l14\obj\Debug\net8.0\l14.AssemblyInfo.cs
+C:\Users\pahal\Desktop\Лабы\ООП\l14\l14\obj\Debug\net8.0\l14.csproj.CoreCompileInputs.cache
+C:\Users\pahal\Desktop\Лабы\ООП\l14\l14\bin\Debug\net8.0\l14.exe
+C:\Users\pahal\Desktop\Лабы\ООП\l14\l14\bin\Debug\net8.0\l14.deps.json
+C:\Users\pahal\Desktop\Лабы\ООП\l14\l14\bin\Debug\net8.0\l14.runtimeconfig.json
+C:\Users\pahal\Desktop\Лабы\ООП\l14\l14\bin\Debug\net8.0\l14.dll
+C:\Users\pahal\Desktop\Лабы\ООП\l14\l14\bin\Debug\net8.0\l14.pdb
+C:\Users\pahal\Desktop\Лабы\ООП\l14\l14\obj\Debug\net8.0\l14.dll
+C:\Users\pahal\Desktop\Лабы\ООП\l14\l14\obj\Debug\net8.0\refint\l14.dll
+C:\Users\pahal\Desktop\Лабы\ООП\l14\l14\obj\Debug\net8.0\l14.pdb
+C:\Users\pahal\Desktop\Лабы\ООП\l14\l14\obj\Debug\net8.0\l14.genruntimeconfig.cache
+C:\Users\pahal\Desktop\Лабы\ООП\l14\l14\obj\Debug\net8.0\ref\l14.dll

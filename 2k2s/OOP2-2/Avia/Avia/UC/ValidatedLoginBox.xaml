@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="Avia.UC.ValidatedLoginBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Name="root">
+    <UserControl.Resources>
+        <Style TargetType="Border">
+            <Setter Property="BorderBrush" Value="Gray"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsValid, ElementName=root}" Value="False">
+                    <Setter Property="BorderBrush" Value="Red"/>
+                    <Setter Property="BorderThickness" Value="2"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Border>
+        <TextBox x:Name="PART_TextBox"
+                 Text="{Binding Login, ElementName=root, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 LostFocus="PART_TextBox_LostFocus"
+                 KeyDown="PART_TextBox_KeyDown"/>
+    </Border>
+</UserControl>

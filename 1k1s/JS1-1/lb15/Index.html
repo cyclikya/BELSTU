@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="ex1()">ex1</button>
+    <button onclick="ex2()">ex2</button>
+    <button onclick="ex3()">ex3</button>
+    <button onclick="ex4()">ex4</button>
+    <button onclick="ex5()">ex5</button>
+    <button onclick="ex6()">ex6</button>
+
+
+    <script>
+        function ex1() {
+            console.log(/first.second/.test('first\nsecond'));
+            console.log(/first.second/s.test('first\nsecond'));
+        }
+        function ex2() {
+            const input = "Это [u]подчеркнутый текст[/u], а это [u]ещё один[/u] текст.";
+            const pattern = /\[u\](?<content>[\s\S]*?)\[\/u\]/g;
+            const result = input.replace(pattern, '<u>$<content></u>');
+
+            console.log(result);
+            document.write(result);
+        }
+        function ex3() {
+            const input = '<a href="#">ссылка 1</a>, а это <a href="#">ссылка 2</a>.';
+            const pattern = /<a\b[^>]*>/g;
+            const result = input.replace(pattern, '<p>');
+            
+            console.log(result);
+        }
+        function ex4() {
+            var a = 'Some,text';
+            var b = a.replace("Some,text", "text,Some");
+            alert(b);
+        }
+        function ex5() {
+            const user = { 
+                id: 100,
+                name: 'Howard Moon', 
+                password: 'Password!' }
+                
+            const Pass = ({ password, ...rest }) => rest // которая принимает объект с полем password и оставшимися свойствами, и возвращает объект, содержащий только оставшиеся свойства (без password).
+            console.log(user);
+            console.log(Pass(user)); // вернет объект, содержащий все свойства user за исключением password.
+        }
+        function ex6() {
+            const b = { secondname: "Ugorenko", name: 'Violetta' }
+            const a = { ...b, namme: "Violetta", secnamme: "Ugorenko", age: 17 } //spread
+            const { secnamme, namme, ...rest } = a; // удаляется secnamme и namme
+            console.log(rest);
+        }
+    </script>
+</body>
+</html>

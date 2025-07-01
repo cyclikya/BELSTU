@@ -1,0 +1,112 @@
+h1{ text-align: center;}
+.color-block {
+    width: 80px;
+    height: 90px;
+    display: inline-block;
+    margin: 5px;
+}
+.block1 {
+    margin-top: 10px;
+    border: 15px;
+    border-style: outset;
+    border-color: red;
+}
+.block2 {
+    margin-top: 10px;
+    border: 15px;
+    border-style: dashed;
+    border-color: green;
+}
+.block3 {
+    margin-top: 10px;
+    border: 15px;
+    border-style: dotted;
+    border-color: blue;
+}
+.block4 {
+    margin-top: 10px;
+    border: 15px;
+    border-style: double;
+    border-color: cyan;
+}
+
+.block5 {
+    margin-top: 10px;
+    border: 15px;
+    border-style: groove;
+    border-color: magenta;
+}
+.block6 {
+    margin-top: 10px;
+    border: 15px;
+    border-style: inset;
+    border-color: yellow;
+}
+.block7 {
+    margin-top: 10px;
+    border: 15px;
+    border-style: solid;
+    border-color: black;
+}
+span {
+    display:inline-block;
+    padding: 5px;
+    margin: 5px;
+    background-color:#FFA500;
+    border: 5px solid #FF4500;
+}
+
+.p1 {
+    border-left: 5px solid brown;
+    border-bottom: 5px solid yellow;
+    border-right: 5px solid darkblue;
+    border-top: 5px solid orange;
+}
+
+.p2 {
+    border-left: 1px solid #007BA7;
+    border-right: 1px solid #007BA7;
+}
+
+.p3 {
+    border-top: 5px solid rgb(229, 43, 80);
+    border-left: 1px dashed blue;
+    border-right: 1px dashed blue;
+    border-bottom: 1px dashed blue;
+}
+
+.p4 {
+    border: 1px dotted orange;
+}
+
+.p5 {
+    border-top: 2px solid darkblue;
+    border-bottom: 2px solid darkblue;
+    border-left: 1px dotted maroon;
+    border-right: 1px dotted maroon;
+}
+
+.p6 {
+    border: 2px double #B3446C;
+}
+
+.p7 {
+    border-top: 1px dashed #808000;
+    border-bottom: 3px solid #FF7518;
+}
+
+.p8 {
+    border-left: 2px double #CC7722;
+    border-bottom: 2px double #CC7722;
+}
+
+.p9 {
+    border-right: 2px ridge #B5A642;
+    border-top: 2px ridge #B5A642;
+}
+
+.p10 {
+    border-left: 5px dotted #004000;
+    border-right: 5px dotted #004000;
+    border-bottom: 5px dotted #004000;
+}

@@ -1,0 +1,6 @@
+﻿  Ex4.cpp
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\MatProgr2-2\lab4\Ex4\Ex4.cpp(10,12): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\MatProgr2-2\lab4\Ex4\Ex4.cpp(10,28): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+  Levenshtein.cpp
+  Создание кода...
+  Ex4.vcxproj -> C:\Users\vugor\OneDrive\Рабочий стол\2k2s\MatProgr2-2\lab4\x64\Debug\Ex4.exe

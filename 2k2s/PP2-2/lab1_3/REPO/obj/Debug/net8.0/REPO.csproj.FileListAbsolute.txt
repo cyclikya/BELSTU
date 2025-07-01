@@ -1,0 +1,11 @@
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\REPO\bin\Debug\net8.0\REPO.deps.json
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\REPO\bin\Debug\net8.0\REPO.dll
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\REPO\bin\Debug\net8.0\REPO.pdb
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\REPO\obj\Debug\net8.0\REPO.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\REPO\obj\Debug\net8.0\REPO.AssemblyInfoInputs.cache
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\REPO\obj\Debug\net8.0\REPO.AssemblyInfo.cs
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\REPO\obj\Debug\net8.0\REPO.csproj.CoreCompileInputs.cache
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\REPO\obj\Debug\net8.0\REPO.dll
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\REPO\obj\Debug\net8.0\refint\REPO.dll
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\REPO\obj\Debug\net8.0\REPO.pdb
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\REPO\obj\Debug\net8.0\ref\REPO.dll

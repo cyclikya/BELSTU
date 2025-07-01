@@ -1,0 +1,15 @@
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\DALJSONX\obj\Debug\net8.0\DALJSONX.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\DALJSONX\obj\Debug\net8.0\DALJSONX.AssemblyInfoInputs.cache
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\DALJSONX\obj\Debug\net8.0\DALJSONX.AssemblyInfo.cs
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\DALJSONX\obj\Debug\net8.0\DALJSONX.csproj.CoreCompileInputs.cache
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\DALJSONX\bin\Debug\net8.0\DALJSONX.deps.json
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\DALJSONX\bin\Debug\net8.0\DALJSONX.dll
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\DALJSONX\bin\Debug\net8.0\DALJSONX.pdb
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\DALJSONX\bin\Debug\net8.0\REPO.dll
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\DALJSONX\bin\Debug\net8.0\REPO.pdb
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\DALJSONX\obj\Debug\net8.0\DALJSONX.csproj.AssemblyReference.cache
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\DALJSONX\obj\Debug\net8.0\DALJSONX.csproj.Up2Date
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\DALJSONX\obj\Debug\net8.0\DALJSONX.dll
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\DALJSONX\obj\Debug\net8.0\refint\DALJSONX.dll
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\DALJSONX\obj\Debug\net8.0\DALJSONX.pdb
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\DALJSONX\obj\Debug\net8.0\ref\DALJSONX.dll

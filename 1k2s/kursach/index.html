@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>УЮТ</title>
+	<link rel="icon" href="img/logo_cozy.svg" type="image/x-icon">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link href="css/index.css" rel="stylesheet" media="all">
+	<link href="css/content.css" rel="stylesheet" media="all">
+	<link href="css/header.css" rel="stylesheet" media="all">
+	<link href="css/footer.css" rel="stylesheet" media="all">
+
+	<link rel="alternate" type="application/xml" title="XML" href="footer.xml" />
+
+	<link
+		href="https://fonts.googleapis.com/css?family=Montserrat+Alternates:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic"
+		rel="stylesheet" />
+</head>
+
+<body>
+	<div class="backgr">
+		<img src="img/interier.jpg">
+	</div>
+	<header>
+		<a href="index.html">
+			<div class="img-container">
+				<div class="header-top-row">
+					<a href="index.html">
+						<img src="img/logo_cozy2.svg" class="logo">
+					</a>
+				</div>
+			</div>
+		</a>
+		<a href="katalog.html" id="button">Каталог</a>
+	</header>
+
+	<main>
+		<div class="img-container">
+			<a class="plus1" href="katalog.html">
+				<img src="img/plus.png" id="plus1">
+			</a>
+			<div class="info1">
+				<img src="img/obj1.png" alt="Продукт 1">
+				<h2 class="product-name">Торшер</h2>
+				<div class="product-price">Цена: <span>$100</span></div>
+			</div>
+			<a class="plus2" href="katalog.html">
+				<img src="img/plus.png" id="plus2">
+			</a>
+			<div class="info2">
+				<img src="img/obj2.png" alt="Продукт 2">
+				<h2 class="product-name">Диван</h2>
+				<div class="product-price">Цена: <span>$200</span></div>
+			</div>
+		</div>
+
+		<div class="info">
+			<div class="container">
+				<img src="img/foto.jpg"></img>
+				<div class="description">
+					<p>Присоединяйтесь к нашему увлекательному путешествию по миру дизайна и комфорта! Мы предлагаем не просто
+						мебель, а источник вдохновения, который обнимает вас своим комфортом и воплощает вашу уютную реальность в
+						живые образы.<br>Наши мастера тщательно подбирают каждую деталь, чтобы ваш дом стал идеальным отражением
+						вашего стиля и жизненной философии. Разблокируйте потенциал вашего пространства с нашей мебелью, где
+						эстетика и практичность сливаются в гармонии. Присоединяйтесь к нам сегодня, и давайте вместе создадим
+						мир, где каждая мебельная деталь рассказывает свою историю уюта и стиля.</p>
+				</div>
+			</div>
+		</div>
+	</main>
+	<footer>
+	</footer>
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+			var xsltProcessor = new XSLTProcessor();
+			// Загрузка XSLT файла
+			loadXMLDoc('footer.xsl', function (xslDoc) {
+				xsltProcessor.importStylesheet(xslDoc);
+				// Загрузка XML файла и преобразование его в HTML
+				loadXMLDoc('footer.xml', function (xmlDoc) {
+					var resultDocument = xsltProcessor.transformToFragment(xmlDoc, document);
+					document.querySelector('footer').appendChild(resultDocument);
+				});
+			});
+		});
+
+		function loadXMLDoc(filePath, callback) {
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function () {
+				if (this.readyState == 4 && this.status == 200) {
+					callback(this.responseXML);
+				}
+			};
+			xhttp.open("GET", filePath, true);
+			xhttp.send();
+		}
+	</script>
+</body>
+
+</html>

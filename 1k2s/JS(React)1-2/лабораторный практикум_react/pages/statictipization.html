@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Статическая типизация</title>
+    <link rel="icon" href="../Dependencies/img/favicon.ico"/>
+    <link rel="stylesheet" href="../Dependencies/css/main.css">
+    <link rel="stylesheet" href="../Dependencies/css/header.css">
+    <link rel="stylesheet" href="../Dependencies/css/body.css">
+    <link rel="stylesheet" href="../Dependencies/css/footer.css">
+    <link rel="stylesheet" href="../Dependencies/css/first.css">
+    <link rel="stylesheet" href="../Dependencies/css/text.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@500;600&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;1,100&family=Open+Sans:ital,wght@0,400;1,400;1,500&family=Roboto+Condensed:wght@500;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="body">
+    <header class="header">
+        <img src="../Dependencies/img/1174949_js_react js_logo_react_react native_icon.png" alt="My Photo"
+            class="photo" />
+        <nav class="navbar">
+            <ul>
+                <li>
+                    <a href="../main.html">React</a>
+                </li>
+            </ul>
+            <div><a href="../pages/table-of-contents.html">Оглавление</a>
+                <a href="https://belstu.by/">Сайт BSTU</a>
+                <a href="https://react.dev/">Официальная документация</a>
+                <a href="../labs/labs.html">Лабораторный практикум</a>
+            </div>
+        </nav>
+    </header>
+    <main class="main">
+        <div class="text">
+            <div class="intro">Статистическая типизация</div>
+            <p>
+                <span class="abbr">Типизация</span> — это то, как язык распознаёт типы переменных. Типизация определяет,
+                нужно ли вам писать тип, или язык «поймёт» его сам, и насколько свободно можно с типами работать:
+                например, можно ли их менять.
+            </p>
+            <p><span class="abbr">Статическая типизация</span> — значит, что типы определяются на этапе компиляции.
+                То есть ошибки в типах будут видны ещё до того, как программа запустится.
+            </p>
+            <p>Инструменты для статической типизации, такие как <span class="highlighted-text">Flow</span> или <span
+                    class="highlighted-text">TypeScript</span>, позволяют отлавливать большую часть ошибок ещё
+                до исполнения кода. Кроме того, они существенно улучшают процессы разработки, добавляя автодополнение
+                и другие возможности.
+            </p>
+            <div class="intro">Flow</div>
+            <p><span class="highlighted-text">Flow</span> — это библиотека для статической типизации JavaScript,
+                разработанная в Facebook и часто применяемая в связке с React. <br><span
+                    class="highlighted-text">Flow</span> — расширяет возможности JavaScript, добавляя аннотации типов
+                для переменных, функций и React-компонентов.
+            </p>
+            <div class="intro">Что нужно для использования библиотеки Flow?
+            </div>
+            <p>
+            <ul>
+                <li>Добавить Flow в проект как зависимость</li>
+                <li>Убедиться, что аннотации Flow удаляются из кода при его компиляции</li>
+                <li>Добавить несколько аннотаций типов и запустить Flow для их проверки</li>
+            </ul>
+            </p>
+            <div class="intro">Добавление Flow в проект</div>
+            <p>Убедитесь, что вы находитесь в директории проекта, после чего запустите одну следующую команду для <span
+                    class="highlighted-text">npm</span> </p>
+            <div class="code-block">
+                <span class="keyword">npm install</span>--save-dev flow-bin
+            </div>
+            <p>Эта команда добавит последнюю версию <span class="highlighted-text">Flow</span> в проект. Далее нужно
+                добавить Flow в секцию "scripts" файла
+                package.json:
+            </p>
+            <div class="code-block">
+                <span class="skobki">&#123;</span> <br>
+                <span class="hex">&nbsp;&nbsp;// ...</span><br>
+                <span class="keyword">&nbsp;&nbsp;&nbsp;&nbsp;"scripts"</span> : <span class="skobki">&#123;</span><br>
+                <span class="keyword">&nbsp;&nbsp;&nbsp;&nbsp;"flow"</span>: <span class="method">"flow"</span>, <span
+                    class="hex">// ...</span><br>
+                <span class="skobki">&nbsp;&nbsp;&nbsp;&#125;</span>,<br>
+                <span class="hex">&nbsp;&nbsp;// ...</span><br>
+                <span class="skobki">&#125;</span><br>
+            </div>
+            <p>Теперь можно запустить скрипт, прописав в терминале:
+            </p>
+            <div class="code-block"> <span class="keyword">npm</span> run flow init</div>
+            <p>Эти команды создадут файл с исходной конфигурацией Flow.
+            </p>
+            <div class="intro">Удаление аннотаций Flow из скомпилированного кода</div>
+            <p><span class="highlighted-text">Flow</span> дополняет JavaScript собственным синтаксисом для указания
+                типов, который не поддерживается
+                браузерами. Для того, чтобы код работал, нужно убедиться в том, что аннотации <span
+                    class="highlighted-text">Flow</span> корректно удаляются
+                из скомпилированного JavaScript.
+            </p>
+            <p>Для этого есть несколько способов — необходимо выбирать в зависимости от того, какими инструментами для
+                сборки проекта вы пользуетесь.
+            </p>
+            <div class="intro">Create React App
+            </div>
+            <p>Если для изначальной конфигурации проекта вы выбрали Create React App, вам ничего не нужно делать! Проект
+                уже настроен должным образом и аннотации <span class="highlighted-text">Flow</span> должны удаляться при
+                сборке проекта.
+            </p>
+            <div class="intro">Babel</div>
+            <p>Если для своего проекта вы самостоятельно настраивали <span class="highlighted-text">Babel</span>, нужно
+                установить специальный пресет для работы с Flow:
+            </p>
+            <div class="code-block">
+                <span class="keyword">yarn add</span> <span class="hex">--dev</span> @babel/preset-flow
+            </div>
+            <p>Затем добавьте установленный пресет Flow в свою конфигурацию <span class="highlighted-text">Babel</span>.
+                Например так, если вы используете конфигурационный файл <span class="highlighted-text">.babelrc</span>:
+            </p>
+            <div class="code-block"><span class="skobki">&#123;</span> <br>
+                &nbsp;<span class="keyword">"presets"</span>: <span class="skobki">&#91;</span> <br>
+                &nbsp;&nbsp;"@babel/preset-flow", "react" <br>
+                &nbsp;&nbsp;<span class="skobki">&#93;</span> <br>
+                <span class="skobki">&#125;</span> <br>
+            </div>
+            <div class="intro">Запуск Flow</div>
+            <p>Если всё было сделано правильно, можно попробовать запустить процесс Flow:
+            </p>
+            <div class="code-block">
+                <span class="keyword">npm
+                </span>run flow
+            </div>
+            <p>Мы должны увидеть примерно такое сообщение в терминале:
+            </p>
+            <div class="code-block">No errors!<br>
+                ✨ Done in 0.17s.</div>
+            <div class="intro">Добавление аннотаций типов
+            </div>
+            <p>По умолчанию Flow проверяет только файлы, содержащие специальную аннотацию (обычно её указывают в самом
+                начале файла):
+            </p>
+            <div class="code-block">
+                <span class="hex">// @flow</span>
+            </div>
+            <div class="intro">TypeScript</div>
+            <p><span class="abbr">TypeScript</span>— это язык программирования, разработанный в Microsoft.
+            </p>
+            <p><span class="abbr">TypeScript</span> — является надмножеством JavaScript, имеет статическую
+                систему типов и собственный компилятор.
+                Статическая типизация позволяет отлавливать ошибки и баги во время компиляции, ещё до запуска
+                приложения.</p>
+            <p>Чтобы использовать <span class="highlighted-text">TypeScript</span>, нужно:
+            </p>
+            <p>
+            <ul>
+                <li>добавить <span class="highlighted-text">TypeScript</span> в проект как зависимость.
+                </li>
+                <li>настроить компилятор.
+                </li>
+                <li>использовать правильные расширения файлов.
+                </li>
+                <li>установить файлы объявлений для используемых библиотек;
+                </li>
+            </ul>
+            </p>
+            <div class="intro">Использование TypeScript вместе с Create React App
+            </div>
+            <p>Create React App поддерживает <span class="highlighted-text">TypeScript</span> по умолчанию.
+            <p>Чтобы создать новый проект с поддержкой TypeScript, нужно ввести следующую команду:
+            </p>
+            </p>
+            <div class="code-block">npx create-react-app my-app <span class="hex">--template</span> typescript
+            </div>
+            <p>Добавление TypeScript в проект</p>
+            <div class="code-block">
+                <span class="keyword"> npm install</span> --save-dev typescript
+            </div>
+            <p>Эта команда установиливает последнюю версию <span class="highlighted-text">TypeScript</span>. Теперь в
+                вашем распоряжении новая команда — <span class="highlighted-text">tsc</span>. Но прежде необходимо
+                добавить соответствующий скрипт в файл
+                package.json
+            </p>
+            <div>Настройка компилятора TypeScript</div>
+            <p>Сам по себе компилятор бесполезен, пока мы не скажем, что именно ему нужно делать. Для этого есть
+                специальный конфигурационный файл <span class="highlighted-text">tsconfig.json</span>. Создадим этот
+                файл:
+            </p>
+            <div class="code-block">npx tsc <span class="hex">--init</span>
+            </div>
+            <p>Сгенерированный файл <span class="highlighted-text">tsconfig.json</span> уже содержит несколько
+                параметров, которые используются компилятором
+                по умолчанию. Кроме того, можно указать множество опциональных параметров.
+            </p>
+            <p>Из всех параметров сейчас нас интересуют <span class="abbr">rootDir</span> и <span
+                    class="abbr">outDir</span>. Компилятор берёт исходный <span
+                    class="highlighted-text">TypeScript</span> код, и
+                компилирует его в JavaScript. И нам нужно, чтобы не возникло путаницы между исходными файлами и
+                сгенерированным кодом.</p>
+            <p>Эту проблему можно решить в два шага:
+            </p>
+            <p>
+            <ul>
+                <li>Во-первых, изменим структуру проекта. Все файлы с исходниками переместим в директорию <span
+                        class="abbr">src</span>.
+            </ul>
+            </li>
+            </p>
+            <div class="code-block">
+                ├── package.json<br>
+                ├── src<br>
+                │ └── index.ts<br>
+                └── tsconfig.json<br>
+            </div>
+            <p>
+            <ul>
+                <li>
+                    Затем, укажем компилятору откуда ему брать исходные файлы и куда сохранять скомпилированный код.
+                </li>
+            </ul>
+            <div class="code-block">
+                <span class="hex">// tsconfig.json</span> <br>
+                <br>
+                <span class="skobki">&#123;</span> <br>
+                &nbsp;<span class="keyword">"compilerOptions"</span> : <span class="skobki">&#123;</span> <br>
+                &nbsp;<span class="hex">// ...</span> <br>
+                &nbsp;&nbsp;<span class="keyword">"rootDir"</span> : "src", <br>
+                &nbsp;&nbsp;<span class="keyword">"outDir"</span>: "build" <br>
+                &nbsp; <span class="hex">// ...</span> <br>
+                &nbsp;<span class="skobki">&#125;</span> ,<br>
+                <span class="skobki">&#125;</span> <br>
+            </div>
+            </p>
+            <p>Теперь, если мы запустим скрипт сборки проекта, компилятор сохранит готовый JavaScript в директорию
+                <span class="abbr">build</span> . В TypeScript React Starter уже есть готовый <span
+                    class="abbr">tsconfig.json</span> с неплохим набором параметров для
+                дальнейшей тонкой настройки.
+            </p>
+            <p>Как правило, скомпилированный JavaScript-бандл не следует хранить в системе контроля версий, так что
+                лучше добавить папку <span class="abbr"></span>build в файл <span class="abbr">.gitignore</span>.
+            <div class="intro">Расширения файлов</div>
+            <p>В React мы почти всегда используем <span class="highlighted-text"> .js</span> в качестве расширений
+                файлов компонентов. В TypeScript лучше разделять файлы на два типа:
+            </p>
+            <p>
+            <ul>
+                <li><span class="highlighted-text"> .tsx</span> для файлов, содержащих разметку JSX;
+                </li>
+                <li> <span class="highlighted-text"> .ts</span> для всего остального.
+                </li>
+            </ul>
+            </p>
+            </p>
+            <div  class="intro">Запуск TypeScript</div>
+            <p>Команда для компиляции TypeScript:
+                <div class="code-block"><span class="keyword">npm</span> run build</div>
+            </p>
+            <p>Если эта команда не вывела ничего в терминале, то процесс компиляции прошёл успешно.
+            </p>
+            
+        </div>
+        <div class="button-container">
+            <a href="../pages/table-of-contents.html" class="go-to-toc-button">
+              Перейти к оглавлению <span>&rarr;</span>
+            </a>
+        </div>  
+    </main>
+
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+﻿  main.cpp
+C:\Users\vugor\OneDrive\Рабочий стол\C++(OAuP)\Laba5\lb5\lb5\main.cpp(8,27): warning C4305: +=: усечение из "double" в "float"
+C:\Users\vugor\OneDrive\Рабочий стол\C++(OAuP)\Laba5\lb5\lb5\main.cpp(14,28): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\vugor\OneDrive\Рабочий стол\C++(OAuP)\Laba5\lb5\lb5\main.cpp(26,30): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
+C:\Users\vugor\OneDrive\Рабочий стол\C++(OAuP)\Laba5\lb5\lb5\main.cpp(34,27): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\vugor\OneDrive\Рабочий стол\C++(OAuP)\Laba5\lb5\lb5\main.cpp(43,30): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
+C:\Users\vugor\OneDrive\Рабочий стол\C++(OAuP)\Laba5\lb5\lb5\main.cpp(47,27): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\vugor\OneDrive\Рабочий стол\C++(OAuP)\Laba5\lb5\lb5\main.cpp(52,9): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\vugor\OneDrive\Рабочий стол\C++(OAuP)\Laba5\lb5\lb5\main.cpp(60,33): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
+C:\Users\vugor\OneDrive\Рабочий стол\C++(OAuP)\Laba5\lb5\lb5\main.cpp(64,27): warning C4305: +=: усечение из "double" в "float"
+C:\Users\vugor\OneDrive\Рабочий стол\C++(OAuP)\Laba5\lb5\lb5\main.cpp(68,11): warning C4305: =: усечение из "double" в "float"
+C:\Users\vugor\OneDrive\Рабочий стол\C++(OAuP)\Laba5\lb5\lb5\main.cpp(70,28): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\vugor\OneDrive\Рабочий стол\C++(OAuP)\Laba5\lb5\lb5\main.cpp(80,28): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\vugor\OneDrive\Рабочий стол\C++(OAuP)\Laba5\lb5\lb5\main.cpp(90,28): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\vugor\OneDrive\Рабочий стол\C++(OAuP)\Laba5\lb5\lb5\main.cpp(106,33): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
+C:\Users\vugor\OneDrive\Рабочий стол\C++(OAuP)\Laba5\lb5\lb5\main.cpp(112,10): warning C4305: =: усечение из "double" в "float"
+C:\Users\vugor\OneDrive\Рабочий стол\C++(OAuP)\Laba5\lb5\lb5\main.cpp(114,27): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\vugor\OneDrive\Рабочий стол\C++(OAuP)\Laba5\lb5\lb5\main.cpp(122,10): warning C4305: =: усечение из "double" в "float"
+C:\Users\vugor\OneDrive\Рабочий стол\C++(OAuP)\Laba5\lb5\lb5\main.cpp(124,27): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\vugor\OneDrive\Рабочий стол\C++(OAuP)\Laba5\lb5\lb5\main.cpp(134,27): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+  lb5.vcxproj -> C:\Users\vugor\OneDrive\Рабочий стол\C++(OAuP)\Laba5\lb5\Debug\lb5.exe

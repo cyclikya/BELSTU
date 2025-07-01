@@ -1,0 +1,21 @@
+body {
+    display: flex;
+}
+
+aside {
+    float: right;
+    background-color: #f0f0f0;
+}
+
+main {
+    float: left;
+    padding: 20px;
+}
+
+a {
+    text-decoration: none;
+}
+a:link{color: red;}
+a:visited{color: #8B0000;}
+a:hover{color: green;}
+a:active{color: rgb(184, 134, 11);}

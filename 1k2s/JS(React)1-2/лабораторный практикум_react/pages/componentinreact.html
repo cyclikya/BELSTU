@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Компоненты</title>
+    <link rel="icon" href="../Dependencies/img/favicon.ico"/>
+    <link rel="stylesheet" href="../Dependencies/css/main.css">
+    <link rel="stylesheet" href="../Dependencies/css/header.css">
+    <link rel="stylesheet" href="../Dependencies/css/body.css">
+    <link rel="stylesheet" href="../Dependencies/css/footer.css">
+    <link rel="stylesheet" href="../Dependencies/css/first.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="../Dependencies/css/text.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@500;600&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;1,100&family=Open+Sans:ital,wght@0,400;1,400;1,500&family=Roboto+Condensed:wght@500;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="body">
+    <header class="header">
+        <img src="../Dependencies/img/1174949_js_react js_logo_react_react native_icon.png" alt="My Photo"
+            class="photo" />
+        <nav class="navbar">
+            <ul>
+                <li>
+                    <a href="../main.html">React</a>
+                </li>
+            </ul>
+            <div><a href="../pages/table-of-contents.html">Оглавление</a>
+                <a href="https://belstu.by/">Сайт BSTU</a>
+                <a href="https://react.dev/">Официальная документация</a>
+                <a href="../labs/labs.html">Лабораторный практикум</a>
+            </div>
+        </nav>
+    </header>
+    <main class="main">
+        <div class="text">
+            <div class="intro">Компоненты </div>
+            <p>Компоненты позволяют разбить интерфейс на независимые части, про которые легко думать в отдельности.
+                Их можно складывать вместе и использовать несколько раз.
+            </p>
+            <p>Во многом компоненты ведут себя как обычные функции JavaScript. Они принимают произвольные входные данные
+                (так называемые «пропсы») и возвращают React-элементы, описывающие, что мы хотим увидеть на экране.
+            </p>
+            <p>Самый простой способ определить компонент — написать JavaScript-функцию:
+            </p>
+            <div class="code-block">
+                <span class="extends"> class</span> <span class="cd">Welcome</span> <span class="extends">
+                    extends</span> <span class="cd">React.Component</span> <span class="skobki">&#123;</span> <br>
+                &nbsp;<span class="key">render</span><span class="skobki">&#40;&#41;&nbsp;&#123;</span> <br>
+                &nbsp;&nbsp;<span class="extends"> return</span> &#60;h1&#62;Привет, <span
+                    class="skobki">&#123;</span><span class="extends">this</span>.props.name<span
+                    class="skobki">&#125;</span>&#60;/h1&#62;; <br>
+                &nbsp; <span class="skobki">&#125;</span> <br>
+                <span class="skobki">&#125;</span>
+
+            </div>
+            <p>Данная функция — корректный компонент React, потому что он принимает один аргумент-объект «props»
+                (который обозначает свойства) с данными и возвращает элемент React. Такие компоненты мы называем
+                «функциональными», потому что они являются буквально функциями JavaScript.
+            </p>
+            <div class="intro">Начало работы </div>
+            <p>Для рендеринга элемента на веб-странице применяется метод <span
+                    class="highlighted-text">ReactDOM.render()</span>, который принимает два параметра:
+            </p>
+            <p>1. Первый параметр представляет компонент, который мы хотим отобразить на веб-странице.
+                В данном случае это обычный заголовок.
+                В этот метод передается элемент, который надо добавить на веб-страницу.
+            </p>
+            <p>2. Второй параметр - это тот элемент веб-страницы, в котором будет производиться рендеринг компонента из
+                первого параметра.
+                В данном случае это элемент <span class="highlighted-text"> &lt;div id="app"&gt;</span>.
+            </p>
+            <div class="intro">Как отрендерить компонент</div>
+            <p>Раньше мы сталкивались только с элементами React, представляющие DOM-теги:
+            </p>
+            <div class="code-block">
+                <span class="extends"> const</span> element = &#60;div /&#62; <br>
+
+            </div>
+            <p>Однако элементы также могут быть пользовательскими компонентами:
+            </p>
+            <div class="code-block">
+                <span class="extends"> const</span> element = &#60; <span class="cd">Welcome</span> <span
+                    class="extends">name</span> = <span class="skobki">"Алиса"</span> /&#62; <br>
+            </div>
+            <p>Например, этот компонент выведет «Привет, Алиса» на страницу:
+            </p>
+            <div class="code-block">
+                <span class="extends"> function</span> <span class="cd">Welcome</span> <span
+                    class="skobki">&#40;</span>props<span class="skobki">&#41;</span> <span class="skobki">&#123;</span>
+                <br>
+                &nbsp;<span class="extends"> return</span> &#60;h1&#62;Привет, <span
+                    class="skobki">&#123;</span>props.name<span class="skobki">&#125;</span>&#60;/h1&#62;; <br>
+                <span class="skobki">&#125;</span> <br>
+                <br>
+                <span class="extends"> const</span> root = ReactDOM.<span class="keyword">createRoot</span><span
+                    class="skobki">&#40;</span>document.getElementById<span class="skobki">&#40;</span>'root'<span
+                    class="skobki">&#41;&#41;</span>; <br>
+                <span class="extends"> const</span> element = &#60;<span class="cd">Welcome</span> <span
+                    class="extends">name</span>=<span class="skobki">"Алиса"</span> /&#62;; <br>
+                root.<span class="keyword">render</span><span class="skobki">&#40;</span>element<span
+                    class="skobki">&#41;</span>;
+            </div>
+            <p>Объявление функции Welcome, которая принимает props в качестве аргумента. Внутри функции определено
+                JSX-выражение, которое отображает приветствие с использованием значения <span
+                    class="highlighted-text">props.name</span>.
+            </p>
+            <p>Объявление константы element, которая содержит JSX-элемент, вызывающий компоненту Welcome и передающий ей
+                атрибут name со значением "Sara".
+            </p>
+            <p>Использование <span class="highlighted-text">ReactDOM.render()</span> для рендеринга JSX-элемента element
+                на странице. Функция
+                <span class="highlighted-text">ReactDOM.render()</span> принимает два аргумента: рендеряемый элемент (в
+                данном случае element) и элемент DOM,
+                в который будет вставлен результат рендеринга (в данном случае элемент с идентификатором 'root').
+            </p>
+            <div class="intro">Состояния </div>
+            <p>Компоненты React могут иметь состояние, то есть объект, содержащий информацию о том, как этот компонент
+                должен отображаться и вести себя.
+            </p>
+            <p>В случае изменения состояния компонента, вызывается метод <span class="highlighted-text">render</span>,
+                который перерисовывает компонент на экране. Так, можно сказать, компонент реагирует на изменение
+                состояния.
+            </p>
+            <p>Также можно оперировать состоянием приложения с помощью менеджера состояний, например
+                <span class="highlighted-text">Redux</span> или <span class="highlighted-text">ContextAPI</span>
+            </p>
+            <div class="intro">Композиция компонентов</div>
+            <p>Компоненты могут ссылаться на другие компоненты в своём выводе. Это позволяет использовать одну и ту же
+                абстракцию компонента для любого уровня детализации. Кнопка, форма, диалоговое окно, экран: в
+                приложениях React все они обычно являются компонентами.
+            </p>
+            <p>Например, компонент <span class="highlighted-text">App</span> может отрендерить компоненты несколько раз:
+            </p>
+           <div class="code-block">
+            <span class="extends"> function</span> <span class="cd">Welcome</span> <span
+            class="skobki">&#40;</span>props<span class="skobki">&#41;</span> <span class="skobki">&#123;</span>
+        <br>
+        &nbsp;<span class="extends"> return</span> &#60;h1&#62;Привет, <span
+            class="skobki">&#123;</span>props.name<span class="skobki">&#125;</span>&#60;/h1&#62;; <br>
+        <span class="skobki">&#125;</span> <br>
+        <br>
+        <span class="extends"> function</span> <span class="keyword">App</span><span class="skobki">&#40;&#41;&nbsp;&#123;</span> <br>
+        &nbsp;<span class="extends"> return</span> <span class="skobki">&#40;</span> <br>
+        &nbsp;&nbsp;&#60;div&#62; <br>
+        &nbsp;&nbsp;&nbsp;&#60;<span class="cd">Welcome</span> <span class="extends">name</span>="Алиса" /&#62;  <br>
+        &nbsp;&nbsp;&nbsp;&#60;<span class="cd">Welcome</span> <span class="extends">name</span>="Маша" /&#62;  <br>
+        &nbsp;&nbsp;&nbsp;&#60;<span class="cd">Welcome</span> <span class="extends">name</span>="Аня" /&#62;  <br>
+        &nbsp;&nbsp;&#60;/div&#62; <br>
+        &nbsp;<span class="skobki">&#41;</span> ; <br>
+        <span class="skobki">&#125;</span> 
+           </div>
+            <p>Таким образом:<br>
+                Компоненты играют важную роль в React, обеспечивая модульность, переиспользование и
+                управляемость кода, что делает разработку пользовательского интерфейса более эффективной и удобной.</p>
+        </div>
+
+
+        <div class="button-container">
+            <a href="../pages/table-of-contents.html" class="go-to-toc-button">
+                Перейти к оглавлению <span>&rarr;</span>
+            </a>
+        </div>
+    </main>
+
+</body>
+
+</html>

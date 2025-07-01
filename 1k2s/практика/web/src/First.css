@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Prosto+One&display=swap');
+.first{
+    height: 110vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f7f6f2;
+}
+.first .logo {
+    top: 0;
+    left: 0;
+    width: 10vw;
+    z-index: 4;
+    position: absolute;
+}
+.first nav ul {
+    padding: 0;
+    position: relative;
+    text-align: center;
+    z-index: 4;
+    display: flex;
+    justify-content: center;
+}
+.first nav ul li{
+    list-style-type: none;
+    padding: auto;
+    width: 20vw;
+    margin: -51vh auto;
+}
+.first nav li a {
+    color: #000000;
+    text-decoration: none;
+    font-size: 2vw;
+    font-weight: 1000;
+}
+.first nav li a:hover {
+    font-size: 2.3vw;
+}
+.first p {
+    position: absolute;
+    font-size: 7vw;
+    font-family: 'Black Han Sans', sans-serif;
+    font-weight: bolder;
+    color: #eae6da;
+    text-align: center;
+    z-index: 2;
+    top: 5vw;
+}
+.first .bottle {
+    position: absolute;
+    text-align: center;
+    height: 44vw;
+    top: 3vw;
+    z-index: 3;
+    transition: transform 0.4s .5s;
+}
+.first .bottle :hover{
+    transform: scale(1.1);
+}
+.first .shadow {
+    position: absolute;
+    width: 12%;
+    opacity: 0.8;
+    z-index: 2;
+    top: 45vw;
+}

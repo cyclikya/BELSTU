@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="Index2.xsl"?>
+<marks>
+    <head>
+    <glName>Ученик</glName>
+    <glMath>Математика</glMath>
+  </head>
+  <student>
+    <name>Корнеев</name>
+    <math>5</math>
+  </student>
+  <student>
+    <name>Петров</name>
+    <math>10</math>
+  </student>
+  <student>
+    <name>Кузнецов</name>
+    <math>2</math>
+  </student>
+</marks>

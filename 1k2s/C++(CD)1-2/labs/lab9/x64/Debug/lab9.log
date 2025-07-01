@@ -1,0 +1,5 @@
+﻿  lab9.cpp
+C:\Users\vugor\OneDrive\Рабочий стол\1k2s\C++(CD)1-2\labs\lab9\lab9.cpp(242,23): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\vugor\OneDrive\Рабочий стол\1k2s\C++(CD)1-2\labs\lab9\lab9.cpp(250,17): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+C:\Users\vugor\OneDrive\Рабочий стол\1k2s\C++(CD)1-2\labs\lab9\lab9.cpp(269,24): warning C4244: return: преобразование "__int64" в "int", возможна потеря данных
+  lab9.vcxproj -> C:\Users\vugor\OneDrive\Рабочий стол\1k2s\C++(CD)1-2\labs\x64\Debug\lab9.exe

@@ -1,0 +1,83 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\OOP2-1\\labs\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D9AFEE62-3357-4B42-B430-09DF9330A1E7}|laba4\\laba4.csproj|c:\\users\\vugor\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\oop2-1\\labs\\laba4\\lr4.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D9AFEE62-3357-4B42-B430-09DF9330A1E7}|laba4\\laba4.csproj|solutionrelative:laba4\\lr4.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACCDE538-01E0-4D39-B2ED-7AC1DD10475C}|laba_14\\laba_14.csproj|c:\\users\\vugor\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\oop2-1\\labs\\laba_14\\lr14.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACCDE538-01E0-4D39-B2ED-7AC1DD10475C}|laba_14\\laba_14.csproj|solutionrelative:laba_14\\lr14.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0686B4F1-7921-411A-9A75-B1AA879FE615}|laba_13\\laba_13.csproj|c:\\users\\vugor\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\oop2-1\\labs\\laba_13\\lr13.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0686B4F1-7921-411A-9A75-B1AA879FE615}|laba_13\\laba_13.csproj|solutionrelative:laba_13\\lr13.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 198,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "LR14.cs",
+              "DocumentMoniker": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\OOP2-1\\labs\\laba_14\\LR14.cs",
+              "RelativeDocumentMoniker": "laba_14\\LR14.cs",
+              "ToolTip": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\OOP2-1\\labs\\laba_14\\LR14.cs",
+              "RelativeToolTip": "laba_14\\LR14.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-27T16:08:47.606Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "LR4.cs",
+              "DocumentMoniker": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\OOP2-1\\labs\\laba4\\LR4.cs",
+              "RelativeDocumentMoniker": "laba4\\LR4.cs",
+              "ToolTip": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\OOP2-1\\labs\\laba4\\LR4.cs",
+              "RelativeToolTip": "laba4\\LR4.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACwAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-27T15:11:47.712Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "LR13.cs",
+              "DocumentMoniker": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\OOP2-1\\labs\\laba_13\\LR13.cs",
+              "RelativeDocumentMoniker": "laba_13\\LR13.cs",
+              "ToolTip": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\OOP2-1\\labs\\laba_13\\LR13.cs",
+              "RelativeToolTip": "laba_13\\LR13.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-27T15:10:24.108Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

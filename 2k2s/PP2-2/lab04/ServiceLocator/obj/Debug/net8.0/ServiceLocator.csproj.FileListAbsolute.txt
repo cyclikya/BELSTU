@@ -1,0 +1,56 @@
+C:\Users\Tin\Desktop\lab04\ServiceLocator\bin\Debug\net8.0\ServiceLocator.deps.json
+C:\Users\Tin\Desktop\lab04\ServiceLocator\bin\Debug\net8.0\ServiceLocator.runtimeconfig.json
+C:\Users\Tin\Desktop\lab04\ServiceLocator\bin\Debug\net8.0\ServiceLocator.dll
+C:\Users\Tin\Desktop\lab04\ServiceLocator\bin\Debug\net8.0\ServiceLocator.pdb
+C:\Users\Tin\Desktop\lab04\ServiceLocator\obj\Debug\net8.0\ServiceLocator.csproj.AssemblyReference.cache
+C:\Users\Tin\Desktop\lab04\ServiceLocator\obj\Debug\net8.0\ServiceLocator.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Tin\Desktop\lab04\ServiceLocator\obj\Debug\net8.0\ServiceLocator.AssemblyInfoInputs.cache
+C:\Users\Tin\Desktop\lab04\ServiceLocator\obj\Debug\net8.0\ServiceLocator.AssemblyInfo.cs
+C:\Users\Tin\Desktop\lab04\ServiceLocator\obj\Debug\net8.0\ServiceLocator.csproj.CoreCompileInputs.cache
+C:\Users\Tin\Desktop\lab04\ServiceLocator\obj\Debug\net8.0\ServiceLocator.dll
+C:\Users\Tin\Desktop\lab04\ServiceLocator\obj\Debug\net8.0\refint\ServiceLocator.dll
+C:\Users\Tin\Desktop\lab04\ServiceLocator\obj\Debug\net8.0\ServiceLocator.pdb
+C:\Users\Tin\Desktop\lab04\ServiceLocator\obj\Debug\net8.0\ServiceLocator.genruntimeconfig.cache
+C:\Users\Tin\Desktop\lab04\ServiceLocator\obj\Debug\net8.0\ref\ServiceLocator.dll
+C:\Users\user\Desktop\lab04\ServiceLocator\bin\Debug\net8.0\ServiceLocator.deps.json
+C:\Users\user\Desktop\lab04\ServiceLocator\bin\Debug\net8.0\ServiceLocator.runtimeconfig.json
+C:\Users\user\Desktop\lab04\ServiceLocator\bin\Debug\net8.0\ServiceLocator.dll
+C:\Users\user\Desktop\lab04\ServiceLocator\bin\Debug\net8.0\ServiceLocator.pdb
+C:\Users\user\Desktop\lab04\ServiceLocator\obj\Debug\net8.0\ServiceLocator.csproj.AssemblyReference.cache
+C:\Users\user\Desktop\lab04\ServiceLocator\obj\Debug\net8.0\ServiceLocator.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user\Desktop\lab04\ServiceLocator\obj\Debug\net8.0\ServiceLocator.AssemblyInfoInputs.cache
+C:\Users\user\Desktop\lab04\ServiceLocator\obj\Debug\net8.0\ServiceLocator.AssemblyInfo.cs
+C:\Users\user\Desktop\lab04\ServiceLocator\obj\Debug\net8.0\ServiceLocator.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\lab04\ServiceLocator\obj\Debug\net8.0\ServiceLocator.dll
+C:\Users\user\Desktop\lab04\ServiceLocator\obj\Debug\net8.0\refint\ServiceLocator.dll
+C:\Users\user\Desktop\lab04\ServiceLocator\obj\Debug\net8.0\ServiceLocator.pdb
+C:\Users\user\Desktop\lab04\ServiceLocator\obj\Debug\net8.0\ServiceLocator.genruntimeconfig.cache
+C:\Users\user\Desktop\lab04\ServiceLocator\obj\Debug\net8.0\ref\ServiceLocator.dll
+D:\4sem\pp\lab04\ServiceLocator\bin\Debug\net8.0\ServiceLocator.deps.json
+D:\4sem\pp\lab04\ServiceLocator\bin\Debug\net8.0\ServiceLocator.runtimeconfig.json
+D:\4sem\pp\lab04\ServiceLocator\bin\Debug\net8.0\ServiceLocator.dll
+D:\4sem\pp\lab04\ServiceLocator\bin\Debug\net8.0\ServiceLocator.pdb
+D:\4sem\pp\lab04\ServiceLocator\obj\Debug\net8.0\ServiceLocator.csproj.AssemblyReference.cache
+D:\4sem\pp\lab04\ServiceLocator\obj\Debug\net8.0\ServiceLocator.GeneratedMSBuildEditorConfig.editorconfig
+D:\4sem\pp\lab04\ServiceLocator\obj\Debug\net8.0\ServiceLocator.AssemblyInfoInputs.cache
+D:\4sem\pp\lab04\ServiceLocator\obj\Debug\net8.0\ServiceLocator.AssemblyInfo.cs
+D:\4sem\pp\lab04\ServiceLocator\obj\Debug\net8.0\ServiceLocator.csproj.CoreCompileInputs.cache
+D:\4sem\pp\lab04\ServiceLocator\obj\Debug\net8.0\ServiceLocator.dll
+D:\4sem\pp\lab04\ServiceLocator\obj\Debug\net8.0\refint\ServiceLocator.dll
+D:\4sem\pp\lab04\ServiceLocator\obj\Debug\net8.0\ServiceLocator.pdb
+D:\4sem\pp\lab04\ServiceLocator\obj\Debug\net8.0\ServiceLocator.genruntimeconfig.cache
+D:\4sem\pp\lab04\ServiceLocator\obj\Debug\net8.0\ref\ServiceLocator.dll
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab04\ServiceLocator\bin\Debug\net8.0\ServiceLocator.deps.json
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab04\ServiceLocator\bin\Debug\net8.0\ServiceLocator.runtimeconfig.json
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab04\ServiceLocator\bin\Debug\net8.0\ServiceLocator.dll
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab04\ServiceLocator\bin\Debug\net8.0\ServiceLocator.pdb
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab04\ServiceLocator\obj\Debug\net8.0\ServiceLocator.csproj.AssemblyReference.cache
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab04\ServiceLocator\obj\Debug\net8.0\ServiceLocator.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab04\ServiceLocator\obj\Debug\net8.0\ServiceLocator.AssemblyInfoInputs.cache
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab04\ServiceLocator\obj\Debug\net8.0\ServiceLocator.AssemblyInfo.cs
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab04\ServiceLocator\obj\Debug\net8.0\ServiceLocator.csproj.CoreCompileInputs.cache
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab04\ServiceLocator\obj\Debug\net8.0\ServiceLocator.dll
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab04\ServiceLocator\obj\Debug\net8.0\refint\ServiceLocator.dll
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab04\ServiceLocator\obj\Debug\net8.0\ServiceLocator.pdb
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab04\ServiceLocator\obj\Debug\net8.0\ServiceLocator.genruntimeconfig.cache
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab04\ServiceLocator\obj\Debug\net8.0\ref\ServiceLocator.dll

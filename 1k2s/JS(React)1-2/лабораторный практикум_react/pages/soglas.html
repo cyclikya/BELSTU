@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Согласование</title>
+    <link rel="icon" href="../Dependencies/img/favicon.ico"/>
+    <link rel="stylesheet" href="../Dependencies/css/main.css">
+    <link rel="stylesheet" href="../Dependencies/css/header.css">
+    <link rel="stylesheet" href="../Dependencies/css/body.css">
+    <link rel="stylesheet" href="../Dependencies/css/footer.css">
+    <link rel="stylesheet" href="../Dependencies/css/first.css">
+    <link rel="stylesheet" href="../Dependencies/css/text.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@500;600&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;1,100&family=Open+Sans:ital,wght@0,400;1,400;1,500&family=Roboto+Condensed:wght@500;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="body">
+    <header class="header">
+        <img src="../Dependencies/img/1174949_js_react js_logo_react_react native_icon.png" alt="My Photo"
+            class="photo" />
+        <nav class="navbar">
+            <ul>
+                <li>
+                    <a href="../main.html">React</a>
+                </li>
+            </ul>
+            <div><a href="../pages/table-of-contents.html">Оглавление</a>
+                <a href="https://belstu.by/">Сайт BSTU</a>
+                <a href="https://react.dev/">Официальная документация</a>
+                <a href="../labs/labs.html">Лабораторный практикум</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <div class="text">
+            <div class="intro">Согласование</div>
+            <p>React - это JavaScript библиотека для создания пользовательских интерфейсов. В ее основе лежит механизм,
+                который отслеживает изменения в состоянии компонента и проецирует обновленное состояние на экран
+            </p>
+            <p>В React мы знаем этот процесс как согласование (reconciliation)
+            </p>
+
+            <p>При работе с React вы можете понимать <span class="highlighted-text">render()</span> как функцию, которая
+                создаёт дерево React-элементов в какой-то момент времени
+                При последующем обновлении состояния или пропсов функция <span class="highlighted-text">render()</span>
+                вернёт новое дерево React-элементов
+                Теперь React должен понять, как эффективно обновить UI, чтобы он совпадал с новейшим из деревьев
+            </p>
+            <p>Из-за больших сложностей в проведении сравнений React реализует алгоритм O(n), который основывается на
+                двух предположениях:
+            <ul>
+                <li>
+                    Два элемента с разными типами произведут разные деревья
+                </li>
+                <li>Разработчик может указать, какие дочерние элементы могут оставаться стабильными между разными
+                    рендерами с помощью <span class="highlighted-text">key</span>
+                </li>
+            </ul>
+            </p>
+            <p>При сравнении двух деревьев первым делом React сравнивает два корневых элемента. Поведение различается в
+                зависимости от типов корневых элементов
+            </p>
+            <p>Важно понимать что при уничтожении дерева старые DOM-узлы удаляются
+            </p>
+            <p>Экземпляры компонента получают <span class="highlighted-text">componentWillUnmount()</span>
+                При построении нового дерева, новые DOM-узлы вставляются в DOM. Экземпляры компонента получают
+                <span class="highlighted-text">componentWillUnmount()</span>, а затем <span
+                    class="highlighted-text">componentDidMount()</span>. Любое состояние, связанное со старым деревом,
+                теряется
+            </p>
+            <p>Любые компоненты, лежащие ниже корневого, также размонтируются, а их состояние уничтожится, например если
+                сравнить
+            </p>
+            <div class="code-block">
+                &#60;<span class="keyword">div</span>&#62; &#60;<span class="jsx-element">Counter</span>&#62; &#60;/
+                <span class="keyword">div</span>&#62;
+            </div>
+            <p>и</p>
+            <div class="code-block">
+                &#60;<span class="keyword">span</span> &#62;&#60;<span class="jsx-element">Counter</span>
+                /&#62;&#60;/<span class="keyword">span</span>&#62;
+            </div>
+            <p>При сравнении двух React DOM-элементов одного типа, React смотрит на атрибуты обоих, сохраняет лежащий в
+                основе этих элементов DOM-узел и обновляет только изменённые атрибуты
+            </p>
+            <p>Обновляя <span class="highlighted-text">style</span>, React также знает, что нужно обновлять только
+                изменившиеся свойства
+            </p>
+
+            <div class="code-block">
+                &#60;<span class="keyword">div style</span>=<span class="skobki">&#123;&#123;</span><span
+                    class="class-name">color</span>: 'red', <span class="class-name">fontWeight</span>: 'bold'<span
+                    class="skobki">&#125;&#125;</span>/&#62;
+
+            </div>
+            <p>и</p>
+            <div class="code-block">
+                &#60;<span class="keyword">div style</span>=<span class="skobki">&#123;&#123;</span><span
+                    class="class-name">color</span>: 'green', <span class="class-name">fontWeight</span>: 'bold'<span
+                    class="skobki">&#125;&#125;</span>/&#62;
+            </div>
+            <p>Когда компонент обновляется, его экземпляр остаётся прежним, поэтому его состояние сохраняется между
+                рендерами
+            </p>
+            <p>React обновляет пропсы базового экземпляра компонента для соответствия новому элементу и вызывает
+                <span class="highlighted-text">componentWillReceiveProps()</span> и <span
+                    class="highlighted-text">componentWillUpdate()</span> на базовом экземпляре
+            </p>
+            <p>Важно помнить, что алгоритм согласования — это деталь реализации. React может повторно рендерить всё
+                приложение на каждое действие, конечный результат будет тем же
+            </p>
+            <p>Для ясности, повторный рендер в этом контексте означает вызов функции <span class="highlighted-text">render</span> для всех компонентов, но это
+                не означает, что React размонтирует и смонтирует их заново
+            </p>
+        </div>
+    </main>
+    <div class="button-container">
+        <a href="../pages/table-of-contents.html" class="go-to-toc-button">
+          Перейти к оглавлению <span>&rarr;</span>
+        </a>
+    </div>
+</body>
+
+</html>

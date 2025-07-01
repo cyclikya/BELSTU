@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Знакомство с jQuery</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+    <style>
+        img {
+            width: 30%;
+        }
+    </style>
+<script type="text/javascript">
+    $(document).ready(function () {
+        // Задание 1/2
+        $('span').hover(function () {
+            $(this).css('color', 'red');
+        });
+
+        $('span').click(function () {
+            $(this).css('font-size', '30px');
+        });
+
+        // Задание 3/5
+        $('#image').click(function () {
+            $(this).attr('src', 'https://i.pinimg.com/564x/35/33/91/353391813320ef54447906deeae87eb1.jpg');
+        });
+
+        $('#image').hover(function () {
+            $(this).css('width', '40%');
+        }, function () {
+            $(this).css('width', '30%');
+        });
+
+        // Задание 4/5
+        $('#TxtImg').click(function () {
+            $(this).html('<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT90lX17Cahbr-XmlBG9AzjQC-OKIEwLcWDFRrPqW6anPKJq1PLW_oQQ3LJHRhc9nVP8Z0&usqp=CAU">');
+        });
+
+        // Задание 6
+        $('p').dblclick(function () {
+            $(this).css('border', '2px solid green');
+        });
+    });
+</script>
+</head>
+<body>
+    <h3>Задание 1/2</h3>
+    <p>Наведите курсор на слово <span> "текст"</span> чтобы изменить его цвет, а для изменения размера щелкните 1 раз
+    </p>
+
+    <h3>Задание 3/5</h3>
+    <img id="image" src="https://i.pinimg.com/564x/19/c8/70/19c870080e82058d7eec410ed108ab2e.jpg">
+
+    <h3>Задание 4/5</h3>
+    <p id="TxtImg">
+        Нажмите, чтобы заменить этот текст на картинку
+    </p>
+
+    <h3>Задание 6</h3>
+    <p>
+        Дважды нажмите, чтобы нарисовать рамку вокруг абзаца
+    </p>
+</body>
+
+</html>

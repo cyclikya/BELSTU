@@ -1,0 +1,68 @@
+E:\programing\pp\aaa\Lec03LibN\Lec03LibN\obj\Debug\net8.0\Lec03LibN.GeneratedMSBuildEditorConfig.editorconfig
+E:\programing\pp\aaa\Lec03LibN\Lec03LibN\obj\Debug\net8.0\Lec03LibN.AssemblyInfoInputs.cache
+E:\programing\pp\aaa\Lec03LibN\Lec03LibN\obj\Debug\net8.0\Lec03LibN.AssemblyInfo.cs
+E:\programing\pp\aaa\Lec03LibN\Lec03LibN\obj\Debug\net8.0\Lec03LibN.csproj.CoreCompileInputs.cache
+E:\programing\pp\aaa\Lec03LibN\Lec03LibN\bin\Debug\net8.0\Lec03LibN.deps.json
+E:\programing\pp\aaa\Lec03LibN\Lec03LibN\bin\Debug\net8.0\Lec03LibN.dll
+E:\programing\pp\aaa\Lec03LibN\Lec03LibN\bin\Debug\net8.0\Lec03LibN.pdb
+E:\programing\pp\aaa\Lec03LibN\Lec03LibN\obj\Debug\net8.0\Lec03LibN.dll
+E:\programing\pp\aaa\Lec03LibN\Lec03LibN\obj\Debug\net8.0\refint\Lec03LibN.dll
+E:\programing\pp\aaa\Lec03LibN\Lec03LibN\obj\Debug\net8.0\Lec03LibN.pdb
+E:\programing\pp\aaa\Lec03LibN\Lec03LibN\obj\Debug\net8.0\ref\Lec03LibN.dll
+D:\Games\PP-1-main\lab03\Lec03LibN\Lec03LibN\bin\Debug\net8.0\Lec03LibN.deps.json
+D:\Games\PP-1-main\lab03\Lec03LibN\Lec03LibN\bin\Debug\net8.0\Lec03LibN.dll
+D:\Games\PP-1-main\lab03\Lec03LibN\Lec03LibN\bin\Debug\net8.0\Lec03LibN.pdb
+D:\Games\PP-1-main\lab03\Lec03LibN\Lec03LibN\obj\Debug\net8.0\Lec03LibN.GeneratedMSBuildEditorConfig.editorconfig
+D:\Games\PP-1-main\lab03\Lec03LibN\Lec03LibN\obj\Debug\net8.0\Lec03LibN.AssemblyInfoInputs.cache
+D:\Games\PP-1-main\lab03\Lec03LibN\Lec03LibN\obj\Debug\net8.0\Lec03LibN.AssemblyInfo.cs
+D:\Games\PP-1-main\lab03\Lec03LibN\Lec03LibN\obj\Debug\net8.0\Lec03LibN.csproj.CoreCompileInputs.cache
+D:\Games\PP-1-main\lab03\Lec03LibN\Lec03LibN\obj\Debug\net8.0\Lec03LibN.dll
+D:\Games\PP-1-main\lab03\Lec03LibN\Lec03LibN\obj\Debug\net8.0\refint\Lec03LibN.dll
+D:\Games\PP-1-main\lab03\Lec03LibN\Lec03LibN\obj\Debug\net8.0\Lec03LibN.pdb
+D:\Games\PP-1-main\lab03\Lec03LibN\Lec03LibN\obj\Debug\net8.0\ref\Lec03LibN.dll
+D:\programming\vus\paterns\PP-1-main\lab03\Lec03LibN\Lec03LibN\bin\Debug\net8.0\Lec03LibN.deps.json
+D:\programming\vus\paterns\PP-1-main\lab03\Lec03LibN\Lec03LibN\bin\Debug\net8.0\Lec03LibN.dll
+D:\programming\vus\paterns\PP-1-main\lab03\Lec03LibN\Lec03LibN\bin\Debug\net8.0\Lec03LibN.pdb
+D:\programming\vus\paterns\PP-1-main\lab03\Lec03LibN\Lec03LibN\obj\Debug\net8.0\Lec03LibN.GeneratedMSBuildEditorConfig.editorconfig
+D:\programming\vus\paterns\PP-1-main\lab03\Lec03LibN\Lec03LibN\obj\Debug\net8.0\Lec03LibN.AssemblyInfoInputs.cache
+D:\programming\vus\paterns\PP-1-main\lab03\Lec03LibN\Lec03LibN\obj\Debug\net8.0\Lec03LibN.AssemblyInfo.cs
+D:\programming\vus\paterns\PP-1-main\lab03\Lec03LibN\Lec03LibN\obj\Debug\net8.0\Lec03LibN.csproj.CoreCompileInputs.cache
+D:\programming\vus\paterns\PP-1-main\lab03\Lec03LibN\Lec03LibN\obj\Debug\net8.0\Lec03LibN.sourcelink.json
+D:\programming\vus\paterns\PP-1-main\lab03\Lec03LibN\Lec03LibN\obj\Debug\net8.0\Lec03LibN.dll
+D:\programming\vus\paterns\PP-1-main\lab03\Lec03LibN\Lec03LibN\obj\Debug\net8.0\refint\Lec03LibN.dll
+D:\programming\vus\paterns\PP-1-main\lab03\Lec03LibN\Lec03LibN\obj\Debug\net8.0\Lec03LibN.pdb
+D:\programming\vus\paterns\PP-1-main\lab03\Lec03LibN\Lec03LibN\obj\Debug\net8.0\ref\Lec03LibN.dll
+E:\programing\pp\lab03\Lec03LibN\Lec03LibN\bin\Debug\net8.0\Lec03LibN.deps.json
+E:\programing\pp\lab03\Lec03LibN\Lec03LibN\bin\Debug\net8.0\Lec03LibN.dll
+E:\programing\pp\lab03\Lec03LibN\Lec03LibN\bin\Debug\net8.0\Lec03LibN.pdb
+E:\programing\pp\lab03\Lec03LibN\Lec03LibN\obj\Debug\net8.0\Lec03LibN.GeneratedMSBuildEditorConfig.editorconfig
+E:\programing\pp\lab03\Lec03LibN\Lec03LibN\obj\Debug\net8.0\Lec03LibN.AssemblyInfoInputs.cache
+E:\programing\pp\lab03\Lec03LibN\Lec03LibN\obj\Debug\net8.0\Lec03LibN.AssemblyInfo.cs
+E:\programing\pp\lab03\Lec03LibN\Lec03LibN\obj\Debug\net8.0\Lec03LibN.csproj.CoreCompileInputs.cache
+E:\programing\pp\lab03\Lec03LibN\Lec03LibN\obj\Debug\net8.0\Lec03LibN.sourcelink.json
+E:\programing\pp\lab03\Lec03LibN\Lec03LibN\obj\Debug\net8.0\Lec03LibN.dll
+E:\programing\pp\lab03\Lec03LibN\Lec03LibN\obj\Debug\net8.0\refint\Lec03LibN.dll
+E:\programing\pp\lab03\Lec03LibN\Lec03LibN\obj\Debug\net8.0\Lec03LibN.pdb
+E:\programing\pp\lab03\Lec03LibN\Lec03LibN\obj\Debug\net8.0\ref\Lec03LibN.dll
+D:\3sem\pp\Lec03LibN\Lec03LibN\bin\Debug\net8.0\Lec03LibN.deps.json
+D:\3sem\pp\Lec03LibN\Lec03LibN\bin\Debug\net8.0\Lec03LibN.dll
+D:\3sem\pp\Lec03LibN\Lec03LibN\bin\Debug\net8.0\Lec03LibN.pdb
+D:\3sem\pp\Lec03LibN\Lec03LibN\obj\Debug\net8.0\Lec03LibN.GeneratedMSBuildEditorConfig.editorconfig
+D:\3sem\pp\Lec03LibN\Lec03LibN\obj\Debug\net8.0\Lec03LibN.AssemblyInfoInputs.cache
+D:\3sem\pp\Lec03LibN\Lec03LibN\obj\Debug\net8.0\Lec03LibN.AssemblyInfo.cs
+D:\3sem\pp\Lec03LibN\Lec03LibN\obj\Debug\net8.0\Lec03LibN.csproj.CoreCompileInputs.cache
+D:\3sem\pp\Lec03LibN\Lec03LibN\obj\Debug\net8.0\Lec03LibN.dll
+D:\3sem\pp\Lec03LibN\Lec03LibN\obj\Debug\net8.0\refint\Lec03LibN.dll
+D:\3sem\pp\Lec03LibN\Lec03LibN\obj\Debug\net8.0\Lec03LibN.pdb
+D:\3sem\pp\Lec03LibN\Lec03LibN\obj\Debug\net8.0\ref\Lec03LibN.dll
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\labs\Lec03LibN\Lec03LibN\bin\Debug\net8.0\Lec03LibN.deps.json
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\labs\Lec03LibN\Lec03LibN\bin\Debug\net8.0\Lec03LibN.dll
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\labs\Lec03LibN\Lec03LibN\bin\Debug\net8.0\Lec03LibN.pdb
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\labs\Lec03LibN\Lec03LibN\obj\Debug\net8.0\Lec03LibN.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\labs\Lec03LibN\Lec03LibN\obj\Debug\net8.0\Lec03LibN.AssemblyInfoInputs.cache
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\labs\Lec03LibN\Lec03LibN\obj\Debug\net8.0\Lec03LibN.AssemblyInfo.cs
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\labs\Lec03LibN\Lec03LibN\obj\Debug\net8.0\Lec03LibN.csproj.CoreCompileInputs.cache
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\labs\Lec03LibN\Lec03LibN\obj\Debug\net8.0\Lec03LibN.dll
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\labs\Lec03LibN\Lec03LibN\obj\Debug\net8.0\refint\Lec03LibN.dll
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\labs\Lec03LibN\Lec03LibN\obj\Debug\net8.0\Lec03LibN.pdb
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\labs\Lec03LibN\Lec03LibN\obj\Debug\net8.0\ref\Lec03LibN.dll

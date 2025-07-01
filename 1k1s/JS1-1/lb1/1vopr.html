@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            111
+        </title>
+        <script type="text/javascript">
+            function vopr() 
+            {
+                alert('вас приветствует учебный центр')
+                x=prompt('введите имя')
+                alert('добро пожаловать на курсы, '+ [x])
+                qv1=confirm('Хотите стать Web-дизайнером?')
+                if (qv1==true) 
+                    { alert('Учите стили CSS и JavaScript!')}
+                else
+            { alert('Упускаете время!')}
+            }
+            function kalk() 
+            {
+                console.log(10 + 5);
+                console.log('10' + '5');
+                document.write(22 + '5');
+                document.write('<br>')
+                document.write('22' + 5);
+                alert('Результатом сложения строки и числа всегда будет строка');   
+            }
+            function arifm()
+            {
+                let x=prompt('введите x');
+                    y=prompt('введите y');
+
+                a=76*x/y+23*y;
+                b=4*y+14*x/7+180;
+                
+                document.write(
+                    'Значение первого арифметического выражения ' + a
+                    );
+                alert(
+                    'Значение первого арифметического выражения ' + a + '<br>'
+                    );
+                document.write(
+                    'Значение второго арифметического выражения ' + b
+                    );
+                alert( 
+                    'Значение второго арифметического выражения ' + b
+                    );
+                alert('Остаток от деления одного выражения на другое ' + a%b)
+            }
+            function sravn()
+            {
+                let
+                x = Number(prompt('введите число, что меньше 22 или больше 29 и не равно 12 и делится без остатка на 3'));
+                if (x > 29 || x < 22 && x != 12 && x%3 == 0)
+                    {
+                        document.write('Правильное значение');
+                    }
+                else 
+                    {document.write('Не правильное значение');
+                }
+            }
+            function IfElse()
+            {
+                var
+                y = Number(prompt('введите число А'));
+                x = Number(prompt('введите число Б'));
+    /*
+                if (x < y)
+                    {
+                        document.write('А больше Б');
+                    }
+                else if (x == y)
+                    {
+                        document.write('А равно Б');
+                    }
+                else 
+                    {document.write('А меньше Б');
+                }
+    */
+                if (x == y)
+                        {
+                            document.write('А равно Б');
+                        }
+                else {
+                    y < x?  alert('А меньше Б'):
+                            alert('А больше Б')
+                        }
+            }
+            function days()
+            {
+                let
+                x = Number(prompt('введите какой по счёту день недели'));
+                
+                switch (x) {
+                    case 1:
+                    document.write('Сегодня понедельник');
+                        break;
+                    case 2:
+                    document.write('Сегодня вторник');
+                        break;
+                    case 3:
+                    document.write('Сегодня среда');
+                        break;
+                    case 4:
+                    document.write('Сегодня четверг');
+                        break;
+                    case 5:
+                    document.write('Сегодня пятница');
+                        break;
+                    case 6:
+                    document.write('Сегодня суббота');
+                        break;
+                    case 7:
+                    document.write('Сегодня воскресенье');
+                        break;
+                    default:
+                        document.write('Вы ввели число больше 7, повторите попытку');
+                        break;
+                }
+            }
+            function syst()
+            {
+                var 
+                    x2=0b00001001
+                    x8=0o34
+                    x16=0x1F
+                
+                alert('Двоичная система счисления ' + x2);
+                alert('Восьмиричная система счисления ' + x8);
+                alert('Шестнадцатеричная система счисления ' + x16);
+
+            }
+        </script>
+    </head>
+    <body>
+        <input type="button" value="vopr" onclick="vopr()">
+        <input type="button" value="kalk" onclick="kalk()">
+        <input type="button" value="arifm" onclick="arifm()">
+        <input type="button" value="sravn" onclick="sravn()">
+        <input type="button" value="IfElse" onclick="IfElse()">
+        <input type="button" value="days" onclick="days()">
+        <input type="button" value="syst" onclick="syst()">
+   </body>
+</html>

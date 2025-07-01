@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ошибки состояния</title>
+    <link rel="icon" href="../Dependencies/img/favicon.ico"/>
+    <link rel="stylesheet" href="../Dependencies/css/main.css">
+    <link rel="stylesheet" href="../Dependencies/css/header.css">
+    <link rel="stylesheet" href="../Dependencies/css/body.css">
+    <link rel="stylesheet" href="../Dependencies/css/footer.css">
+    <link rel="stylesheet" href="../Dependencies/css/first.css">
+    <link rel="stylesheet" href="../Dependencies/css/text.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@500;600&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;1,100&family=Open+Sans:ital,wght@0,400;1,400;1,500&family=Roboto+Condensed:wght@500;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="body">
+    <header class="header">
+        <img src="../Dependencies/img/1174949_js_react js_logo_react_react native_icon.png" alt="My Photo"
+            class="photo" />
+        <nav class="navbar">
+            <ul>
+                <li>
+                    <a href="../main.html">React</a>
+                </li>
+            </ul>
+            <div><a href="../pages/table-of-contents.html">Оглавление</a>
+                <a href="https://belstu.by/">Сайт BSTU</a>
+                <a href="https://react.dev/">Официальная документация</a>
+                <a href="../labs/labs.html">Лабораторный практикум</a>
+            </div>
+        </nav>
+    </header>
+    <main class="main">
+        <div class="text">
+            <div class="intro">Изменение состояния напрямую
+            </div>
+            <p>При изменении состояния компонента важно, возвращать новую копию состояния с изменениями, а не изменять
+                текущее состояние напрямую
+            </p>
+            <p>Если неправильно изменить состояние компонента, алгоритм сравнения React не поймает изменение, и
+                компонент не будет обновляться должным образом
+            </p>
+            <p>Оба эти подхода неверны!
+            </p>
+            <div class="code-block">
+                <span class="keyword">this.state</span> = <span class="skobki">&#123;</span> <br>
+                <span class="keyword">colors</span>: <span class="skobki">&#91;</span>'red', 'green', 'blue'<span
+                    class="skobki">&#93;</span> <br>
+                <span class="skobki">&#125;</span> <br>
+            </div>
+            <p> 1 вариант </p>
+            <div class="code-block"><span class="keyword">this.state.colors.push</span> <span
+                    class="skobki">&#40;</span> 'yellow'<span class="skobki">&#41;</span></div>
+
+            <p> 2 вариант </p>
+            <div class="code-block">
+                <span class="keyword">this.state.colors</span> = <span class="skobki">&#91;</span>...
+                <span class="keyword">this.state.colors</span> , 'yellow'<span class="skobki">&#93;</span>
+            </div>
+
+            <p>При обновлении состояния в компоненте класса всегда нужно использовать метод <span
+                    class="highlighted-text">setState</span> , и всегда быть осторожным, чтобы не изменять объекты
+            </p>
+            <p> Вот правильный способ добавить элемент в массив
+            </p>
+            <div class="code-block">
+                <span class="keyword">this.setState</span> <span class="skobki">&#40;</span> <span
+                    class="keyword">prevState</span> => <span class="skobki">&#40;</span><span
+                    class="skobki">&#123;</span> <span class="keyword">colors</span>: <span
+                    class="skobki">&#91;</span>... <span class="keyword">prevState.colors</span>, 'yellow'<span
+                    class="skobki">&#93;</span><span class="skobki">&#125;&#41;&#41;</span>
+            </div>
+            <div class="intro">Установка состояния, которое опирается на предыдущее состояние без использования функции
+            </div>
+            <br>
+            <div class="code-block"><span class="keyword">this.setState</span><span class="skobki">&#40;</span><span
+                    class="skobki">&#123;</span> <span class="keyword">isDisabled</span>: ! <span
+                    class="keyword">this.state.isDisabled</span> <span class="skobki">&#125;</span><span
+                    class="skobki">&#41;</span>
+            </div>
+            <p>Проблема заключается в том, что обновления состояния React могут быть пакетными, а это означает, что в
+                одном цикле обновления может происходить несколько обновлений состояния
+            </p>
+            <p>Если ваши обновления должны были быть пакетными, и у вас было несколько обновлений до включенного /
+                отключенного состояния, конечный результат может быть не тем, что вы ожидаете
+            </p>
+            <p>Правильным способом обновления состояния здесь было бы предоставление функции предыдущего состояния в
+                качестве аргумента
+            </p>
+            <div class="code-block"><span class="keyword">this.setState</span><span class="skobki">&#40;</span><span
+                    class="keyword">prevState</span> => <span class="skobki">&#40;</span><span
+                    class="skobki">&#123;</span> <span class="keyword">isDisabled</span>: ! <span
+                    class="keyword">prevState.isDisabled</span><span class="skobki">&#125;&#41;&#41;</span>
+            </div>
+            <p>Теперь, даже если обновления состояния являются пакетными, и несколько обновлений в состоянии включенного
+                / выключенного состояния выполняются вместе, каждое обновление будет полагаться на правильное предыдущее
+                состояние, чтобы вы всегда получали результат, который ожидали
+            </p>
+            <div class="intro">Не забывайте, что setState является асинхронным
+            </div>
+            <p><span class="highlighted-text">setState</span> является асинхронным. Это означает, что он собирается
+                запустить обновление состояния, когда
+                доберется до строки, которая вызывает <span class="highlighted-text">setState</span>, но код ниже будет
+                продолжать выполняться, поскольку
+                асинхронный код не является блокирующим
+            </p>
+            <p>Неправильный способ записать текущее состояние после обновления:
+            </p>
+            <div class="code-block">
+
+                <span class="keyword">this.setState</span><span class="skobki">&#40;</span><span
+                    class="skobki">&#123;</span> <span class="keyword">name</span>: 'Matt' <span
+                    class="skobki">&#125;</span><span class="skobki">&#41;</span>
+                <span class="keyword">console.log</span><span class="skobki">&#123;</span><span
+                    class="keyword">this.state.name</span><span class="skobki">&#125;</span>
+            </div>
+            <p>Правильный способ записать текущее состояние после обновления:
+            </p>
+            <div class="code-block"><span class="keyword">this.setState</span><span class="skobki">&#40;</span><span
+                    class="skobki">&#123;</span> <span class="keyword">name</span>: 'Matt' <span
+                    class="skobki">&#125;</span>, <span class="skobki">&#40;</span><span class="skobki">&#41;</span> =>
+                <span class="keyword">console.log</span><span class="skobki">&#40;</span><span
+                    class="keyword">this.state.name</span><span class="skobki">&#41;&#41;</span>
+            </div>
+        </div>
+        <div class="button-container">
+            <a href="../pages/table-of-contents.html" class="go-to-toc-button">
+                Перейти к оглавлению <span>&rarr;</span>
+            </a>
+        </div>
+
+
+    </main>
+
+</body>
+
+</html>

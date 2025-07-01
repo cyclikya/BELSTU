@@ -1,0 +1,88 @@
+    <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторная работа 8</title>
+    <link rel="icon" href="../../Dependencies/img/favicon.ico"/>
+    <link rel="stylesheet" href="../../Dependencies/css/main.css">
+    <link rel="stylesheet" href="../../Dependencies/css/header.css">
+    <link rel="stylesheet" href="../../Dependencies/css/body.css">
+    <link rel="stylesheet" href="../../Dependencies/css/footer.css">
+    <link rel="stylesheet" href="../../Dependencies/css/first.css">
+    <link rel="stylesheet" href="../../Dependencies/css/text.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@500;600&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;1,100&family=Open+Sans:ital,wght@0,400;1,400;1,500&family=Roboto+Condensed:wght@500;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="body">
+    <header class="header">
+        <img src="../../Dependencies/img/1174949_js_react js_logo_react_react native_icon.png" alt="My Photo"
+            class="photo" />
+        <nav class="navbar">
+            <ul>
+                <li>
+                    <a href="../../main.html">React</a>
+                </li>
+            </ul>
+            <div><a href="../../pages/table-of-contents.html">Оглавление</a>
+                <a href="../../https://belstu.by/">Сайт BSTU</a>
+                <a href="../../https://react.dev/">Официальная документация</a>
+                <a href="../../labs/labs.html">Лабораторный практикум</a>
+            </div>
+        </nav>
+    </header>
+    <main class="main">
+        <div class="text">
+            <div class="intro">Лабораторная работа №8</div>
+            <div class="section">Задание 1</div>
+            <p>Реализуйте компонент таблицы <span class="abbr">SortTable</span> каталога товаров.</p>
+            <br>
+            <p> Компонент должен содержать следующие обязательные поля:
+            <ul>
+                <li>Наименование (Название);
+                </li>
+                <br>
+                <li>Стоимость;
+                </li><br>
+                <li>Количество;</li><br>
+                <li>Изображение;
+                </li><br>
+                <li>Описание;</li> <br>
+                <li>Новинка (значение Да/Нет);
+                </li><br>
+                <li>Скидка (значение в процентах).<br>
+            </ul>
+            </p>
+            <p>В пункте «Изображение» выводите миниатюру изображения, а не его полную версию. Реализуйте возможность
+                сортировки по наименованию, стоимости, количеству, скидке.</p>
+                <br>
+            <p>Разработайте компонент товара <span class="abbr">Сatalog</span> для отображения элементов из списка <span
+                    class="abbr">SortTable</span> в виде каталога
+                интернет-магазина. Компонент должен выводить всю информацию о каждом товаре из компонента <span
+                    class="abbr">SortTable</span>.
+                Реализуйте возможность сортировки по тем же критериям, что и в компоненте <span
+                    class="abbr">SortTable</span> (по наименованию,
+                стоимости, количеству, скидке).</p>
+            <p>При наличии скидки на товар выведите стоимость со скидкой и его полную стоимость. Если товар является
+                новинкой, выведите информацию об этом в компоненте. Товары-новинки, независимо от типа сортировки,
+                должны быть отображены первыми.</p>
+                <br>
+                <p>Пример реализации компонента <span class="abbr">Сatalog</span>:</p>
+                <img class="lr-img1" src="demo1.jpg" alt="Пример 1">
+                <img class="lr-img1" src="demo2.jpg" alt="Пример 2">
+                <img class="lr-img2" src="demo3.jpg" alt="Пример 3">
+        </div>
+    </main>
+
+</body>
+
+</html>

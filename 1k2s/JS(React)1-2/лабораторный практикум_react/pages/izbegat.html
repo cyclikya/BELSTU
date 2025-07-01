@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Чего стоит избегать</title>
+    <link rel="icon" href="../Dependencies/img/favicon.ico"/>
+    <link rel="stylesheet" href="../Dependencies/css/main.css">
+    <link rel="stylesheet" href="../Dependencies/css/header.css">
+    <link rel="stylesheet" href="../Dependencies/css/body.css">
+    <link rel="stylesheet" href="../Dependencies/css/footer.css">
+    <link rel="stylesheet" href="../Dependencies/css/first.css">
+    <link rel="stylesheet" href="../Dependencies/css/text.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@500;600&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;1,100&family=Open+Sans:ital,wght@0,400;1,400;1,500&family=Roboto+Condensed:wght@500;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="body">
+    <header class="header">
+        <img src="../Dependencies/img/1174949_js_react js_logo_react_react native_icon.png" alt="My Photo"
+            class="photo" />
+        <nav class="navbar">
+            <ul>
+                <li>
+                    <a href="../main.html">React</a>
+                </li>
+            </ul>
+            <div><a href="../pages/table-of-contents.html">Оглавление</a>
+                <a href="https://belstu.by/">Сайт BSTU</a>
+                <a href="https://react.dev/">Официальная документация</a>
+                <a href="../labs/labs.html">Лабораторный практикум</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <div class="text">
+            <div class="intro">Ошибка: При рендеринге списка не используется <span class="abbr">key</span>
+            </div>
+            <p>Проблема</p>
+            <br>
+            <p>Когда мы впервые изучали React, мы отображали список следующим образом:</p>
+            <div class="code-block">
+                <span class="extends">const</span> items = <span class="skobki">&#91;</span> <br>
+                &nbsp;<span class="skobki">&#123;</span> id: 1, value: <span class="skobki">'item1'</span> <span
+                    class="skobki">&#125;</span>, <br>
+                &nbsp;<span class="skobki">&#123;</span> id: 2, value: <span class="skobki">'item2'</span> <span
+                    class="skobki">&#125;</span>, <br>
+                &nbsp;<span class="skobki">&#123;</span> id: 3, value: <span class="skobki">'item3'</span> <span
+                    class="skobki">&#125;</span>, <br>
+                &nbsp;<span class="skobki">&#123;</span> id: 4, value: <span class="skobki">'item4'</span> <span
+                    class="skobki">&#125;</span>, <br>
+                &nbsp;<span class="skobki">&#123;</span> id: 5, value: <span class="skobki">'item5'</span> <span
+                    class="skobki">&#125;</span> <br>
+                <span class="skobki">&#93;</span>;<br>
+                <br>
+                <span class="extends">const</span> listItems = items.map<span class="skobki">&#40;&#40;</span>item<span
+                    class="skobki">&#41;</span> => <span class="skobki">&#123;</span> <br>
+                &nbsp;<span class="extends">return</span> &#60;li&#62;<span class="skobki">&#123;</span>item.value<span
+                    class="skobki">&#125;</span>&#60;/li&#62; <br>
+                <span class="skobki">&#125;&#41;</span>; <br>
+            </div>
+            <p>После рендеринга консоль выдаст предупреждение, что для элементов списка необходимо указать ключ.</p>
+            <br>
+            <p>Решение:</p>
+            <br>
+            <p>Вам просто нужно последовать этой подсказке и добавить <span class="abbr">key</span> к каждому элементу:
+            </p>
+            <div class="code-block">
+                <span class="extends">const</span> items = <span class="skobki">&#91;</span> <br>
+                &nbsp;<span class="skobki">&#123;</span> id: 1, value: <span class="skobki">'item1'</span> <span
+                    class="skobki">&#125;</span>, <br>
+                &nbsp;<span class="skobki">&#123;</span> id: 2, value: <span class="skobki">'item2'</span> <span
+                    class="skobki">&#125;</span>, <br>
+                &nbsp;<span class="skobki">&#123;</span> id: 3, value: <span class="skobki">'item3'</span> <span
+                    class="skobki">&#125;</span>, <br>
+                &nbsp;<span class="skobki">&#123;</span> id: 4, value: <span class="skobki">'item4'</span> <span
+                    class="skobki">&#125;</span>, <br>
+                &nbsp;<span class="skobki">&#123;</span> id: 5, value: <span class="skobki">'item5'</span> <span
+                    class="skobki">&#125;</span> <br>
+                <span class="skobki">&#93;</span>;<br>
+                <br>
+                <span class="extends">const</span> listItems = items.map<span class="skobki">&#40;&#40;</span>item<span
+                    class="skobki">&#41;</span> => <span class="skobki">&#123;</span> <br>
+                &nbsp;<span class="extends">return</span> &#60;li <span class="extends">key</span> = <span
+                    class="skobki">&#123;</span>item.id<span class="skobki">&#125;</span>&#62;<span
+                    class="skobki">&#123;</span>item.value<span class="skobki">&#125;</span>&#60;/li&#62; <br>
+                <span class="skobki">&#125;&#41;</span>; <br>
+            </div>
+            <p><span class="abbr">key</span> помогает React определить, какие элементы были изменены, например,
+                добавлены или удалены. Поэтому нам
+                нужно установить уникальное значение ключа для каждого элемента в массиве.</p>
+            <p>Для значения ключа лучше всего установить уникальное значение. В приведенном выше примере используется
+                <span class="abbr">id</span>. Можно использовать индекс массива, но такой подход не рекомендуется.
+            </p>
+            <p>Уникальный ключ помогает React следить за изменениями списка - какой элемент удалился или переместился.
+            </p>
+            <div class="intro">Ошибка: Изменение значения состояния прямым присваиванием</div>
+            <p>Проблема</p>
+            <br>
+            <p>В React нельзя назначать состояние и изменять напрямую, иначе это вызовет проблемы.</p>
+            <div class="code-block">
+                <span class="hex">// классовый компонент</span> <br>
+                <br>
+                handleChange = <span class="skobki">&#40;&#41;</span> => <span class="skobki">&#123;</span> <br>
+                &nbsp;<span class="extends">this</span>.state.name = <span class="skobki">"John"</span>; <br>
+                <span class="skobki">&#125;</span>;
+            </div>
+            <p>В этот момент будет выдано предупреждение не изменять состояние напрямую, а использовать <span
+                    class="highlighted-text">setState()</span>.</p>
+            <br>
+            <p>Решение</p>
+            <br>
+            <p>Классовые компоненты могут быть изменены с помощью <span class="highlighted-text">setState()</span>, а
+                функциональные компоненты могут быть
+                изменены с помощью <span class="highlighted-text">useState()</span>:</p>
+            <div class="code-block">
+                <span class="hex">// Классовые компоненты: используйте setState()</span> <br>
+                <span class="extends">this</span>.setState<span class="skobki">&#40;&#123;</span> name: <span
+                    class="skobki">"John"</span> <span class="skobki">&#41;&#125;</span>; <br>
+                <br>
+                <span class="hex">// Функциональные компоненты：используйте useState()</span> <br>
+                <span class="extends">const</span> <span class="skobki">&#91;</span>name, setName<span
+                    class="skobki">&#93;</span> = useState<span class="skobki">&#40;</span><span class="skobki">"
+                    "</span><span class="skobki">&#41;</span>; <br>
+                setName<span class="skobki">&#40;</span><span class="skobki">"John"</span><span
+                    class="skobki">&#41;</span>; <br>
+            </div>
+            <div class="intro">Ошибка: Привязка значения состояния непосредственно к свойству value инпута</div>
+            <p>Проблема</p>
+            <br>
+            <p>Когда мы напрямую привязываем значение состояния к свойству <span class="highlighted-text">value</span>
+                инпута, мы обнаружим, что независимо от того, что мы вводим в поле ввода, содержимое поля ввода не
+                изменится.</p>
+            <div class="code-block">
+                <span class="extends">export default function</span> App<span class="skobki">&#40;&#41; &#123;</span>
+                <br>
+                &nbsp;<span class="extends">const</span> <span class="skobki">&#91;</span>count, setCount<span
+                    class="skobki">&#93;</span> = useState<span class="skobki">&#40;</span>0<span
+                    class="skobki">&#41;</span>; <br>
+                &nbsp;<span class="extends">return</span> &#60; type="text" value=<span
+                    class="skobki">&#123;</span>count<span class="skobki">&#125;</span> /&#62;; <br>
+                <span class="skobki">&#125;</span>
+            </div>
+            <p>Это связано с тем, что мы используем переменную состояния в качестве значения по умолчанию для присвоения
+                значения <span class="highlighted-text">&#60;input&#62;</span>, а состояние в функциональном компоненте
+                может быть изменено только функцией <span class="highlighted-text">set*</span>,
+                возвращаемым <span class="highlighted-text">useState</span>. Таким образом, решение также очень простое,
+                просто используйте функцию <span class="highlighted-text">set*</span> при
+                изменении. </p>
+            <br>
+            <p>Решение</p>
+            <br>
+            <p>Просто привяжите событие <span class="highlighted-text">onChange</span> к <span
+                    class="highlighted-text">&#60;input&#62;</span> и измените его, вызвав <span
+                    class="highlighted-text">setCount</span>:</p>
+            <div class="code-block">
+                <span class="extends">export default function</span> App<span class="skobki">&#40;&#41; &#123;</span>
+                <br>
+                &nbsp;<span class="extends">const</span> <span class="skobki">&#91;</span>count, setCount<span
+                    class="skobki">&#93;</span> = useState<span class="skobki">&#40;</span>0<span
+                    class="skobki">&#41;</span>; <br>
+                &nbsp;<span class="extends">const</span> handleChange= <span class="skobki">&#40;</span>event<span
+                    class="skobki">&#41;</span> => setCount<span class="skobki">&#40;</span>event.target.value<span
+                    class="skobki">&#41;</span>; <br>
+                <br>
+                &nbsp;<span class="extends">return</span> &#60; type="text" value=<span
+                    class="skobki">&#123;</span>count<span class="skobki">&#125;</span> onChange =<span
+                    class="skobki">&#123;</span>handleChange<span class="skobki">&#125;</span> /&#62;; <br>
+                <span class="skobki">&#125;</span>
+            </div>
+            <div class="intro">Ошибка: Использование состояния сразу после выполнения setState</div>
+            <br>
+            <p>Проблема</p>
+            <br>
+            <p>Когда мы изменяем данные через <span class="highlighted-text">setState()</span> и сразу же хотим получить
+                новые данные, возникнет ситуация, что возвращаются старые данные:</p>
+            <div class="code-block">
+                <span class="hex">// Классовые компоненты</span> <br>
+                <br>
+                <span class="hex">// инициализация состояния</span><br>
+                <span class="extends">this</span>.state = <span class="skobki">{</span> name: <span
+                    class="skobki">"John" }</span> ;<br>
+                <br>
+                <span class="hex">// обновление состояния</span><br>
+                <span class="extends">this</span>.setStatesp <span class="skobki">({</span> name: <span
+                    class="skobki">"Hello, John!" })</span> ;<br>
+                console.log<span class="skobki">(</span><span class="extends">this</span>.state.name<span
+                    class="skobki">)</span>; <span class="hex">// => John</span><br>
+            </div>
+            <p>Это связано с тем, что <span class="highlighted-text">setState()</span> является асинхронным. Когда <span
+                    class="highlighted-text">setState()</span> выполняется, реальная операция
+                обновления будет помещена в асинхронную очередь для выполнения, а код, который будет выполняться
+                следующим (т.е. console.log в примере), выполняется синхронно, поэтому выводимое в консоль состояние не
+                является последним значением.</p>
+            <br>
+            <p>Решение</p>
+            <br>
+            <p>Просто передайте последующую операцию, которая будет выполняться как функция, в качестве второго
+                параметра <span class="highlighted-text">setState()</span>, эта функция обратного вызова будет выполнена
+                после завершения обновления.</p>
+            <div class="code-block">
+                <span class="extends">this</span>.setStatesp <span class="skobki">({</span> name: <span
+                    class="skobki">"Hello, John!" }</span>, <span class="skobki">()</span> => <span
+                    class="skobki">{</span> <br>
+                console.log(<span class="extends">this</span>.state.name); <span class="hex">// => Hello, John!</span>
+                <br>
+                <span class="skobki">})</span>;
+            </div>
+            <p>Теперь обновленное значение выводится правильно.</p>
+            <div class="intro">Ошибка: Появление бесконечного цикла при использовании useState + useEffect</div>
+            <p>Проблема</p>
+            <br>
+            <p>Когда мы напрямую вызываем метод <span class="highlighted-text">set*()</span>, возвращаемый <span
+                    class="highlighted-text">useState()</span> внутри <span class="highlighted-text">useEffect()</span>,
+                и не устанавливаем
+                второй параметр в <span class="highlighted-text">useEffect()</span>, мы столкнемся с бесконечным циклом:
+            </p>
+            <div class="code-block">
+                <span class="extends">export default function</span> App <span class="skobki">() {</span> <br>
+                &nbsp;<span class="extends">const</span> <span class="skobki">[</span>count, setCount<span
+                    class="skobki">[</span> = useState<span class="skobki">(</span>0<span class="skobki">)</span>; <br>
+                &nbsp;useEffects<span class="skobki">(()</span> => <span class="skobki">{</span> <br>
+                &nbsp;&nbsp;setCount<span class="skobki">(</span>count + 1<span class="skobki">)</span>; <br>
+                &nbsp;<span class="skobki">})</span>; <br>
+                &nbsp;<span class="extends">return</span> &#60;div className="App"&#62;<span
+                    class="skobki">{</span>count<span class="skobki">}</span>&#60;/div&#62;; <br>
+                <span class="skobki">}</span>
+            </div>
+            <p>После этого можно увидеть, что данные на странице обновляются, и функция <span
+                    class="highlighted-text">useEffect()</span> вызывается
+                бесконечно, входя в состояние бесконечного цикла.</p>
+            <br>
+            <p>Решение</p>
+            <br>
+            <p>Это распространенная проблема неправильного использования <span
+                    class="highlighted-text">useEffect()</span>. <span class="highlighted-text">useEffect()</span> можно
+                рассматривать
+                как комбинацию трех функций жизненного цикла: <span class="highlighted-text">componentDidMount</span>,
+                <span class="highlighted-text">componentDidUpdate</span> и
+                <span class="highlighted-text">componentWillUnmount</span> в классовых компонентах. <span
+                    class="highlighted-text">useEffect(effect, deps)</span> принимает 2 аргумента:
+            </p>
+            <p>
+            <ul>
+                <li><span class="abbr">effect</span> функция, которая должна выполниться (побочный эффект)</li>
+                <li><span class="abbr">deps</span> массив зависимостей</li>
+            </ul>
+            </p>
+            <p>При изменении массива <span class="abbr">deps</span> выполняется функция эффекта. Чтобы изменить метод,
+                вам нужно всего лишь
+                передать <span class="abbr">[ ]</span> в качестве второго аргумента <span
+                    class="highlighted-text">useEffect()</span> :</p>
+            <div class="code-block">
+                <span class="extends">export default function</span> App <span class="skobki">() {</span> <br>
+                &nbsp;<span class="extends">const</span> <span class="skobki">[</span>count, setCount<span
+                    class="skobki">[</span> = useState<span class="skobki">(</span>0<span class="skobki">)</span>; <br>
+                &nbsp;useEffects<span class="skobki">(()</span> => <span class="skobki">{</span> <br>
+                &nbsp;&nbsp; setCount<span class="skobki">(</span>count + 1<span class="skobki">)</span>; <br>
+                &nbsp; <span class="skobki"> }, [])</span>; <br>
+                <br>
+                &nbsp;<span class="extends">return</span> &#60;div className="App"&#62;<span
+                    class="skobki">{</span>count<span class="skobki">}</span>&#60;/div&#62;; <br>
+                <span class="skobki">}</span>
+            </div>
+            <br>
+            <p>Приведем 4 случая использования <span class="highlighted-text">useEffect</span>:
+            <ul>
+                <li>Если второй параметр не передан: при обновлении любого состояния будет запущена функция эффекта
+                    <span class="highlighted-text">useEffect</span>.
+                </li>
+                <br>
+                <div class="code-block">
+                    useEffects<span class="skobki">(()</span> => <span class="skobki">{</span> <br>
+                    &nbsp; setCount<span class="skobki">(</span>count + 1<span class="skobki">)</span>; <br>
+                    <span class="skobki"> })</span>;
+                </div>
+                <li>Если второй параметр - это пустой массив: функция эффекта <span
+                        class="highlighted-text">useEffect</span> срабатывает только при монтировании и размонтировании.
+                </li>
+                <br>
+                <div class="code-block">
+                    useEffects<span class="skobki">(()</span> => <span class="skobki">{</span> <br>
+                    &nbsp; setCount<span class="skobki">(</span>count + 1<span class="skobki">)</span>; <br>
+                    <span class="skobki"> }, [])</span>; <br>
+                </div>
+                <li>Если второй параметр представляет собой массив с одним значением: функция эффекта <span
+                        class="highlighted-text">useEffect</span> будет запускаться только при изменении значения.</li>
+                <br>
+                <div class="code-block">
+                    useEffects<span class="skobki">(()</span> => <span class="skobki">{</span> <br>
+                    &nbsp; setCount<span class="skobki">(</span>count + 1<span class="skobki">)</span>; <br>
+                    <span class="skobki"> }, [</span>name<span class="skobki">])</span>; <br>
+                </div>
+                <li>Если второй параметр представляет собой массив c несколькими значениями: функция эффекта <span class="highlighted-text">useEffect</span>
+                    будет запускаться при изменении хотя бы одного из значений из списка зависимостей.</li> <br>
+                    <div class="code-block">
+                        useEffects<span class="skobki">(()</span> => <span class="skobki">{</span> <br>
+                        &nbsp; setCount<span class="skobki">(</span>count + 1<span class="skobki">)</span>; <br>
+                        <span class="skobki"> }, [</span>name, age<span class="skobki">])</span>; <br>
+                    </div>  
+            </ul>
+            <br>
+            <p>Это лишь основные ошибки, для более подробного ознакомления вам стоит прочитать Официальную документацию.</p>
+            </p>
+        </div>
+    </main>
+
+
+    <div class="button-container">
+        <a href="../pages/table-of-contents.html" class="go-to-toc-button">
+            Перейти к оглавлению <span>&rarr;</span>
+        </a>
+
+    </div>
+
+
+</body>
+
+</html>

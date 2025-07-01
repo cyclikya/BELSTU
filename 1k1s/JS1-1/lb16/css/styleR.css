@@ -1,0 +1,37 @@
+body {
+    background-color:#27ae60;
+    color: black;
+}
+.grid {
+    display: grid;
+    grid-template-areas:
+        "main zag"
+        "img1 x1"
+        "img2 x2"
+        "img3 x3"
+        "img4 x4"
+        "img5 x5"
+        "img6 x6"
+        "footer footer";
+    grid-template-columns: 38% 59% ;
+    grid-template-rows: 5% 20% 20% 20% 20% 20% 20% 5%;
+    grid-gap: 2%; 
+}
+.grid > div{
+    border: 1px solid greenyellow;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #2ecc71;
+}
+.x *{
+    padding: 20px;
+    font-size: large;
+}
+a {
+    text-decoration: none;
+    font-size: x-large;
+    color: black;
+}
+.main, .footer {
+    padding-top: 20px;
+}

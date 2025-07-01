@@ -1,0 +1,32 @@
+p {
+    text-align: left;
+}
+h1, h2, h3, h4 {
+    color: black;
+}
+.img {
+    width: 80%;
+}
+span {
+    font-style: italic;
+    font-weight: bold;
+    font-size:large;
+    padding-bottom: 5px;
+}
+#message{
+    color: darkblue;
+    font-weight: bold;
+    padding: 5px;
+    text-align: center;
+}
+#img {
+    display: inline-block;
+}
+#img > img{
+    width: 19%;
+    padding: 1%;
+}
+
+#zag, #podzag1, #podzag2 {
+    background-color: #e67e22;
+}

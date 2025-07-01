@@ -1,0 +1,7 @@
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: промежуточный каталог (Debug\) содержит файлы, которые используются совместно с другим проектом (Boat(Task5).vcxproj).  Это может привести к ошибкам очистки и перестроения.
+  Knapsack.cpp
+  task5.cpp
+  Combi.cpp
+C:\Users\vugor\OneDrive\Рабочий стол\Камилла матпрога\хуйня\Boat(Task5)\Combi.cpp(41,37): warning C4334: <<: результат 32-разрядного смещения неявно преобразуется в 64-разрядное значение (предполагалось 64-разрядное смещение?)
+  Создание кода...
+  Boat(Task5).vcxproj -> C:\Users\vugor\OneDrive\Рабочий стол\Камилла матпрога\хуйня\Debug\Task5.exe

@@ -1,0 +1,11 @@
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\DALJSON\bin\Debug\net8.0\DALJSON.deps.json
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\DALJSON\bin\Debug\net8.0\DALJSON.dll
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\DALJSON\bin\Debug\net8.0\DALJSON.pdb
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\DALJSON\obj\Debug\net8.0\DALJSON.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\DALJSON\obj\Debug\net8.0\DALJSON.AssemblyInfoInputs.cache
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\DALJSON\obj\Debug\net8.0\DALJSON.AssemblyInfo.cs
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\DALJSON\obj\Debug\net8.0\DALJSON.csproj.CoreCompileInputs.cache
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\DALJSON\obj\Debug\net8.0\DALJSON.dll
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\DALJSON\obj\Debug\net8.0\refint\DALJSON.dll
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\DALJSON\obj\Debug\net8.0\DALJSON.pdb
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\DALJSON\obj\Debug\net8.0\ref\DALJSON.dll

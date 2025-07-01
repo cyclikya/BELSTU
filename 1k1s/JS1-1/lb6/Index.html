@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Создание окон</title>
+    <script>
+        var openWindows = {}; // Объект для хранения ссылок на открытые окна.
+
+        function closeWindow(nameWin) {
+            if (openWindows[nameWin]) { // проверка было ли открыто окно
+                openWindows[nameWin].close();
+                openWindows[nameWin] = null; // убирает записи об открытии окна
+            }
+        }
+
+        function openWindow(nameWin) {
+            if (!openWindows[nameWin]) { // если окно ещё не открыто
+                objWin = window.open('', nameWin);
+                objWin.document.write('<html><head><title>' + nameWin + '</title></head><body>');
+                objWin.document.write('<h1>' + 'Заголовок' + '</h1>');
+                objWin.document.write('<button onclick="window.opener.closeWindow(\'' + nameWin + '\')">Закрыть</button>');
+                objWin.document.write('</body></html>');
+                openWindows[nameWin] = objWin;
+            }
+        }
+        function textW() {
+            if (objWin) {
+                objWin.document.write("<br>Название окна: " + objWin.document.title);
+            }
+        }
+        function openInf() {
+            if (!openWindows["Inf"]) {
+                objWin = window.open("", "Inf");
+                objWin.location.assign("table.html");
+            }
+        }
+    </script>
+</head>
+<body>
+    <button onclick="openWindow('Окно 1')">Открыть Окно 1</button>
+    <button onclick="openWindow('Окно 2')">Открыть Окно 2</button>
+    <button onclick="textW()">Текст</button>
+    <button onclick="openInf()">Узнать информацию</button>
+</body>
+</html>

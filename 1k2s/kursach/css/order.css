@@ -1,0 +1,77 @@
+main {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 120vh;
+}
+main .form-container {
+  display: flex;
+  justify-content: center;
+  width: 50vw;
+  padding: 5vw;
+  background-color: #fff;
+  border-radius: 5vw;
+  margin-top: 20vw;
+  margin-bottom: 7vw;
+  font-size: 2em;
+}
+@media (max-width: 480px) {
+  main .form-container {
+    font-size: 1em;
+    width: 80vw;
+  }
+}
+@media (max-width: 1280px) and (min-width: 480px) {
+  main .form-container {
+    font-size: 2em;
+    width: 80vw;
+  }
+}
+main .form-container table {
+  border-spacing: 1vw;
+}
+main .form-container input {
+  font-size: 0.8em;
+  border: 0.15vw solid black;
+  font-family: Montserrat Alternates;
+}
+main .form-container select {
+  font-size: 1em;
+  border: 0.15vw solid black;
+}
+main .form-container select option {
+  font-size: 0.5em;
+}
+@media screen and (max-width: 1440) {
+  main .form-container {
+    margin: 10vw 5vw;
+  }
+}
+main .button-container {
+  margin-top: 1vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+main .button-container input {
+  background-color: rgb(71, 92, 53);
+  color: #fff;
+  padding: 1vw 1vw;
+  border-radius: 1.5vw;
+  transition: background-color 0.3s ease;
+  font-size: 2.8em;
+  font-family: Montserrat Alternates;
+}
+@media (max-width: 460px) {
+  main .button-container input {
+    font-size: 1em;
+  }
+}
+@media (max-width: 1280px) and (min-width: 480px) {
+  main .button-container input {
+    font-size: 2em;
+  }
+}

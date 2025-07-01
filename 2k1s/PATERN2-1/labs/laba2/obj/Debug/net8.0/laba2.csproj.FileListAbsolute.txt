@@ -1,0 +1,4 @@
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\labs\laba2\obj\Debug\net8.0\laba2.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\labs\laba2\obj\Debug\net8.0\laba2.AssemblyInfoInputs.cache
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\labs\laba2\obj\Debug\net8.0\laba2.AssemblyInfo.cs
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\labs\laba2\obj\Debug\net8.0\laba2.csproj.CoreCompileInputs.cache

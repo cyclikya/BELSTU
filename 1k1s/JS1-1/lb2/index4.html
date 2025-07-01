@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <script type="text/javascript">
+        x = Number(prompt ('Введите целое число'));
+        y = Number(prompt ('Введите дробное число'));
+        
+        x1 = x.toString(2);
+        y1 = y.toString (16)
+        x2 = x.toExponential(4);
+        y2 = y.toExponential(8);
+        x3 = x.toFixed(2);
+        y3 = y.toFixed(1);
+        x4 = x.toPrecision(3);
+        y4 = y.toPrecision(5);
+
+        document.write ('<table border=1>');
+        document.write ('<tr><td> Число </td><td> Метод </td><td> Результат </td><td> Описание метода </td></tr>');
+        document.write ('<tr><td rowspan=4>' + x + '</td><td> toString(2) </td><td>' + x1 + '</td><td> Строковое представление числа в 2-ичной системе счисления </td></tr>');
+        document.write ('<tr><td> toExponential(4) </td><td>' + x2 + '</td><td> Представляет число в экспоненциальной форме </td></tr>');
+        document.write ('<tr><td> toFixed(2) </td><td>' + x3 + '</td><td> Представляет число в форме с фиксированным кол-вом цифр после точки (Кол-во чисел до и после запятой) </td></tr>');
+        document.write ('<tr><td> toPrecision(3) </td><td>' + x4 + '</td><td> Представляет число с заданным общим кол-вом значащих чисел  </td></tr>')
+        document.write ('<tr><td rowspan=4>' + y + '</td><td> toString(16) </td><td>' + y1 + '</td><td> Строковое представление числа в 16-ричной системе счисления </td></tr>');
+        document.write ('<tr><td> toExponential(8)</td><td>' + y2 + '</td><td> Представляет число в экспоненциальной форме </td></tr>');
+        document.write ('<tr><td> toFixed(1)</td><td>' + y3 + '</td><td> Представляет число в форме с фиксированным кол-вом цифр после точки </td></tr>')
+        document.write ('<tr><td> toPrecision(5)</td><td>' + y4 + '</td><td> Представляет число в форме с фиксированным кол-вом цифр после точки (Кол-во чисел до и после запятой)');
+        document.write ('</td></tr></table>');
+    </script>
+    </head>
+</html>

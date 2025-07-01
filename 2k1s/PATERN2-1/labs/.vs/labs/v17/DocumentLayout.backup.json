@@ -1,0 +1,98 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\labs\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{6683345A-C7F7-4AE3-AAD7-5B2F49C36C2A}|laba4\\laba4.csproj|c:\\users\\vugor\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\patern2-1\\labs\\laba4\\lb_4.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6683345A-C7F7-4AE3-AAD7-5B2F49C36C2A}|laba4\\laba4.csproj|solutionrelative:laba4\\lb_4.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B2D06220-C69C-4CFC-9D42-C7CC3CA48005}|laba2_3\\laba2_3.csproj|c:\\users\\vugor\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\patern2-1\\labs\\laba2_3\\lb2_3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B2D06220-C69C-4CFC-9D42-C7CC3CA48005}|laba2_3\\laba2_3.csproj|solutionrelative:laba2_3\\lb2_3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1BC18AF7-54A0-4C59-A2C9-9371F7F315D7}|laba2_2\\laba2_2.csproj|c:\\users\\vugor\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\patern2-1\\labs\\laba2_2\\lb2_2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1BC18AF7-54A0-4C59-A2C9-9371F7F315D7}|laba2_2\\laba2_2.csproj|solutionrelative:laba2_2\\lb2_2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65F716B2-8953-46AF-AC16-4A1A6871F4A2}|laba2\\laba2_1.csproj|c:\\users\\vugor\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\patern2-1\\labs\\laba2\\lb2_1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65F716B2-8953-46AF-AC16-4A1A6871F4A2}|laba2\\laba2_1.csproj|solutionrelative:laba2\\lb2_1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "LB_4.cs",
+              "DocumentMoniker": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\labs\\laba4\\LB_4.cs",
+              "RelativeDocumentMoniker": "laba4\\LB_4.cs",
+              "ToolTip": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\labs\\laba4\\LB_4.cs*",
+              "RelativeToolTip": "laba4\\LB_4.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-24T15:02:23.67Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "LB2_1.cs",
+              "DocumentMoniker": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\labs\\laba2\\LB2_1.cs",
+              "RelativeDocumentMoniker": "laba2\\LB2_1.cs",
+              "ToolTip": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\labs\\laba2\\LB2_1.cs",
+              "RelativeToolTip": "laba2\\LB2_1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-20T22:17:14.113Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "LB2_2.cs",
+              "DocumentMoniker": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\labs\\laba2_2\\LB2_2.cs",
+              "RelativeDocumentMoniker": "laba2_2\\LB2_2.cs",
+              "ToolTip": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\labs\\laba2_2\\LB2_2.cs",
+              "RelativeToolTip": "laba2_2\\LB2_2.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAIcAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-21T11:49:05.928Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "LB2_3.cs",
+              "DocumentMoniker": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\labs\\laba2_3\\LB2_3.cs",
+              "RelativeDocumentMoniker": "laba2_3\\LB2_3.cs",
+              "ToolTip": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\labs\\laba2_3\\LB2_3.cs",
+              "RelativeToolTip": "laba2_3\\LB2_3.cs",
+              "ViewState": "AgIAAAoBAAAAAAAAAAAxwBsBAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-21T11:50:16.664Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

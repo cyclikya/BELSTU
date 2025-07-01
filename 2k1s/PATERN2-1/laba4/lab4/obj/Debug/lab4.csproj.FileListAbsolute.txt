@@ -1,0 +1,22 @@
+D:\3sem\pp\lab4\lab4\obj\Debug\lab4.csproj.AssemblyReference.cache
+D:\3sem\pp\lab4\lab4\obj\Debug\lab4.csproj.CoreCompileInputs.cache
+D:\3sem\pp\lab4\lab4\bin\Debug\lab4.exe.config
+D:\3sem\pp\lab4\lab4\bin\Debug\lab4.exe
+D:\3sem\pp\lab4\lab4\bin\Debug\lab4.pdb
+D:\3sem\pp\lab4\lab4\bin\Debug\Lec04LibN.dll
+D:\3sem\pp\lab4\lab4\bin\Debug\Lec04LibN.pdb
+D:\3sem\pp\lab4\lab4\bin\Debug\Lec04LibN.dll.config
+D:\3sem\pp\lab4\lab4\obj\Debug\lab4.csproj.Up2Date
+D:\3sem\pp\lab4\lab4\obj\Debug\lab4.exe
+D:\3sem\pp\lab4\lab4\obj\Debug\lab4.pdb
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\laba4\lab4\bin\Debug\lab4.exe.config
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\laba4\lab4\bin\Debug\lab4.exe
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\laba4\lab4\bin\Debug\lab4.pdb
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\laba4\lab4\bin\Debug\Lec04LibN.dll
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\laba4\lab4\bin\Debug\Lec04LibN.pdb
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\laba4\lab4\bin\Debug\Lec04LibN.dll.config
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\laba4\lab4\obj\Debug\lab4.csproj.AssemblyReference.cache
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\laba4\lab4\obj\Debug\lab4.csproj.CoreCompileInputs.cache
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\laba4\lab4\obj\Debug\lab4.csproj.Up2Date
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\laba4\lab4\obj\Debug\lab4.exe
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\laba4\lab4\obj\Debug\lab4.pdb

@@ -1,0 +1,182 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\Lab5Lib\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{19861B5E-AB55-40AD-B86C-9A5A33444BCD}|Program\\Program.csproj|c:\\users\\vugor\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\patern2-1\\lab5lib\\program\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{19861B5E-AB55-40AD-B86C-9A5A33444BCD}|Program\\Program.csproj|solutionrelative:program\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93E068CB-C211-4757-A189-D535FA619DC9}|Lab5Lib\\Lab5Lib.csproj|C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\Lab5Lib\\lab5lib\\decrsa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{93E068CB-C211-4757-A189-D535FA619DC9}|Lab5Lib\\Lab5Lib.csproj|solutionrelative:lab5lib\\decrsa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93E068CB-C211-4757-A189-D535FA619DC9}|Lab5Lib\\Lab5Lib.csproj|C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\Lab5Lib\\lab5lib\\decorator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{93E068CB-C211-4757-A189-D535FA619DC9}|Lab5Lib\\Lab5Lib.csproj|solutionrelative:lab5lib\\decorator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93E068CB-C211-4757-A189-D535FA619DC9}|Lab5Lib\\Lab5Lib.csproj|C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\Lab5Lib\\lab5lib\\strwriter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{93E068CB-C211-4757-A189-D535FA619DC9}|Lab5Lib\\Lab5Lib.csproj|solutionrelative:lab5lib\\strwriter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93E068CB-C211-4757-A189-D535FA619DC9}|Lab5Lib\\Lab5Lib.csproj|C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\Lab5Lib\\lab5lib\\filewriter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{93E068CB-C211-4757-A189-D535FA619DC9}|Lab5Lib\\Lab5Lib.csproj|solutionrelative:lab5lib\\filewriter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93E068CB-C211-4757-A189-D535FA619DC9}|Lab5Lib\\Lab5Lib.csproj|C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\Lab5Lib\\lab5lib\\iwriter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{93E068CB-C211-4757-A189-D535FA619DC9}|Lab5Lib\\Lab5Lib.csproj|solutionrelative:lab5lib\\iwriter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93E068CB-C211-4757-A189-D535FA619DC9}|Lab5Lib\\Lab5Lib.csproj|C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\Lab5Lib\\lab5lib\\constants.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{93E068CB-C211-4757-A189-D535FA619DC9}|Lab5Lib\\Lab5Lib.csproj|solutionrelative:lab5lib\\constants.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93E068CB-C211-4757-A189-D535FA619DC9}|Lab5Lib\\Lab5Lib.csproj|C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\Lab5Lib\\lab5lib\\decmd5.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{93E068CB-C211-4757-A189-D535FA619DC9}|Lab5Lib\\Lab5Lib.csproj|solutionrelative:lab5lib\\decmd5.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93E068CB-C211-4757-A189-D535FA619DC9}|Lab5Lib\\Lab5Lib.csproj|C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\Lab5Lib\\lab5lib\\decsha512cs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{93E068CB-C211-4757-A189-D535FA619DC9}|Lab5Lib\\Lab5Lib.csproj|solutionrelative:lab5lib\\decsha512cs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 13,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "FileWriter.cs",
+              "DocumentMoniker": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\Lab5Lib\\Lab5Lib\\FileWriter.cs",
+              "RelativeDocumentMoniker": "Lab5Lib\\FileWriter.cs",
+              "ToolTip": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\Lab5Lib\\Lab5Lib\\FileWriter.cs",
+              "RelativeToolTip": "Lab5Lib\\FileWriter.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-10T17:10:21.045Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "StrWriter.cs",
+              "DocumentMoniker": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\Lab5Lib\\Lab5Lib\\StrWriter.cs",
+              "RelativeDocumentMoniker": "Lab5Lib\\StrWriter.cs",
+              "ToolTip": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\Lab5Lib\\Lab5Lib\\StrWriter.cs",
+              "RelativeToolTip": "Lab5Lib\\StrWriter.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-10T17:10:19.451Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IWriter.cs",
+              "DocumentMoniker": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\Lab5Lib\\Lab5Lib\\IWriter.cs",
+              "RelativeDocumentMoniker": "Lab5Lib\\IWriter.cs",
+              "ToolTip": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\Lab5Lib\\Lab5Lib\\IWriter.cs",
+              "RelativeToolTip": "Lab5Lib\\IWriter.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-10T17:10:18.184Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\Lab5Lib\\Program\\Program.cs",
+              "RelativeDocumentMoniker": "Program\\Program.cs",
+              "ToolTip": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\Lab5Lib\\Program\\Program.cs",
+              "RelativeToolTip": "Program\\Program.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-10T17:09:38.198Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Decorator.cs",
+              "DocumentMoniker": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\Lab5Lib\\Lab5Lib\\Decorator.cs",
+              "RelativeDocumentMoniker": "Lab5Lib\\Decorator.cs",
+              "ToolTip": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\Lab5Lib\\Lab5Lib\\Decorator.cs",
+              "RelativeToolTip": "Lab5Lib\\Decorator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-10T17:10:16.3Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DecRSA.cs",
+              "DocumentMoniker": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\Lab5Lib\\Lab5Lib\\DecRSA.cs",
+              "RelativeDocumentMoniker": "Lab5Lib\\DecRSA.cs",
+              "ToolTip": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\Lab5Lib\\Lab5Lib\\DecRSA.cs",
+              "RelativeToolTip": "Lab5Lib\\DecRSA.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-10T17:10:13.707Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "DecSHA512cs.cs",
+              "DocumentMoniker": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\Lab5Lib\\Lab5Lib\\DecSHA512cs.cs",
+              "RelativeDocumentMoniker": "Lab5Lib\\DecSHA512cs.cs",
+              "ToolTip": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\Lab5Lib\\Lab5Lib\\DecSHA512cs.cs",
+              "RelativeToolTip": "Lab5Lib\\DecSHA512cs.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-10T17:10:24.696Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "DecMD5.cs",
+              "DocumentMoniker": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\Lab5Lib\\Lab5Lib\\DecMD5.cs",
+              "RelativeDocumentMoniker": "Lab5Lib\\DecMD5.cs",
+              "ToolTip": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\Lab5Lib\\Lab5Lib\\DecMD5.cs",
+              "RelativeToolTip": "Lab5Lib\\DecMD5.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-10T17:10:10.675Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Constants.cs",
+              "DocumentMoniker": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\Lab5Lib\\Lab5Lib\\Constants.cs",
+              "RelativeDocumentMoniker": "Lab5Lib\\Constants.cs",
+              "ToolTip": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\Lab5Lib\\Lab5Lib\\Constants.cs",
+              "RelativeToolTip": "Lab5Lib\\Constants.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-10T17:09:52.5Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

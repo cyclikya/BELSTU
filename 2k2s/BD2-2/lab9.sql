@@ -1,0 +1,290 @@
+--1
+ALTER SESSION SET CONTAINER = ORCLPDB;
+
+CREATE USER UVR IDENTIFIED BY password123 DEFAULT TABLESPACE users TEMPORARY TABLESPACE temp QUOTA UNLIMITED ON users;
+
+
+GRANT CREATE SESSION, CREATE TABLE, CREATE SEQUENCE, CREATE CLUSTER, 
+      CREATE VIEW, CREATE MATERIALIZED VIEW, CREATE DATABASE LINK,
+      CREATE SYNONYM, CREATE PUBLIC SYNONYM TO UVR;
+      
+--2
+CREATE GLOBAL TEMPORARY TABLE UVR_TEMP_TABLE (
+    id NUMBER,
+    name VARCHAR2(50)
+) ON COMMIT PRESERVE ROWS;
+
+INSERT INTO UVR_TEMP_TABLE VALUES (1, 'Временные данные');
+COMMIT;
+
+SELECT * FROM UVR_TEMP_TABLE;
+
+--3
+CREATE SEQUENCE UVR_S1
+START WITH 1000
+INCREMENT BY 10
+NOMINVALUE
+NOMAXVALUE
+NOCYCLE
+NOCACHE
+NOORDER;
+
+SELECT UVR_S1.NEXTVAL FROM DUAL;
+SELECT UVR_S1.NEXTVAL FROM DUAL;
+SELECT UVR_S1.CURRVAL FROM DUAL;
+
+--4
+SET SERVEROUTPUT ON SIZE 1000000;
+SET LINESIZE 100;
+SET PAGESIZE 100;
+
+CREATE SEQUENCE UVR_S2
+START WITH 10
+INCREMENT BY 10
+MAXVALUE 100
+NOCYCLE;
+
+BEGIN
+  DBMS_OUTPUT.PUT_LINE('Получение всех значений последовательности UVR_S2:');
+  FOR i IN 1..20 LOOP
+    BEGIN
+      DBMS_OUTPUT.PUT_LINE('Значение ' || i || ': ' || UVR_S2.NEXTVAL);
+    EXCEPTION
+      WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('Ошибка на шаге ' || i || ': ' || SQLERRM);
+        EXIT;
+    END;
+  END LOOP;
+END;
+/
+
+BEGIN
+  DBMS_OUTPUT.PUT_LINE('Попытка получить значение после достижения максимума:');
+  DBMS_OUTPUT.PUT_LINE('Следующее значение: ' || UVR_S2.NEXTVAL);
+EXCEPTION
+  WHEN OTHERS THEN
+    DBMS_OUTPUT.PUT_LINE('Ошибка: ' || SQLERRM);
+END;
+/
+
+BEGIN
+  DBMS_OUTPUT.PUT_LINE('Текущее значение после ошибки: ' || UVR_S2.CURRVAL);
+EXCEPTION
+  WHEN OTHERS THEN
+    DBMS_OUTPUT.PUT_LINE('Ошибка при получении текущего значения: ' || SQLERRM);
+END;
+/
+
+--5
+CREATE SEQUENCE UVR_S3
+START WITH 10
+INCREMENT BY -10
+MINVALUE -100
+MAXVALUE 10
+NOCYCLE
+ORDER;
+
+DECLARE
+  v_value NUMBER;
+  v_counter NUMBER := 1;
+  v_max_attempts CONSTANT NUMBER := 20;
+BEGIN
+  DBMS_OUTPUT.PUT_LINE('====================================');
+  DBMS_OUTPUT.PUT_LINE('Получение значений последовательности UVR_S3');
+  DBMS_OUTPUT.PUT_LINE('====================================');
+  
+  WHILE v_counter <= v_max_attempts LOOP
+    BEGIN
+      v_value := UVR_S3.NEXTVAL;
+      DBMS_OUTPUT.PUT_LINE('Значение '||v_counter||': '||v_value);
+      v_counter := v_counter + 1;
+    EXCEPTION
+      WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('ОШИБКА: '||SQLERRM);
+        EXIT;
+    END;
+  END LOOP;
+  
+  DBMS_OUTPUT.PUT_LINE('------------------------------------');
+  DBMS_OUTPUT.PUT_LINE('Попытка получить значение после ошибки:');
+  BEGIN
+    v_value := UVR_S3.NEXTVAL;
+    DBMS_OUTPUT.PUT_LINE('Следующее значение: '||v_value);
+  EXCEPTION
+    WHEN OTHERS THEN
+      DBMS_OUTPUT.PUT_LINE('ОШИБКА: '||SQLERRM);
+  END;
+  
+  DBMS_OUTPUT.PUT_LINE('------------------------------------');
+  DBMS_OUTPUT.PUT_LINE('Текущее значение последовательности:');
+  BEGIN
+    DBMS_OUTPUT.PUT_LINE(UVR_S3.CURRVAL);
+  EXCEPTION
+    WHEN OTHERS THEN
+      DBMS_OUTPUT.PUT_LINE('ОШИБКА: '||SQLERRM);
+  END;
+END;
+/
+
+--6
+CREATE SEQUENCE UVR_S4
+START WITH 10
+INCREMENT BY 1
+MINVALUE 10
+MAXVALUE 15
+CYCLE
+CACHE 5
+NOORDER;
+
+SET SERVEROUTPUT ON;
+DECLARE
+  v_value NUMBER;
+  v_counter NUMBER := 1;
+  v_max_attempts CONSTANT NUMBER := 25;
+BEGIN
+  FOR v_counter IN 1..v_max_attempts LOOP
+    v_value := UVR_S4.NEXTVAL;
+    DBMS_OUTPUT.PUT_LINE('Шаг '||LPAD(v_counter,2)||': '||LPAD(v_value,2));
+    
+    FOR i IN 1..100000 LOOP
+      NULL;
+    END LOOP;
+  END LOOP;
+END;
+/
+
+--7
+SELECT sequence_name
+FROM all_sequences
+WHERE sequence_name LIKE 'UVR%';
+
+--8
+-- при возникновении ошибок просто пересоздайте каждый sequence
+CREATE TABLE T1 (
+  N1 NUMBER(20),
+  N2 NUMBER(20),
+  N3 NUMBER(20),
+  N4 NUMBER(20)
+)
+CACHE
+STORAGE (BUFFER_POOL KEEP);
+
+BEGIN
+  FOR i IN 1..7 LOOP
+    INSERT INTO T1 (N1, N2, N3, N4) VALUES (
+      UVR_S1.NEXTVAL,
+      UVR_S2.NEXTVAL,
+      UVR_S3.NEXTVAL,
+      UVR_S4.NEXTVAL
+    );
+  END LOOP;
+  COMMIT;
+END;
+/
+
+--9
+CREATE CLUSTER ABC (
+  X NUMBER(10),
+  V VARCHAR2(12)
+)
+HASHKEYS 200;
+
+--10
+CREATE TABLE A (
+  XA NUMBER(10),
+  VA VARCHAR2(12),
+  extra_col_a VARCHAR2(50)
+)
+CLUSTER ABC (XA, VA);
+
+--11
+CREATE TABLE B (
+  XB NUMBER(10),
+  VB VARCHAR2(12),
+  extra_col_b VARCHAR2(50)
+)
+CLUSTER ABC (XB, VB);
+
+--12
+CREATE TABLE C (
+  XC NUMBER(10),
+  VC VARCHAR2(12),
+  extra_col_c VARCHAR2(50)
+)
+CLUSTER ABC (XC, VC);
+
+--13
+SELECT table_name
+FROM user_tables;
+
+SELECT cluster_name
+FROM user_clusters;
+
+--14
+CREATE SYNONYM C_ALIAS FOR C;
+SELECT * FROM C_ALIAS;
+
+--15
+CREATE PUBLIC SYNONYM B_GLOBAL FOR SYSTEM.B;
+SELECT * FROM B_GLOBAL;
+
+--16
+CREATE TABLE A_MAIN (
+  id NUMBER PRIMARY KEY,
+  name VARCHAR2(50)
+);
+
+CREATE TABLE B_MAIN (
+  id NUMBER PRIMARY KEY,
+  a_id NUMBER,
+  description VARCHAR2(100),
+  CONSTRAINT fk_a FOREIGN KEY (a_id) REFERENCES A_MAIN(id)
+);
+
+INSERT INTO A_MAIN VALUES (1, 'Alpha');
+INSERT INTO A_MAIN VALUES (2, 'Beta');
+
+INSERT INTO B_MAIN VALUES (10, 1, 'Child of Alpha');
+INSERT INTO B_MAIN VALUES (11, 2, 'Child of Beta');
+
+COMMIT;
+
+CREATE VIEW V1 AS
+SELECT a.id AS A_ID, a.name, b.description
+FROM A_MAIN a
+INNER JOIN B_MAIN b ON a.id = b.a_id;
+
+SELECT * FROM V1;
+
+--17
+CREATE MATERIALIZED VIEW MV_UVR
+BUILD IMMEDIATE
+REFRESH COMPLETE
+START WITH SYSDATE
+NEXT SYSDATE + INTERVAL '2' MINUTE
+AS
+SELECT a.id AS A_ID, a.name, b.description
+FROM A_MAIN a
+INNER JOIN B_MAIN b ON a.id = b.a_id;
+
+SELECT * FROM MV_UVR;
+
+--18
+CREATE DATABASE LINK user2_link
+CONNECT TO USER2 IDENTIFIED BY user2_password
+USING 'ORCL';
+
+--19
+SELECT * FROM some_table@user2_link;
+
+INSERT INTO some_table@user2_link (column1, column2)
+VALUES ('value1', 'value2');
+COMMIT; 
+
+UPDATE some_table@user2_link
+SET column2 = 'new_value'
+WHERE column1 = 'value1';
+COMMIT;
+
+
+

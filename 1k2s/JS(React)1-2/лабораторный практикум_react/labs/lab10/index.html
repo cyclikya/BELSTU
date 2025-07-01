@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторная работа 10</title>
+    <link rel="icon" href="../../Dependencies/img/favicon.ico"/>
+    <link rel="stylesheet" href="../../Dependencies/css/main.css">
+    <link rel="stylesheet" href="../../Dependencies/css/header.css">
+    <link rel="stylesheet" href="../../Dependencies/css/body.css">
+    <link rel="stylesheet" href="../../Dependencies/css/footer.css">
+    <link rel="stylesheet" href="../../Dependencies/css/first.css">
+    <link rel="stylesheet" href="../../Dependencies/css/text.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@500;600&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;1,100&family=Open+Sans:ital,wght@0,400;1,400;1,500&family=Roboto+Condensed:wght@500;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="body">
+    <header class="header">
+        <img src="../../Dependencies/img/1174949_js_react js_logo_react_react native_icon.png" alt="My Photo"
+            class="photo" />
+        <nav class="navbar">
+            <ul>
+                <li>
+                    <a href="../../main.html">React</a>
+                </li>
+            </ul>
+            <div><a href="../../pages/table-of-contents.html">Оглавление</a>
+                <a href="../../https://belstu.by/">Сайт BSTU</a>
+                <a href="../../https://react.dev/">Официальная документация</a>
+                <a href="../../labs/labs.html">Лабораторный практикум</a>
+            </div>
+        </nav>
+    </header>
+    <main class="main">
+        <div class="text">
+            <div class="intro">Лабораторная работа №10</div>
+            <p>Для выполнения этой лабораторной работы вам понадобится компонент Catalog, разработанный в лабораторной
+                работе №8.</p>
+            <div class="section">Задание 1</div>
+            <p>Модифицируйте компонент каталога товаров <span class="abbr">Catalog</span>, добавив каждому товару
+                информацию о массе.</p>
+            <br>
+            <p> Реализуйте компонент <span class="abbr">OrderForm</span> — многостраничный диалог оформления заказа в
+                интернет-магазине:</p>
+            <p>1 страница:
+            <ul>
+                <li>Список товаров, добавленных в корзину. У каждого товара есть:
+                    <ul>
+                        <li>чекбокс, при помощи которого товар можно не добавлять в заказ;</li>
+                        <li>поле для ввода количества товаров, которые клиент хочет заказать (проверьте, есть ли столько
+                            товаров на складе);</li>
+                        <li>кнопка для удаления из корзины.</li>
+                    </ul>
+                </li>
+            </ul>
+            </p>
+            <br>
+            <p>2 страница:
+            <ul>
+            
+                <li>Радиокнопки для выбора способа доставки:
+                    <ul>
+                        <li>курьером (если стоимость заказа меньше 200 рублей, то стоимость 10 рублей, если больше, то
+                            бесплатно),</li>
+                        <li>почтой (5 рублей за каждый килограмм массы),</li>
+                        <li>самовывоз (бесплатно).</li>
+                    </ul>
+                </li>
+                <li>Текстовое поле для указания адреса доставки. Неактивно, если выбран самовывоз.</li>
+                <li>Радиокнопки для выбора способа оплаты:
+                    <ul>
+                        <li>наличными,</li>
+                        <li>банковской картой,</li>
+                        <li>банковским переводом.</li>
+                    </ul>
+                </li>
+                <li>Кнопки для перехода к следующей и предыдущей страницам.</li> <br>
+
+            </ul>
+            </p>
+
+            <p>Для работы с деревом состояния используйте хранилище Redux.</p>
+
+    </main>
+</body>
+
+</html>

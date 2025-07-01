@@ -1,0 +1,122 @@
+main {
+  width: 100vw;
+}
+main .img-container {
+  display: inline-block;
+  width: 100%;
+  height: auto;
+}
+main .img-container .plus1 {
+  size: 5% 5%;
+}
+main .img-container .plus1 #plus1 {
+  left: 9%;
+  width: 5%;
+  top: 25vw;
+  position: absolute;
+}
+@media screen and (max-width: 1280px) {
+  main .img-container .plus1 {
+    display: none;
+  }
+}
+main .img-container .plus2 {
+  size: 5% 5%;
+}
+main .img-container .plus2 #plus2 {
+  left: 48%;
+  top: 30vw;
+  width: 5%;
+  position: absolute;
+}
+@media screen and (max-width: 1280px) {
+  main .img-container .plus2 {
+    display: none;
+  }
+}
+main .img-container img {
+  width: 100%;
+}
+main .img-container img[src="img/obj1.png"] {
+  width: 35%;
+  float: left;
+}
+main .img-container .info1,
+main .img-container .info2 {
+  background-color: #fff;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 2vw;
+  position: absolute;
+  display: none;
+  width: 30%;
+}
+main .img-container .info1 {
+  margin-left: 14%;
+  top: 20vw;
+  font-size: 1vw;
+}
+main .img-container .info1 .product-name, main .img-container .info1 .product-price {
+  padding-left: 1vw;
+}
+main .img-container .info2 {
+  margin-left: 54%;
+  top: 25vw;
+  font-size: 1vw;
+}
+main .img-container .info2 .product-name, main .img-container .info2 .product-price {
+  padding-left: 1vw;
+}
+main .img-container .plus1:hover ~ .info1,
+main .img-container .plus2:hover ~ .info2 {
+  display: block;
+}
+main .img-container #plus1:hover,
+main .img-container #plus2:hover {
+  transform: scale(1.2);
+}
+main .img-container .product-name {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+main .img-container .product-price {
+  font-style: italic;
+  margin-bottom: 5px;
+}
+main .img-container .product-price span {
+  background-color: #465902;
+  color: white;
+  border-radius: 20%;
+}
+main .info {
+  width: 100vw;
+  height: 50vw;
+  margin: 53.4vw 0 0 0;
+}
+main .info .container {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  grid-template-rows: 53vw;
+  width: 100%;
+  height: 50vw;
+  margin: 0 auto;
+  background-color: #756861;
+}
+main .info .container img {
+  height: 100%;
+}
+main .info .container .description {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 92px;
+}
+main .info .container .description p {
+  font-size: 1.6vw;
+  color: white;
+  width: 90%;
+  padding-left: 1.5em;
+  justify-content: space-around;
+  letter-spacing: 0.3vw;
+  stroke-opacity: 0.4vw;
+}

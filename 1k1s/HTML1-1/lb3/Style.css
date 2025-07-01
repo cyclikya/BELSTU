@@ -1,0 +1,44 @@
+@font-face {
+    font-family: 'Carveat';
+    src: url('fonts/Caveat.woff') format('woff')}
+
+@font-face {
+    font-family: 'Exo2';
+    src: url('fonts/Exo2.woff') format('woff')}
+
+@font-face {
+    font-family: 'Comfortaa';
+    src: url('fonts/Comfortaa.woff') format('woff')}
+
+h1 {font-family: 'Carveat';
+    text-align: center;
+    font-size: 45px;
+    margin-bottom: 0;
+    font-weight: bold;
+    text-transform: uppercase;}
+
+h2 {font-family: 'Exo2';
+    margin-bottom: 1.2em;
+    margin-top: 0.2rem;
+    text-indent: 25px;
+    text-align: left;}
+
+p, li  {font-family: 'Comfortaa';
+    text-indent: 25px;
+    text-align: justify;
+    margin: 0;
+    line-height: 200%;
+    font-size: 20px;
+    color: black;}
+
+p::first-letter {
+    font-weight: bold; 
+    font-size: 45px; 
+    color: white; 
+    background-color: hsla(275, 100%, 10%, 1); 
+    padding: 4px;}
+
+ol li{list-style-type: upper-roman; 
+    color: blue; 
+    font-size: 45px;
+    margin-top: 0;}

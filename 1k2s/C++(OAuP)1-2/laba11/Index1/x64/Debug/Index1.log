@@ -1,0 +1,10 @@
+﻿  Index1.cpp
+C:\Users\vugor\OneDrive\Рабочий стол\1k2s\C++(OAuP)1-2\laba11\Index1\Index1.cpp(23,1): warning C4326: возвращаемый тип "main" должен быть "int", а не "void"
+Index1.obj : error LNK2019: ссылка на неразрешенный внешний символ "struct Tree * __cdecl list(int,char *)" (?list@@YAPEAUTree@@HPEAD@Z) в функции "struct Tree * __cdecl makeTree(struct Tree *)" (?makeTree@@YAPEAUTree@@PEAU1@@Z).
+Index1.obj : error LNK2019: ссылка на неразрешенный внешний символ "struct Tree * __cdecl insertElem(struct Tree *,int,char *)" (?insertElem@@YAPEAUTree@@PEAU1@HPEAD@Z) в функции "struct Tree * __cdecl makeTree(struct Tree *)" (?makeTree@@YAPEAUTree@@PEAU1@@Z).
+Index1.obj : error LNK2019: ссылка на неразрешенный внешний символ "struct Tree * __cdecl search(struct Tree *,int)" (?search@@YAPEAUTree@@PEAU1@H@Z) в функции main.
+Index1.obj : error LNK2019: ссылка на неразрешенный внешний символ "struct Tree * __cdecl delet(struct Tree *,int)" (?delet@@YAPEAUTree@@PEAU1@H@Z) в функции main.
+Index1.obj : error LNK2019: ссылка на неразрешенный внешний символ "int __cdecl view(struct Tree *,int)" (?view@@YAHPEAUTree@@H@Z) в функции main.
+Index1.obj : error LNK2019: ссылка на неразрешенный внешний символ "int __cdecl count(struct Tree *,char)" (?count@@YAHPEAUTree@@D@Z) в функции main.
+Index1.obj : error LNK2019: ссылка на неразрешенный внешний символ "bool __cdecl delAll(struct Tree *)" (?delAll@@YA_NPEAUTree@@@Z) в функции main.
+C:\Users\vugor\OneDrive\Рабочий стол\1k2s\C++(OAuP)1-2\laba11\x64\Debug\Index1.exe : fatal error LNK1120: неразрешенных внешних элементов: 7

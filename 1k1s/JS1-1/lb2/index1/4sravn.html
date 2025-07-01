@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        sravn
+    </title>
+</head>
+<body>
+    <script type="text/javascript">
+        function corr() {
+            let x = Number(prompt('Введите число, которое меньше 22 или больше 29 и не равно 12 и делится без остатка на 3'));
+
+            if (x > 29 || (x < 22 && x != 12 && x % 3 == 0)) {
+                document.write('<p style="color: brown; font-size: 15pt; font-family: Times New Roman">Правильное значение</p>');
+            } else {
+                document.write('<p style="color: brown; font-size: 15pt; font-family: Times New Roman">Не правильное значение</p>');
+            }
+        }
+    </script>
+    <input type="button" value="Начать" onclick="corr()">
+</body>
+</html>

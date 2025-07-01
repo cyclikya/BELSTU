@@ -1,0 +1,5 @@
+﻿  laba19.cpp
+C:\Users\vugor\OneDrive\Рабочий стол\C++(OAuP)\laba19\laba19\laba19.cpp(9,13): error C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\vugor\OneDrive\Рабочий стол\C++(OAuP)\laba19\laba19\laba19.cpp(10,13): error C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\vugor\OneDrive\Рабочий стол\C++(OAuP)\laba19\laba19\laba19.cpp(18,12): error C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\vugor\OneDrive\Рабочий стол\C++(OAuP)\laba19\laba19\laba19.cpp(26,12): error C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.

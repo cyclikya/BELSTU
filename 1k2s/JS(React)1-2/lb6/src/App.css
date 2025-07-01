@@ -1,0 +1,45 @@
+.palitra h2{
+  text-align: center;
+  font-family: Arial;
+  color: white;
+  background-color: gray;
+}
+.palitra .block{
+  text-align: center;
+}
+
+.block{
+  width: 150px;
+  height: 100px;
+  margin: 10px;
+  display: inline-block;
+  border-radius: 20%;
+}
+button{
+  margin: 20px;
+  background-color: gray;
+  color: white;
+  width: 100px;
+  height: 30px;
+}
+h2 {
+  padding: 5px;
+  text-align: center;
+  font-family: Arial;
+  background-color: lightgrey;
+}
+
+.saved div {
+  width: 50px;
+  height: 50px; 
+  margin: 5px; 
+  display: inline-block;
+}
+
+.saved h3 {
+  padding: 5px;
+  font-family: Arial;
+  background-color: gray;
+  color: white;
+}
+

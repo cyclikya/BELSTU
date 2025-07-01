@@ -1,0 +1,53 @@
+.circle {
+  stroke: black;
+  stroke-width: 2;
+  transition: stroke 0.3s;
+}
+.circle:hover {
+  stroke: red;
+}
+
+h1, h2 {
+  color: purple;
+  font-family: Monotype Corsiva;
+}
+
+.cl1 {
+  color: red;
+  font-family: "Times New Roman";
+  font-size: 18pt;
+}
+
+.cl2 {
+  color: yellow;
+  font-family: "Times New Roman";
+  font-size: 20pt;
+}
+
+.cl3 {
+  color: green;
+  font-family: "Times New Roman";
+  font-size: 22pt;
+}
+
+span {
+  color: red;
+}
+
+p {
+  color: blue;
+  font-family: Arial;
+  font-size: 16pt;
+}
+
+.tab td {
+  color: darkblue;
+}
+
+table {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+table > td, table > th {
+  border: 1px solid black;
+}

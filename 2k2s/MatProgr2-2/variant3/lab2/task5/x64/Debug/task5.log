@@ -1,0 +1,5 @@
+﻿  main.cpp
+D:\education\2025\Poit_4sem\МатПрог\Labs\task5\stdafx.h(2,10): warning C4067: непредвиденные лексемы за директивой препроцессора, требуется newline
+  (компиляция исходного файла "main.cpp")
+  
+  task5.vcxproj -> D:\education\2025\Poit_4sem\МатПрог\Labs\x64\Debug\task5-6.exe

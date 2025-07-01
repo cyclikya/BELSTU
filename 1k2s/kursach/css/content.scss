@@ -1,0 +1,137 @@
+main {
+	width: 100vw;
+
+	.img-container {
+		display: inline-block;
+		width: 100%;
+		height: auto;
+		.plus1 {
+			size: 5% 5%;
+
+			#plus1 {
+				left: 9%;
+				width: 5%;
+				top: 25vw;
+				position: absolute;
+			}
+			@media screen and (max-width: 1280px) {
+				display: none;
+			}
+		}
+		.plus2 {
+			size: 5% 5%;
+
+			#plus2 {
+				left: 48%;
+				top: 30vw;
+				width: 5%;
+				position: absolute;
+			}
+			@media screen and (max-width: 1280px) {
+				display: none;
+			}
+		}
+
+		img {
+			width: 100%;
+
+			&[src="img/obj1.png"] {
+				width: 35%;
+				float: left;
+			}
+		}
+
+		.info1,
+		.info2 {
+			background-color: #fff;
+			padding: 10px;
+			border: 1px solid #ccc;
+			border-radius: 2vw;
+			position: absolute;
+			display: none;
+			width: 30%;
+		}
+
+		.info1 {
+			margin-left: 14%;
+			top: 20vw;
+			font-size: 1vw;
+			& .product-name, & .product-price{
+				padding-left: 1vw;
+			}
+		}
+
+		.info2 {
+			margin-left: 54%;
+			top: 25vw;
+			font-size: 1vw;
+			& .product-name, & .product-price{
+				padding-left: 1vw;
+			}
+		}
+
+		.plus1:hover~.info1,
+		.plus2:hover~.info2 {
+			display: block;
+		}
+
+		#plus1:hover,
+		#plus2:hover {
+			transform: scale(1.2);
+		}
+
+		.product-name {
+			font-weight: bold;
+			margin-bottom: 5px;
+		}
+
+		.product-price {
+			font-style: italic;
+			margin-bottom: 5px;
+
+			span {
+				background-color: #465902;
+				color: white;
+				border-radius: 20%;
+			}
+		}
+	}
+
+	.info {
+		width: 100vw;
+		height: 50vw;
+		margin: 53.4vw 0 0 0;
+
+		.container {
+			display: grid;
+			grid-template-columns: 30% 70%;
+			grid-template-rows: 53vw;
+			width: 100%;
+			height: 50vw;
+			margin: 0 auto;
+			background-color: #756861;
+
+			img {
+				height: 100%;
+			}
+
+			.description {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				margin-left: 92px;
+
+				p {
+					font-size: 1.6vw;
+					color: white;
+					width: 90%;
+					padding-left: 1.5em;
+					justify-content: space-around;
+					letter-spacing: 0.3vw;
+					stroke-opacity: 0.4vw;
+
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="refresh" content="1">
+    <title>СИСТЕМА МОДУЛЬНОЙ ВЕРСТКИ</title>
+    <style> 
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: black;
+        }
+        .grid {
+            display: grid;
+            grid-template-areas:
+                "header header header"
+                "nav article aside"
+                "footer footer footer";
+            grid-template-columns:  15% 47% 30%;
+            grid-template-rows:  10% 76% 10%;
+            grid-gap: 2%; 
+            height: 100vh; /* 100% высоты видимой области экрана */
+        }
+        a{
+            color: red;
+        }
+        p {
+            text-align: justify;
+        }
+        .grid div {
+            text-align: center;
+            padding: 10px;
+            border: 1px solid indianred;
+            border-radius: 20px ;
+            color: indianred;
+        }
+    </style>
+</head>
+<body>
+    <div class="grid">
+        <div style="grid-area: nav">
+            <h4>Навигация</h4>
+            <a href="https://ru.wikipedia.org/wiki/HTML5">
+                HTML5
+            </a><br><br>
+            <a href="https://ru.wikipedia.org/wiki/CSS#%D0%A3%D1%80%D0%BE%D0%B2%D0%B5%D0%BD%D1%8C_3_(CSS3):~:text=%D0%B4%D0%BE%D0%B1%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%B2%20CSS3.-,%D0%A3%D1%80%D0%BE%D0%B2%D0%B5%D0%BD%D1%8C%203,-(CSS3)%5B">
+                СSS3
+            </a><br><br>
+            <a href="https://medium.com/@stasonmars/%D0%B2%D0%B5%CC%88%D1%80%D1%81%D1%82%D0%BA%D0%B0-%D0%BD%D0%B0-grid-%D0%B2-css-%D0%BF%D0%BE%D0%BB%D0%BD%D0%BE%D0%B5-%D1%80%D1%83%D0%BA%D0%BE%D0%B2%D0%BE%D0%B4%D1%81%D1%82%D0%B2%D0%BE-%D0%B8-%D1%81%D0%BF%D1%80%D0%B0%D0%B2%D0%BE%D1%87%D0%BD%D0%B8%D0%BA-220508316f8b">
+                Grid-верстке
+            </a>
+        </div>
+        
+        <div style="grid-area: header">
+            <h2>Grid-верстка</h2>
+        </div>
+        
+        <div style="grid-area: article">
+            <p>Grid-верстка – мощный инструмент в веб-дизайне, позволяющий легко и гибко распределить контент на странице. С её помощью создаются сетки, определяющие структуру и визуальное оформление веб-сайта. Гриды обеспечивают адаптивность, что позволяет легко реагировать на различные размеры экранов устройств. Они определяют ячейки, строки и столбцы, обеспечивая точное позиционирование элементов. Этот подход делает процесс верстки интуитивно понятным и эффективным. Grid-системы поддерживаются современными браузерами, что делает их надежным средством для создания современных, отзывчивых и профессиональных веб-сайтов.</p>
+        </div>
+
+        <div style="grid-area: aside">
+            <h5>Пример использования Grid-верстки</h5>
+            <p>Данная страница является примером простого макета с использованием Grid-верстки. Это демонстрирует разделение страницы на три колонки: первую для навигационного меню (nav), вторую для боковой панели (aside), а третью для основного контента (main).</p>
+        </div>
+
+        <div style="grid-area: footer">
+            <p>&copy; 2023 Grid Website. Все права защищены.</p>
+        </div>
+    </div>
+</body>
+</html>

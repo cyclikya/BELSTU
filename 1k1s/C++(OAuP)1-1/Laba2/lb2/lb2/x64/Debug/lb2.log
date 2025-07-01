@@ -1,0 +1,6 @@
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: промежуточный каталог (x64\Debug\) содержит файлы, которые используются совместно с другим проектом (lb2.vcxproj).  Это может привести к ошибкам очистки и перестроения.
+  main13.cpp
+C:\Users\vugor\OneDrive\Рабочий стол\лабы ОАиП\лаба2\lb2\lb2\main13.cpp(3,1): warning C4326: возвращаемый тип "main" должен быть "int", а не "void"
+C:\Users\vugor\OneDrive\Рабочий стол\лабы ОАиП\лаба2\lb2\lb2\main13.cpp(4,10): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
+C:\Users\vugor\OneDrive\Рабочий стол\лабы ОАиП\лаба2\lb2\lb2\main13.cpp(9,18): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+  lb2.vcxproj -> C:\Users\vugor\OneDrive\Рабочий стол\лабы ОАиП\лаба2\lb2\x64\Debug\UgorenkoLab2.exe

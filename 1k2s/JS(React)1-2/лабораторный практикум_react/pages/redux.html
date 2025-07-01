@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redux</title>
+    <link rel="icon" href="../Dependencies/img/favicon.ico"/>
+    <link rel="stylesheet" href="../Dependencies/css/main.css">
+    <link rel="stylesheet" href="../Dependencies/css/header.css">
+    <link rel="stylesheet" href="../Dependencies/css/body.css">
+    <link rel="stylesheet" href="../Dependencies/css/footer.css">
+    <link rel="stylesheet" href="../Dependencies/css/first.css">
+    <link rel="stylesheet" href="../Dependencies/css/text.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@500;600&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;1,100&family=Open+Sans:ital,wght@0,400;1,400;1,500&family=Roboto+Condensed:wght@500;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="body">
+    <header class="header">
+        <img src="../Dependencies/img/1174949_js_react js_logo_react_react native_icon.png" alt="My Photo"
+            class="photo" />
+        <nav class="navbar">
+            <ul>
+                <li>
+                    <a href="../main.html">React</a>
+                </li>
+            </ul>
+            <div><a href="../pages/table-of-contents.html">Оглавление</a>
+                <a href="https://belstu.by/">Сайт BSTU</a>
+                <a href="https://react.dev/">Официальная документация</a>
+                <a href="../labs/labs.html">Лабораторный практикум</a>
+            </div>
+        </nav>
+    </header>
+    <main class="main">
+        <div class="text">
+            <div class="intro">Redux</div>
+            <p><span class="abbr">Redux</span> — библиотека управления состоянием для приложений, написанных на
+                JavaScript
+            </p>
+            <p>Она помогает писать приложения, которые ведут себя стабильно/предсказуемо, работают на разных окружениях
+                (клиент/сервер/нативный код) и легко тестируемы
+            </p>
+            <div class="intro">Три фундаментальных принципа Redux</div>
+            <p>
+            <ul>
+                <li>
+                    единственный источник истины (одно хранилище, которое управляет состоянием всего приложения);
+                </li>
+                <li>состояние только для чтения (единственный способ обновить состояние – отправить action);
+                </li>
+                <li>
+                    изменения вносятся с помощью чистых функций (reducers)
+                </li>
+            </ul>
+            </p>
+            <p>Установить Redux можно через NPM или YARN
+            </p>
+            <div class="code-block">
+                <span class="keyword">npm</span> install redux <br>
+                <span class="keyword">yarn</span> add redux <br>
+            </div>
+            <div class="intro">Redux Thunk
+            </div>
+            <p>Принцип работы Redux Thunk прост: Action creator возвращает обработанную Redux Thunk-ом функцию, в
+                которой разрешено инициировать побочные эффекты, асинхронные (вызовы API) и синхронные действия
+            </p>
+            <div class="intro">Redux Saga
+            </div>
+            <p>Redux Saga использует концепцию генераторов из ES6, что позволяет делать асинхронные потоки легкими для
+                чтения, написания и тестирования
+            </p>
+            <div class="intro">Redux недостатки</div>
+            <p>
+            <ul>
+                <li>Отсутствует инкапсуляция. Любой компонент имеет доступ к данным, что может привести к проблемам с
+                    безопасностью
+                </li>
+                <li>Много шаблонного кода. Ограниченный дизайн</li>
+                <li>Поскольку состояние является иммутабельным, reducer обновляет его, каждый раз возвращая новое
+                    состояние, что влечет дополнительные расходы памяти</li>
+            </ul>
+            </p>
+            <div class="intro">Как работает Redux и его составляющие</div>
+            <p>
+            <ul>
+                <li>Имеется центральное хранилище, содержащее состояние приложения
+                </li>
+                <li>Каждый компонент имеет доступ к этому хранилищу, так что нет необходимости передавать пропы из
+                    одного компонента в другой
+                </li>
+                <li>Существует три строительных блока: хранилище, редукторы (reducers) и операции (actions)
+                </li>
+            </ul>
+            </p>
+            <p><span class="abbr">Action (операция)</span> – это статическая информация о событии,
+                инициализирующем изменение состояния. Обновление
+                состояния в Redux всегда начинается с операции
+            </p>
+
+            <p><span class="abbr">Операции</span> – это объекты, содержащие обязательное свойство type и опциональное
+                свойство payload. Операции вызываются с
+                помощью метода store.dispatch(). Операция создается с
+                помощью "создателя операций" (action creator)
+            </p>
+
+            <p><span class="abbr">Создатели операций</span> – функции, помогающие создавать
+                операции. Создатель операции возвращает объект операции,
+                который передается редуктору (reducer)
+            </p>
+            <div class="intro">Action</div>
+            <p>Например, вот экшен, которое представляет добавление нового пункта в список дел:</p>
+            <div class="code-block">
+                <span class="keyword">const</span> ADD_TODO = <span class="skobki">'ADD_TODO'</span>; <br>
+                <br>
+                <span class="skobki">&#123;</span> <br>
+                &nbsp; type: ADD_TODO, <br>
+                &nbsp; text: <span class="skobki">'Build my first Redux app'</span> <br>
+                <span class="skobki">&#125;</span> <br>
+            </div>
+            <p> Экшены — это обычные JavaScript-объекты. Экшены должны иметь поле type, которое указывает на тип
+                исполняемого экшена. Типы должны быть, как правило, заданы, как строковые константы. После того, как
+                ваше приложение разрастется, вы можете захотеть переместить их в отдельный модуль.</p>
+            <div class="code-block">
+                <span class="extends">import</span> <span class="skobki">&#123;</span> ADD_TODO <span
+                    class="skobki">&#125;</span> <span class="extends">from</span> <span
+                    class="skobki">'../actionTypes'</span>;
+            </div>
+            <div class="intro">Reducers</div>
+            <p>Reducers (редукторы) – это "чистые" функции, принимающие текущее состояние приложения, выполняющие над
+                ним операцию и возвращающие новое состояние
+            </p>
+            <p> Новое состояние – объект, описывающий изменения состояния, произошедшие в ответ на вызванную операцию
+            </p>
+            <p>State (еще называют Store) – это объект, содержащий состояние приложения. При обновлении состояния,
+                обновляются все подписанные на него компоненты
+            </p>
+            <p>Хранилище отвечает за запись, чтение и обновление состояния.
+            </p>
+            <p>Store в react-redux создается с помощью функции <span class="highlighted-text">createStore()</span>
+            </p>
+            <p>Которая принимает в себя <span class="highlighted-text">reducer</span>
+            </p>
+            <div class="code-block">
+                const Map = require<span class="skobki">&#40;</span>"inmutable"<span class="skobki">&#41;</span> Map;
+                <br>
+                <br>
+                const reducer = <span class="extends">function</span><span class="skobki">&#40;</span>state = Map<span
+                    class="skobki">&#40;&#41;</span>, action<span class="skobki">&#41;</span> <span
+                    class="skobki">&#123;</span> <br>
+                &nbsp;<span class="extends">switch</span> <span class="skobki">&#40;</span>action.type<span
+                    class="skobki">&#41;</span> <span class="skobki">&#123;</span> <br>
+                &nbsp;&nbsp;<span class="extends">case</span> "SET_STATE" : <br>
+                &nbsp;&nbsp;&nbsp;<span class="extends">return</span> state.merge <span
+                    class="skobki">&#40;</span>action.state<span class="skobki">&#41;</span>; <br>
+                &nbsp;&nbsp;<span class="extends">case</span> "ADD_PHONE": <br>
+                &nbsp;&nbsp;&nbsp;<span class="extends">return</span> state.update<span
+                    class="skobki">&#40;</span>"phones", <span class="skobki">&#40;</span>phones<span
+                    class="skobki">&#41;</span> => <span class="skobki">&#91;</span>...phones, action.phones<span
+                    class="skobki">&#93; &#41;</span>; <br>
+                &nbsp;&nbsp;<span class="extends">case</span> "DELETE_PHONE" : <br>
+                &nbsp;&nbsp;&nbsp;<span class="extends">return</span> state.update<span
+                    class="skobki">&#40;</span>"phones" , <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="skobki">&#40;</span>phones<span class="skobki">&#41;</span> =›
+                phones.filter<span class="skobki">&#40;</span> <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="skobki">&#40;</span>item<span class="skobki">&#41;</span> =›
+                item !== action.phone <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="skobki">&#41;</span> <br>
+                &nbsp;&nbsp;&nbsp;<span class="skobki">&#41;</span>; <br>
+                &nbsp;<span class="skobki">&#125;</span> <br>
+                &nbsp;<span class="extends">return</span> state; <br>
+                <span class="skobki">&#125;</span> <br>
+                module.exports = reducer;
+            </div>
+            <div class="intro">Store</div>
+            <p>Хранилище (store) — это объект, который:
+            <ul>
+                <li>содержит состояние приложения;
+                </li>
+                <li>отображает состояние через <span class="highlighted-text">getState()</span>;
+                </li>
+                <li>может обновлять состояние через <span class="highlighted-text">dispatch()</span>;
+                </li>
+                <li>позволяет регистрироваться (или удаляться) в качестве слушателя изменения состояния через <span
+                        class="highlighted-text">subscribe()</span>
+                </li>
+            </ul>
+            </p>
+            <div class="code-block">
+                <span class="extends">import</span> <span class="skobki">&#123;</span> createStore <span
+                    class="skobki">&#125;</span> <span class="extends">from</span> <span class="skobki">'redux'</span>
+                <br>
+                <span class="extends">import</span> listManager <span class="extends">from</span> <span
+                    class="skobki">'./reducers'</span> <br>
+                let store = createStore <span class="skobki">&#40;</span>listManager<span class="skobki">&#41;</span>
+            </div>
+            <p>Получение состояния:</p>
+            <div class="code-block">store.getState<span class="skobki">&#40;&#41;</span></div>
+            <p>Обновление состояния:</p>
+            <div class="code-block">store.dispatch<span class="skobki">&#40;</span>addItem<span
+                    class="skobki">&#40;</span><span class="skobki">'Something'</span><span
+                    class="skobki">&#41;&#41;</span></div>
+            <br>
+            <p>В Redux используется односторонний поток данных:
+            <ul>
+                <li>Состояние описывает приложение в текущий момент времени
+                </li>
+                <li>На основе состояния отображается пользовательский интерфейс
+                </li>
+                <li>Когда происходит действие, состояние обновляется
+                </li>
+                <li>Пользовательский интерфейс отображает обновленное состояние
+                </li>
+            </ul>
+            </p>
+        </div>
+
+        <div class="button-container">
+            <a href="../pages/table-of-contents.html" class="go-to-toc-button">
+                Перейти к оглавлению <span>&rarr;</span>
+            </a>
+        </div>
+    </main>
+</body>
+
+</html>

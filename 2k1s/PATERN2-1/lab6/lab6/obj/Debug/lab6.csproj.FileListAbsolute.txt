@@ -1,0 +1,22 @@
+D:\3sem\pp\lab6\lab6\obj\Debug\lab6.csproj.AssemblyReference.cache
+D:\3sem\pp\lab6\lab6\obj\Debug\lab6.csproj.CoreCompileInputs.cache
+D:\3sem\pp\lab6\lab6\bin\Debug\lab6.exe.config
+D:\3sem\pp\lab6\lab6\bin\Debug\lab6.exe
+D:\3sem\pp\lab6\lab6\bin\Debug\lab6.pdb
+D:\3sem\pp\lab6\lab6\bin\Debug\Lab6Lib.dll
+D:\3sem\pp\lab6\lab6\bin\Debug\Lab6Lib.pdb
+D:\3sem\pp\lab6\lab6\bin\Debug\Lab6Lib.dll.config
+D:\3sem\pp\lab6\lab6\obj\Debug\lab6.csproj.Up2Date
+D:\3sem\pp\lab6\lab6\obj\Debug\lab6.exe
+D:\3sem\pp\lab6\lab6\obj\Debug\lab6.pdb
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\lab6\lab6\bin\Debug\lab6.exe.config
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\lab6\lab6\bin\Debug\lab6.exe
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\lab6\lab6\bin\Debug\lab6.pdb
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\lab6\lab6\bin\Debug\Lab6Lib.dll
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\lab6\lab6\bin\Debug\Lab6Lib.pdb
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\lab6\lab6\bin\Debug\Lab6Lib.dll.config
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\lab6\lab6\obj\Debug\lab6.csproj.AssemblyReference.cache
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\lab6\lab6\obj\Debug\lab6.csproj.CoreCompileInputs.cache
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\lab6\lab6\obj\Debug\lab6.csproj.Up2Date
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\lab6\lab6\obj\Debug\lab6.exe
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\lab6\lab6\obj\Debug\lab6.pdb

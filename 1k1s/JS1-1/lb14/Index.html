@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="ex1()">Ex1</button>
+    <button onclick="ex2()">Ex2</button>
+    <button onclick="ex3()">Ex3</button>
+    <button onclick="ex4()">Ex4</button>
+    <button onclick="ex5()">Ex5</button>
+    <button onclick="ex6()">Ex6</button>
+    <script>
+        function ex1() {
+            const obj1 = {
+                k1: "Свойство1",
+                k2: "Свойство2",
+                k3: "Свойство3",};
+            
+            console.log('Значения свойств с помощью Object.values():');
+            console.log(Object.values(obj1));
+
+            console.log('\nКлючи свойств с помощью Object.keys():');
+            console.log(Object.keys(obj1));
+        }
+
+        function ex2() {
+            const obj2 = [0, 1, 12, 123, 1234, 12345].map(num=>
+            num.toString().padStart(15, '0') );
+
+            console.log(obj2);
+        }
+
+        function ex3() {
+            let nm = ["Violetta Ugorenko"].map(key => key.padStart(20, '$')).map(key => key.padEnd(23, ' 17'));
+            console.log(nm);
+        }
+
+        function ex4() {
+            const fm = ["45", "754", "34", "436"].map(key => key.padStart(2, '1')).map(key => key.padEnd(7, '    0'));
+            console.log(fm);
+        }
+
+        function ex5(){
+            let user = {
+                name: "Bob",
+                id: "1111"
+            }
+            const a = Object.getOwnPropertyDescriptors(user);
+            console.log(a);
+        }
+
+        function ex6() {
+            const obj3 = {};
+
+            Object.defineProperty(obj3, 'name', {
+            value: 'Bob',
+            writable: true,        // разрешаем перезапись значения
+            enumerable: true,      // разрешаем перечисление свойства
+            configurable: true     // разрешаем изменение дескриптора свойства
+            });
+            console.log(Object.getOwnPropertyDescriptors(obj3));
+        }
+    </script>
+</body>
+</html>

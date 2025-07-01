@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Коллекции Map и Set</title>
+</head>
+<body>
+    <script>
+        function ex1(){
+            let phoneBook = new Map([
+                ["1", "1111"],  
+                ["2", "2222"],
+                ["3", "3333"],
+                ["4", "4444"],
+                ["5", "5555"]
+            ]);
+
+            function getNumber(key) 
+            {
+                if (phoneBook.has(key)) {
+                    return phoneBook.get(key);
+                } else {
+                    return "Номер телефона не найден";
+                }
+            }
+
+            let call = prompt("Введите ключ (от 1 до 5):");
+
+            if (call !== null) {
+                alert(getNumber(call));
+                } else {
+                alert("Отменено пользователем");
+                }
+            }
+
+            function ex2(){
+                let mySet = new Set();
+
+                mySet.add(1);
+                mySet.add(3);
+                mySet.add(5);
+
+                console.log("Размер Set: ", mySet.size);
+
+                console.log("Есть ли элемент 1 в Set?", (mySet.has(1) ? "Да" : "Нет"));
+                console.log("Есть ли элемент 3 в Set?", (mySet.has(3) ? "Да" : "Нет"));
+                console.log("Есть ли элемент 5 в Set?", (mySet.has(5) ? "Да" : "Нет"));
+
+                console.log("Метод has() возвращает булево значение");
+            }
+
+            function ex3(){
+                
+                let proto = {
+                    FirstName: "Иван",
+                    LastName: "Иванов",
+                    MiddleName: "Иванович",
+
+                    OutPut: function() {
+                        console.log(`Имя: ${this.FirstName}, Фамилия: ${this.LastName}, Отчество: ${this.MiddleName}`);
+                    }
+                };
+                proto.OutPut();
+
+                let proto2 = Object.create(proto);
+
+                proto2.FirstName = "Петр";
+
+                proto2.OutPut();
+            }
+
+            function ex4(name = prompt("Введите своё имя: ")){
+                if(name){
+                    alert('Привет, ' + name + '!');
+                } else{
+                    alert('Привет, Аноним!');
+                }
+            }
+    </script>
+    <button onclick="ex1()">ex1</button>
+    <button onclick="ex2()">ex2</button> 
+    <button onclick="ex3()">ex3</button>
+    <button onclick="ex4()">ex4</button>
+    <br>
+
+    <button id="button1">Кнопка 1</button>
+    <button id="button2">Кнопка 2</button>
+    <script>
+            function ex5(){
+                let x = 0
+                function click(){
+                    x++;
+                    this.textContent = "Количество нажатий: " + x;
+                } return click;
+            } 
+            document.getElementById('button1').addEventListener('click', ex5());
+            document.getElementById('button2').addEventListener('click', ex5());
+    </script>
+</body>
+</html>

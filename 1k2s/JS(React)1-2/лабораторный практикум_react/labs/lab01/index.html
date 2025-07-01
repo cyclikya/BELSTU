@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторная работа 1</title>
+    <link rel="icon" href="../../Dependencies/img/favicon.ico"/>
+    <link rel="stylesheet" href="../../Dependencies/css/main.css">
+    <link rel="stylesheet" href="../../Dependencies/css/header.css">
+    <link rel="stylesheet" href="../../Dependencies/css/body.css">
+    <link rel="stylesheet" href="../../Dependencies/css/footer.css">
+    <link rel="stylesheet" href="../../Dependencies/css/first.css">
+    <link rel="stylesheet" href="../../Dependencies/css/text.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@500;600&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;1,100&family=Open+Sans:ital,wght@0,400;1,400;1,500&family=Roboto+Condensed:wght@500;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="body">
+    <header class="header">
+        <img src="../../Dependencies/img/1174949_js_react js_logo_react_react native_icon.png" alt="My Photo"
+            class="photo" />
+        <nav class="navbar">
+            <ul>
+                <li>
+                    <a href="../../main.html">React</a>
+                </li>
+            </ul>
+            <div><a href="../../pages/table-of-contents.html">Оглавление</a>
+                <a href="../../https://belstu.by/">Сайт BSTU</a>
+                <a href="../../https://react.dev/">Официальная документация</a>
+                <a href="../../labs/labs.html">Лабораторный практикум</a>
+            </div>
+        </nav>
+    </header>
+    <main class="main">
+        <div class="text">
+            <div class="intro">Лабораторная работа №1</div>
+            <div class="section">Задание 1</div>
+
+            <p>Выберите и, при необходимости, установите рабочее окружение для разработки с React.</p>
+
+            <p>Для быстрого старта можно использовать следующий шаблон:</p>
+
+            <div class="code-block">
+                &lt;!DOCTYPE html> <br>
+                &lt;html><br>
+                &lt;head><br>
+                &lt;meta charset="UTF-8" /><br>
+                &lt;title>Hello World&lt;/title><br>
+                &nbsp; &lt;script src="https://unpkg.com/react@17/umd/react.production.min.js">&lt;/script><br>
+                &nbsp; &lt;script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js">&lt;/script><br>
+                &nbsp; &lt;script src="https://unpkg.com/@babel/standalone/babel.min.js">&lt;/script><br>
+                &lt;/head><br>
+                &lt;body><br>
+                &nbsp; &lt;div id="root">&lt;/div><br>
+                &nbsp; &lt;script type="text/babel"><br>
+                &nbsp;&nbsp; ReactDOM.render(<br>
+                &nbsp;&nbsp;&nbsp; &lt;h1>Hello, world!&lt;/h1>,<br>
+                &nbsp;&nbsp; document.getElementById('root')<br>
+                &nbsp; );<br>
+                &nbsp; &lt;/script><br>
+                &lt;/body><br>
+                &lt;/html><br>
+            </div>
+
+            <p>Скопируйте его и убедитесь, что при открытии страницы в браузере появляется надпись "Hello, world!"</p>
+
+            <p>Измените код в файле так, чтобы при открытии страницы отображалась сегодняшняя дата.</p>
+
+            <div class="section">Задание 2</div>
+
+            <p>В ответ на запрос сервер фондовой биржи вернул следующий объект, содержащий названия акций, их текущую
+                цену и изменение цены:</p>
+
+            <pre class="code-block" style="background-color:#282c34;display: inline-block;"><code class="language-jsx" >
+[ {
+   stock_name: "EFX",
+   company_name: "Equifax Inc",
+   price: 163.55,
+   currency: "USD",
+   change: "+9.03"
+}, {
+   stock_name: "IRM",
+   company_name: "Iron Mountain Inc",
+   price: 33.21,
+   currency: "USD",
+   change: "+1.42"
+}, {
+   stock_name: "NTAP",
+   company_name: "NetApp Inc",
+   price: 54.81,
+   currency: "USD",
+   change: "-6.01"
+}, {
+   stock_name: "CTL",
+   company_name: "Centurylink Inc",
+   price: 13.79,
+   currency: "USD",
+   change: "-1.37"
+} ]
+        </code></pre>
+
+            <p>Динамически сгенерируйте и выведите на его основании таблицу с условным форматированием: положительное
+                изменение цены акций должно быть окрашено в зелёный цвет, а отрицательное — в красный. Используйте
+                циклы.</p>
+
+            <!-- TODO: добавить скриншот, как должна выглядеть таблица -->
+
+            <div class="section">Задание 3</div>
+
+            <p>Разработать проект шахматной доски по примеру, приведённому ниже, с использованием дочерних элементов
+                JSX. Допускается использование стилей только для изменения цвета клеток (.black, .white) и для общего
+                контейнера всей доски.</p>
+
+            <img class="lr-img" src="img/Chess.jpg" alt="Шахматная доска">
+
+            <p>Добавьте нотации (подписи) шахматной доски, используя отдельные элементы.</p>
+
+            <p><span class="abbr">Доп. задание:</span> Реализуйте нотации с использованием циклов и отдельных функций.
+            </p>
+        </div>
+    </main>
+</body>
+
+</html>

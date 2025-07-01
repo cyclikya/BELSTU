@@ -1,0 +1,28 @@
+div {
+    width: 90px;
+    height: 90px;
+    display: inline-block;
+    margin: 5px;
+    border: 2px solid black;
+}
+.a {
+    background-image: linear-gradient(to top, red, blue);
+}
+.b {
+    background: repeating-linear-gradient(45deg, red, red 6px, blue 0px 13px) 
+    /* 13 частота, 6 это ширина,  */
+}
+.c {
+    background-image: radial-gradient(yellow, green);
+}
+.d {
+    background: repeating-radial-gradient(yellow, yellow 6px, green 0px 13px);
+}
+.f {
+    background-image: radial-gradient(yellow, green, transparent), 
+                      linear-gradient(to bottom, blue, purple);
+}
+.g {
+    background-image: linear-gradient(to right, yellow, green, transparent),
+                      linear-gradient(to top, purple 7px, blue 15px, white 30px, black 90px );
+}
