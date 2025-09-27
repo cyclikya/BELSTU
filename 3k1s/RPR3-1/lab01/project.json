@@ -1,0 +1,82 @@
+{
+  "name": "lab01",
+  "projectId": "096c5da7-0d4f-4efd-a565-aec3d56a4a6e",
+  "description": "",
+  "main": "task05.xaml",
+  "dependencies": {
+    "UiPath.System.Activities": "[25.8.1]",
+    "UiPath.UIAutomation.Activities": "[25.10.8]"
+  },
+  "webServices": [],
+  "entitiesStores": [],
+  "schemaVersion": "4.0",
+  "studioVersion": "25.0.176.0",
+  "projectVersion": "1.0.0",
+  "runtimeOptions": {
+    "autoDispose": false,
+    "netFrameworkLazyLoading": false,
+    "isPausable": true,
+    "isAttended": false,
+    "requiresUserInteraction": true,
+    "supportsPersistence": false,
+    "workflowSerialization": "NewtonsoftJson",
+    "excludedLoggedData": [
+      "Private:*",
+      "*password*"
+    ],
+    "executionType": "Workflow",
+    "readyForPiP": false,
+    "startsInPiP": false,
+    "mustRestoreAllDependencies": true,
+    "pipType": "ChildSession"
+  },
+  "designOptions": {
+    "projectProfile": "Developement",
+    "outputType": "Process",
+    "libraryOptions": {
+      "privateWorkflows": []
+    },
+    "processOptions": {
+      "ignoredFiles": []
+    },
+    "fileInfoCollection": [],
+    "saveToCloud": false
+  },
+  "expressionLanguage": "VisualBasic",
+  "entryPoints": [
+    {
+      "filePath": "task02.xaml",
+      "uniqueId": "3f587437-9841-42a6-a0f1-3ce6645d0816",
+      "input": [],
+      "output": []
+    },
+    {
+      "filePath": "task01.xaml",
+      "uniqueId": "f2023842-164c-4963-9a30-38ed79560c8e",
+      "input": [],
+      "output": []
+    },
+    {
+      "filePath": "task03.xaml",
+      "uniqueId": "751ce238-e7a5-4439-8530-1caa789ba03d",
+      "input": [],
+      "output": []
+    },
+    {
+      "filePath": "task04.xaml",
+      "uniqueId": "14df11d0-97ec-4e43-9ffa-8d502f826629",
+      "input": [],
+      "output": []
+    },
+    {
+      "filePath": "task05.xaml",
+      "uniqueId": "41a34383-415a-443e-88cc-79194d762f05",
+      "input": [],
+      "output": []
+    }
+  ],
+  "isTemplate": false,
+  "templateProjectData": {},
+  "publishData": {},
+  "targetFramework": "Windows"
+}
