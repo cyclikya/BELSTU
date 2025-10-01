@@ -1,0 +1,88 @@
+{
+  "Version": 1,
+  "ManifestType": "Build",
+  "Endpoints": [
+    {
+      "Route": "Neumann.html",
+      "AssetFile": "Neumann.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "250"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"tMseUY3WEwc3knxslHli/Bo+jZiDuhE2TO5fA5SMVK4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 25 Sep 2025 20:59:28 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-tMseUY3WEwc3knxslHli/Bo+jZiDuhE2TO5fA5SMVK4="
+        }
+      ]
+    },
+    {
+      "Route": "Neumann.ojfk00cy3x.html",
+      "AssetFile": "Neumann.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "250"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"tMseUY3WEwc3knxslHli/Bo+jZiDuhE2TO5fA5SMVK4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 25 Sep 2025 20:59:28 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ojfk00cy3x"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-tMseUY3WEwc3knxslHli/Bo+jZiDuhE2TO5fA5SMVK4="
+        },
+        {
+          "Name": "label",
+          "Value": "Neumann.html"
+        }
+      ]
+    }
+  ]
+}

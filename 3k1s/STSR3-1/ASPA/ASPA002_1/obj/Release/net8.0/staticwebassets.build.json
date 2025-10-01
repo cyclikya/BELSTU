@@ -1,0 +1,331 @@
+{
+  "Version": 1,
+  "Hash": "BcIrOA/xLB4ZUAPGet8JumnMnB7mdNj8Sra1if7J5Yc=",
+  "Source": "ASPA002_1",
+  "BasePath": "_content/ASPA002_1",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "ASPA002_1\\wwwroot",
+      "Source": "ASPA002_1",
+      "ContentRoot": "C:\\General\\BELSTU\\3k1s\\STSR3-1\\ASPA\\ASPA002_1\\wwwroot\\",
+      "BasePath": "_content/ASPA002_1",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\General\\BELSTU\\3k1s\\STSR3-1\\ASPA\\ASPA002_1\\wwwroot\\css\\index.css",
+      "SourceId": "ASPA002_1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\General\\BELSTU\\3k1s\\STSR3-1\\ASPA\\ASPA002_1\\wwwroot\\",
+      "BasePath": "_content/ASPA002_1",
+      "RelativePath": "css/index#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "gubh6kq015",
+      "Integrity": "yHNYQRgoRTzX3J7An+TIaUbZjToEQqevUI2w1ASQoas=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\index.css"
+    },
+    {
+      "Identity": "C:\\General\\BELSTU\\3k1s\\STSR3-1\\ASPA\\ASPA002_1\\wwwroot\\Index.html",
+      "SourceId": "ASPA002_1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\General\\BELSTU\\3k1s\\STSR3-1\\ASPA\\ASPA002_1\\wwwroot\\",
+      "BasePath": "_content/ASPA002_1",
+      "RelativePath": "Index#[.{fingerprint}]?.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "b8hngbgc1r",
+      "Integrity": "BS13055DRg7hkgZuezyUw1tnqvtXczSPCbkbxEYLSjU=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Index.html"
+    },
+    {
+      "Identity": "C:\\General\\BELSTU\\3k1s\\STSR3-1\\ASPA\\ASPA002_1\\wwwroot\\Neumann.jpg",
+      "SourceId": "ASPA002_1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\General\\BELSTU\\3k1s\\STSR3-1\\ASPA\\ASPA002_1\\wwwroot\\",
+      "BasePath": "_content/ASPA002_1",
+      "RelativePath": "Neumann#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "31qlpsswxb",
+      "Integrity": "+R9bTSEvE/+B1T+29R7tVXL8Sh/bfqCsbDnV2UYeHso=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Neumann.jpg"
+    }
+  ],
+  "Endpoints": [
+    {
+      "Route": "css/index.css",
+      "AssetFile": "C:\\General\\BELSTU\\3k1s\\STSR3-1\\ASPA\\ASPA002_1\\wwwroot\\css\\index.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "100"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"yHNYQRgoRTzX3J7An+TIaUbZjToEQqevUI2w1ASQoas=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 07 Mar 2025 14:27:25 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-yHNYQRgoRTzX3J7An+TIaUbZjToEQqevUI2w1ASQoas="
+        }
+      ]
+    },
+    {
+      "Route": "css/index.gubh6kq015.css",
+      "AssetFile": "C:\\General\\BELSTU\\3k1s\\STSR3-1\\ASPA\\ASPA002_1\\wwwroot\\css\\index.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "100"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"yHNYQRgoRTzX3J7An+TIaUbZjToEQqevUI2w1ASQoas=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 07 Mar 2025 14:27:25 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "gubh6kq015"
+        },
+        {
+          "Name": "label",
+          "Value": "css/index.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-yHNYQRgoRTzX3J7An+TIaUbZjToEQqevUI2w1ASQoas="
+        }
+      ]
+    },
+    {
+      "Route": "Index.b8hngbgc1r.html",
+      "AssetFile": "C:\\General\\BELSTU\\3k1s\\STSR3-1\\ASPA\\ASPA002_1\\wwwroot\\Index.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "713"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"BS13055DRg7hkgZuezyUw1tnqvtXczSPCbkbxEYLSjU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 25 Sep 2025 20:52:17 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "b8hngbgc1r"
+        },
+        {
+          "Name": "label",
+          "Value": "Index.html"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-BS13055DRg7hkgZuezyUw1tnqvtXczSPCbkbxEYLSjU="
+        }
+      ]
+    },
+    {
+      "Route": "Index.html",
+      "AssetFile": "C:\\General\\BELSTU\\3k1s\\STSR3-1\\ASPA\\ASPA002_1\\wwwroot\\Index.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "713"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"BS13055DRg7hkgZuezyUw1tnqvtXczSPCbkbxEYLSjU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 25 Sep 2025 20:52:17 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-BS13055DRg7hkgZuezyUw1tnqvtXczSPCbkbxEYLSjU="
+        }
+      ]
+    },
+    {
+      "Route": "Neumann.31qlpsswxb.jpg",
+      "AssetFile": "C:\\General\\BELSTU\\3k1s\\STSR3-1\\ASPA\\ASPA002_1\\wwwroot\\Neumann.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "41314"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"+R9bTSEvE/+B1T+29R7tVXL8Sh/bfqCsbDnV2UYeHso=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 25 Sep 2025 20:43:15 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "31qlpsswxb"
+        },
+        {
+          "Name": "label",
+          "Value": "Neumann.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-+R9bTSEvE/+B1T+29R7tVXL8Sh/bfqCsbDnV2UYeHso="
+        }
+      ]
+    },
+    {
+      "Route": "Neumann.jpg",
+      "AssetFile": "C:\\General\\BELSTU\\3k1s\\STSR3-1\\ASPA\\ASPA002_1\\wwwroot\\Neumann.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "41314"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"+R9bTSEvE/+B1T+29R7tVXL8Sh/bfqCsbDnV2UYeHso=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 25 Sep 2025 20:43:15 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-+R9bTSEvE/+B1T+29R7tVXL8Sh/bfqCsbDnV2UYeHso="
+        }
+      ]
+    }
+  ]
+}

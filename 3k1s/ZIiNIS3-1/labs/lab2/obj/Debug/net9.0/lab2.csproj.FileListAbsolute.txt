@@ -1,0 +1,15 @@
+C:\General\BELSTU\3k1s\ZIiNIS3-1\labs\lab2\bin\Debug\net9.0\lab2.exe
+C:\General\BELSTU\3k1s\ZIiNIS3-1\labs\lab2\bin\Debug\net9.0\lab2.deps.json
+C:\General\BELSTU\3k1s\ZIiNIS3-1\labs\lab2\bin\Debug\net9.0\lab2.runtimeconfig.json
+C:\General\BELSTU\3k1s\ZIiNIS3-1\labs\lab2\bin\Debug\net9.0\lab2.dll
+C:\General\BELSTU\3k1s\ZIiNIS3-1\labs\lab2\bin\Debug\net9.0\lab2.pdb
+C:\General\BELSTU\3k1s\ZIiNIS3-1\labs\lab2\obj\Debug\net9.0\lab2.GeneratedMSBuildEditorConfig.editorconfig
+C:\General\BELSTU\3k1s\ZIiNIS3-1\labs\lab2\obj\Debug\net9.0\lab2.AssemblyInfoInputs.cache
+C:\General\BELSTU\3k1s\ZIiNIS3-1\labs\lab2\obj\Debug\net9.0\lab2.AssemblyInfo.cs
+C:\General\BELSTU\3k1s\ZIiNIS3-1\labs\lab2\obj\Debug\net9.0\lab2.csproj.CoreCompileInputs.cache
+C:\General\BELSTU\3k1s\ZIiNIS3-1\labs\lab2\obj\Debug\net9.0\lab2.sourcelink.json
+C:\General\BELSTU\3k1s\ZIiNIS3-1\labs\lab2\obj\Debug\net9.0\lab2.dll
+C:\General\BELSTU\3k1s\ZIiNIS3-1\labs\lab2\obj\Debug\net9.0\refint\lab2.dll
+C:\General\BELSTU\3k1s\ZIiNIS3-1\labs\lab2\obj\Debug\net9.0\lab2.pdb
+C:\General\BELSTU\3k1s\ZIiNIS3-1\labs\lab2\obj\Debug\net9.0\lab2.genruntimeconfig.cache
+C:\General\BELSTU\3k1s\ZIiNIS3-1\labs\lab2\obj\Debug\net9.0\ref\lab2.dll

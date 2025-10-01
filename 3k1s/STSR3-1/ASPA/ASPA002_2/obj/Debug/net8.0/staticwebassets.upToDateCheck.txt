@@ -1,0 +1,2 @@
+wwwroot\Neumann.html
+wwwroot\Neumann.jpg

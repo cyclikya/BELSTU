@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Заявка на тур</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="logo">Путешествия</h1>
+            <nav>
+                <a href="index.html">Главная</a>
+                <a href="order.html" class="active">Заявка на тур</a>
+                <a href="contact.html">Контакты</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h2>Оставьте заявку</h2>
+        <p>
+            Мы предоставляем услуги по оформлению документов, так же можем их вам доставить.<br>
+            Все туры можно кастомизировать, уточняйте данный вопрос при оформлении.<br>
+            Наличие актуальных туров уточняйте у свезавшегося с вами оператора.
+        </p>
+        <form id="order-form" class="form-box">
+            <label>
+                Ваше имя:
+                <input type="text" name="name" required>
+            </label>
+
+            <label>
+                Телефон:
+                <input type="tel" name="phone" required placeholder="+375 XX XXX-XX-XX">
+            </label>
+
+            <label>
+                Выберите тур:
+                <select name="tour" id="tour-select" required></select>
+            </label>
+
+            <button type="submit" class="btn">Отправить заявку</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>© 2025 Путешествия по миру</p>
+    </footer>
+</body>
+</html>
