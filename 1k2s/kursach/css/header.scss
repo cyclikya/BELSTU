@@ -1,0 +1,70 @@
+header {
+	position: absolute;
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+	margin: 0;
+	z-index: 4;
+
+	#button {
+		clear: right;
+		float: right;
+		text-decoration: none;
+		background-color: #465902;
+		color: white;
+		transition: transform 0.3s ease;
+		margin: 0 6vw 4vw 1.5vw;
+		padding: 1vw 3vw 1vw 3vw;
+		border-radius: 10vw;
+		font-size: 2vw; /* Увеличенный размер шрифта по умолчанию */
+
+		&:hover {
+			transform: scale(1.1);
+		}
+
+		@media (max-width: 1280px) {
+			font-size: 1.8vw; /* Уменьшение шрифта для экранов меньше 1280px */
+		}
+
+		@media (max-width: 768px) {
+			font-size: 1.5vw; /* Уменьшение шрифта для экранов меньше 768px */
+		}
+
+		@media (max-width: 480px) {
+			font-size: 1em; /* Уменьшение шрифта для экранов меньше 480px */
+		}
+	}
+
+	@media only screen and (max-width: 1280px) {
+		top: 0;
+		height: 20%;
+	}
+}
+
+.header-top-row {
+	position: relative;
+	display: flex;
+	justify-content: flex-end;
+	flex-direction: row;
+	align-items: center;
+}
+
+img.logo {
+	position: relative;
+	top: 0;
+	right: 23%;
+	width: 15vw; 
+	height: auto;
+
+	@media (max-width: 1280px) {
+		width: 16vw; 
+	}
+
+	@media (max-width: 800px) {
+		width: 25vw;
+	}
+
+	@media (max-width: 480px) {
+		width: 30vw;
+	}
+}

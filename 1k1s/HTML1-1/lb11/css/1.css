@@ -1,0 +1,118 @@
+body {
+  background-color: #27ae60;
+  color: rgb(0, 0, 0);
+}
+body p {
+  text-align: left;
+}
+body h1, body h2, body h3, body h4 {
+  color: black;
+}
+body .img {
+  width: 80%;
+}
+body span {
+  font-style: italic;
+  font-weight: bold;
+  font-size: large;
+  padding-bottom: 5px;
+}
+body #main {
+  padding: 20px;
+}
+body #main p {
+  font-size: 19.2px;
+}
+
+.grid {
+  display: grid;
+  grid-template-areas: "icon nav nav" "zag zag form" "main main form" "main main podzag1" "main main feedbk" "podzag2 podzag2 feedbk" "img img feedbk" "footer footer footer";
+  grid-template-columns: 10% 44% 44%;
+  grid-template-rows: 10% 7% 5% 6% 20%;
+  grid-gap: 1%;
+}
+.grid > div {
+  border: 1px solid greenyellow;
+  border-radius: 10px;
+  text-align: center;
+  background-color: #2ecc71;
+}
+
+#feedbk {
+  display: grid;
+  grid-template-areas: "img1 prof1" "img2 prof2" "img3 prof3";
+  grid-template-columns: 39% 59%;
+  grid-template-rows: 30% 30% 30%;
+  grid-gap: 2%;
+}
+#feedbk * {
+  padding: 10px;
+}
+
+#footer {
+  display: grid;
+  grid-template-areas: "shefs maneger";
+  grid-template-columns: 49% 49%;
+  grid-gap: 2%;
+}
+
+.icon {
+  transition: transform 0.5s ease-in-out;
+  cursor: pointer;
+  width: 100%;
+}
+
+#img {
+  display: inline-block;
+}
+#img > img {
+  width: 19%;
+  padding: 1%;
+}
+
+#zag h1 {
+  font-size: 40px;
+}
+#zag, #zag #podzag1, #zag #podzag2 {
+  background-color: #e67e22;
+}
+
+#nav {
+  padding: 20px;
+}
+#nav a {
+  text-decoration: none;
+  color: rgb(41, 51, 44);
+  background-color: #e67e22;
+  margin-right: 20px;
+}
+#nav a:hover {
+  background-color: #bf6516;
+}
+
+#form form h3 {
+  font-size: 1.5em;
+  color: rgb(0, 0, 0);
+}
+#form #message {
+  color: darkblue;
+  font-weight: bold;
+  padding: 5px;
+  text-align: center;
+}
+
+.alert {
+  width: 200px;
+  margin: 10px;
+  background-color: lightblue;
+}
+.alert.success {
+  padding: 10px;
+  color: green;
+  border: 1px solid green;
+}
+.alert.error {
+  padding: 10px;
+  color: red;
+  border: 1px solid red;
+}

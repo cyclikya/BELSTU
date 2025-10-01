@@ -1,0 +1,28 @@
+C:\Users\pahal\Desktop\Лабы\ООП\лаба 15\лаба 15\bin\Debug\net8.0\лаба 15.exe
+C:\Users\pahal\Desktop\Лабы\ООП\лаба 15\лаба 15\bin\Debug\net8.0\лаба 15.deps.json
+C:\Users\pahal\Desktop\Лабы\ООП\лаба 15\лаба 15\bin\Debug\net8.0\лаба 15.runtimeconfig.json
+C:\Users\pahal\Desktop\Лабы\ООП\лаба 15\лаба 15\bin\Debug\net8.0\лаба 15.dll
+C:\Users\pahal\Desktop\Лабы\ООП\лаба 15\лаба 15\bin\Debug\net8.0\лаба 15.pdb
+C:\Users\pahal\Desktop\Лабы\ООП\лаба 15\лаба 15\obj\Debug\net8.0\лаба 15.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\pahal\Desktop\Лабы\ООП\лаба 15\лаба 15\obj\Debug\net8.0\лаба 15.AssemblyInfoInputs.cache
+C:\Users\pahal\Desktop\Лабы\ООП\лаба 15\лаба 15\obj\Debug\net8.0\лаба 15.AssemblyInfo.cs
+C:\Users\pahal\Desktop\Лабы\ООП\лаба 15\лаба 15\obj\Debug\net8.0\лаба 15.csproj.CoreCompileInputs.cache
+C:\Users\pahal\Desktop\Лабы\ООП\лаба 15\лаба 15\obj\Debug\net8.0\лаба 15.dll
+C:\Users\pahal\Desktop\Лабы\ООП\лаба 15\лаба 15\obj\Debug\net8.0\refint\лаба 15.dll
+C:\Users\pahal\Desktop\Лабы\ООП\лаба 15\лаба 15\obj\Debug\net8.0\лаба 15.pdb
+C:\Users\pahal\Desktop\Лабы\ООП\лаба 15\лаба 15\obj\Debug\net8.0\лаба 15.genruntimeconfig.cache
+C:\Users\pahal\Desktop\Лабы\ООП\лаба 15\лаба 15\obj\Debug\net8.0\ref\лаба 15.dll
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\лаба 15\лаба 15\bin\Debug\net8.0\лаба 15.exe
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\лаба 15\лаба 15\bin\Debug\net8.0\лаба 15.deps.json
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\лаба 15\лаба 15\bin\Debug\net8.0\лаба 15.runtimeconfig.json
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\лаба 15\лаба 15\bin\Debug\net8.0\лаба 15.dll
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\лаба 15\лаба 15\bin\Debug\net8.0\лаба 15.pdb
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\лаба 15\лаба 15\obj\Debug\net8.0\лаба 15.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\лаба 15\лаба 15\obj\Debug\net8.0\лаба 15.AssemblyInfoInputs.cache
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\лаба 15\лаба 15\obj\Debug\net8.0\лаба 15.AssemblyInfo.cs
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\лаба 15\лаба 15\obj\Debug\net8.0\лаба 15.csproj.CoreCompileInputs.cache
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\лаба 15\лаба 15\obj\Debug\net8.0\лаба 15.dll
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\лаба 15\лаба 15\obj\Debug\net8.0\refint\лаба 15.dll
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\лаба 15\лаба 15\obj\Debug\net8.0\лаба 15.pdb
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\лаба 15\лаба 15\obj\Debug\net8.0\лаба 15.genruntimeconfig.cache
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\лаба 15\лаба 15\obj\Debug\net8.0\ref\лаба 15.dll

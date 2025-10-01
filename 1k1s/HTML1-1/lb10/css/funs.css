@@ -1,0 +1,46 @@
+.zag {
+    display: none;
+}
+.ul-menu {
+    display: none;
+}
+.ul-menu li {
+    display: block;
+}
+.ul-menu a {
+    display: block;
+    text-decoration: none;
+    border-bottom: 1px solid #333;
+}
+#mobile-checkbox {
+    display: none;
+}
+#mobile-checkbox:checked + nav .ul-menu {
+    display: block;
+}
+.blocks {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+}
+@media (min-width: 560px) { /*560  и больше */
+    .blocks {
+        flex-direction: row;
+    }
+    .zag{
+        display: block;
+    }
+    .button {
+        display: none;
+    }
+    .ul-menu {
+        display: block;
+        text-align: center;
+    }
+    .ul-menu li {
+        display: inline-block;
+    }
+    .ul-menu a{
+        border: 0;
+    }
+}

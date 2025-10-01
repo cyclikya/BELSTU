@@ -1,0 +1,86 @@
+[
+  {
+    "Name": "\u041C\u0430\u0442\u0435\u043C\u0430\u0442\u0438\u043A\u0430",
+    "AgeGroup": 20,
+    "Difficulty": "",
+    "DataStart": "2024-11-26T18:15:27",
+    "LectureCount": 5,
+    "LabCount": 2,
+    "ControlType": "\u042D\u043A\u0437\u0430\u043C\u0435\u043D",
+    "Teacher": {
+      "Department": "\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u043C\u043D\u0430\u044F \u0438\u043D\u0436\u0435\u043D\u0435\u0440\u0438\u044F",
+      "FullName": "\u041B\u043E\u0432\u0438\u043D\u0435\u0446\u043A\u0430\u044F",
+      "Room": "124-4"
+    },
+    "Literature": [
+      {
+        "Title": "\u0412\u044B\u0448\u043C\u0430\u0442",
+        "Author": "\u042F\u0432\u0438\u0434",
+        "Year": 1906
+      }
+    ]
+  },
+  {
+    "Name": "\u041E\u041E\u041F",
+    "AgeGroup": 25,
+    "Difficulty": "",
+    "DataStart": "2024-11-26T18:15:27",
+    "LectureCount": 5,
+    "LabCount": 3,
+    "ControlType": "\u0417\u0430\u0447\u0435\u0442",
+    "Teacher": {
+      "Department": "\u0418\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u043E\u043D\u043D\u044B\u0435 \u0441\u0438\u0441\u0442\u0435\u043C\u044B",
+      "FullName": "\u041C\u0443\u0449\u0443\u043A",
+      "Room": "124-2"
+    },
+    "Literature": [
+      {
+        "Title": "\u0421#",
+        "Author": "\u0421\u043C\u0435\u043B\u043E\u0432",
+        "Year": 2004
+      }
+    ]
+  },
+  {
+    "Name": "\u0411\u0414",
+    "AgeGroup": 35,
+    "Difficulty": "",
+    "DataStart": "2024-11-26T18:15:27",
+    "LectureCount": 5,
+    "LabCount": 2,
+    "ControlType": "\u042D\u043A\u0437\u0430\u043C\u0435\u043D",
+    "Teacher": {
+      "Department": "\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u043C\u043D\u0430\u044F \u0438\u043D\u0436\u0435\u043D\u0435\u0440\u0438\u044F",
+      "FullName": "\u0421\u0430\u0432\u0435\u043B\u044C\u0435\u0432\u0430",
+      "Room": "324-5"
+    },
+    "Literature": [
+      {
+        "Title": "\u041E\u0441\u043D\u043E\u0432\u044B \u0421\u0423\u0411\u0414",
+        "Author": "\u0411\u043B\u0438\u043D\u043E\u0432\u0430",
+        "Year": 2015
+      }
+    ]
+  },
+  {
+    "Name": "\u0421\u0422\u0410\u0420\u0418\u0421",
+    "AgeGroup": 25,
+    "Difficulty": "",
+    "DataStart": "2024-12-04T17:04:31",
+    "LectureCount": 4,
+    "LabCount": 4,
+    "ControlType": "\u0417\u0430\u0447\u0435\u0442",
+    "Teacher": {
+      "Department": "\u0418\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u043E\u043D\u043D\u044B\u0435 \u0441\u0438\u0441\u0442\u0435\u043C\u044B",
+      "FullName": "\u0421\u0430\u0432\u0435\u043B\u044C\u0435\u0432\u0430",
+      "Room": "123-4"
+    },
+    "Literature": [
+      {
+        "Title": "\u0421\u0442\u0430\u0440\u0438\u0441",
+        "Author": "\u0411\u043B\u0438\u043D\u043E\u0432\u0430",
+        "Year": 2010
+      }
+    ]
+  }
+]

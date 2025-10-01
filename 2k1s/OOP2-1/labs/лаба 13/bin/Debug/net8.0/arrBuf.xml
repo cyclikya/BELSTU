@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfOperationSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <OperationSet>
+    <Company>Компания 1</Company>
+  </OperationSet>
+  <OperationSet>
+    <Company>Компания 2</Company>
+  </OperationSet>
+  <OperationSet>
+    <Company>Компания 3</Company>
+  </OperationSet>
+</ArrayOfOperationSet>

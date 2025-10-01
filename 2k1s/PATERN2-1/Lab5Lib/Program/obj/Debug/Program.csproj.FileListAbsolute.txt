@@ -1,0 +1,20 @@
+D:\3sem\pp\Lab5Lib\Program\bin\Debug\Program.exe.config
+D:\3sem\pp\Lab5Lib\Program\bin\Debug\Program.exe
+D:\3sem\pp\Lab5Lib\Program\bin\Debug\Program.pdb
+D:\3sem\pp\Lab5Lib\Program\bin\Debug\Lab5Lib.dll
+D:\3sem\pp\Lab5Lib\Program\bin\Debug\Lab5Lib.pdb
+D:\3sem\pp\Lab5Lib\Program\obj\Debug\Program.csproj.AssemblyReference.cache
+D:\3sem\pp\Lab5Lib\Program\obj\Debug\Program.csproj.CoreCompileInputs.cache
+D:\3sem\pp\Lab5Lib\Program\obj\Debug\Program.csproj.Up2Date
+D:\3sem\pp\Lab5Lib\Program\obj\Debug\Program.exe
+D:\3sem\pp\Lab5Lib\Program\obj\Debug\Program.pdb
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\Lab5Lib\Program\bin\Debug\Program.exe.config
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\Lab5Lib\Program\bin\Debug\Program.exe
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\Lab5Lib\Program\bin\Debug\Program.pdb
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\Lab5Lib\Program\bin\Debug\Lab5Lib.dll
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\Lab5Lib\Program\bin\Debug\Lab5Lib.pdb
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\Lab5Lib\Program\obj\Debug\Program.csproj.AssemblyReference.cache
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\Lab5Lib\Program\obj\Debug\Program.csproj.CoreCompileInputs.cache
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\Lab5Lib\Program\obj\Debug\Program.csproj.Up2Date
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\Lab5Lib\Program\obj\Debug\Program.exe
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\Lab5Lib\Program\obj\Debug\Program.pdb

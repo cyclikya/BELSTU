@@ -1,0 +1,50 @@
+﻿<Window x:Class="labs10_11.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:labs10_11.ViewModels"
+        Title="Persons and Departments" Height="400" Width="600">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+            <TextBlock Text="Имя:" VerticalAlignment="Center"/>
+            <TextBox Width="120" Margin="5,0" Text="{Binding NewPersonName, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+            <TextBlock Text="Возраст:" VerticalAlignment="Center"/>
+            <TextBox Width="50" Margin="5,0" Text="{Binding NewPersonAge, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+            <Button Content="Добавить" Command="{Binding AddPersonCommand}" Margin="10,0"/>
+            <Button Content="Удалить" Command="{Binding DeletePersonCommand}" Margin="10,0"/>
+        </StackPanel>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <TextBlock Text="Persons:" FontWeight="Bold"/>
+                <ListBox ItemsSource="{Binding Persons}"
+         SelectedItem="{Binding SelectedPerson, Mode=TwoWay}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Name}" Width="100"/>
+                                <TextBlock Text="{Binding Age}" Width="40"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </StackPanel>
+            <StackPanel Grid.Column="1">
+                <TextBlock Text="Departments:" FontWeight="Bold"/>
+                <ListBox ItemsSource="{Binding Departments}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Title}"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

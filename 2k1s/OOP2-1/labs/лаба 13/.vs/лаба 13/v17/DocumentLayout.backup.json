@@ -1,0 +1,139 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\pahal\\Desktop\\\u041B\u0430\u0431\u044B\\\u041E\u041E\u041F\\\u043B\u0430\u0431\u0430 13\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A0D6FD21-3056-4328-A6D6-BE725943EEF4}|\u043B\u0430\u0431\u0430 13\\\u043B\u0430\u0431\u0430 13.csproj|c:\\users\\pahal\\desktop\\\u043B\u0430\u0431\u044B\\\u043E\u043E\u043F\\\u043B\u0430\u0431\u0430 13\\\u043B\u0430\u0431\u0430 13\\customdeserializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A0D6FD21-3056-4328-A6D6-BE725943EEF4}|\u043B\u0430\u0431\u0430 13\\\u043B\u0430\u0431\u0430 13.csproj|solutionrelative:\u043B\u0430\u0431\u0430 13\\customdeserializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A0D6FD21-3056-4328-A6D6-BE725943EEF4}|\u043B\u0430\u0431\u0430 13\\\u043B\u0430\u0431\u0430 13.csproj|c:\\users\\pahal\\desktop\\\u043B\u0430\u0431\u044B\\\u043E\u043E\u043F\\\u043B\u0430\u0431\u0430 13\\\u043B\u0430\u0431\u0430 13\\customserializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A0D6FD21-3056-4328-A6D6-BE725943EEF4}|\u043B\u0430\u0431\u0430 13\\\u043B\u0430\u0431\u0430 13.csproj|solutionrelative:\u043B\u0430\u0431\u0430 13\\customserializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A0D6FD21-3056-4328-A6D6-BE725943EEF4}|\u043B\u0430\u0431\u0430 13\\\u043B\u0430\u0431\u0430 13.csproj|c:\\users\\pahal\\desktop\\\u043B\u0430\u0431\u044B\\\u043E\u043E\u043F\\\u043B\u0430\u0431\u0430 13\\\u043B\u0430\u0431\u0430 13\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A0D6FD21-3056-4328-A6D6-BE725943EEF4}|\u043B\u0430\u0431\u0430 13\\\u043B\u0430\u0431\u0430 13.csproj|solutionrelative:\u043B\u0430\u0431\u0430 13\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A0D6FD21-3056-4328-A6D6-BE725943EEF4}|\u043B\u0430\u0431\u0430 13\\\u043B\u0430\u0431\u0430 13.csproj|c:\\users\\pahal\\desktop\\\u043B\u0430\u0431\u044B\\\u043E\u043E\u043F\\\u043B\u0430\u0431\u0430 13\\\u043B\u0430\u0431\u0430 13\\mainland.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A0D6FD21-3056-4328-A6D6-BE725943EEF4}|\u043B\u0430\u0431\u0430 13\\\u043B\u0430\u0431\u0430 13.csproj|solutionrelative:\u043B\u0430\u0431\u0430 13\\mainland.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A0D6FD21-3056-4328-A6D6-BE725943EEF4}|\u043B\u0430\u0431\u0430 13\\\u043B\u0430\u0431\u0430 13.csproj|c:\\users\\pahal\\desktop\\\u043B\u0430\u0431\u044B\\\u043E\u043E\u043F\\\u043B\u0430\u0431\u0430 13\\\u043B\u0430\u0431\u0430 13\\ivisit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A0D6FD21-3056-4328-A6D6-BE725943EEF4}|\u043B\u0430\u0431\u0430 13\\\u043B\u0430\u0431\u0430 13.csproj|solutionrelative:\u043B\u0430\u0431\u0430 13\\ivisit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A0D6FD21-3056-4328-A6D6-BE725943EEF4}|\u043B\u0430\u0431\u0430 13\\\u043B\u0430\u0431\u0430 13.csproj|c:\\users\\pahal\\desktop\\\u043B\u0430\u0431\u044B\\\u043E\u043E\u043F\\\u043B\u0430\u0431\u0430 13\\\u043B\u0430\u0431\u0430 13\\continent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A0D6FD21-3056-4328-A6D6-BE725943EEF4}|\u043B\u0430\u0431\u0430 13\\\u043B\u0430\u0431\u0430 13.csproj|solutionrelative:\u043B\u0430\u0431\u0430 13\\continent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A0D6FD21-3056-4328-A6D6-BE725943EEF4}|\u043B\u0430\u0431\u0430 13\\\u043B\u0430\u0431\u0430 13.csproj|c:\\users\\pahal\\desktop\\\u043B\u0430\u0431\u044B\\\u043E\u043E\u043F\\\u043B\u0430\u0431\u0430 13\\\u043B\u0430\u0431\u0430 13\\country.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A0D6FD21-3056-4328-A6D6-BE725943EEF4}|\u043B\u0430\u0431\u0430 13\\\u043B\u0430\u0431\u0430 13.csproj|solutionrelative:\u043B\u0430\u0431\u0430 13\\country.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CustomSerializer.cs",
+              "DocumentMoniker": "C:\\Users\\pahal\\Desktop\\\u041B\u0430\u0431\u044B\\\u041E\u041E\u041F\\\u043B\u0430\u0431\u0430 13\\\u043B\u0430\u0431\u0430 13\\CustomSerializer.cs",
+              "RelativeDocumentMoniker": "\u043B\u0430\u0431\u0430 13\\CustomSerializer.cs",
+              "ToolTip": "C:\\Users\\pahal\\Desktop\\\u041B\u0430\u0431\u044B\\\u041E\u041E\u041F\\\u043B\u0430\u0431\u0430 13\\\u043B\u0430\u0431\u0430 13\\CustomSerializer.cs",
+              "RelativeToolTip": "\u043B\u0430\u0431\u0430 13\\CustomSerializer.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAA3AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-22T11:19:31.215Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CustomDeserializer.cs",
+              "DocumentMoniker": "C:\\Users\\pahal\\Desktop\\\u041B\u0430\u0431\u044B\\\u041E\u041E\u041F\\\u043B\u0430\u0431\u0430 13\\\u043B\u0430\u0431\u0430 13\\CustomDeserializer.cs",
+              "RelativeDocumentMoniker": "\u043B\u0430\u0431\u0430 13\\CustomDeserializer.cs",
+              "ToolTip": "C:\\Users\\pahal\\Desktop\\\u041B\u0430\u0431\u044B\\\u041E\u041E\u041F\\\u043B\u0430\u0431\u0430 13\\\u043B\u0430\u0431\u0430 13\\CustomDeserializer.cs",
+              "RelativeToolTip": "\u043B\u0430\u0431\u0430 13\\CustomDeserializer.cs",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAmwBAAAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-22T11:18:29.065Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Country.cs",
+              "DocumentMoniker": "C:\\Users\\pahal\\Desktop\\\u041B\u0430\u0431\u044B\\\u041E\u041E\u041F\\\u043B\u0430\u0431\u0430 13\\\u043B\u0430\u0431\u0430 13\\Country.cs",
+              "RelativeDocumentMoniker": "\u043B\u0430\u0431\u0430 13\\Country.cs",
+              "ToolTip": "C:\\Users\\pahal\\Desktop\\\u041B\u0430\u0431\u044B\\\u041E\u041E\u041F\\\u043B\u0430\u0431\u0430 13\\\u043B\u0430\u0431\u0430 13\\Country.cs",
+              "RelativeToolTip": "\u043B\u0430\u0431\u0430 13\\Country.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAD4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-22T11:16:56.973Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Continent.cs",
+              "DocumentMoniker": "C:\\Users\\pahal\\Desktop\\\u041B\u0430\u0431\u044B\\\u041E\u041E\u041F\\\u043B\u0430\u0431\u0430 13\\\u043B\u0430\u0431\u0430 13\\Continent.cs",
+              "RelativeDocumentMoniker": "\u043B\u0430\u0431\u0430 13\\Continent.cs",
+              "ToolTip": "C:\\Users\\pahal\\Desktop\\\u041B\u0430\u0431\u044B\\\u041E\u041E\u041F\\\u043B\u0430\u0431\u0430 13\\\u043B\u0430\u0431\u0430 13\\Continent.cs",
+              "RelativeToolTip": "\u043B\u0430\u0431\u0430 13\\Continent.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAADsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-22T11:16:45.417Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IVisit.cs",
+              "DocumentMoniker": "C:\\Users\\pahal\\Desktop\\\u041B\u0430\u0431\u044B\\\u041E\u041E\u041F\\\u043B\u0430\u0431\u0430 13\\\u043B\u0430\u0431\u0430 13\\IVisit.cs",
+              "RelativeDocumentMoniker": "\u043B\u0430\u0431\u0430 13\\IVisit.cs",
+              "ToolTip": "C:\\Users\\pahal\\Desktop\\\u041B\u0430\u0431\u044B\\\u041E\u041E\u041F\\\u043B\u0430\u0431\u0430 13\\\u043B\u0430\u0431\u0430 13\\IVisit.cs",
+              "RelativeToolTip": "\u043B\u0430\u0431\u0430 13\\IVisit.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-22T11:16:04.541Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Mainland.cs",
+              "DocumentMoniker": "C:\\Users\\pahal\\Desktop\\\u041B\u0430\u0431\u044B\\\u041E\u041E\u041F\\\u043B\u0430\u0431\u0430 13\\\u043B\u0430\u0431\u0430 13\\Mainland.cs",
+              "RelativeDocumentMoniker": "\u043B\u0430\u0431\u0430 13\\Mainland.cs",
+              "ToolTip": "C:\\Users\\pahal\\Desktop\\\u041B\u0430\u0431\u044B\\\u041E\u041E\u041F\\\u043B\u0430\u0431\u0430 13\\\u043B\u0430\u0431\u0430 13\\Mainland.cs",
+              "RelativeToolTip": "\u043B\u0430\u0431\u0430 13\\Mainland.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-22T11:15:57.057Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\pahal\\Desktop\\\u041B\u0430\u0431\u044B\\\u041E\u041E\u041F\\\u043B\u0430\u0431\u0430 13\\\u043B\u0430\u0431\u0430 13\\Program.cs",
+              "RelativeDocumentMoniker": "\u043B\u0430\u0431\u0430 13\\Program.cs",
+              "ToolTip": "C:\\Users\\pahal\\Desktop\\\u041B\u0430\u0431\u044B\\\u041E\u041E\u041F\\\u043B\u0430\u0431\u0430 13\\\u043B\u0430\u0431\u0430 13\\Program.cs",
+              "RelativeToolTip": "\u043B\u0430\u0431\u0430 13\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAJ0AAAA2AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-22T11:14:56.449Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

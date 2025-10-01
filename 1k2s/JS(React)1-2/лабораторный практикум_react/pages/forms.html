@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Работа с формами</title>
+    <link rel="icon" href="../Dependencies/img/favicon.ico"/>
+    <link rel="stylesheet" href="../Dependencies/css/main.css">
+    <link rel="stylesheet" href="../Dependencies/css/header.css">
+    <link rel="stylesheet" href="../Dependencies/css/body.css">
+    <link rel="stylesheet" href="../Dependencies/css/footer.css">
+    <link rel="stylesheet" href="../Dependencies/css/first.css">
+    <link rel="stylesheet" href="../Dependencies/css/text.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@500;600&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;1,100&family=Open+Sans:ital,wght@0,400;1,400;1,500&family=Roboto+Condensed:wght@500;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="body">
+    <header class="header">
+        <img src="../Dependencies/img/1174949_js_react js_logo_react_react native_icon.png" alt="My Photo"
+            class="photo" />
+        <nav class="navbar">
+            <ul>
+                <li>
+                    <a href="../main.html">React</a>
+                </li>
+            </ul>
+            <div><a href="../pages/table-of-contents.html">Оглавление</a>
+                <a href="https://belstu.by/">Сайт BSTU</a>
+                <a href="https://react.dev/">Официальная документация</a>
+                <a href="../labs/labs.html">Лабораторный практикум</a>
+            </div>
+        </nav>
+    </header>
+    <main class="main">
+        <div class="text">
+            <div class="intro">Работа с формами</div>
+            <p>React мы можем использовать все стандартные элементы форм, которые есть в <span
+                    class="highlighted-text">html</span>, однако здесь эти элементы
+                приобретают дополнительные возможности
+            </p>
+            <p>Вам не нужно устанавливать дополнительных библиотек. React имеет встроенную поддержку форм
+            </p>
+            <p>Если вы работали с формами в обычном HTML, многое из этого, вероятно, покажется вам знакомым. Там есть
+                тег <span class="highlighted-text">form</span>, и <span class="highlighted-text">label</span> для ввода,
+                как если бы вы писали в HTML.
+            </p>
+            <p>Ввод данных в React может быть одного из двух типов:
+            <ul>
+                <li>контролируемый
+                </li>
+                <li>неконтролируемый
+                </li>
+            </ul>
+            </p>
+            <p>Неконтролируемый ввод проще. Это самый близкий к обычному HTML-вводу. React размещает его на странице, а
+                браузер отслеживает все остальное. Когда вам нужно получить доступ к входному значению, React
+                предоставляет способ сделать это
+            </p>
+            <p> Неконтролируемые вводы требуют меньше кода, но затрудняют выполнение определенных действий
+            </p>
+
+            <div class="intro">Контролируемый ввод</div>
+            <p>С управляемым вводом вы пишете код для явного управления значением. Вам нужно будет создать состояние для
+                его хранения, обновить это состояние при изменении значения и явно указать входным данным, какое
+                значение отображать.
+            </p>
+            <p>Изначальный код:</p>
+            <div class="code-block">
+                <span class="extends">function</span> <span class="keyword">ContactForm</span><span class="skobki">()
+                    {</span> <br>
+                &nbsp;<span class="extends">const</span> <span class="skobki">[</span>name,setName<span
+                    class="skobki">]</span> = React.useState<span class="skobki">('')</span>;<br>
+                &nbsp;<span class="extends">const</span> <span class="skobki">[</span>email, setEmail<span
+                    class="skobki">]</span> = React.useState<span class="skobki">('')</span>;<br>
+                &nbsp;<span class="extends">const</span> <span class="skobki">[</span>message, setMessage<span
+                    class="skobki">]</span> = React.useState<span class="skobki">('')</span>;<br>
+
+                <br>
+                <span class="extends">function</span> <span class="keyword">handleSubmit</span> <span
+                    class="skobki">(</span>event<span class="skobki">) {</span><br>
+                &nbsp;event.preventDefault <span class="skobki">()</span>;<br>
+                &nbsp;console.log<span class="skobki">('name:'</span>, name<span class="skobki">)</span>;<br>
+                &nbsp;console.log<span class="skobki">('email:'</span>, email<span class="skobki">)</span>;<br>
+                &nbsp;console.log<span class="skobki">('message:'</span>, message<span class="skobki">)</span>;<br>
+                }
+            </div>
+            <p>Далее 1:</p>
+            <div class="code-block">
+                <span class="extends">return</span><span class="skobki">(</span> <br>
+                &nbsp; <span class="skobki">&#60;</span>form <span class="extends">onSubmit</span>=<span
+                    class="skobki">{</span>handleSubmit<span class="skobki">}</span><span class="skobki">/></span><br>
+                &nbsp;&nbsp; <span class="skobki">&#60;</span>div<span class="skobki">></span>;<br>
+                &nbsp;&nbsp;&nbsp; <span class="skobki">&#60;</span>label htmlFor = <span
+                    class="skobki">"name"</span><span class="skobki">></span>Name<span
+                    class="skobki">&#60;</span>/label<span class="skobki">></span><br>
+                &nbsp;&nbsp;&nbsp;<span class="skobki">&#60;</span>input <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;id = <span class="skobki">"name"</span> <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;type = <span class="skobki">"text"</span>
+                &nbsp;&nbsp;&nbsp;&nbsp;value = <span class="skobki">{</span>name<span class="skobki">}</span> <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="extends">onChange</span> = <span class="skobki">{(</span>e<span
+                    class="skobki">)</span>=> setName<span class="skobki">(</span>e.target.value<span
+                    class="skobki">)}</span> <br>
+                &nbsp;&nbsp;&nbsp;<span class="skobki">/></span> <br>
+                &nbsp;&nbsp;<span class="skobki">&#60;</span>div<span class="skobki">/></span><br>
+                &nbsp;&nbsp;<span class="skobki">&#60;</span>div<span class="skobki">></span> <br>
+                &nbsp;&nbsp;&nbsp;<span class="skobki">&#60;</span>label htmlFor = <span
+                    class="skobki">"email"</span><span class="skobki">></span>Email<span
+                    class="skobki">&#60;</span>/label<span class="skobki">></span><br>
+                &nbsp;&nbsp;&nbsp;<span class="skobki">&#60;</span>input <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;id = <span class="skobki">"email"</span> <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;type = <span class="skobki">"email"</span>
+                &nbsp;&nbsp;&nbsp;&nbsp;value = <span class="skobki">{</span>email<span class="skobki">}</span> <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="extends">onChange</span> = <span class="skobki">{(</span>e<span
+                    class="skobki">)</span>=> setEmail<span class="skobki">(</span>e.target.value<span
+                    class="skobki">)}</span> <br>
+                &nbsp;&nbsp;&nbsp;<span class="skobki">/></span> <br>
+                &nbsp;&nbsp;<span class="skobki">&#60;</span>div<span class="skobki">/></span><br>
+                &nbsp;&nbsp;<span class="skobki">&#60;</span>div<span class="skobki">></span> <br>
+                &nbsp;&nbsp;&nbsp; <span class="skobki">&#60;</span>label htmlFor = <span
+                    class="skobki">"message"</span><span class="skobki">></span>Message<span
+                    class="skobki">&#60;</span>/label<span class="skobki">></span><br>
+                &nbsp;&nbsp;&nbsp; <span class="skobki">&#60;</span>textarea <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;id = <span class="skobki">"message"</span> <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;value = <span class="skobki">{</span>message<span class="skobki">}</span> <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="extends">onChange</span> = <span class="skobki">{(</span>e<span
+                    class="skobki">)</span>=> setMessage<span class="skobki">(</span>e.target.value<span
+                    class="skobki">)}</span> <br>
+                &nbsp;&nbsp;&nbsp;<span class="skobki">/></span> <br>
+                &nbsp;&nbsp;<span class="skobki">&#60;</span>div<span class="skobki">/></span><br>
+                &nbsp;&nbsp;<span class="skobki">&#60;</span>button type = <span class="skobki">"submit"</span> <span
+                    class="skobki">></span> Submit <span class="skobki">&#60;/</span>button<span
+                    class="skobki">&#62;</span><br>
+                &nbsp;<span class="skobki">)</span>; <br>
+                <span class="skobki">}</span><br>
+            </div>
+            <p>
+            <ul>
+                <li><span class="highlighted-text">Value</span> сообщает, что отображать. Здесь мы передаем значение из
+                    соответствующей переменной состояния.
+                </li>
+                <li><span class="highlighted-text"></span> является функцией и вызывается, когда пользователь изменяет
+                    ввод. Она получает событие, и мы берем текущее значение ввода (<span
+                        class="highlighted-text">e.target.value</span>) и сохраняем его в состоянии.
+                </li>
+            </ul>
+            </p>
+            <p>Визуализация выполняется быстро. Рендеринг 3, 5 или 10 вводов при каждом нажатии клавиш не замедлит
+                работу приложения заметно.
+            </p>
+            <p>Если у вас есть форма с множеством вводов, этот повторный рендеринг может иметь значение, особенно на
+                более медленных устройствах. На этом этапе вам может потребоваться изучить оптимизацию, чтобы ограничить
+                повторную визуализацию только теми входными данными, которые изменились.
+            </p>
+            <div class="intro">Неконтролируемый ввод</div>
+            <p>Если вы ничего не сделаете, кроме передачи input в вашей функции рендеринга, этот ввод будет
+                неконтролируемым. Вы говорите React визуализировать ввод, а браузер делает все остальное.
+            </p>
+            <p>Неконтролируемый ввод управляет своим значением. Как и в случае с простой HTML-формой, значение
+                сохраняется во входном узле DOM. Нет необходимости отслеживать это вручную
+            </p>
+            <div class="code-block">
+                <span class="extends">function</span> <span class="keyword">ContactForm</span><span class="skobki">()
+                    {</span> <br>
+                &nbsp;<span class="extends">const</span> nameRef = React.useRef<span class="skobki">()</span>;<br>
+                &nbsp;<span class="extends">const</span> emailRef = React.useRef<span class="skobki">()</span>;<br>
+                <br>
+                <span class="extends">return</span><span class="skobki">(</span> <br>
+                &nbsp; <span class="skobki">&#60;</span>form <span class="skobki">/></span><br>
+                &nbsp;&nbsp; <span class="skobki">&#60;</span>div<span class="skobki">></span>;<br>
+                &nbsp;&nbsp;&nbsp; <span class="skobki">&#60;</span>label htmlFor = <span
+                    class="skobki">"name"</span><span class="skobki">></span>Name<span
+                    class="skobki">&#60;</span>/label<span class="skobki">></span><br>
+                &nbsp;&nbsp;&nbsp;<span class="skobki">&#60;</span>input <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;id = <span class="skobki">"name"</span> <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;type = <span class="skobki">"text"</span> <br>
+                &nbsp;&nbsp;&nbsp;&nbsp; <span class="extends">ref</span> = <span class="skobki">{</span>nameRef<span
+                    class="skobki">}</span><br>
+                &nbsp;&nbsp;&nbsp;<span class="skobki">/></span> <br>
+                &nbsp;&nbsp;<span class="skobki">&#60;</span>div<span class="skobki">/></span><br>
+                &nbsp;&nbsp;<span class="skobki">&#60;</span>div<span class="skobki">></span> <br>
+                &nbsp;&nbsp;&nbsp;<span class="skobki">&#60;</span>label htmlFor = <span
+                    class="skobki">"email"</span><span class="skobki">></span>Email<span
+                    class="skobki">&#60;</span>/label<span class="skobki">></span><br>
+                &nbsp;&nbsp;&nbsp;<span class="skobki">&#60;</span>input <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;id = <span class="skobki">"email"</span> <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;type = <span class="skobki">"email"</span>
+                &nbsp;&nbsp;&nbsp;&nbsp;value = <span class="skobki">{</span>email<span class="skobki">}</span> <br>
+                &nbsp;&nbsp;&nbsp;&nbsp; <span class="extends">ref</span> = <span class="skobki">{</span>emailRef<span
+                    class="skobki">}</span><br>
+                &nbsp;&nbsp;&nbsp;<span class="skobki">/></span> <br>
+                &nbsp;&nbsp;<span class="skobki">&#60;</span>div<span class="skobki">/></span><br>
+                &nbsp;<span class="skobki">)</span>;<br>
+                <span class="skobki">}</span> <br>
+            </div>
+            <p>Здесь мы сделали пару вещей:
+            <ul>
+                <li>создал 2 ссылки с помощью хука useRef
+                </li>
+                <li>привязали ссылки к входным данным с помощью свойства ref
+                </li>
+            </ul>
+            </p>
+            <br>
+            <p>Контролируемые входы идеальны для таких вещей, как:
+            <ul>
+                <li>Мгновенная проверка формы при каждом нажатии клавиши: полезно, если вы хотите, например, сделать
+                    кнопку «Отправить» отключенной, пока все значения не станут валидными.
+                </li>
+                <li>Обработка форматированного ввода, например поля номера кредитной карты, или предотвращение ввода
+                    определенных символов.
+                </li>
+                <li>Синхронизация нескольких вводов друг с другом, если они основаны на одних и тех же данных
+                </li>
+            </ul>
+            </p>
+            <div class="intro">Повторный рендеринг контролируемых вводов при каждом нажатии клавиши</div>
+            <p>Каждый раз, когда вы нажимаете клавишу, React вызывает функцию в свойстве <span
+                    class="highlighted-text">onChange</span>, которая устанавливает состояние
+            </p>
+            <p>Установка состояния приводит к повторному рендерингу компонента и его дочерних элементов (если они еще не
+                оптимизированы с помощью <span class="abbr">React.memo</span> или <span
+                    class="abbr">PureComponent</span>)</p>
+            <div class="intro">Неконтролируемые входные данные не обрабатываются повторно</div>
+            <p>Важным аргументом в пользу использования неконтролируемого ввода является то, что браузер позаботится обо
+                всем. Вам не нужно обновлять состояние, а это значит, что вам не нужно повторно рендерить. Каждое
+                нажатие клавиши обходит React и переходит прямо в браузер
+            </p>
+            <p>Ввод буквы ‘a’ в форму с 300 входами приведет к повторному рендерингу ровно ноль раз, что означает, что
+                React может сидеть сложа руки и ничего не делать. Ничего не делать очень эффективно
+            </p>
+            <br>
+            <p>Мы изложили структуру формы. Затем нам нужно составить дочерние компоненты. Давайте рассмотрим компоненты
+                один за другим:
+            </p>
+            <p>Компонент <span class="abbr">Input</span> отображает однострочное поле ввода. Тип ввода может быть либо
+                текстовым, либо цифровым </p>
+            <p>Давайте посмотрим на реквизиты, что нам нужно создать компонент <span class="abbr">Input</span>:
+            <ul>
+                <li><span class="abbr">type </span> — type prop определяет, будет ли отображаемое поле ввода иметь
+                    текстовый или числовой тип.
+                </li>
+                <li><span class="abbr">title</span> — Значение заголовка будет отображаться как метка этого конкретного
+                    поля
+                </li>
+                <li><span class="abbr">name</span> — это атрибут name для ввода
+                </li>
+                <li><span class="abbr">value</span> — Значение (текст или число), которое должно отображаться внутри
+                    поля ввода. Вы можете
+                    использовать эту опцию, чтобы указать значение по умолчанию
+                </li>
+                <li><span class="abbr">placeholder</span> — необязательная строка, которую вы можете передать, чтобы
+                    поле ввода отображало текст
+                    заполнителя
+                </li>
+                <li><span class="abbr">handleChange </span> — управляющая функция, которая срабатывает при изменении
+                    значения элемента управления
+                    вводом. Затем функция обновляет состояние родительского компонента и передает новое значение через
+                    значение prop
+                </li>
+            </ul>
+            </p>
+            <p>Компонент <span class="abbr">Select</span> отображает список раскрывающихся элементов. Обычно для
+                раскрывающегося списка есть
+                текст заполнителя или значение по умолчанию
+            </p>
+            <p>Свойства <span class="abbr">Select</span>:
+            <ul>
+                <li><span class="abbr">title</span> — Значение заголовка title будет отображаться как метка элемента
+                    select.
+                </li>
+                <li><span class="abbr">name</span> — Атрибут name для элемента select.
+                </li>
+                <li><span class="abbr">options</span> — массив доступных опций. Например, мы используем <span
+                        class="abbr">Select</span> для
+                    отображения раскрывающегося списка вариантов пола.
+                </li>
+                <li><span class="abbr">value</span> — Значение prop может использоваться для установки значения по
+                    умолчанию для поля.
+                </li>
+                <li><span class="abbr">placeholder</span> — короткая строка, которая заполняет первый option.
+                </li>
+                <li><span class="abbr">handleChange </span> — управляющая функция, которая срабатывает при изменении
+                    значения элемента управления
+                    вводом. Затем функция обновляет состояние родительского компонента и передает новое значение через
+                    значение prop.
+                </li>
+            </ul>
+            </p>
+
+        </div>
+        <div class="button-container">
+            <a href="../pages/table-of-contents.html" class="go-to-toc-button">
+              Перейти к оглавлению <span>&rarr;</span>
+            </a>
+        </div>  
+    </main>
+
+</body>
+
+</html>

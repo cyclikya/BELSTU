@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Состояния</title>
+    <link rel="icon" href="../Dependencies/img/favicon.ico"/>
+    <link rel="stylesheet" href="../Dependencies/css/main.css">
+    <link rel="stylesheet" href="../Dependencies/css/header.css">
+    <link rel="stylesheet" href="../Dependencies/css/body.css">
+    <link rel="stylesheet" href="../Dependencies/css/footer.css">
+    <link rel="stylesheet" href="../Dependencies/css/first.css">
+    <link rel="stylesheet" href="../Dependencies/css/text.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@500;600&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;1,100&family=Open+Sans:ital,wght@0,400;1,400;1,500&family=Roboto+Condensed:wght@500;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="body">
+    <header class="header">
+        <img src="../Dependencies/img/1174949_js_react js_logo_react_react native_icon.png" alt="My Photo"
+            class="photo" />
+        <nav class="navbar">
+            <ul>
+                <li>
+                    <a href="../main.html">React</a>
+                </li>
+            </ul>
+            <div><a href="../pages/table-of-contents.html">Оглавление</a>
+                <a href="https://belstu.by/">Сайт BSTU</a>
+                <a href="https://react.dev/">Официальная документация</a>
+                <a href="../labs/labs.html">Лабораторный практикум</a>
+            </div>
+        </nav>
+    </header>
+    <main class="main">
+        <div class="text">
+            <div class="intro">Что такое состояние?</div>
+            <p><span class="abbr">Состояние</span> даёт компонентам возможность реагировать на действия пользователя,
+                ответы сервера и другие
+                события, не нарушая чистоту компонента.
+            </p>
+            <p>Компоненты React могут иметь состояние, то есть объект, содержащий информацию о том, как этот компонент
+                должен отображаться и вести себя.
+            </p>
+            <p>В случае изменения состояния компонента, вызывается метод <span class="highlighted-text">render</span>,
+                который перерисовывает компонент на экране.
+            </p>
+            <p>Так, можно сказать, компонент реагирует на изменение состояния.
+            </p>
+            <p>Также можно оперировать состоянием приложения с помощью менеджера состояний, например <span
+                    class="abbr">Redux</span> или <span class="abbr">ContextAPI</span>
+            </p>
+            <p><span class="abbr">Состояние Компонента</span> — это способ хранения, обработки и использования
+                информации, которая является
+                внутренней для данного Компонента и позволяет реализовать его логику. Состояние обычно представляет
+                собой <span class="highlighted-text">POJO</span> (обычный старый объект Java [Script]), и его изменение
+                — один из немногих способов заставить
+                компонент перерисовать себя.
+            </p>
+            <p>Это одна из самых основных идей, лежащих в основе React, но у нее есть некоторые свойства, которые
+                усложняют ее использование и могут привести к неожиданному поведению в вашем приложении.
+            </p>
+            <div class="intro">Какая разница между state и props?</div>
+            <p><span class="highlighted-text">props</span> (намеренно сокращённо от англ. «properties» — свойства) и
+                <span class="highlighted-text">state</span> — это обычные JavaScript-объекты.
+                Несмотря на то, что оба содержат информацию, которая влияет на то, что увидим после рендера, есть
+                существенное различие: <span class="highlighted-text">props</span> передаётся в компонент (служат как
+                параметры функции), в то время как state
+                находится внутри компонента (по аналогии с переменными, которые объявлены внутри функции).
+            </p>
+            <div class="intro">Почему setState даёт неверное значение?</div>
+            <p>В React как <span class="highlighted-text">this.props</span>, так и <span
+                    class="highlighted-text">this.state</span> представляют значения, которые уже были отрендерены,
+                например,
+                то, что видите на экране.</p>
+            <p>Вызовы <span class="highlighted-text">setState</span> являются асинхронными, поэтому не стоит
+                рассчитывать, что <span class="highlighted-text">this.state</span> отобразит новое
+                значение мгновенно после вызова <span class="highlighted-text">setState</span> . Необходимо добавить
+                функцию, которая сработает только после
+                обновления состояния, если нужно получить новое значение, основанное на текущем состоянии (ниже
+                подробный пример).</p>
+            <p>Пример кода, который НЕ будет работать так, как ожидаем:</p>
+            <div class="code-block">
+                <span class="keyword">incrementCount</span><span class="skobki">&#40;&#41;</span> <span
+                    class="skobki">&#125;</span> <br>
+                <span class="hex"> // Примечание: это *не* сработает, как ожидалось.</span><br>
+                <span class="extends">this</span>.setState<span class="skobki">&#40;</span><span
+                    class="skobki">&#123;</span>count: <span class="extends">this</span>.state.count + 1<span
+                    class="skobki">&#125;&#41;</span>;<br>
+                <span class="skobki">&#125;</span><br>
+                <br>
+                <span class="keyword">handleSomething</span><span class="skobki">&#40;&#41;</span> <span
+                    class="skobki">&#123;</span><br>
+                <span class="hex">// Допустим, что `this.state.count` начинается с 0.</span> <br>
+                <span class="extends">this</span>.<span class="keyword">incrementCount</span><span
+                    class="skobki">&#40;&#41;</span>;<br>
+                <span class="extends">this</span>.<span class="keyword">incrementCount</span><span
+                    class="skobki">&#40;&#41;</span>;<br>
+                <span class="extends">this</span>.<span class="keyword">incrementCount</span><span
+                    class="skobki">&#40;&#41;</span>;<br>
+                <span class="hex">// Когда React делает последующий рендер компонента, `this.state.count` будет 1, хотя
+                    мы ожидаем 3.</span><br>
+                <br>
+                <span class="hex">// Так происходит, потому что функция `incrementCount()` берёт своё значение из
+                    `this.state.count`,</span><br>
+                <span class="hex"></span><br>
+                <span class="hex">// Получается, что `incrementCount()` обращается к текущему значению
+                    `this.state.count`, а это 0 каждый
+                    раз, и добавляет 1.</span><br>
+
+                <span class="hex">// Как исправить это — разберём ниже!</span><br>
+                <span class="skobki">&#125;</span><br>
+            </div>
+            <p>Далее перейдём к исправлению указанной проблемы. </p>
+            <div class="intro">Обновление состояния</div>
+            <p>Единственным местом, куда вы можете напрямую писать, <span class="highlighted-text">this.state</span>
+                должен быть конструктор компонентов (или,
+                если вы используете плагин class-properties, предустановку babel, объявление класса). 
+            </p>
+            <p>Во всех других местах вы должны использовать <span class="highlighted-text">this.setState</span> функцию,
+                которая примет значение Object, которое в конечном итоге будет объединено с текущим состоянием
+                компонентов.
+            </p>
+            <p>Хотя технически возможно изменить состояние путем <span class="highlighted-text">this.state</span>s
+                прямой записи, это не приведет к повторному рендерингу Компонента с новыми данными и, как правило,
+                приведет к несогласованности состояния.
+            </p>
+            <p>Что касаемо нажего случая — Нужно добавить функцию вместо объекта к <span
+                    class="highlighted-text">setState</span>, которая будет срабатывать
+                только на самой последней версии состояния (пример ниже)</p>
+            <div class="intro">В чём разница между добавлением объекта или функции к setState? </div>
+            <p>Добавление функции даёт вам доступ к текущему состоянию внутри самой функции. Так как <span
+                    class="highlighted-text">setState</span> вызовы
+                «сгруппированы», это помогает связать изменения и гарантирует, что они будут выполняться друг за другом,
+                а не конфликтовать.</p>
+            <div class="code-block">
+                <span class="keyword">incrementCount</span><span class="skobki">&#40;&#41;</span> <span
+                    class="skobki">&#123;</span> <br>
+                <span class="extends">this</span>.setState<span class="skobki">&#40;&#40;</span>state<span
+                    class="skobki">&#41;</span>; => <span class="skobki">&#123;</span><br>
+                <span class="hex">// Важно: используем `state` вместо `this.state` при обновлении.</span><br>
+                <span class="extends">return</span> <span class="skobki">&#123;</span><span
+                    class="keyword">count</span>: state.count + 1<span class="skobki">&#125;</span><br>
+                <span class="skobki">&#125;</span><span class="skobki">&#41;</span>;<br>
+                <span class="skobki">&#125;</span><br>
+                <br>
+                <span class="keyword">handleSomething</span><span class="skobki">&#40;&#41;</span> <span
+                    class="skobki">&#123;</span><br>
+                <span class="hex">// Возьмём снова для примера, что `this.state.count` начинается с 0.</span><br>
+                <span class="extends">this</span>.<span class="keyword">incrementCount</span><span
+                    class="skobki">&#40;&#41;</span>;<br>
+                <span class="extends">this</span>.<span class="keyword">incrementCount</span><span
+                    class="skobki">&#40;&#41;</span>;<br>
+                <span class="extends">this</span>.<span class="keyword">incrementCount</span><span
+                    class="skobki">&#40;&#41;</span>;<br>
+                <br>
+                <span class="hex">// Если посмотреть на значение `this.state.count` сейчас, это будет по-прежнему
+                    0.</span><br>
+                <span class="hex">// Но когда React отрендерит компонент снова, будет уже 3.</span><br>
+                <span class="skobki">&#125;</span><br>
+            </div>
+            <div class="intro">setState является асинхронным (*)</div>
+            <p>Тот факт, что <span class="highlighted-text">setState</span> вызывает согласование (процесс повторного
+                рендеринга дерева компонентов), лежит в
+                основе следующего свойства — <span class="highlighted-text">setState</span> является асинхронным. Это
+                позволяет нам иметь несколько вызовов
+                <span class="highlighted-text">setState</span> в одной области видимости и не запускать ненужные
+                повторные рендеры всего дерева.
+            </p>
+            <p>Вот почему вы не видите новые значения в состоянии сразу после его обновления.
+            </p>
+            <p>Но не стоит полностью полагаться на такое поведение. В будущих версиях React будет использовать
+                отложенные обновления состояния по умолчанию не только в обработчиках событий.</p>
+            <div class="intro">Почему React не обновляет this.state синхронно?</div>
+            <p>Как говорилось ранее, React намеренно «ждёт» пока все компоненты вызовут <span class="highlighted-text">setState()</span> в своих обработчиках
+                событий прежде чем начать повторный рендер. Это избавляет от ненужных повторных рендеров.</p>
+                <br>
+                <p>Вы можете задаваться вопросом: почему React не может просто сразу обновить this.state без повторного рендеринга?</p>
+                <p>На это есть две причины:
+                    <ul>
+                        <li>Это нарушит логику работы <span class="highlighted-text">props</span> и <span class="highlighted-text">state</span>, а значит станет причиной многих багов, которые будет сложно исправить.</li>
+                        <li>Это сделало бы невозможным реализацию некоторых возможностей, над которыми мы сейчас работаем.</li>
+                    </ul>
+                </p>
+        </div>
+    </main>
+
+    <div class="button-container">
+        <a href="../pages/table-of-contents.html" class="go-to-toc-button">
+            Перейти к оглавлению <span>&rarr;</span>
+        </a>
+    </div>
+
+</body>
+
+</html>

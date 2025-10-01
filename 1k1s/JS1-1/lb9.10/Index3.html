@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Документ</title>
+    <style>
+        body * {
+            position: absolute;
+            width: 30%;
+        }
+    </style>
+</head>
+<body>
+    <img id="myI" src="img1.jpg">
+    <script>
+        var img = document.getElementById("myI");
+        var s1 = 300,
+            s2 = s1 + 200,
+            x = 20,
+            y = 20,
+            i = 0;
+
+        function move() {
+            if (i <= s1) {
+                x++;
+                y++;
+
+                img.style.left = x + 'px';
+                img.style.top = y + 'px';
+
+                i++;
+                setTimeout(move, 1);
+            } else if (i <= s2) {
+                x++;
+                y--;
+
+                img.style.left = x + 'px';
+                img.style.top = y + 'px';
+
+                i++;
+                setTimeout(move, 1);
+            } else {
+                i = 0;
+                x = 20;
+                y = 20;
+                img.style.left = x + 'px';
+                img.style.top = y + 'px';
+                setTimeout(move, 1); 
+            }
+        }
+        move();
+    </script>
+</body>
+</html>

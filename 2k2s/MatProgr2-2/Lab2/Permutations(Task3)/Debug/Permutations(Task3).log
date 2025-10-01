@@ -1,0 +1,5 @@
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: промежуточный каталог (Debug\) содержит файлы, которые используются совместно с другим проектом (Permutations(Task3).vcxproj).  Это может привести к ошибкам очистки и перестроения.
+  Combi.cpp
+  Permutations(Task3).cpp
+  Создание кода...
+  Permutations(Task3).vcxproj -> D:\БГТУ\IV сем\Мат. прога\Lab2\Debug\Task3.exe

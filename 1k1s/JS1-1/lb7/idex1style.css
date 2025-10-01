@@ -1,0 +1,14 @@
+.rightAside {
+    width: 190px;
+    background-color: lightpink;
+    float: right;
+    font-size: 18px;
+    margin-top: 50px;
+}
+ul {
+    list-style-type: none;
+}
+a:link {
+    text-decoration: none;
+    color: red;
+}

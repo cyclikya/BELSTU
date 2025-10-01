@@ -1,0 +1,219 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\labs\\Lec03LibN\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{90FFA7BD-D60D-4997-A3B0-2828DDDE194A}|PP03\\PP03.csproj|c:\\users\\vugor\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\patern2-1\\labs\\lec03libn\\pp03\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{90FFA7BD-D60D-4997-A3B0-2828DDDE194A}|PP03\\PP03.csproj|solutionrelative:pp03\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{350AEF9A-FE3F-437E-95B2-C2EC7AFBB3BA}|Lec03LibN\\Lec03LibN.csproj|c:\\users\\vugor\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\patern2-1\\labs\\lec03libn\\lec03libn\\factoryl3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{350AEF9A-FE3F-437E-95B2-C2EC7AFBB3BA}|Lec03LibN\\Lec03LibN.csproj|solutionrelative:lec03libn\\factoryl3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{350AEF9A-FE3F-437E-95B2-C2EC7AFBB3BA}|Lec03LibN\\Lec03LibN.csproj|c:\\users\\vugor\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\patern2-1\\labs\\lec03libn\\lec03libn\\ifactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{350AEF9A-FE3F-437E-95B2-C2EC7AFBB3BA}|Lec03LibN\\Lec03LibN.csproj|solutionrelative:lec03libn\\ifactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{350AEF9A-FE3F-437E-95B2-C2EC7AFBB3BA}|Lec03LibN\\Lec03LibN.csproj|c:\\users\\vugor\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\patern2-1\\labs\\lec03libn\\lec03libn\\bonusa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{350AEF9A-FE3F-437E-95B2-C2EC7AFBB3BA}|Lec03LibN\\Lec03LibN.csproj|solutionrelative:lec03libn\\bonusa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{350AEF9A-FE3F-437E-95B2-C2EC7AFBB3BA}|Lec03LibN\\Lec03LibN.csproj|c:\\users\\vugor\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\patern2-1\\labs\\lec03libn\\lec03libn\\lec03blib.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{350AEF9A-FE3F-437E-95B2-C2EC7AFBB3BA}|Lec03LibN\\Lec03LibN.csproj|solutionrelative:lec03libn\\lec03blib.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{350AEF9A-FE3F-437E-95B2-C2EC7AFBB3BA}|Lec03LibN\\Lec03LibN.csproj|c:\\users\\vugor\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\patern2-1\\labs\\lec03libn\\lec03libn\\ibonus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{350AEF9A-FE3F-437E-95B2-C2EC7AFBB3BA}|Lec03LibN\\Lec03LibN.csproj|solutionrelative:lec03libn\\ibonus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{350AEF9A-FE3F-437E-95B2-C2EC7AFBB3BA}|Lec03LibN\\Lec03LibN.csproj|c:\\users\\vugor\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\patern2-1\\labs\\lec03libn\\lec03libn\\bonusb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{350AEF9A-FE3F-437E-95B2-C2EC7AFBB3BA}|Lec03LibN\\Lec03LibN.csproj|solutionrelative:lec03libn\\bonusb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{350AEF9A-FE3F-437E-95B2-C2EC7AFBB3BA}|Lec03LibN\\Lec03LibN.csproj|c:\\users\\vugor\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\patern2-1\\labs\\lec03libn\\lec03libn\\factoryl2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{350AEF9A-FE3F-437E-95B2-C2EC7AFBB3BA}|Lec03LibN\\Lec03LibN.csproj|solutionrelative:lec03libn\\factoryl2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{350AEF9A-FE3F-437E-95B2-C2EC7AFBB3BA}|Lec03LibN\\Lec03LibN.csproj|c:\\users\\vugor\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\patern2-1\\labs\\lec03libn\\lec03libn\\factoryl1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{350AEF9A-FE3F-437E-95B2-C2EC7AFBB3BA}|Lec03LibN\\Lec03LibN.csproj|solutionrelative:lec03libn\\factoryl1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{90FFA7BD-D60D-4997-A3B0-2828DDDE194A}|PP03\\PP03.csproj|c:\\users\\vugor\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\patern2-1\\labs\\lec03libn\\pp03\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{90FFA7BD-D60D-4997-A3B0-2828DDDE194A}|PP03\\PP03.csproj|solutionrelative:pp03\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{350AEF9A-FE3F-437E-95B2-C2EC7AFBB3BA}|Lec03LibN\\Lec03LibN.csproj|c:\\users\\vugor\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\patern2-1\\labs\\lec03libn\\lec03libn\\bonusc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{350AEF9A-FE3F-437E-95B2-C2EC7AFBB3BA}|Lec03LibN\\Lec03LibN.csproj|solutionrelative:lec03libn\\bonusc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "BonusB.cs",
+              "DocumentMoniker": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\labs\\Lec03LibN\\Lec03LibN\\BonusB.cs",
+              "RelativeDocumentMoniker": "Lec03LibN\\BonusB.cs",
+              "ToolTip": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\labs\\Lec03LibN\\Lec03LibN\\BonusB.cs",
+              "RelativeToolTip": "Lec03LibN\\BonusB.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-19T12:12:01.4Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "BonusA.cs",
+              "DocumentMoniker": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\labs\\Lec03LibN\\Lec03LibN\\BonusA.cs",
+              "RelativeDocumentMoniker": "Lec03LibN\\BonusA.cs",
+              "ToolTip": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\labs\\Lec03LibN\\Lec03LibN\\BonusA.cs",
+              "RelativeToolTip": "Lec03LibN\\BonusA.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-19T12:10:32.925Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Lec03BLib.cs",
+              "DocumentMoniker": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\labs\\Lec03LibN\\Lec03LibN\\Lec03BLib.cs",
+              "RelativeDocumentMoniker": "Lec03LibN\\Lec03BLib.cs",
+              "ToolTip": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\labs\\Lec03LibN\\Lec03LibN\\Lec03BLib.cs",
+              "RelativeToolTip": "Lec03LibN\\Lec03BLib.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-19T12:11:40.534Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\labs\\Lec03LibN\\PP03\\Program.cs",
+              "RelativeDocumentMoniker": "PP03\\Program.cs",
+              "ToolTip": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\labs\\Lec03LibN\\PP03\\Program.cs",
+              "RelativeToolTip": "PP03\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-19T11:52:09.269Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "FactoryL1.cs",
+              "DocumentMoniker": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\labs\\Lec03LibN\\Lec03LibN\\FactoryL1.cs",
+              "RelativeDocumentMoniker": "Lec03LibN\\FactoryL1.cs",
+              "ToolTip": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\labs\\Lec03LibN\\Lec03LibN\\FactoryL1.cs",
+              "RelativeToolTip": "Lec03LibN\\FactoryL1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-19T12:11:23.774Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Employee.cs",
+              "DocumentMoniker": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\labs\\Lec03LibN\\PP03\\Employee.cs",
+              "RelativeDocumentMoniker": "PP03\\Employee.cs",
+              "ToolTip": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\labs\\Lec03LibN\\PP03\\Employee.cs",
+              "RelativeToolTip": "PP03\\Employee.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwA0AAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-19T12:20:22.953Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IBonus.cs",
+              "DocumentMoniker": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\labs\\Lec03LibN\\Lec03LibN\\IBonus.cs",
+              "RelativeDocumentMoniker": "Lec03LibN\\IBonus.cs",
+              "ToolTip": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\labs\\Lec03LibN\\Lec03LibN\\IBonus.cs",
+              "RelativeToolTip": "Lec03LibN\\IBonus.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-19T12:11:36.764Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "BonusC.cs",
+              "DocumentMoniker": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\labs\\Lec03LibN\\Lec03LibN\\BonusC.cs",
+              "RelativeDocumentMoniker": "Lec03LibN\\BonusC.cs",
+              "ToolTip": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\labs\\Lec03LibN\\Lec03LibN\\BonusC.cs",
+              "RelativeToolTip": "Lec03LibN\\BonusC.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-19T12:12:06.747Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "FactoryL2.cs",
+              "DocumentMoniker": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\labs\\Lec03LibN\\Lec03LibN\\FactoryL2.cs",
+              "RelativeDocumentMoniker": "Lec03LibN\\FactoryL2.cs",
+              "ToolTip": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\labs\\Lec03LibN\\Lec03LibN\\FactoryL2.cs",
+              "RelativeToolTip": "Lec03LibN\\FactoryL2.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-19T12:11:30.169Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FactoryL3.cs",
+              "DocumentMoniker": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\labs\\Lec03LibN\\Lec03LibN\\FactoryL3.cs",
+              "RelativeDocumentMoniker": "Lec03LibN\\FactoryL3.cs",
+              "ToolTip": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\labs\\Lec03LibN\\Lec03LibN\\FactoryL3.cs",
+              "RelativeToolTip": "Lec03LibN\\FactoryL3.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-19T12:11:33.451Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "IFactory.cs",
+              "DocumentMoniker": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\labs\\Lec03LibN\\Lec03LibN\\IFactory.cs",
+              "RelativeDocumentMoniker": "Lec03LibN\\IFactory.cs",
+              "ToolTip": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k1s\\PATERN2-1\\labs\\Lec03LibN\\Lec03LibN\\IFactory.cs",
+              "RelativeToolTip": "Lec03LibN\\IFactory.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-19T12:11:37.883Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

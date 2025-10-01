@@ -1,0 +1,14 @@
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\labs\lab1\bin\Debug\net8.0\lab1.exe
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\labs\lab1\bin\Debug\net8.0\lab1.deps.json
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\labs\lab1\bin\Debug\net8.0\lab1.runtimeconfig.json
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\labs\lab1\bin\Debug\net8.0\lab1.dll
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\labs\lab1\bin\Debug\net8.0\lab1.pdb
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\labs\lab1\obj\Debug\net8.0\lab1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\labs\lab1\obj\Debug\net8.0\lab1.AssemblyInfoInputs.cache
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\labs\lab1\obj\Debug\net8.0\lab1.AssemblyInfo.cs
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\labs\lab1\obj\Debug\net8.0\lab1.csproj.CoreCompileInputs.cache
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\labs\lab1\obj\Debug\net8.0\lab1.dll
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\labs\lab1\obj\Debug\net8.0\refint\lab1.dll
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\labs\lab1\obj\Debug\net8.0\lab1.pdb
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\labs\lab1\obj\Debug\net8.0\lab1.genruntimeconfig.cache
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\PATERN2-1\labs\lab1\obj\Debug\net8.0\ref\lab1.dll

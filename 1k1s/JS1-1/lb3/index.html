@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script type="text/javascript">
+        function pr1() 
+        {
+            var S = 1.6;
+            var n = 6; 
+            var V = 1;
+            var spec = 
+            [
+                (6 - Math.pow(Math.PI, 2) + 3 * Math.pow(Math.E, 8)),
+                (2 * Math.cos(4) + Math.cos(12) + 8 - Math.pow(Math.E, 3)), 
+                (3 * Math.sin(4) + Math.log(5) + S), 
+                (2 * Math.tan(5) + 6 - n + V * 12)
+            ];
+            document.write("минимальный элемент массива: " + Math.min(spec[0], spec[1], spec[2], spec[3]).toFixed(2));
+            document.write('<br>')
+            document.write("максимальный элемент массива: " + Math.max(spec[0], spec[1], spec[2], spec[3]).toFixed(2));   
+        }
+        function pr3() 
+        {
+            var arr1 = Array.from({ length: 5 }, (_, index) => index + 1);
+            document.writeln(arr1);
+            document.writeln("<br>")
+            var arr2 = Array.of(5, 6, 7, 8, 9);
+            document.write(arr2);    
+        }
+        function pr4()
+        {
+            const AllM= ["pow", "pop", "push", "shift", "round", "floor", "sline", "sort"];
+            var ArrayM = AllM.slice(0, 4);
+            var MathM = AllM.slice(5);
+            ArrayM.unshift("concat");
+            MathM.push("cos");
+            document.write("Исходный массив: ", AllM, "<br>")
+            document.write("Методы объекта Array: ", ArrayM, "<br>", "Кол-во элеменков в мeтодов в объекте Array: ", ArrayM.length, "<br>");
+            document.write("Методы объекта Math: ", MathM, "<br>", "Кол-во элеменков в мeтодов в объекте Math: ", MathM.length);
+        }   
+        function pr5() 
+        {
+            var String = "Угоренко Виолетта Романовна";
+            document.write("Колличество букв: " + String.length + "<br>");
+            document.write("Верхний регистр: " + String.toUpperCase() + "<br>");
+            document.write("Нижний регистр: " + String.toLowerCase() + "<br>");
+            document.write("Два регистра вместе: " + String.toUpperCase().concat(String.toLowerCase()) + "<br>");
+            document.write("ФИО: " + String.replace("Угоренко Виолетта Романовна", "УВР"));
+        }
+        function pr6()
+        {
+            var obj = new Date();
+            document.write('<table border="1">');
+                document.write('<tr>');
+                    document.write('<td style="font-weight: bold">год</td>');
+                    document.write('<td style="font-style: italic">' + obj.getFullYear() + '</td>');
+                document.write('</tr>');
+                    document.write('<tr>');
+                    document.write('<td style="font-weight: bold">месяц</td>');
+                document.write('<td style="font-style: italic">' + obj.getMonth() + '</td>');
+                    document.write('</tr>');
+                    document.write('<tr>');
+                document.write('<td style="font-weight: bold">день</td>');
+                    document.write('<td style="font-style: italic">' + obj.getDate() + '</td>');
+                    document.write('</tr>');
+                document.write('<tr>');
+                    document.write('<td style="font-weight: bold">час</td>');
+                    document.write('<td style="font-style: italic">' + obj.getHours() + '</td>');
+                document.write('</tr>');
+                    document.write('<tr>');
+                    document.write('<td style="font-weight: bold">минуты</td>');
+                document.write('<td style="font-style: italic">' + obj.getMinutes() + '</td>');
+                    document.write('</tr>');
+                    document.write('<tr>');
+                document.write('<td style="font-weight: bold">секунды</td>');
+                    document.write('<td style="font-style: italic">' + obj.getSeconds() + '</td>');
+                    document.write('</tr>');
+            document.write('</table>');
+        }
+        </script>
+    </head>
+    <body>
+        <input type="button" value="Задание 1" onclick="pr1()">
+        <input type="button" value="Задание 3" onclick="pr3()">
+        <input type="button" value="Задание 4" onclick="pr4()">
+        <input type="button" value="Задание 5" onclick="pr5()">
+        <input type="button" value="Задание 6" onclick="pr6()">
+    </body>
+</html>

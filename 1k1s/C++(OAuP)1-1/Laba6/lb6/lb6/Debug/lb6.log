@@ -1,0 +1,9 @@
+﻿  lb6.cpp
+C:\Users\vugor\OneDrive\Рабочий стол\C++(OAuP)\Laba6\lb6\lb6\lb6.cpp(1,10): warning C4067: непредвиденные лексемы за директивой препроцессора, требуется newline
+C:\Users\vugor\OneDrive\Рабочий стол\C++(OAuP)\Laba6\lb6\lb6\lb6.cpp(2,10): warning C4067: непредвиденные лексемы за директивой препроцессора, требуется newline
+C:\Users\vugor\OneDrive\Рабочий стол\C++(OAuP)\Laba6\lb6\lb6\lb6.cpp(5,30): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
+C:\Users\vugor\OneDrive\Рабочий стол\C++(OAuP)\Laba6\lb6\lb6\lb6.cpp(8,33): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\vugor\OneDrive\Рабочий стол\C++(OAuP)\Laba6\lb6\lb6\lb6.cpp(10,26): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\vugor\OneDrive\Рабочий стол\C++(OAuP)\Laba6\lb6\lb6\lb6.cpp(12,10): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\vugor\OneDrive\Рабочий стол\C++(OAuP)\Laba6\lb6\lb6\lb6.cpp(32,1): warning C4326: возвращаемый тип "main" должен быть "int", а не "void"
+  lb6.vcxproj -> C:\Users\vugor\OneDrive\Рабочий стол\C++(OAuP)\Laba6\lb6\Debug\lb6.exe

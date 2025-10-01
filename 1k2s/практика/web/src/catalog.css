@@ -1,0 +1,384 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f6f2;
+    margin: 0;
+    padding: 0;
+}
+.first{
+    height: 17vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f7f6f2;
+}
+.first .logo {
+    top: 0;
+    left: 0;
+    width: 10vw;
+    z-index: 4;
+    position: absolute;
+}
+.first nav ul {
+    padding: 0;
+    position: relative;
+    text-align: center;
+    z-index: 4;
+    display: flex;
+    justify-content: center;
+}
+.first nav ul li{
+    list-style-type: none;
+    padding: auto;
+    width: 20vw;
+    margin: auto;
+}
+.first nav li a {
+    color: #000000;
+    text-decoration: none;
+    font-size: 2vw;
+    font-weight: 1000;
+}
+.first nav li a:hover {
+    font-size: 2.3vw;
+}
+
+h1 {
+    font-weight: 1000;
+    font-size: 3vw;
+    margin-left: 6vw;
+    padding: 0;
+    margin-bottom: 0;
+}
+
+.catalog {
+    margin-top: 5vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6vw;
+    padding: 2vw;
+}
+
+.product {
+    background-color: #eae6da;
+    border-radius: 4vw;
+    padding: 1.8vw;
+    text-align: center;
+    height: 23vw;
+    width: 20vw;
+    transition: transform 0.3s ease;
+}
+
+.product:hover {
+    transform: translateY(-0.5vw);
+}
+
+.product img {
+    position: absolute;
+    margin-left: 1vw;
+    margin-top: -8vw;
+    width: 10vw;
+}
+
+.catalog h2 {
+    text-align: center;
+    margin-left: -1vw;
+    margin-top: 3vw;
+    width: 13vw;
+    font-size: 1.7vw;
+    font-weight: 1000;
+    margin-bottom: 1vw;
+    color: #898477;
+}
+
+.new {
+    position: absolute;
+    display: inline-block;
+    background-color: #fb8638;
+    color: white;
+    padding: 0.5vw 1vw;
+    border-radius: 0.5vw;
+    font-size: 1.2vw;
+    margin: -1vw 0 0 -11vw;
+    padding: 0 1.5vw;
+    font-size: 1.3vw;
+    font-weight: 1000;
+}
+
+.catalog p {
+    text-align: center;
+    margin-left: -1vw;
+    width: 13vw;
+    height: 3vw;
+    font-size: 1.3vw;
+    font-weight: 1000;
+    color: #666;
+    margin-bottom: 1vw;
+}
+
+.price {
+    font-size: 1.6vw;
+    font-weight: 1000;
+    color: #000000;
+}
+
+.product-controls {
+    position: absolute;
+    text-align: center;
+    width: 20vw;
+    margin-top: 2vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1vw;
+}
+
+button {
+    border: none;
+    margin: 0.2vw;
+    background-color: #d2ccbc;
+    cursor: pointer;
+    font-size: 1.6vw;
+}
+
+.add-button {
+    font-weight: 1000;
+    font-size: 1.5vw;
+    padding: 0.3vw 1vw;
+    border-radius: 1vw;
+    color: #ffffff;
+    background-color: #000000;
+}
+
+.add-button:hover {
+    background-color: #fb8638;
+}
+
+input[type="text"] {
+    font-family: Arial, sans-serif;
+    background-color: #eae6da;
+    padding: 1vw;
+    font-size: 1.6vw;
+    border-radius: 0.5vw;
+    border: 0.1vw solid #9e998c;
+    width: 30vw;
+    margin-left: 77vw;
+}
+
+.sort{
+    margin-top: -2.9vw;
+    margin-left: 51vw;
+    font-weight: 1000;
+    font-size: 1.2vw;
+}
+
+.sort label {
+    font-family: Arial, sans-serif;
+    font-size: 1.5vw;
+}
+select{
+    background-color: #eae6da;
+    font-size: 1.5vw;
+    padding: 0.5vw 1vw;
+    color: #666;
+    border-radius: 0.5vw;
+    border: 0.1vw solid #9e998c;
+}
+option {
+    font-size: 0.5vw;
+}
+
+
+.fourth{
+    z-index: 5;
+    height: 45vh;
+    background-color: #d2ccbc;
+    display: grid;
+    grid-template-columns: 30% 70%; /* Две колонки одинаковой ширины */
+    align-items: center;
+    padding: 1vw;
+  }
+  
+  .contact-info {
+    grid-column: 2; /* Левая колонка */
+  }
+
+  .fourth h2{
+    margin-left: 5vw;
+    font-size: 2.6vw;
+    font-weight: 1000;
+    margin-bottom: 0;
+  }
+
+  .fourth .contact-info p{
+    margin-left: 5vw;
+    width: 70vw;
+    text-align: left;
+    font-size: 1.7vw;
+    font-weight: 1000;
+  }
+  
+  .fourth .logo {
+    grid-column: 1;
+    display: flex;
+    justify-content:center;
+  }
+  
+  .fourth .logo img {
+    margin-top: -1vw;
+    height: 49vh;
+    padding: 0;
+  }
+
+.back{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 4;
+    background-color: #0000005b;
+}
+.basket {
+    position: fixed;
+    right: 1vw;
+    top: 3vw;
+    width: 45vw;
+    background-color: #eae6da;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    border-radius: 1vw;
+    padding: 1vw 2vw;
+    max-height: 80vh;
+    overflow-y: auto;
+    z-index: 5;
+    padding-bottom: 5vw;
+}
+.close{
+    position: absolute;
+    width: 1.5vw;
+    top: 2vw;
+    left: 45vw;
+    transition: transform 0.3s ease;
+}
+
+.close:hover {
+    transform: scale(1.3);
+}
+
+.cards{
+    border-radius: 1vw;
+    background-color: #d2ccbc;
+}
+
+.basket h2 {
+    font-size: 2vw;
+    font-weight: 1000;
+    width: 80%;
+    margin-top: 0.5vw;
+    margin-bottom: 0.5vw;
+    text-align: center;
+}
+
+.basket p{
+    font-size: 1.5vw;
+    margin-top: 3vw;
+    margin-bottom: 0vw;
+    font-weight: 1000;
+    color: #898477;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    padding-bottom: 1vw;
+}
+
+.cart-item img {
+    padding-left: 2vw;
+    height: 10vw;
+    width: auto;
+    margin-right: 4vw;
+}
+
+.cart-item h4 {
+    font-size: 1.5vw;
+    font-weight: 1000;
+    text-align: left;
+}
+
+.cart-item p {
+    font-size: 1.2vw;
+    font-weight: 1000;
+    color: #333;
+    margin: 0;
+    text-align: left;
+
+}
+
+.counter {
+    margin-left: 15vw;
+    background-color: #eae6da;
+    border-radius: 0.5vw ;
+}
+
+span{
+    font-size: 1.9vw;
+}
+
+.counter button {
+    width: 1.5vw;
+    height: 1.5vw;
+    border: none;
+    font-size: 2vw;
+    cursor: pointer;
+    background-color: #eae6da;
+
+}
+
+.remove-button {
+    background-color: #e74c3c;
+    position: absolute;
+    font-weight: 1000;
+    font-size: 1.5vw;
+    padding: 0.3vw 1vw;
+    border-radius: 1vw;
+    color: #ffffff;
+    cursor: pointer;
+    left: 36vw
+}
+.basket h3{
+    position: absolute;
+    font-size: 1.5vw;
+    font-weight: 1000;
+}
+h3 span{
+    font-size: 1.5vw;
+    font-weight: 1000;
+}
+.Order{
+    position: absolute;
+    background-color: #000000;
+    font-weight: 1000;
+    font-size: 1.5vw;
+    padding: 0.3vw 1vw;
+    border-radius: 1vw;
+    color: #ffffff;
+    cursor: pointer;
+    margin-top: 1.1vw;
+    left: 35.5vw;
+}
+
+.Order:hover {
+    background-color: #fb8638;
+}
+
+  .cartIcon{
+    position: absolute;
+    left: 93vw;
+    width: 4vw;
+    transition: transform 0.3s ease;
+}
+
+.cartIcon:hover {
+    transform: scale(1.2);
+}

@@ -1,0 +1,595 @@
+body{
+  margin: 0;
+    overflow-x: hidden;
+}
+
+.desktop {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 1440px;
+}
+
+.desktop .div {
+  background-color: #ffffff;
+  width: 1440px;
+  height: 2080px;
+  position: relative;
+}
+
+.desktop .main {
+  position: absolute;
+  width: 1440px;
+  height: 1121px;
+  top: 0;
+  left: 0;
+}
+
+.desktop .overlap-group {
+  position: absolute;
+  width: 1440px;
+  height: 667px;
+  top: 0;
+  left: 0;
+}
+
+.desktop .bg {
+  position: absolute;
+  width: 1440px;
+  top: 0;
+  left: 0;
+}
+
+.desktop .first {
+  display: flex;
+  flex-direction: column;
+  width: 1236px;
+  align-items: center;
+  gap: 35px;
+  position: absolute;
+  top: 126px;
+  left: 102px;
+}
+
+.desktop .text-wrapper {
+  position: relative;
+  width: 716px;
+  margin-top: -1.00px;
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  color: #ffffff;
+  font-size: 36px;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: 43px;
+}
+
+.desktop .cards {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  flex: 0 0 auto;
+}
+
+.desktop .card {
+  display: flex;
+  flex-direction: column;
+  width: 297px;
+  height: 420px;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  padding: 10px;
+  position: relative;
+  background-color: #c6ddfa;
+  border-radius: 29.51px;
+  overflow: hidden;
+  border: 1px solid;
+  border-color: #cfcfcf;
+}
+
+.desktop .group {
+  position: relative;
+  width: 279px;
+  height: 201.12px;
+  margin-left: -1.00px;
+  margin-right: -1.00px;
+}
+
+.desktop .frame {
+  position: relative;
+  width: 297px;
+  height: 105px;
+  margin-left: -10.00px;
+  margin-right: -10.00px;
+}
+
+.desktop .frame-2 {
+  display: flex;
+  flex-direction: column;
+  width: 262px;
+  align-items: flex-start;
+  gap: 5px;
+  position: relative;
+  left: 19px;
+}
+
+.desktop .title {
+  position: relative;
+  align-self: stretch;
+  margin-top: -0.59px;
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  color: #194d87;
+  font-size: 16px;
+  letter-spacing: 0.32px;
+  line-height: 19.6px;
+}
+
+.desktop .text {
+  position: relative;
+  width: 260.28px;
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  color: #000000;
+  font-size: 13px;
+  letter-spacing: 0;
+  line-height: 20px;
+}
+
+.desktop .btn {
+  all: unset;
+  box-sizing: border-box;
+  display: flex;
+  width: 220px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 25px;
+  position: relative;
+  flex: 0 0 auto;
+  background-color: #4f64b3;
+  border-radius: 13.24px;
+}
+
+.desktop .c {
+  position: relative;
+  width: fit-content;
+  margin-top: -1.00px;
+  font-family: var(--buttn-font-family);
+  font-weight: var(--buttn-font-weight);
+  color: #ffffff;
+  font-size: var(--buttn-font-size);
+  text-align: center;
+  letter-spacing: var(--buttn-letter-spacing);
+  line-height: var(--buttn-line-height);
+  white-space: nowrap;
+  font-style: var(--buttn-font-style);
+}
+
+.desktop .card-2 {
+  display: flex;
+  flex-direction: column;
+  width: 297px;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  padding: 10px;
+  position: relative;
+  background-color: #c6ddfa;
+  border-radius: 29.51px;
+  overflow: hidden;
+  border: 1px solid;
+  border-color: #cfcfcf;
+}
+
+.desktop .p {
+  position: absolute;
+  width: 1250px;
+  height: 25px;
+  top: 88px;
+  left: 95px;
+  font-family: "IBM Plex Sans", Helvetica;
+  font-weight: 500;
+  color: #ffffff;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: 25px;
+  white-space: nowrap;
+}
+
+.desktop .second {
+  display: flex;
+  width: 973px;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  top: 726px;
+  left: 233px;
+}
+
+.desktop .frame-3 {
+  display: flex;
+  flex-direction: column;
+  width: 430px;
+  align-items: flex-start;
+  gap: 20px;
+  position: relative;
+}
+
+.desktop .text-wrapper-2 {
+  position: relative;
+  align-self: stretch;
+  margin-top: -1.00px;
+  font-family: "Open Sans", Helvetica;
+  font-weight: 600;
+  color: #000000;
+  font-size: 32px;
+  letter-spacing: 0.64px;
+  line-height: 35px;
+}
+
+.desktop .img {
+  position: relative;
+  width: 520px;
+  height: 413.87px;
+  margin-bottom: -8.00px;
+  margin-right: -4.00px;
+}
+
+.desktop .overlap {
+  position: absolute;
+  width: 1440px;
+  height: 902px;
+  top: 1178px;
+  left: 0;
+}
+
+.desktop .overlap-wrapper {
+  position: absolute;
+  width: 1440px;
+  height: 720px;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.desktop .overlap-2 {
+  position: relative;
+  height: 777px;
+}
+
+.desktop .title-2 {
+  display: flex;
+  width: 1002px;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  top: 48px;
+  left: 219px;
+}
+
+.desktop .a-c {
+  position: relative;
+  width: fit-content;
+  margin-top: -1.00px;
+  font-family: "Pirata One", Helvetica;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: 148px;
+  text-align: right;
+  letter-spacing: 2.96px;
+  line-height: 194.0px;
+  white-space: nowrap;
+}
+
+.desktop .div-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 618px;
+  align-items: flex-start;
+  gap: 11px;
+  position: relative;
+}
+
+.desktop .text-wrapper-3 {
+  position: relative;
+  align-self: stretch;
+  margin-top: -1.00px;
+  font-family: "Open Sans", Helvetica;
+  font-weight: 600;
+  color: #ffffff;
+  font-size: 40px;
+  letter-spacing: 0.80px;
+  line-height: 43px;
+}
+
+.desktop .blocks {
+  position: absolute;
+  width: 1144px;
+  height: 620px;
+  top: 157px;
+  left: 169px;
+}
+
+.desktop .certificate {
+  position: absolute;
+  width: 531px;
+  height: 378px;
+  top: 99px;
+  left: -11px;
+}
+
+.desktop .overlap-3 {
+  position: absolute;
+  width: 675px;
+  height: 546px;
+  top: 17px;
+  left: 546px;
+}
+
+.desktop .overlap-group-wrapper {
+  position: absolute;
+  width: 339px;
+  height: 288px;
+  top: 67px;
+  left: 0;
+  
+  background-color: #304D6D;
+  border-radius: 58.02px;
+}
+
+.desktop .flexcontainer-wrapper {
+  width: 407px;
+  height: 358px;
+  top: -35px;
+  left: -35px;
+  position: relative;
+}
+
+.desktop .flexcontainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.15px;
+  position: relative;
+  width: 299px;
+  height: 270px;
+  top: 56px;
+  left: 65px;
+}
+
+.desktop .span-wrapper {
+  position: relative;
+  align-self: stretch;
+  font-family: "Open Sans", Helvetica;
+  font-weight: 400;
+  color: #f4efef;
+  font-size: 17px;
+  letter-spacing: 0;
+  line-height: 22px;
+}
+
+.desktop .span {
+  font-family: "Open Sans", Helvetica;
+  font-weight: 400;
+  color: #f4efef;
+  font-size: 17px;
+  letter-spacing: 0;
+  line-height: 22px;
+}
+
+.desktop .bunny {
+  position: absolute;
+  width: 555px;
+  height: 546px;
+  top: 0;
+  left: 120px;
+}
+
+.desktop .footer {
+  position: absolute;
+  width: 1440px;
+  top: 540px;
+  left: 0;
+  background-size: 100% 100%;
+}
+
+.desktop .header {
+  width: 1440px;
+  height: 68px;
+  top: 0;
+  left: 0;
+}
+
+.desktop .logo {
+  position: absolute;
+  width: 70px;
+  height: 44px;
+  top: 3px;
+  left: 76px;
+  background-image: url(./img/union.svg);
+  background-size: 100% 100%;
+}
+
+.desktop .group-wrapper {
+  position: relative;
+  width: 62px;
+  height: 37px;
+  top: 6px;
+  left: 2px;
+  background-image: url(./img/union-3.svg);
+  background-size: 100% 100%;
+}
+
+.desktop .group-2 {
+  position: relative;
+  width: 49px;
+  height: 24px;
+  top: 8px;
+  left: 7px;
+}
+
+.desktop .overlap-group-2 {
+  width: 51px;
+  height: 26px;
+  position: relative;
+  background-image: url(./img/union-2.svg);
+  background-size: 100% 100%;
+}
+
+.desktop .ellipse {
+  width: 3px;
+  left: 5px;
+  position: absolute;
+  height: 2px;
+  top: 9px;
+}
+
+.desktop .ellipse-2 {
+  width: 2px;
+  left: 10px;
+  position: absolute;
+  height: 2px;
+  top: 9px;
+}
+
+.desktop .textnav-dem-wrapper {
+  position: absolute;
+  width: 663px;
+  height: 68px;
+  top: 0;
+  left: 388px;
+  background-color: #4f64b3;
+  border-color: var(--variable-collection-color);
+  border-radius: 0 0 68px 68px;
+}
+
+.desktop .textnav-dem {
+  display: flex;
+  width: 663px;
+  height: 52px;
+  align-items: center;      
+  justify-content: center;  
+  gap: 50px;               
+  padding: 10px 50px;
+  position: relative;
+}
+
+.desktop .text-wrapper-4 {
+  position: relative;
+  width: 62px;
+  height: 14px;
+  font-family: var(--buttn-font-family);
+  font-weight: var(--buttn-font-weight);
+  color: #ffffff;
+  font-size: var(--buttn-font-size);
+  letter-spacing: var(--buttn-letter-spacing);
+  line-height: var(--buttn-line-height);
+  white-space: nowrap;
+  font-style: var(--buttn-font-style);
+}
+
+.desktop .text-wrapper-5 {
+  position: relative;
+  width: 175px;
+  height: 14px;
+  font-family: var(--buttn-font-family);
+  font-weight: var(--buttn-font-weight);
+  color: #ffffff;
+  font-size: var(--buttn-font-size);
+  letter-spacing: var(--buttn-letter-spacing);
+  line-height: var(--buttn-line-height);
+  white-space: nowrap;
+  font-style: var(--buttn-font-style);
+}
+
+.desktop .text-wrapper-6 {
+  position: relative;
+  width: 84px;
+  margin-top: 10px;
+  font-family: var(--buttn-font-family);
+  font-weight: var(--buttn-font-weight);
+  color: #ffffff;
+  font-size: var(--buttn-font-size);
+  letter-spacing: var(--buttn-letter-spacing);
+  line-height: var(--buttn-line-height);
+  font-style: var(--buttn-font-style);
+}
+
+.desktop .button {
+  all: unset;
+  box-sizing: border-box;
+  display: flex;
+  width: 189px;
+  height: 68px;
+  align-items: center;
+  justify-content: space-around;
+  gap: 9.28px;
+  padding: 11px 12px;
+  position: absolute;
+  top: 0;
+  left: 1105px;
+  background-color: #4f64b3;
+  border-radius: 10px 50px 0px 10px;
+}
+
+.desktop .text-wrapper-7 {
+  position: relative;
+  width: fit-content;
+  font-family: var(--buttn-font-family);
+  font-weight: var(--buttn-font-weight);
+  color: #ffffff;
+  font-size: var(--buttn-font-size);
+  letter-spacing: var(--buttn-letter-spacing);
+  line-height: var(--buttn-line-height);
+  white-space: nowrap;
+  font-style: var(--buttn-font-style);
+}
+
+.desktop .account-circle {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  top: 9px;
+  left: 1330px;
+}
+.footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px;
+  color: white;
+  flex-wrap: wrap;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.contact-item .icon {
+  width: 20px;
+  height: 20px;
+}
+
+.footer .text {
+  font-size: 14px;
+}

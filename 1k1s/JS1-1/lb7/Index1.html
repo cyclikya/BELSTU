@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        Работа с формами
+    </title>
+    <script type="text/javascript">
+        // Объявление переменных вынесено вне функций, чтобы они были доступны как глобальные
+        var firstname;
+        var lastname;
+        var specialty;
+        var course;
+        var subjects = [];
+
+        function text() {
+            // текстовое поле ввода
+            firstname = document.getElementsByName('firstname')[0].value;
+            lastname = document.getElementsByName('lastname')[0].value;
+            specialty = document.querySelector('select').value;
+
+            // radio введённые элементы
+            var courseRadios = document.getElementsByName('kurs');
+            for (var i = 0; i < courseRadios.length; i++) {
+                if (courseRadios[i].checked) {
+                    course = courseRadios[i].value;
+                }
+            }
+
+            // сheckbox введённые элементы
+            var Checkboxes = document.getElementsByName('subjects');
+            for (var i = 0; i < Checkboxes.length; i++) {
+                if (Checkboxes[i].checked) {
+                    subjects.push(Checkboxes[i].value);
+                }
+            }
+
+            // Вывод
+            document.write("<p style='text-align: center;'>" + document.getElementById("faculty").value + "</p><br>Студент " + lastname + " специальность " + document.querySelector('select').value + " курс " + course + " должен сдавать следующие предметы: ");
+            document.write("<ul>");
+            for (var i = 0; i < subjects.length; i++) {
+                document.write("<li>" + subjects[i] + "</li>");
+            }
+            document.write("</ul>");
+        }
+
+        function fr2() {
+            var Checkboxes = document.getElementsByName('subjects');
+            for (var i = 0; i < Checkboxes.length; i++) {
+                if (Checkboxes[i].checked) {
+                    subjects.push(Checkboxes[i].value); 
+                
+                    var l = document.createElement("option") //создание option
+                    l.innerHTML = Checkboxes[i].value; // изменение текста option
+                    document.getElementById("fr2").appendChild(l); //внедрение созданного option в элемент с id = "fr2"
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <form>
+        <fieldset>
+            <legend>Первая форма</legend>
+        <textarea id="faculty">Факультет информационных технологий</textarea>
+        <br>
+
+        <input type='text' name='firstname' placeholder="Фамилия"><br>
+        <input type='text' name='lastname' placeholder="Имя"><br><br>
+        
+        Специальность
+        <select>
+            <option>ИСиТ</option>
+            <option>ПОИТ</option>
+            <option>ПОИБМС</option>
+            <option>ДЭВИ</option>
+        </select>
+        <br>
+
+        Курс<br>
+        <input type='radio' name='kurs' value='1' >1
+        <input type='radio' name='kurs' value='2' >2
+        <input type='radio' name='kurs' value='3' >3
+        <input type='radio' name='kurs' value='4' >4
+        <br>
+
+        Предметы<br>
+        <input type='checkbox' name='subjects' value='ОИТ' >ОИТ
+        <input type='checkbox' name='subjects' value='ОАП' >ОАП
+        <input type='checkbox' name='subjects' value='История' >История
+        <input type='checkbox' name='subjects' value='Математика' >Математика
+        <br>
+        <input type='submit' value='submit' >
+        <input type='reset' value='reset'>
+    </fieldset>
+    </form>
+    <input type="button" value='Напечатать' onclick="text()">
+    
+    <form>
+        <fieldset>
+            <legend>вторая форма</legend>
+        <select id="fr2">
+        </select>
+        </fieldset>
+    </form>
+    <input type="button" value='Заполнить вторую форму' onclick="fr2()">
+</body>
+</html>

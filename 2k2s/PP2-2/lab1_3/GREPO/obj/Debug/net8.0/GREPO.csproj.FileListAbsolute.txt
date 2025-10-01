@@ -1,0 +1,11 @@
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\GREPO\bin\Debug\net8.0\GREPO.deps.json
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\GREPO\bin\Debug\net8.0\GREPO.dll
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\GREPO\bin\Debug\net8.0\GREPO.pdb
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\GREPO\obj\Debug\net8.0\GREPO.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\GREPO\obj\Debug\net8.0\GREPO.AssemblyInfoInputs.cache
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\GREPO\obj\Debug\net8.0\GREPO.AssemblyInfo.cs
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\GREPO\obj\Debug\net8.0\GREPO.csproj.CoreCompileInputs.cache
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\GREPO\obj\Debug\net8.0\GREPO.dll
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\GREPO\obj\Debug\net8.0\refint\GREPO.dll
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\GREPO\obj\Debug\net8.0\GREPO.pdb
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\GREPO\obj\Debug\net8.0\ref\GREPO.dll

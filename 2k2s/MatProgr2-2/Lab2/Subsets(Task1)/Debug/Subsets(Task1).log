@@ -1,0 +1,6 @@
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: промежуточный каталог (Debug\) содержит файлы, которые используются совместно с другим проектом (Subsets(Task1).vcxproj).  Это может привести к ошибкам очистки и перестроения.
+  Combi.cpp
+  Subsets(Task1).cpp
+D:\БГТУ\IV сем\Мат. прога\Lab2\Subsets(Task1)\Combi.cpp(47,37): warning C4334: <<: результат 32-разрядного смещения неявно преобразуется в 64-разрядное значение (предполагалось 64-разрядное смещение?)
+  Создание кода...
+  Subsets(Task1).vcxproj -> D:\БГТУ\IV сем\Мат. прога\Lab2\Debug\Task1.exe

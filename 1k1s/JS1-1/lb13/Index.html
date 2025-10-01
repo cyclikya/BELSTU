@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Document</title>
+    <style>button{margin: 10px;}</style>
+    <script>
+        function ex1() {
+            let array = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50];
+
+            let n = prompt("Введите индекс элемента для проверки:");
+
+            if (array[n] !== undefined) {
+            console.log(`Элемент с индексом ${n} существует в массиве. Значение: ${array[n]}`);
+            } else {
+            console.log(`Элемент с индексом ${n} не существует в массиве.`);
+            }
+        }
+
+        function ex2() {
+            let array = [1, 2, NaN, 4, 5, 6, 7, 8, 9, 10];
+
+            // if (array.indexOf(NaN) !== -1) {
+            // console.log("Массив содержит элемент NaN (с использованием indexOf).");
+            // } else {
+            // console.log("Массив не содержит элемента NaN (с использованием indexOf).");
+            // }
+
+            if (array.includes(NaN)) {
+            console.log("Массив содержит элемент NaN (с использованием Array.prototype.includes).");
+            } else {
+            console.log("Массив не содержит элемента NaN (с использованием Array.prototype.includes).");
+            }
+
+        }
+
+        function ex3() {
+            let array1 = ['a', 'b', 'c', 'd', 'e'];
+            let array2 = ['x', 'y', 'z'];
+            let array3 = ['1', '2', '3', '4', '5', '6'];
+
+            let symbol = prompt("Введите символ для поиска:");
+
+            let inArray1 = array1.includes(symbol);
+            let inArray2 = array2.includes(symbol);
+            let inArray3 = array3.includes(symbol);
+
+            console.log(`В массиве 1 ${inArray1 ? 'есть' : 'нет'} символа "${symbol}"`);
+            console.log(`В массиве 2 ${inArray2 ? 'есть' : 'нет'} символа "${symbol}"`);
+            console.log(`В массиве 3 ${inArray3 ? 'есть' : 'нет'} символа "${symbol}"`);
+        }
+
+        function ex4() {
+            let ex1 = 1234**2*23/5+234;
+            let ex2 = 28*765**2/5*43**2;
+            let ex3 = 3734**6-(434**6+1024**4)/5;
+            let ex4 = 6543**35-965732;
+            let ex5 = (1000**10+100000**10)/10000;
+
+            console.log(`Результат выражения 1: ${ex1.toFixed(0)}`);
+            console.log(`Результат выражения 2: ${ex2.toFixed(0)}`);
+            console.log(`Результат выражения 3: ${ex3.toFixed(0)}`);
+            console.log(`Результат выражения 4: ${ex4.toFixed(0)}`);
+            console.log(`Результат выражения 5: ${ex5.toFixed(0)}`);
+        }
+    </script>
+</head>
+<body>
+    <button onclick="ex1()">Проверить, имеется ли у массива n-й элемент</button><br>
+    <button onclick="ex2()">Проверить, имеется ли у массива элемент NaN</button><br>
+    <button onclick="ex3()">Проверить, имеется ли у массивов введённый пользователем символ</button><br>
+    <button onclick="ex4()">Найти значение арифметических выражений</button>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Площадь круга и длина окружности</title>
+</head>
+<body>
+    <script type="text/javascript">
+        var a = Number(prompt('Введите значение a:'));
+        var b = Number(prompt('Введите значение b:'));
+        var step = 0.3;
+        document.write('<table border="1">');
+        document.write('<thead>');
+        document.write('<tr>');
+        document.write('<th>Радиус</th>');
+        document.write('<th>Площадь круга</th>');
+        document.write('<th>Длина окружности</th>');
+        document.write('</tr>');
+        document.write('</thead>');
+        document.write('<tbody>');
+
+        do {
+            var R = a;
+            var PL = Math.PI * Math.pow(R, 2);
+            var DL = 2 * Math.PI * R;
+
+            document.write('<tr>');
+            document.write('<td>' + (R) + '</td>');
+            document.write('<td>' + Math.round(PL) + '</td>');
+            document.write('<td>' + Math.round(DL) + '</td>');
+            document.write('</tr>');
+
+            a += step;
+        } while (a <= b);
+
+        document.write('</tbody>');
+        document.write('</table>');
+    </script>
+</body>
+</html>

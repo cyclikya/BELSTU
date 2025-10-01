@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Строгий режим</title>
+    <link rel="icon" href="../Dependencies/img/favicon.ico"/>
+    <link rel="stylesheet" href="../Dependencies/css/main.css">
+    <link rel="stylesheet" href="../Dependencies/css/header.css">
+    <link rel="stylesheet" href="../Dependencies/css/body.css">
+    <link rel="stylesheet" href="../Dependencies/css/footer.css">
+    <link rel="stylesheet" href="../Dependencies/css/first.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="../Dependencies/css/text.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@500;600&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;1,100&family=Open+Sans:ital,wght@0,400;1,400;1,500&family=Roboto+Condensed:wght@500;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header class="header">
+        <img src="../Dependencies/img/1174949_js_react js_logo_react_react native_icon.png" alt="My Photo"
+            class="photo" />
+        <nav class="navbar">
+            <ul>
+                <li>
+                    <a href="../main.html">React</a>
+                </li>
+            </ul>
+            <div><a href="../pages/table-of-contents.html">Оглавление</a>
+                <a href="https://belstu.by/">Сайт BSTU</a>
+                <a href="https://react.dev/">Официальная документация</a>
+                <a href="../labs/labs.html">Лабораторный практикум</a>
+            </div>
+        </nav>
+    </header>
+    <main class="main">
+        <div class="text">
+            <div class="intro">Строгий режим</div>
+            <p><span class="highlighted-text">StrictMode</span> — инструмент для обнаружения потенциальных проблем
+                в приложении. Также как
+                и <span class="highlighted-text">Fragment</span>,<span
+                    class="highlighted-text"> StrictMode</span> не рендерит видимого UI. Строгий режим активирует
+                дополнительные проверки
+                и предупреждения для своих потомков.
+            </p>
+            <p>Строгий режим может быть включён для любой части приложения. Например:
+            </p>
+            <div class="code-block">
+
+
+                <span class="extends">import</span> React<span class="extends"> from</span> 'react'; <br>
+                <br>
+                <span class="extends"> function</span> <span class="keyword">ExampleApplication</span><span
+                    class="skobki">&#40;&#41;&nbsp;&#123;</span><br>
+                &nbsp;<span class="extends">return</span> <span class="skobki">&#40;</span> <br>
+                &nbsp;&nbsp;&#60;div&#62; <br>
+                &nbsp;&nbsp;&nbsp;&#60;<span class="cd">Header</span> /&#62; <br>
+                &nbsp;&nbsp;&nbsp; &#60;<span class="cd">React.StrictMode</span> &#62; <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&#60;div&#62; <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#60;<span class="cd">ComponentOne </span> /&#62; <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#60;<span class="cd">ComponentTwo </span> /&#62; <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&#60;/div&#62; <br>
+                &nbsp;&nbsp;&nbsp;&#60;/<span class="cd">React.StrictMode</span> &#62; <br>
+                &nbsp;&nbsp;&nbsp; &#60;<span class="cd">Footer</span> /&#62; <br>
+                &nbsp;&nbsp;&#60;/div&#62; <br>
+                &nbsp;<span class="skobki">&#41;</span>;<br>
+                <span class="skobki">&#125;</span>
+
+
+            </div>
+            <p>В примере выше проверки строгого режима не будут выполняться для компонентов <span
+                    class="highlighted-text">Header</span> и <span class="highlighted-text">Footer</span>. Однако
+                будут выполнены для <span class="highlighted-text">ComponentOne</span> и<span
+                    class="highlighted-text">ComponentTwo</span>, а также для всех их потомков.
+            </p>
+            <div class="intro"> В чем помогает строгий режим?</div>
+            <p>На данный момент <span class="highlighted-text">StrictMode</span> помогает в:
+            <ul>
+                <li>Обнаружении небезопасных методов жизненного цикла
+                </li>
+                <li>Предупреждении об использовании устаревшего API строковых реф
+                </li>
+                <li>Предупреждении об использовании устаревшего метода <span class="highlighted-text">findDOMNode</span>
+                </li>
+                <li>
+                    Обнаружении неожиданных побочных эффектов
+                </li>
+                <li>
+                    Обнаружении устаревшего API контекста
+                </li>
+                <li>
+                    Обеспечение переиспользованного состояния
+                </li>
+            </ul>
+            </p>
+            <div class="intro">Обнаружение небезопасных методов жизненного цикла</div>
+            <p>Если в приложении подключены сторонние библиотеки, то отследить использование таких методов довольно
+                тяжело. К счастью, тут может помочь строгий режим!
+            </p>
+            <p>Когда строгий режим включён, React составляет список всех классовых компонентов, которые используют
+                небезопасные методы жизненного цикла, и отображает информацию о них таким образом:
+            </p>
+            <div class="image-container">
+                <img src="../Dependencies/img/Рисунок12.png" alt="">
+            </div>
+            <div class="intro">Предупреждение об использовании устаревшего API строковых ref</div>
+            <p>Ранее React предоставлял два способа управления рефами: устаревшие строковые рефы и колбэк API. Хотя
+                строковые рефы и были более удобным способом, они имели несколько недостатков. Поэтому
+                мы рекомендовали использовать колбэки вместо них.
+            </p>
+            <p>В React 16.3 добавлен третий способ, который предлагает удобство строковых рефов и лишён каких-либо
+                недостатков:
+            </p>
+            <div class="code-block">
+                <span class="extends">class</span> <span class="cd">MyComponent</span> <span
+                    class="extends">extends</span> <span class="cd">React.Component</span> <span
+                    class="skobki">&#123;</span> <br>
+                &nbsp;<span class="keyword">constructor</span><span class="skobki">&#40;</span>props<span
+                    class="skobki">&#41;</span> <span class="skobki">&#123;</span> <br>
+                &nbsp;&nbsp;<span class="extends">super</span><span class="skobki">&#40;</span>props<span
+                    class="skobki">&#41;</span>; <br>
+                <br>
+                &nbsp;<span class="extends">this</span>.inputRef = React.<span class="keyword">createRef</span><span
+                    class="skobki">&#40;</span><span class="skobki">&#41;</span>; <br>
+                <span class="skobki">&#125;</span> <br>
+                <br>
+                <span class="keyword">render</span><span class="skobki">&#40;</span><span class="skobki">&#41;</span>
+                <span class="skobki">&#123;</span> <br>
+                &nbsp;<span class="extends"> return</span> &#60;input <span class="extends">type</span>=<span
+                    class="skobki">"text"</span> <span class="extends">ref</span>=<span
+                    class="skobki">&#123;</span>this.inputRef<span class="skobki">&#125;</span> /&#62; <br>
+                <span class="skobki">&#125;</span> <br>
+                <br>
+                &nbsp;<span class="keyword">componentDidMount</span><span class="skobki">&#40;</span><span
+                    class="skobki">&#41;</span>
+                <span class="skobki">&#123;</span> <br>
+                &nbsp;&nbsp;<span class="extends">this</span>.inputRef.current.<span class="keyword">focus</span><span
+                    class="skobki">&#40;</span><span class="skobki">&#41;</span>; <br>
+                &nbsp;<span class="skobki">&#125;</span> <br>
+                <span class="skobki">&#125;</span>
+            </div>
+            <p>Поскольку объекты-рефы стали заменой строковых реф, строгий режим теперь предупреждает об использовании
+                строковых реф.
+            </p>
+            <p>Колбэк-рефы по-прежнему поддерживаются вместе с новым API-методом <span
+                    class="highlighted-text">createRef</span>.
+            </p>
+            <p>Вам не обязательно заменять колбэк-рефы в ваших компонентах. Их использование более гибкое, поэтому они
+                считаются продвинутой возможностью.
+            </p>
+            <div class="intro">Предупреждение об использовании устаревшего метода findDOMNode
+            </div>
+            <p>Ранее React использовал <span class="highlighted-text">findDOMNode</span> для поиска DOM-узла в дереве по
+                указанному экземпляру класса. В
+                большинстве случаев этот метод не используется, поскольку можно привязать реф непосредственно к
+                DOM-узлу.
+            </p>
+            <p><span class="highlighted-text">FindDOMNode</span> может использоваться для классовых компонентов, однако
+                это нарушает уровни абстракции, позволяя
+                родительскому компоненту требовать, чтобы происходил рендер определённых дочерних элементов. Это
+                приводит к
+                проблемам при рефакторинге, когда не удаётся изменить детали реализации компонента, так как родитель
+                может
+                использовать DOM-узел этого компонента. <span class="highlighted-text">FindDOMNode</span> возвращает
+                только первый дочерний элемент, но с
+                использованием фрагментов компонент может рендерить несколько DOM-узлов.
+            </p>
+            <p><span class="highlighted-text">FindDOMNode</span> выполняет поиск только один раз. Затем метод возвращает
+                ранее полученный результат при вызове. Если дочерний компонент рендерит другой узел, то это изменение
+                никак не отследить. Поэтому <span class="highlighted-text">FindDOMNode</span> работает, только когда
+                компоненты возвращают единственный и неизменяемый DOM-узел.
+            </p>
+            <p>Вместо этого, можно передать реф в компонент и передать его далее в DOM используя перенаправление рефов.
+            </p>
+            <p>Также можно добавить компоненту DOM-узел как обёртку и прикрепить реф непосредственно к этой обёртке.
+            </p>
+            <div class="code-block">
+                <span class="extends">class</span> <span class="cd">MyComponent</span> <span
+                    class="extends">extends</span> <span class="cd">React.Component</span> <span
+                    class="skobki">&#123;</span> <br>
+                &nbsp;<span class="keyword">constructor</span><span class="skobki">&#40;</span>props<span
+                    class="skobki">&#41;</span> <span class="skobki">&#123;</span> <br>
+                &nbsp;&nbsp;<span class="extends">super</span><span class="skobki">&#40;</span>props<span
+                    class="skobki">&#41;</span>; <br>
+                &nbsp;&nbsp;<span class="extends">this</span>.wrapper = React.<span
+                    class="extends">createRef</span><span class="skobki">&#40;&#41;</span>; <br>
+                &nbsp;<span class="skobki">&#125;</span> <br>
+                &nbsp;<span class="keyword">render</span><span class="skobki">&#40;&#41;</span> <span
+                    class="skobki">&#123;</span> <br>
+                &nbsp;&nbsp;<span class="extends">return</span> &#60;<span class="extends">ref</span>=<span
+                    class="skobki">&#123;</span><span class="extends">this</span>.wrapper<span
+                    class="skobki">&#125;</span>><span class="skobki">&#123;</span><span
+                    class="extends">this</span>.props.children<span class="skobki">&#125;</span>&#60;/div&#62;; <br>
+                &nbsp;<span class="skobki">&#125;</span> <br>
+                <span class="skobki">&#125;</span>
+            </div>
+            <div class="intro">Обнаружение неожиданных побочных эффектов</div>
+            <p>React работает в два этапа:
+            <ul>
+                <li>Этап рендеринга (render phase) определяет, какие изменения необходимо произвести, например, в DOM. В
+                    течение этого этапа React вызывает <span class="highlighted-text">render</span>, а затем сравнивает
+                    полученный результат с результатом
+                    предыдущего рендера.
+                </li>
+                <li>Этап фиксации (commit phase) — в нём React применяет любые изменения. В случае React DOM — это этап,
+                    когда React вставляет, обновляет и удаляет DOM-узлы. В течение этого этапа React вызывает методы
+                    жизненного цикла <span class="highlighted-text">componentDidMount</span> и <span
+                        class="highlighted-text">componentDidUpdate</span>.
+                </li>
+            </ul>
+            </p>
+            <p>Этап рендеринга включает в себя следующие методы жизненного цикла:
+            <ul>
+                <li>constructor
+                </li>
+                <li>componentWillMount (или UNSAFE_componentWillMount)
+                </li>
+                <li>componentWillReceiveProps (или UNSAFE_componentWillReceiveProps)
+                </li>
+                <li>componentWillUpdate (или UNSAFE_componentWillUpdate)
+                </li>
+                <li>getDerivedStateFromProps
+                </li>
+                <li>shouldComponentUpdate
+                </li>
+                <li>render
+                </li>
+                <li>Функции обновления setState (первый аргумент)
+                </li>
+            </ul>
+            </p>
+            <p>Поскольку вышеупомянутые методы могут быть вызваны более одного раза, важно, чтобы они не приводили к
+                каким-либо побочным эффектам. Игнорирование этого правила может привести к множеству проблем, включая
+                утечки памяти и недопустимое состояние приложения. К сожалению, такие проблемы тяжело обнаружить из-за
+                их недетерминированности.
+            </p>
+            <p>Строгий режим не способен автоматически обнаруживать побочные эффекты, но помогает их отследить, сделав
+                более детерминированными. Такое поведение достигается путём двойного вызова следующих методов:
+            <ul>
+                <li>
+                    Методы <span class="highlighted-text">constructor</span>, <span class="highlighted-text">render
+                        <span class="highlighted-text"></span>, и <span
+                            class="highlighted-text">shouldComponentUpdate</span> классового компонента
+                </li>
+                <li>Статический метод классового компонента <span
+                        class="highlighted-text">getDerivedStateFromProps</span>
+                </li>
+                <li>Тело функционального компонента
+                </li>
+                <li>Функции обновления (первый аргумент setState)
+                </li>
+                <li>Функции, переданные в <span class="highlighted-text">useState</span>, <span
+                        class="highlighted-text">useMemo</span>, или <span class="highlighted-text">useReducer</span>
+                </li>
+            </ul>
+            </p>
+            <p>Это применимо только в режиме разработки. Методы жизненного цикла не вызываются дважды в
+                продакшен-режиме.
+                «Недетерминированный алгоритм» — это алгоритм, указывающий несколько путей обработки одних и тех же
+                входных данных, — без какого-либо уточнения, какой именно вариант будет выбран.
+            </p>
+            <p>Рассмотрим следующий пример:
+            </p>
+            <div class="code-block">
+
+
+                <span class="extends">class</span> <span class="cd">TopLevelRoute</span> <span
+                    class="extends">extends</span> <span class="cd">React.Component</span><span
+                    class="skobki">&#123;</span> <br>
+                &nbsp;<span class="keyword">constructor</span><span class="skobki">&#40;</span>props<span
+                    class="skobki">&#41;</span> <span class="skobki">&#123;</span> <br>
+                &nbsp;&nbsp;<span class="extends">super</span><span class="skobki">&#40;</span>props<span
+                    class="skobki">&#41;</span>; <br>
+                <br>
+                &nbsp;&nbsp;SharedApplicationState.<span class="keyword">recordEvent</span><span
+                    class="skobki">&#40;</span><span class="skobki">'ExampleComponent'</span><span
+                    class="skobki">&#41;</span>; <br>
+                &nbsp;<span class="skobki">&#125;</span> <br>
+                <span class="skobki">&#125;</span>
+
+
+            </div>
+            <p>На первый взгляд данный пример не кажется проблемным. Но если метод <span
+                    class="highlighted-text">SharedApplicationState.recordEvent</span> не
+                является идемпотентным, тогда создание этого компонента несколько раз может привести к недопустимому
+                состоянию приложения. Такие труднонаходимые ошибки могут никак не проявить себя во время разработки или
+                быть настолько редкими, что останутся незамеченными.
+            </p>
+            <p>Двойной вызов таких методов, как конструктор компонента, позволяет строгому режиму легко обнаружить
+                подобные проблемы.
+            </p>
+            <p>Идемпоте́нтность (лат. idem «тот же самый» + potens «способный») — свойство объекта или операции при
+                повторном применении операции к объекту давать тот же результат, что и при первом.
+            </p>
+            <div class="intro">Обнаружение устаревшего API контекста</div>
+            <p>Использование устаревшего API контекста очень часто приводило к ошибкам и поэтому он будет удалён
+                в будущей мажорной версии. Пока что этот API доступен во всех релизах 16.x, но в строгом режиме будет
+                выведено следующее предупреждение:
+            </p>
+            <div class="image-container">
+                <img src="../Dependencies/img/Рисунок16.png" alt="">
+            </div>
+            <p>Таким образом:<br>
+                Cтрогий режим в React работает только в режиме разработки (development mode) и не имеет эффекта на
+                производственное окружение (production mode). Однако он является полезным инструментом для улучшения
+                качества кода и обнаружения потенциальных проблем во время разработки приложения на React.</p>
+        </div>
+        <div class="button-container">
+            <a href="../pages/table-of-contents.html" class="go-to-toc-button">
+                Перейти к оглавлению <span>&rarr;</span>
+            </a>
+        </div>
+    </main>
+
+
+</body>
+
+</html>

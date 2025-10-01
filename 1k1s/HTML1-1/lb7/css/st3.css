@@ -1,0 +1,25 @@
+.zd3 input {
+    margin: 20px;
+    height: 30px;
+    width: 15%;}
+.b1:hover {
+    color: white;
+    background-color: black;}
+.b2:hover {
+  border: 2px solid transparent;
+  box-shadow: 0 0 0 5px red, 0 0 0 10px yellow;}
+.b3:hover {
+    background-color: transparent;
+    border-top: 5px solid green;
+    border-bottom: 5px solid green;
+    border-left: none;
+    border-right: none;}
+.b4:hover {
+    background-color: transparent;
+    border-left: 5px solid blue;
+    border-right: 5px solid blue;
+    border-top: none;
+    border-bottom: none;}
+.b5:hover {
+    background: radial-gradient(circle, yellow, purple, cyan);
+    border: none;}

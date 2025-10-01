@@ -1,0 +1,65 @@
+.zd4 *{
+    position: absolute;
+}
+
+@keyframes img1{
+    0% {
+        transform: perspective(350px) rotateY(25deg);
+        left: 0;
+    }
+    50% {
+        left: 0;
+    }
+    100% {
+        left: 5%;
+    }
+    }
+
+@keyframes img2{
+    0% {
+        transform: perspective(350px) rotateY(25deg);
+        left: 15px;
+    }
+    50% {
+        left: 15px;
+        filter: blur(0px);
+    }
+    100% {
+        left: 25%;
+        filter: blur(10px);
+    }
+    }
+    
+@keyframes img3{
+    0% {
+        transform: perspective(350px) rotateY(25deg);
+        left: 30px;
+    }
+    50% {
+        left: 30px;
+        filter: grayscale(0);
+    }
+    100% {
+        left: 50%;
+        filter: grayscale(1);
+    }
+    }
+@keyframes img4{
+    0% {
+        transform: perspective(350px) rotateY(25deg);
+        left: 45px;
+    }
+    50% {
+        left: 45px;
+        filter:  invert(0);
+    }
+    100% {
+        left: 75%;
+        filter:  invert(1);
+    }
+    }
+    
+.zd4 .first  {animation: img1 7s linear infinite;}
+.zd4 .second {animation: img2 7s linear infinite;}
+.zd4 .third  {animation: img3 7s linear infinite;}
+.zd4 .fourth {animation: img4 7s linear infinite;}

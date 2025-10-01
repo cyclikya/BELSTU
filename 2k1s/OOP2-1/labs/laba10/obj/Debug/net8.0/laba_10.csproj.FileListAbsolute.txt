@@ -1,0 +1,14 @@
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\laba10\bin\Debug\net8.0\laba_10.exe
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\laba10\bin\Debug\net8.0\laba_10.deps.json
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\laba10\bin\Debug\net8.0\laba_10.runtimeconfig.json
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\laba10\bin\Debug\net8.0\laba_10.dll
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\laba10\bin\Debug\net8.0\laba_10.pdb
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\laba10\obj\Debug\net8.0\laba_10.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\laba10\obj\Debug\net8.0\laba_10.AssemblyInfoInputs.cache
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\laba10\obj\Debug\net8.0\laba_10.AssemblyInfo.cs
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\laba10\obj\Debug\net8.0\laba_10.csproj.CoreCompileInputs.cache
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\laba10\obj\Debug\net8.0\laba_10.dll
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\laba10\obj\Debug\net8.0\refint\laba_10.dll
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\laba10\obj\Debug\net8.0\laba_10.pdb
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\laba10\obj\Debug\net8.0\laba_10.genruntimeconfig.cache
+C:\Users\vugor\OneDrive\Рабочий стол\2k1s\OOP2-1\labs\laba10\obj\Debug\net8.0\ref\laba_10.dll

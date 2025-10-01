@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FLEXBOX-ВЕРСТКА</title>
+    <link href="css/style.css" rel="stylesheet" media="all">
+    <link href="css/funs.css" rel="stylesheet" media="all">
+
+    <link href="css/styles-1280.css" media="screen and (min-width: 769px) and (max-width: 1280px)" rel="stylesheet">
+    <style>
+        /* внутренее подключение */
+        @media (max-width: 480px) {
+            figcaption {
+                color: red;
+            }
+            figure{
+            width: 100%;
+            }
+        }
+        /* Подключение через @import */
+        @import url("css/styles-768.css") (min-width: 480px) and (max-width: 768px);  
+
+        /* Подключение через тег link в head выше */
+
+        figcaption {
+            text-align: center;
+        }
+        .gallery{
+            flex-basis: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        img{
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <input type="checkbox" id="mobile-checkbox" />
+        <nav role="navigation">
+            <label for="mobile-checkbox" class="button">Меню<span>&#8801</span></label>
+            <ul class="ul-menu">
+                <li><a href="#bl1"><h2>Видео</h2></a></li>
+                <li><a href="#bl2"><h2>Текст</h2></a></li>
+                <li><a href="#bl3"><h2>Музыка</h2></a></li>
+                <li><a href="#gl"><h2>Фотогалерея</h2></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="zag">
+            <h2>Flexbox-верстка</h2>
+        </div>
+        <div class="blocks">
+            <div class="div1" id="bl1">
+                <h2>Мемы</h2>
+                <video src="files/Кандибобер.mp4" controls></video>
+                <video src="files/А я думала СОВА +100500.mp4" controls></video>
+                <video src="files/videoplayback.mp4" controls></video>
+            </div>
+            <div class="div2" id="bl2">
+                <h2>Flexbox-верстка</h2>
+                <p>Flexbox (Flexible Box) – технология веб-верстки для создания гибких и адаптивных макетов. Основные преимущества включают:</p>
+                <ol>   
+                    <li>Простота и гибкость: Интуитивное управление распределением и выравниванием элементов, сокращая сложность CSS-правил.</li>
+                    <li>Адаптивность: Легкость создания макетов, подстраивающихся под разные экраны, особенно важно для мобильных и разнообразных устройств.</li>
+                    <li>Управление порядком элементов: Свойство order для изменения порядка без изменения разметки в HTML.</li>
+                    <li>Работа в одном направлении: Удобное управление порядком и выравниванием в строке или столбце.</li>
+                    <li>Выравнивание по центру: Использование justify-content и align-items для центрирования элементов.</li>
+                    <li>Эффективное использование пространства: Автоматическое распределение пространства, облегчающее создание компактных макетов.</li>
+                </ol>
+                <p>Применение Flexbox – стандарт в веб-разработке, облегчающий создание удобных и адаптивных интерфейсов. Улучшает работу с макетами, уменьшая объем кода и обеспечивая поддержку адаптивности веб-приложений.</p>
+            </div>
+            <div class="div3" id="bl3">
+                <h2>Музыка из gta san andreas</h2>
+                <audio src="files/muzyika-s-proydennoy-missiey-iz-gta-san-andreas.mp3" controls></audio>
+                <audio src="files/Big_Smoke_-_What_is_cheese__(ringon.site).mp3" controls></audio>
+                <audio src="files/las-ketchup-asereje.mp3" controls></audio>
+            </div>
+        
+
+            <div class="gallery" id="gl">
+                <figure>
+                    <img src="https://avatars.mds.yandex.net/i?id=8abd62adbd994ee25232c03a2bc142a3bedd0656-10159322-images-thumbs&n=13">
+                    <figcaption>Кот 1</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://avatars.mds.yandex.net/i?id=a664f980ebfa7f261f587039632701d36f551038-10638002-images-thumbs&n=13">
+                    <figcaption>Кот 2</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://avatars.mds.yandex.net/i?id=d130ab5a377d7c6ae7e03d033ddadadcbe8da6a3-9181181-images-thumbs&n=13">
+                    <figcaption>Кот 3</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://avatars.mds.yandex.net/i?id=759a5b9643a72a97e02633e5758e8a560601007e-8237885-images-thumbs&n=13">
+                    <figcaption>Кот 4</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://avatars.mds.yandex.net/i?id=b713209436a5be9fc1ffac70dfbb9c81-5233993-images-thumbs&n=13">
+                    <figcaption>Кот 5</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://avatars.mds.yandex.net/i?id=0ba0d9138b0712e051c28541e3553243bb4a9393-10696367-images-thumbs&n=13">
+                    <figcaption>Кот 6</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://avatars.mds.yandex.net/i?id=defe32b5678d482134de2772a5fadf48-5214808-images-thumbs&n=13">
+                    <figcaption>Кот 7</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://avatars.mds.yandex.net/i?id=8abd62adbd994ee25232c03a2bc142a3bedd0656-10159322-images-thumbs&n=13">
+                    <figcaption>Кот 8</figcaption>
+                </figure>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

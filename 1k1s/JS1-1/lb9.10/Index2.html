@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Документ</title>
+    <style>
+        body * {
+            position: absolute;
+            width: 30%;
+        }
+    </style>
+</head>
+<body>
+    <img id="myI" src="img1.jpg">
+    <script>
+        var img = document.getElementById("myI");
+
+        function move() {
+            if (img.offsetLeft < window.innerWidth - img.width) {
+                img.style.left = img.offsetLeft + 1 + 'px';
+            }
+            if (img.offsetLeft == window.innerWidth - img.width) {
+                img.style.left = '0px';
+            }
+        }
+        setInterval(move, 1);
+    </script>
+</body>
+</html>
+
+

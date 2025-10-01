@@ -1,0 +1,36 @@
+D:\labs\COURSE2\SEM2\PP2\Lab04\DAL_LES\bin\Debug\net8.0\DAL_LES.deps.json
+D:\labs\COURSE2\SEM2\PP2\Lab04\DAL_LES\bin\Debug\net8.0\DAL_LES.dll
+D:\labs\COURSE2\SEM2\PP2\Lab04\DAL_LES\bin\Debug\net8.0\DAL_LES.pdb
+D:\labs\COURSE2\SEM2\PP2\Lab04\DAL_LES\obj\Debug\net8.0\DAL_LES.csproj.AssemblyReference.cache
+D:\labs\COURSE2\SEM2\PP2\Lab04\DAL_LES\obj\Debug\net8.0\DAL_LES.GeneratedMSBuildEditorConfig.editorconfig
+D:\labs\COURSE2\SEM2\PP2\Lab04\DAL_LES\obj\Debug\net8.0\DAL_LES.AssemblyInfoInputs.cache
+D:\labs\COURSE2\SEM2\PP2\Lab04\DAL_LES\obj\Debug\net8.0\DAL_LES.AssemblyInfo.cs
+D:\labs\COURSE2\SEM2\PP2\Lab04\DAL_LES\obj\Debug\net8.0\DAL_LES.csproj.CoreCompileInputs.cache
+D:\labs\COURSE2\SEM2\PP2\Lab04\DAL_LES\obj\Debug\net8.0\DAL_LES.dll
+D:\labs\COURSE2\SEM2\PP2\Lab04\DAL_LES\obj\Debug\net8.0\refint\DAL_LES.dll
+D:\labs\COURSE2\SEM2\PP2\Lab04\DAL_LES\obj\Debug\net8.0\DAL_LES.pdb
+D:\labs\COURSE2\SEM2\PP2\Lab04\DAL_LES\obj\Debug\net8.0\ref\DAL_LES.dll
+D:\4sem\pp\lab4\DAL_LES\obj\Debug\net8.0\DAL_LES.csproj.AssemblyReference.cache
+D:\4sem\pp\lab4\DAL_LES\obj\Debug\net8.0\DAL_LES.GeneratedMSBuildEditorConfig.editorconfig
+D:\4sem\pp\lab4\DAL_LES\obj\Debug\net8.0\DAL_LES.AssemblyInfoInputs.cache
+D:\4sem\pp\lab4\DAL_LES\obj\Debug\net8.0\DAL_LES.AssemblyInfo.cs
+D:\4sem\pp\lab4\DAL_LES\obj\Debug\net8.0\DAL_LES.csproj.CoreCompileInputs.cache
+D:\4sem\pp\lab4\DAL_LES\obj\Debug\net8.0\DAL_LES.dll
+D:\4sem\pp\lab4\DAL_LES\obj\Debug\net8.0\refint\DAL_LES.dll
+D:\4sem\pp\lab4\DAL_LES\obj\Debug\net8.0\DAL_LES.pdb
+D:\4sem\pp\lab4\DAL_LES\bin\Debug\net8.0\DAL_LES.deps.json
+D:\4sem\pp\lab4\DAL_LES\bin\Debug\net8.0\DAL_LES.dll
+D:\4sem\pp\lab4\DAL_LES\bin\Debug\net8.0\DAL_LES.pdb
+D:\4sem\pp\lab4\DAL_LES\obj\Debug\net8.0\ref\DAL_LES.dll
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab4\DAL_LES\bin\Debug\net8.0\DAL_LES.deps.json
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab4\DAL_LES\bin\Debug\net8.0\DAL_LES.dll
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab4\DAL_LES\bin\Debug\net8.0\DAL_LES.pdb
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab4\DAL_LES\obj\Debug\net8.0\DAL_LES.csproj.AssemblyReference.cache
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab4\DAL_LES\obj\Debug\net8.0\DAL_LES.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab4\DAL_LES\obj\Debug\net8.0\DAL_LES.AssemblyInfoInputs.cache
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab4\DAL_LES\obj\Debug\net8.0\DAL_LES.AssemblyInfo.cs
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab4\DAL_LES\obj\Debug\net8.0\DAL_LES.csproj.CoreCompileInputs.cache
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab4\DAL_LES\obj\Debug\net8.0\DAL_LES.dll
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab4\DAL_LES\obj\Debug\net8.0\refint\DAL_LES.dll
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab4\DAL_LES\obj\Debug\net8.0\DAL_LES.pdb
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab4\DAL_LES\obj\Debug\net8.0\ref\DAL_LES.dll

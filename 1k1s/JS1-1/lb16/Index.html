@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="css/Style.css" rel="stylesheet" media="all">
+    <link href="css/nav.css" rel="stylesheet" media="all">
+    <link href="css/allStyle.css" rel="stylesheet" media="all">
+    <title>Document</title>
+</head>
+<body>
+    <div class="grid">
+        <img onclick="startSwingAnimation()" class="icon" src="css/pngwing.com.png">
+
+        <div style="grid-area: zag" id="zag">
+            <h1>Рецепты Бабушки Галины</h1>
+        </div>
+
+        <div style="grid-area: podzag1" id="podzag1">
+            <h2>Отзывы</h2>
+        </div>
+        <div style="grid-area: podzag2" id="podzag2">
+            <h2>Команда работающая над рецептами</h2>
+        </div>
+
+        <div style="grid-area: nav" id="nav">
+            <div class="menu-item" onmouseover="showSubMenu(this)">
+                Пироги
+                <div class="submenu">
+                    <a href="index1.html">Пирог с яблоками</a>
+                </div>
+            </div>
+            <div class="menu-item" onmouseover="showSubMenu(this)">
+                Торты
+                <div class="submenu">
+                    <a href="index2.html">Торт с малиной</a>
+                </div>
+            </div>
+            <div class="menu-item" onmouseover="showSubMenu(this)">
+                Печенье
+                <div class="submenu">
+                    <a href="index3.html">Овсяное Печенье</a>
+                </div>
+            </div>  
+            <div class="menu-item" onmouseover="showSubMenu(this)">
+                Пирожки
+                <div class="submenu">
+                    <a href="index4.html">Пирожки с мясом</a>
+                </div>
+            </div> 
+        </div>
+        
+        <div style="grid-area: form" id="form">
+            <form>
+                <h3>Пробовали ли вы наши рецепты?</h3>
+                <input type="radio" name="choice" id="yes" onclick="showMessage('leaveReview')"> Да
+                <input type="radio" name="choice" id="no" onclick="showMessage('tryAgain')"> Нет
+            </form>
+            <p id="message"></p>            
+        </div>
+
+
+        <div style="grid-area: main" id="main">
+            <p>Добро пожаловать на наш уникальный кулинарный ресурс, посвященный восхитительным рецептам пирогов! Почему именно наши рецепты стоит включить в ваш повседневный рацион?</p>
+            <p>Наши рецепты — это результат многолетнего тщательного исследования и экспериментов опытных поваров, которые с любовью и страстью к кулинарии создавали каждый из них. Каждый рецепт был проработан с особым вниманием к деталям, чтобы обеспечить вам не только восхитительный вкус, но и легкость в приготовлении.</p>
+            <p>Что делает наши рецепты уникальными? В каждом из них мы стремимся использовать свежие и натуральные ингредиенты, чтобы обеспечить максимальный вкус и пользу для вашего здоровья. Мы уделяем внимание балансу питательных веществ, чтобы наши пироги не только радовали ваши вкусовые рецепторы, но и приносили пользу вашему организму.</p>
+            <p>Каждый рецепт на нашем сайте является уникальным произведением искусства, созданным опытными шеф-поварами, чтобы порадовать вас и ваших близких. Приготовление пирогов с использованием наших рецептов — это не просто приготовление еды, а настоящее кулинарное приключение, которое наполняет дом ароматами и теплом.</p>
+        </div>
+
+        <div style="grid-area: feedbk" id="feedbk">
+            <img  style="grid-area: img1" class="img" src="https://www.gastronom.ru/binfiles/images/20230818/bc86f7ca.jpg">
+            <p style="grid-area: prof1"><span>SweetAppleBaker</span> пишет:
+                <br>Эти рецепты стали настоящим спасением для меня! Я приготовила пирог по вашему рецепту с яблоками, и результат был просто великолепен. Простые инструкции и невероятный вкус сделали мой обед незабываемым. Благодарю за вдохновение!</p>
+
+            <img style="grid-area: img2" class="img" src="https://avatars.mds.yandex.net/i?id=a973976a5d5c6edccc1d123f1befa760ad27cf3c-9066051-images-thumbs&n=13">
+            <p style="grid-area: prof2"><span>ChocoDelightExplorer</span> пишет:
+                <br>Очарована вашим рецептом шоколадного пирога! Это действительно шедевр в мире сладких удовольствий. Ингредиенты легко доступны, а пошаговые инструкции делают процесс приготовления увлекательным. Все мои гости в восторге, спасибо за этот волшебный рецепт!</p>
+
+            <img style="grid-area: img3" class="img" src="http://klublady.ru/uploads/posts/2022-02/1644993432_8-klublady-ru-p-tort-s-malinoi-foto-8.jpg">
+            <p style="grid-area: prof3"><span>BerryBlissChef</span> пишет:
+                <br>Ваши рецепты пирогов просто невероятны! Я попробовала приготовить торт с малиной, и результат превзошел все ожидания. Ягодная начинка была свежей и сочной, а тесто - невероятно нежным. Благодаря вашему сайту, теперь я настоящая хозяйка в своей кухне!</p>
+        </div>
+        <div style="grid-area: img" id="img">
+            <img src="https://avatars.mds.yandex.net/i?id=7431789a66330a977491c317c99778e570c440fe-8981113-images-thumbs&n=13">
+            <img src="https://avatars.mds.yandex.net/i?id=b000788623d8aeb717e8836901ca296c12cd8bda-9234089-images-thumbs&n=13">
+            <img src="https://avatars.mds.yandex.net/i?id=fdf9d62efdac6a2c352eeb6862c42824360ed4b3-10700023-images-thumbs&n=13">
+            <img src="https://yandex-images.clstorage.net/hc4ak7281/07d18anOWpA/GRcpbm3Y461kZU_d0Cp1VnGg7b93RVN7QHDZHtkdmAgFk0zDjvITTECJodqMLhfkn0b8b6BsJizyfky_Ieo-RI3Huny9HvW6dONa39DrNdEm8Cn4YcREPdDkGgoNhpbU2Y7WHFfsTpPLW7SZTXoRdh9AJfWx-rPup-IJrHegqM_X26XjJwLkYOg1Q5aSJn3YL6Uos-IBjfVH4s7QWMtTF1XNUJ4ea0baTlh-ls4yn-feDWg7rPE_5ewnziB1IGpHkFSvKamBLW9hMoTXXmO42qvuKD5nhsY6QmOIU9qLXFAfhdBeW6TOGQtfcFyJthlrE4Xu92LweaBtI8Sp_qEojNiSbCurh-Ck5j4LGB2rMVru5-H7pgXNcoquCNdXCBmS20Ran1YtDFnFVXVbBfcdb5dHKrRidrEgaeiBqjVrJEUaUmgpagshZS17yNVTLfgdJmrsOKcGjvgMLY9d08CaHVQPVZaSowKZy5RxVoz40e1fhStx6zg4L6vmBG8_K6qH1Vuvp2VGKihqe8jQFuo3VW_h53FpRcf9CucPmpmKkxjVhJqSmaPEV4tf9VoKcN7rnAenvu-4-SUt6A1ptmJmxloTbOHgwqmuLvjAmBgutV2jr6L3YgRJsYGjzFBYT1JUV4OSHheoA5zBXzlQgvsU5JlO5jTgcXCmai6EILahYUfS3q9p7UKt7OJ0RZiaJT8dLC9mci4KgL9NosddVUnSktqPnBQQogsZAxiy28GxWynUy-HyKXA7YS7ng6P1rmtNGJqhbuFHa6_k-gzc02P_1mLpYX-ijg76xSdN3pLP0tLcD92VWGCD3ciRMZ_OsN6lVE_n-ug5f-2rIkkk-K6uTNxT7aMkQKspqjqJGVPnsZMpIem5aMGGdYolj5aQBZXVWQWbHdhsxF8NWD1UhTmdbxaOJnCk-D1o7O4J4zmrbAfQF6FibIakLao4idlTK7_U7-UqdyaHRv-L5EzVG4">
+        </div>
+
+        <div style="grid-area: footer" id="footer">
+            <div style="grid-area: shefs">
+                <h3>Свяжитесь с нами:</h3>
+                <p>Повар 1: Екатерина Петровна<br>Телефон в Viber: +375 (55) 123-4567</p>
+                <p>Повар 2: Анна Васильевна<br>Телефон в Viber: +375 (55) 987-6543</p>
+                <p>Повар 3: Надежда Сергеевна<br>Телефон в Viber: +375 (55) 111-2233</p>
+                <p>Повар 4: Мария Игоревна<br>Телефон в Viber: +375 (55) 222-3344</p>
+            </div>
+            <div style="grid-area: maneger">
+                <h3>Ответственный за работу сайта:</h3>
+                <p>Угоренко Виолетта Романовна<br>Факультет, Группа-курс: ФИТ 1-1 <br>Email: vugorenko2000@gmail.com</p>
+            </div>
+        </div>
+    </img>
+    <script src="js/script.js"></script>
+</body>
+</html>

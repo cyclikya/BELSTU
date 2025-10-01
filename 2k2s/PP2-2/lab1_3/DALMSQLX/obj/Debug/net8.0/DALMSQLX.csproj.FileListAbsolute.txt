@@ -1,0 +1,15 @@
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\DALMSQLX\obj\Debug\net8.0\DALMSQLX.csproj.AssemblyReference.cache
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\DALMSQLX\obj\Debug\net8.0\DALMSQLX.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\DALMSQLX\obj\Debug\net8.0\DALMSQLX.AssemblyInfoInputs.cache
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\DALMSQLX\obj\Debug\net8.0\DALMSQLX.AssemblyInfo.cs
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\DALMSQLX\obj\Debug\net8.0\DALMSQLX.csproj.CoreCompileInputs.cache
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\DALMSQLX\bin\Debug\net8.0\DALMSQLX.deps.json
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\DALMSQLX\bin\Debug\net8.0\DALMSQLX.dll
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\DALMSQLX\bin\Debug\net8.0\DALMSQLX.pdb
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\DALMSQLX\bin\Debug\net8.0\REPO.dll
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\DALMSQLX\bin\Debug\net8.0\REPO.pdb
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\DALMSQLX\obj\Debug\net8.0\DALMSQLX.csproj.Up2Date
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\DALMSQLX\obj\Debug\net8.0\DALMSQLX.dll
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\DALMSQLX\obj\Debug\net8.0\refint\DALMSQLX.dll
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\DALMSQLX\obj\Debug\net8.0\DALMSQLX.pdb
+C:\Users\vugor\OneDrive\Рабочий стол\2k2s\PP2-2\lab1_3\DALMSQLX\obj\Debug\net8.0\ref\DALMSQLX.dll

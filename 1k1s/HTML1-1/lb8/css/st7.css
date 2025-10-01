@@ -1,0 +1,21 @@
+.zd7 {
+    margin: 0 auto; /* автоматическое центрирование */
+    text-align: center;
+    width: 300px;
+    height: 300px;
+    background-color: lightyellow;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.text {
+    color: #000;
+    transition: color 5s linear;
+    text-align: center;
+}
+
+.zd7:hover .text {
+    color: blue;
+}

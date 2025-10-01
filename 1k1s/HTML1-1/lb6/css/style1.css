@@ -1,0 +1,35 @@
+body {
+    display: inline-block;
+    margin: auto;
+    background-image: url(fit.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: top right;
+}
+th, td {
+    border: 1px solid black;
+}
+span {
+    color: red;
+}
+ul > li {
+    padding-left: 20px;
+    list-style-type: none;
+    background-image: url(li.png);
+    background-size: 16px 16px;
+    background-repeat: no-repeat;
+}
+.leftimg {
+    float:left;
+    margin: 7px 7px 7px 0;
+    width: 290px;
+}
+.rightimg  {
+    float: right;
+    margin: 7px 0 7px 7px;
+    width: 290px;
+}
+p, h3{ /*  отсутствие отступов между строками и отступ первой строки*/
+    margin: 0; 
+    text-indent: 0;
+}

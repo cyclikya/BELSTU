@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=Jost:ital,wght@0,100..900;1,100..900&family=M+PLUS+Rounded+1c&display=swap');
+.third{
+    z-index: 4;
+    height: 90vh;
+    background-color: #F5F6F1;
+    margin-top: -2vw;
+    padding-top: 9vw;
+}
+.third span {
+    position: absolute;
+    font-size: 11vw;
+    font-family: 'Black Han Sans', sans-serif;
+    font-weight: bolder;
+    color: #d2ccbc;
+    text-align: center;
+    z-index: 1;
+}
+#fr {
+    top: 224vh;
+    left: 10vw;
+}
+#he {
+    top: 300vh;
+    left: 45vw;
+}
+.third img{
+    position: absolute;
+    height: 115vh;
+    z-index: 2;
+    top: 216vh;
+    left: 29vw;
+    transition: transform 1s .5s;
+}
+.third img:hover{
+    transform: scale(1.1);
+}
+.third p{
+    z-index: 3;
+    width: 33vw;
+    text-align: left;
+    text-decoration: none;
+    font-size: 1.6vw;
+    font-weight: 1000;
+}
+.title-1{
+    font-size: 2vw;
+    font-weight: 1000;
+    padding-left: 3vw ;
+    margin-top: 3vw ;
+}
+.title-2{
+    font-size: 2vw;
+    font-weight: 1000;
+    padding-left: 3vw ;
+} 
+.title-3{
+    font-size: 2vw;
+    font-weight: 1000;
+    padding-left: 64vw;
+    margin-top: -41vw;
+}
+.title-4{
+    font-size: 2vw;
+    font-weight: 1000;
+    padding-left: 64vw;
+}
+.text1{
+    padding-left: 3vw ;
+}
+.text2{
+    padding-left: 3vw ;
+}
+.text3{
+    padding-left: 64vw;
+}
+.text4{
+    padding-left: 64vw;
+}

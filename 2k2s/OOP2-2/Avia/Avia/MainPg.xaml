@@ -1,0 +1,72 @@
+﻿<Page x:Class="Avia.MainPg"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="{DynamicResource MainPgTitle}"
+      Cursor="https://ani.cursors-4u.net/cursors/cur-13/cur1162.ani">
+    <Page.Resources>
+        <Style x:Key="SwapButtonDemoStyle" TargetType="Button">
+            <Setter Property="Background" Value="Black"/>
+            <Style.Triggers>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding SelectedItem, ElementName=DepartureCityComboBox}" Value="{x:Null}" />
+                        <Condition Binding="{Binding SelectedItem, ElementName=DestinationCityComboBox}" Value="{x:Null}" />
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="Background" Value="LightGray"/>
+                </MultiDataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Vertical" Margin="10">
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                <TextBlock Text="{DynamicResource DepartureCity}" VerticalAlignment="Center" Margin="0,0,5,0" />
+                <ComboBox x:Name="DepartureCityComboBox" Width="150" Margin="0,0,10,0" 
+                          SelectionChanged="DepartureCityComboBox_SelectionChanged"/>
+                <TextBlock Text="{DynamicResource ArrivalCity}" VerticalAlignment="Center" Margin="0,0,5,0" />
+                <ComboBox x:Name="DestinationCityComboBox" Width="150" Margin="0,0,10,0" 
+                          SelectionChanged="DestinationCityComboBox_SelectionChanged"/>
+                <Button x:Name="ButtonForTrigger" 
+                        Content="{DynamicResource Swap}" 
+                        Click="SwapCitiesButton_Click" 
+                        Width="80"
+                        Style="{StaticResource SwapButtonDemoStyle}" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                <TextBlock Text="{DynamicResource RequiredSeats}" VerticalAlignment="Center" Margin="0,0,5,0" />
+                <TextBox x:Name="RequiredSeatsTextBox" Width="50" Margin="0,0,10,0" 
+                         TextChanged="RequiredSeatsTextBox_TextChanged"/>
+                <TextBlock Text="{DynamicResource Date}" VerticalAlignment="Center" Margin="10,0,5,0" />
+                <DatePicker x:Name="FlightDatePicker" Width="120" Margin="0,0,10,0" 
+                            SelectedDateChanged="FlightDatePicker_SelectedDateChanged"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                <TextBlock Text="{DynamicResource SortBy}" VerticalAlignment="Center" Margin="0,0,5,0" />
+                <ComboBox x:Name="SortByComboBox" Width="120" 
+                          SelectionChanged="SortByComboBox_SelectionChanged">
+                    <ComboBoxItem Content="{DynamicResource Price}" />
+                    <ComboBoxItem Content="{DynamicResource Baggage}" />
+                    <ComboBoxItem Content="{DynamicResource Seats}" />
+                </ComboBox>
+            </StackPanel>
+
+            <Button Content="{DynamicResource ClearAll}" 
+                    Click="ClearFiltersButton_Click" 
+                    Width="100" 
+                    HorizontalAlignment="Right" 
+                    Margin="0,10,0,0"/>
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel x:Name="FlightsPanel" Margin="10" />
+        </ScrollViewer>
+    </Grid>
+</Page>

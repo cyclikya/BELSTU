@@ -1,0 +1,11 @@
+﻿  dop2.cpp
+C:\Users\vugor\OneDrive\Рабочий стол\1k2s\C++(OAuP)1-2\laba5\dop2\dop2.cpp(12,1): warning C4624: "CountryInfo": деструктор неявно определен как удаленный
+C:\Users\vugor\OneDrive\Рабочий стол\1k2s\C++(OAuP)1-2\laba5\dop2\dop2.cpp(18,1): warning C4624: "Country": деструктор неявно определен как удаленный
+C:\Users\vugor\OneDrive\Рабочий стол\1k2s\C++(OAuP)1-2\laba5\dop2\dop2.cpp(19,16): error C2280: "Country::Country(void)": предпринята попытка ссылки на удаленную функцию
+  C:\Users\vugor\OneDrive\Рабочий стол\1k2s\C++(OAuP)1-2\laba5\dop2\dop2.cpp(18,1):
+  в этом месте создано компилятором: "Country::Country"
+  C:\Users\vugor\OneDrive\Рабочий стол\1k2s\C++(OAuP)1-2\laba5\dop2\dop2.cpp(18,1):
+  "Country::Country(void)": функция неявно удалена, так как в "Country" содержится элемент данных "Country::info" с удаленным или недоступным деструктором.
+  C:\Users\vugor\OneDrive\Рабочий стол\1k2s\C++(OAuP)1-2\laba5\dop2\dop2.cpp(17,17):
+   см. объявление "Country::info"
+  

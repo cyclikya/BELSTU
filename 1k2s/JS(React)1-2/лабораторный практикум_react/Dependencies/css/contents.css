@@ -1,0 +1,26 @@
+
+
+  .container {
+    width: 80%;
+    margin: 70px auto;
+    background-color:#1e2329;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .container li{
+    padding: 10px;
+  }
+
+  h1 {
+    font-family: 'Roboto Condensed', sans-serif;    
+    text-align: center;
+    color: white;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0; 
+  }
+

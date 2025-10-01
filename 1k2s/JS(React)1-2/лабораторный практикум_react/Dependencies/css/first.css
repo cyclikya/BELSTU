@@ -1,0 +1,123 @@
+.content ,.jsx-information {
+    display: flex; /* Используем flexbox для размещения элементов в строку */
+    margin-top: 50px;
+  }
+
+.intro , .dom-scrip , .first-app , .jsx {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 24px;
+  color: white;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.points-list {
+    padding-top: 20px;
+    list-style-type: none;
+    padding-left: 20px; 
+    width: 33%;
+  }
+
+  .points-list-two {
+    list-style-type: none;  
+    margin-left: 30px;
+    padding-top: 20px;
+    width: 33%;
+    text-align: left;
+  }
+  
+  .points-list li ,.points-list-two li{
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 10px; 
+    font-size: 16px;
+    color: white;
+  }
+  .img1 {
+    max-width: 100%; /* Чтобы изображение масштабировалось по ширине */
+    height: auto; /* Автоматическая высота изображения */
+    margin-left: 20px; /* Отступ слева для изображения */
+  }
+
+  .discription-dom {
+    display: flex; /* Используем flexbox для размещения элементов в строку */
+    justify-content: space-between; /* Распределение элементов по краям контейнера */
+    margin-top: 30px;
+  }
+  
+  .firts-dom,
+  .second-dom{
+    width: 48%; /* Задаем ширину блоков, чтобы они занимали примерно половину ширины контейнера */
+    padding: 10px; /* Добавляем отступы внутри блоков */
+    box-sizing: border-box; /* Учитываем padding в общей ширине блока */
+  }
+  .text,
+  .firts-dom p,
+  .second-dom p ,
+  .first-app p,
+  .first-app-start p,
+  .jsx-information-text p  {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    color: white;
+  }
+
+  .first-app-start{
+    display: flex; /* Используем flexbox для размещения элементов в строку */
+  }
+
+  .first-app-start-text,
+  .jsx-information-text{
+  margin-left: 20px;
+    padding-top: 20px; 
+    width: 50%;
+    text-align: left;
+  }
+  .img2{
+    margin: auto;
+    height: 150px;
+    width: 400px;
+  }
+
+  .img3{
+    margin: auto;
+    height: 150px;
+    width: 500px;
+  }
+
+  .img4{
+    margin: auto;
+    height: 300px;
+    width: 500px;
+  }
+
+  .img5{
+    margin: auto;
+    height: 250px;
+    width: 500px;
+  }
+
+  .go-to-toc-button {
+    font-size: 18px;
+    font-family: 'Montserrat', sans-serif;
+    text-decoration: dotted;
+    color: #00d8ff;
+    transition: color 0.3s ease;
+    
+  }
+  
+  .go-to-toc-button:hover {
+    text-decoration: none;
+  }
+  
+  .go-to-toc-button span {
+    margin-left: 5px;
+  }
+  
+  .button-container {
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    text-align: center;
+  }
+  
+

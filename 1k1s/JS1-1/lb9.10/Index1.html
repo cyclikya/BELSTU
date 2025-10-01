@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Документ</title>
+    <style>
+        body *{
+            position: absolute;
+        }
+        img{
+            top: 60px;
+            width: 30%;
+        }
+    </style>
+</head>
+<body id="mybody">
+    <img id="myI" src="img.jpg">
+    <div id="myT">текст, который можно перетащить</div>
+    <script>
+        var img = document.getElementById("myI"),
+            text = document.getElementById("myT");
+        var flag = false;
+
+        img.onmousedown = function (event) {
+            flag = true;
+            document.onmousemove = function (event) {
+                if (flag) {
+                    img.style.left = event.pageX - img.offsetWidth / 2 + 'px';
+                    img.style.top = event.pageY - img.offsetHeight / 2 + 'px';
+                }
+            };
+        };
+        img.onmouseup = function () {
+            flag = false;
+            document.onmousemove = null;
+        };
+        img.ondragstart = function () {
+            return false;
+        };
+
+
+        text.onmousedown = function (event) {
+            flag = true;
+            document.onmousemove = function (event) {
+                if (flag) {
+                    text.style.left = event.pageX - text.offsetWidth / 2 + 'px';
+                    text.style.top = event.pageY - text.offsetHeight / 2 + 'px';
+                }
+            };
+        };
+        text.onmouseup = function () {
+            flag = false;
+            document.onmousemove = null;
+        };
+        text.ondragstart = function () {
+            return false;
+        };
+    </script>
+</body>
+
+</html>

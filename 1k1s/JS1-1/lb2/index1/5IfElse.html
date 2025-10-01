@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        sravn
+    </title>
+</head>
+<body>
+    <script type="text/javascript">
+        function start() {
+            var y = Number(prompt('Введите число A'));
+            var x = Number(prompt('Введите число B'));
+
+            if (x === y) {
+                document.write('<p style="color: brown; font-size: 15pt; font-family: Times New Roman">A равно B</p>');
+            } else {
+                if (y < x) {
+                    alert('A меньше B');
+                } else {
+                    document.write('<p style="color: brown; font-size: 15pt; font-family: Times New Roman">A больше B</p>');
+                }
+            }
+        }
+    </script>
+    <input type="button" value="Начать" onclick="start()">
+</body>
+</html>

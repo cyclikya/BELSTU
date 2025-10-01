@@ -1,0 +1,185 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Основы тестирования</title>
+    <link rel="icon" href="../Dependencies/img/favicon.ico"/>
+    <link rel="stylesheet" href="../Dependencies/css/main.css">
+    <link rel="stylesheet" href="../Dependencies/css/header.css">
+    <link rel="stylesheet" href="../Dependencies/css/body.css">
+    <link rel="stylesheet" href="../Dependencies/css/footer.css">
+    <link rel="stylesheet" href="../Dependencies/css/first.css">
+    <link rel="stylesheet" href="../Dependencies/css/text.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@500;600&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;1,100&family=Open+Sans:ital,wght@0,400;1,400;1,500&family=Roboto+Condensed:wght@500;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="body">
+    <header class="header">
+        <img src="../Dependencies/img/1174949_js_react js_logo_react_react native_icon.png" alt="My Photo"
+            class="photo" />
+        <nav class="navbar">
+            <ul>
+                <li>
+                    <a href="../main.html">React</a>
+                </li>
+            </ul>
+            <div><a href="../pages/table-of-contents.html">Оглавление</a>
+                <a href="https://belstu.by/">Сайт BSTU</a>
+                <a href="https://react.dev/">Официальная документация</a>
+                <a href="../labs/labs.html">Лабораторный практикум</a>
+            </div>
+        </nav>
+    </header>
+    <main class="main">
+        <div class="text">
+            <div class="intro">
+                Основы тестирования
+            </div>
+            <p>Тестирование React-компонентов аналогично тестированию любого другого JavaScript-кода.
+            </p>
+            <p>Можно выделить два основных способа тестирования React-компонентов:
+            <ul>
+                <li> Рендеринг деревьев компонентов:
+                    в упрощенной тестовой среде и проверка их предполагаемого вывода
+                </li>
+                <li>Запуск всего приложения в реалистичной среде браузера (так называемые «сквозные» тесты).
+                    (Эти тесты не касаются React-компонентов напрямую)
+                </li>
+            </ul>
+            </p>
+            <div class="intro">Компромиссы </div>
+            <p>Выбирая инструменты тестирования, стоит рассмотреть несколько компромиссов:
+            <ul>
+                <li>
+                    Скорость итераций против реалистичной среды: 
+                </li>
+            </ul>
+            </p>
+            <p>Одни инструменты позволяют получить быстрый цикл «внёс изменения — увидел результат», но не моделируют
+                поведение браузера в точности. Другие инструменты могут использовать реальную среду браузера, но снижают
+                скорость итераций и могут вызывать проблемы при непрерывной интеграции.
+            </p>
+            <p>
+            <ul>
+                <li>
+                    Как много фиктивных объектов использовать: 
+                </li>
+            </ul>
+            </p>
+            <p>При работе с компонентами границы между «модульным» и «интеграционным» тестом выглядят размытыми.
+                Тестируя форму, нужно ли тестировать кнопки внутри неё? Или компонент «кнопка» должен иметь свои
+                собственные тесты? Должны ли изменения в коде кнопки ломать тест формы?
+            </p>
+            <p>Одни варианты ответов подойдут одним командам и продуктам, другие другим.
+            </p>
+            <div class="intro">Рекомендуемые инструменты</div>
+            <p><span class="abbr">Jest</span> — исполнитель тестов на JavaScript, который позволяет взаимодействовать с
+                DOM через <span class="highlighted-text">jsdom</span>. Несмотря
+                на то, что jsdom только приблизительно реализует работу браузера, в большинстве случаев этого достаточно
+                для тестирования React-компонентов. Jest предлагает отличную скорость итераций вместе с мощными
+                возможностями, например фиктивные модули и таймеры, которые дают больше контроля над исполнением кода.
+            </p>
+            <p><span class="abbr">React Testing Library</span> — это набор вспомогательных функций, позволяющий
+                тестировать React-компоненты не
+                полагаясь на их внутреннюю реализацию. Такой подход упрощает рефакторинг, а также подталкивает вас
+                применять лучшие практики по улучшению доступности. Несмотря на то, что библиотека не позволяет делать
+                «поверхностный» рендер компонента без дочерних компонентов, исполнители тестов, например, Jest позволяет
+                это сделать через фиктивные модули.
+            </p>
+            <div class="intro">Подготовка/Завершение</div>
+            <p>Для каждого теста мы обычно хотим рендерить React-дерево к DOM-элементу, который прикреплён к <span
+                    class="highlighted-text">document</span>.
+                Это важно, чтобы он мог получать DOM-события. Когда тест завершается, мы хотим «подчистить» и
+                размонтировать дерево от <span class="highlighted-text">document</span>.
+            </p>
+            <div class="code-block">
+                <span class="extends">import</span><span class="skobki">&#123;</span> <span
+                    class="keyword">unmountComponentAtNode</span> <span class="skobki">&#125;</span> <span
+                    class="extends">from</span> <span class="skobki">"react-dom"</span>; <br>
+                <br>
+                <span class="extends">let</span> container = <span class="extends">null</span>; <br>
+                <span class="keyword">beforeEach</span><span class="skobki">&#40;&#40;&#41;</span> => <span
+                    class="skobki">&#123;</span> <br>
+                <span class="hex">// подготавливаем DOM-элемент, куда будем рендерить</span> <br>
+                container = document.<span class="keyword">createElement</span><span
+                    class="skobki">&#40;</span>"div"<span class="skobki">&#41;</span>; <br>
+                document.body.<span class="keyword">appendChild</span><span class="skobki">&#40;</span>container<span
+                    class="skobki">&#41;</span>; <br>
+                <span class="skobki">&#125;&#41;</span>; <br>
+                <br>
+                <span class="keyword">afterEach</span><span class="skobki">&#40;&#40;&#41;</span> => <span
+                    class="skobki">&#123;</span> <br>
+                <span class="hex">// подчищаем после завершения</span> <br>
+                <span class="keyword">unmountComponentAtNode</span><span class="skobki">&#40;</span>container<span
+                    class="skobki">&#41;</span>;
+                container.<span class="keyword">remove</span><span class="skobki">&#40;&#41;</span>; <br>
+                container = <span class="extends">null</span>; <br>
+                <span class="skobki">&#125;</span><span class="skobki">&#41;</span>;
+            </div>
+            <div class="intro">Рендеринг</div>
+            <p>Как правило, вы хотите проверить правильность результата рендеринга компонента с определёнными пропсами.
+                Рассмотрим простой компонент, который рендерит сообщение на основе пропа:
+            </p>
+            <div class="code-block">
+                <span class="hex">// hello.js</span> <br>
+                <br>
+                <span class="extends">import</span> React<span class="extends"> from</span> 'react'; <br>
+                <br>
+                <span class="extends">export default function</span> <span class="keyword">Hello</span><span
+                    class="skobki">&#40;</span>props<span class="skobki">&#41;</span> <span class="skobki">&#123;</span>
+                <br>
+                &nbsp;span class="extends">if</span> <span class="skobki">&#40;</span>props.name<span
+                    class="skobki">&#41;</span> <span class="skobki">&#123;</span> <br>
+                &nbsp;&nbsp;<span class="extends">return</span> &#60;h1&#62;Hello, <span
+                    class="skobki">&#123;</span>props.name<span class="skobki">&#125;</span>!&#60;/h1&#62;;<br>
+                &nbsp;<span class="skobki">&#125;</span> <span class="extends">else</span> <span
+                    class="skobki">&#123;</span>
+                &nbsp;&nbsp;<span class="extends">return</span> &#60;span&#62;Hey, stranger&#60;/span&#62;; <br>
+                &nbsp;<span class="skobki">&#125;</span> <br>
+                <span class="skobki">&#125;</span>
+            </div>
+            <div class="intro">Фиктивные модули</div>
+            <p>Некоторые модули могут неправильно работать внутри тестовой среды или совсем не нужны для теста. Подмена
+                таких модулей фиктивными облегчит написание тестов для вашего кода.
+                Пример подмены компонента фиктивным:
+            </p>
+            <div class="code-block">
+                <span class="extends">import</span> <span class="skobki">&#123;</span> act <span class="extends">as</span> domAct <span class="skobki">&#125;</span> <span class="extends">from</span> <span class="skobki">"react-dom/test-utils"</span>; <br>
+                <span class="extends">import</span> <span class="skobki">&#123;</span> act <span class="extends">as</span> testAct, create <span class="skobki">&#125;</span> <span class="extends">from</span> <span class="skobki">"react-test-renderer"</span>; <br>
+                <span class="hex">// ...</span> <br>
+                <span class="extends">let</span> root; <br>
+                <span class="keyword">domAct</span><span class="skobki">&#40;&#40;&#41;</span> => <span class="skobki">&#123;</span> <br>
+                &nbsp;<span class="keyword">testAct</span><span class="skobki">&#40;&#40;&#41;</span> => <span class="skobki">&#123;</span> <br>
+                &nbsp;&nbsp;root = create<span class="skobki">&#40;</span> &#60;App/&#62;<span class="skobki">&#41;</span>; <br>
+                &nbsp;<span class="skobki">&#125;</span><span class="skobki">&#41;</span>; <br>
+                <span class="skobki">&#125;</span><span class="skobki">&#41;</span>; <br>
+                <span class="keyword">expect</span><span class="skobki">&#40;</span>root<span class="skobki">&#41;</span>.<span class="keyword">toMatchSnapshot </span><span class="skobki">&#40;</span><span class="skobki">&#41;</span>;
+            </div>
+            <p>Для более подробного ознакомления с тетированием React вы можете прочесть оффициальную документацию.</p>
+        </div>
+        <div class="button-container">
+            <a href="../pages/table-of-contents.html" class="go-to-toc-button">
+                Перейти к оглавлению <span>&rarr;</span>
+            </a>
+        </div>
+
+    </main>
+    <footer>
+        <div class="footer">
+        <p>© Жиляк</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

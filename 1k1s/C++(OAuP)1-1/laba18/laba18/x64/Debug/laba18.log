@@ -1,0 +1,5 @@
+﻿  laba18.cpp
+C:\Users\vugor\OneDrive\Рабочий стол\C++(OAuP)\laba18\laba18\laba18.cpp(11,22): warning C4244: return: преобразование "double" в "float", возможна потеря данных
+C:\Users\vugor\OneDrive\Рабочий стол\C++(OAuP)\laba18\laba18\laba18.cpp(16,22): warning C4244: return: преобразование "double" в "float", возможна потеря данных
+C:\Users\vugor\OneDrive\Рабочий стол\C++(OAuP)\laba18\laba18\laba18.cpp(45,19): warning C4305: инициализация: усечение из "double" в "float"
+  laba18.vcxproj -> C:\Users\vugor\OneDrive\Рабочий стол\C++(OAuP)\laba18\x64\Debug\laba18.exe

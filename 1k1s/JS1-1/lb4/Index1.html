@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Пользовательские объекты JS. Специальные операторы</title>
+    <script type="text/javascript">
+        function pr1() {
+            function Gruppa() {
+                this.students = [];
+
+                this.add_stud = function(student) {
+                    this.students.push(student);
+                };
+
+                this.sub_stud = function(num) {
+                    this.students.splice(0, num);
+                };
+
+                this.getNumberOfStudents = function() {
+                    return this.students.length;
+                };
+            }
+            const gr1 = new Gruppa();
+            const gr2 = new Gruppa();
+            const gr3 = new Gruppa();
+
+            gr1.add_stud('Студент1');
+            gr1.add_stud('Студент2');
+            gr1.add_stud('Студент3');
+
+            gr2.add_stud('Студент1');
+            gr2.add_stud('Студент2');
+            gr2.add_stud('Студент3');
+            gr2.add_stud('Студент4');
+
+            gr3.add_stud('Студент1');
+            gr3.add_stud('Студент2');
+            gr3.add_stud('Студент3');
+            gr3.add_stud('Студент4');
+            gr3.add_stud('Студент5');
+
+            gr1.sub_stud(1);
+            gr3.sub_stud(2);
+
+            document.write('Группа 1: ' + gr1.getNumberOfStudents() + ' студента<br>');
+            document.write('Группа 2: ' + gr2.getNumberOfStudents() + ' студента<br>');
+            document.write('Группа 3: ' + gr3.getNumberOfStudents() + ' студента<br>');
+
+            document.write('add_stud' in gr1);
+            document.write("<br>Тип Gruppa gr2: " + typeof gr2 + "<br>");
+        }
+        function pr2() {
+            function Student(firstName, lastName, physics, math, informatics) {
+                this.firstName = firstName;
+                this.lastName = lastName;
+                this.physics = physics;
+                this.math = math;
+                this.informatics = informatics;
+
+                this.wrName = function() {
+                    document.write('Имя: ' + this.firstName + ', Фамилия: ' + this.lastName);
+                };
+                this.Average = function() {
+                    return (this.physics + this.math + this.informatics) / 3;
+                };
+            }
+
+            const st1 = new Student("Виолетта", "Угоренко", 90, 70, 72);
+            const st2 = new Student("Иван", "Петров", 75, 85, 70);
+            const st3 = new Student("Юлия", "Худоченко", 65, 55, 68);
+
+            st1.additionalProperty = "Девочка, ";
+            st2.additionalProperty = "Мальчик, ";
+            st3.additionalProperty = "Девочка, ";
+
+            document.write('<p>Студент 1: ' + st1.additionalProperty + st1.firstName + ' ' + st1.lastName + ', Средний балл: ' + st1.Average() + '</p>');
+            document.write('<p>Студент 2: ' + st2.additionalProperty + st2.firstName + ' ' + st2.lastName + ', Средний балл: ' + st2.Average() + '</p>');
+            document.write('<p>Студент 3: ' + st3.additionalProperty + st3.firstName + ' ' + st3.lastName + ', Средний балл: ' + st3.Average() + '</p>');
+            
+            document.write('firstName' in st1);
+            document.write("<br>Тип свойства physics объекта Student st2: " + typeof st2.physics + "<br>");
+        }
+        function pr3()
+        {
+            let ArrayM = ["concat", "pow", "pop", "push", "shift"];
+            let MathM = ["round", "floor", "sline", "sort", "cos"];
+            var Str = "Угоренко Виолетта Романовна";
+
+            delete ArrayM[4];
+            document.write(1 in MathM);
+
+            document.write (MathM instanceof Array);
+            
+            function returnValue() {
+            return 5;
+            }
+
+            document.write("<br>Тип Array: " + typeof ArrayM + "<br>");
+            document.write("Тип Math: " + typeof MathArray + "<br>");
+            document.write("Тип Str: " + typeof Str + "<br>");
+            document.write("Тип returnValue: " + typeof returnValue + "<br>");
+        }
+    </script>
+</head>
+<body>
+    <input type='button' value='pr1' onclick='pr1()'>
+    <input type='button' value='pr2' onclick='pr2()'>
+    <input type='button' value='pr3' onclick='pr3()'>
+</body>
+</html>

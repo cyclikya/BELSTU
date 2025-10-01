@@ -1,0 +1,155 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k2s\\PP2-2\\lab4\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{982F1541-3FD1-4B21-968C-C4CC1146AFB7}|Test_SL_LES\\Test_SL_LES.csproj|c:\\users\\vugor\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k2s\\pp2-2\\lab4\\test_sl_les\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{982F1541-3FD1-4B21-968C-C4CC1146AFB7}|Test_SL_LES\\Test_SL_LES.csproj|solutionrelative:test_sl_les\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DBA7BCD0-0724-4AB2-A049-54FAE393FD47}|Test_ServiceLocator\\Test_ServiceLocator.csproj|c:\\users\\vugor\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k2s\\pp2-2\\lab4\\test_servicelocator\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DBA7BCD0-0724-4AB2-A049-54FAE393FD47}|Test_ServiceLocator\\Test_ServiceLocator.csproj|solutionrelative:test_servicelocator\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{64A1303A-1772-4DDA-BE3C-D398E888D639}|ServiceLocator\\ServiceLocator.csproj|c:\\users\\vugor\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k2s\\pp2-2\\lab4\\servicelocator\\servicescope.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{64A1303A-1772-4DDA-BE3C-D398E888D639}|ServiceLocator\\ServiceLocator.csproj|solutionrelative:servicelocator\\servicescope.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{64A1303A-1772-4DDA-BE3C-D398E888D639}|ServiceLocator\\ServiceLocator.csproj|c:\\users\\vugor\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k2s\\pp2-2\\lab4\\servicelocator\\serviceprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{64A1303A-1772-4DDA-BE3C-D398E888D639}|ServiceLocator\\ServiceLocator.csproj|solutionrelative:servicelocator\\serviceprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{64A1303A-1772-4DDA-BE3C-D398E888D639}|ServiceLocator\\ServiceLocator.csproj|c:\\users\\vugor\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k2s\\pp2-2\\lab4\\servicelocator\\scopelocator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{64A1303A-1772-4DDA-BE3C-D398E888D639}|ServiceLocator\\ServiceLocator.csproj|solutionrelative:servicelocator\\scopelocator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{64A1303A-1772-4DDA-BE3C-D398E888D639}|ServiceLocator\\ServiceLocator.csproj|c:\\users\\vugor\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k2s\\pp2-2\\lab4\\servicelocator\\singletonlocator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{64A1303A-1772-4DDA-BE3C-D398E888D639}|ServiceLocator\\ServiceLocator.csproj|solutionrelative:servicelocator\\singletonlocator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{64A1303A-1772-4DDA-BE3C-D398E888D639}|ServiceLocator\\ServiceLocator.csproj|c:\\users\\vugor\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k2s\\pp2-2\\lab4\\servicelocator\\transientlocator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{64A1303A-1772-4DDA-BE3C-D398E888D639}|ServiceLocator\\ServiceLocator.csproj|solutionrelative:servicelocator\\transientlocator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 204,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k2s\\PP2-2\\lab4\\Test_SL_LES\\Program.cs",
+              "RelativeDocumentMoniker": "Test_SL_LES\\Program.cs",
+              "ToolTip": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k2s\\PP2-2\\lab4\\Test_SL_LES\\Program.cs",
+              "RelativeToolTip": "Test_SL_LES\\Program.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAQwJwAAABEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-23T08:50:44.075Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ServiceScope.cs",
+              "DocumentMoniker": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k2s\\PP2-2\\lab4\\ServiceLocator\\ServiceScope.cs",
+              "RelativeDocumentMoniker": "ServiceLocator\\ServiceScope.cs",
+              "ToolTip": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k2s\\PP2-2\\lab4\\ServiceLocator\\ServiceScope.cs",
+              "RelativeToolTip": "ServiceLocator\\ServiceScope.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T12:30:18.559Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k2s\\PP2-2\\lab4\\Test_ServiceLocator\\Program.cs",
+              "RelativeDocumentMoniker": "Test_ServiceLocator\\Program.cs",
+              "ToolTip": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k2s\\PP2-2\\lab4\\Test_ServiceLocator\\Program.cs",
+              "RelativeToolTip": "Test_ServiceLocator\\Program.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAQwDEAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T12:24:08.053Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "TransientLocator.cs",
+              "DocumentMoniker": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k2s\\PP2-2\\lab4\\ServiceLocator\\TransientLocator.cs",
+              "RelativeDocumentMoniker": "ServiceLocator\\TransientLocator.cs",
+              "ToolTip": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k2s\\PP2-2\\lab4\\ServiceLocator\\TransientLocator.cs",
+              "RelativeToolTip": "ServiceLocator\\TransientLocator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T12:11:07.587Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "SingletonLocator.cs",
+              "DocumentMoniker": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k2s\\PP2-2\\lab4\\ServiceLocator\\SingletonLocator.cs",
+              "RelativeDocumentMoniker": "ServiceLocator\\SingletonLocator.cs",
+              "ToolTip": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k2s\\PP2-2\\lab4\\ServiceLocator\\SingletonLocator.cs",
+              "RelativeToolTip": "ServiceLocator\\SingletonLocator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T12:11:06.762Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ScopeLocator.cs",
+              "DocumentMoniker": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k2s\\PP2-2\\lab4\\ServiceLocator\\ScopeLocator.cs",
+              "RelativeDocumentMoniker": "ServiceLocator\\ScopeLocator.cs",
+              "ToolTip": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k2s\\PP2-2\\lab4\\ServiceLocator\\ScopeLocator.cs",
+              "RelativeToolTip": "ServiceLocator\\ScopeLocator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T12:11:05.525Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ServiceProvider.cs",
+              "DocumentMoniker": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k2s\\PP2-2\\lab4\\ServiceLocator\\ServiceProvider.cs",
+              "RelativeDocumentMoniker": "ServiceLocator\\ServiceProvider.cs",
+              "ToolTip": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k2s\\PP2-2\\lab4\\ServiceLocator\\ServiceProvider.cs",
+              "RelativeToolTip": "ServiceLocator\\ServiceProvider.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAUAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T11:57:58.913Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 150,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{6324226f-61b6-4f28-92ee-18d4b5fe1e48}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

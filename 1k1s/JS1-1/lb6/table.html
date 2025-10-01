@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Информация</title>
+</head>
+<body>
+    <table border="1" style="border-collapse: collapse;">
+        <tr>
+            <th>Свойство</th>
+            <th>Значение</th>
+        </tr>
+        <tr>
+            <td><b>Navigator.userAgent</b> (Информация о браузере 
+                пользователя)</td>
+            <td id="userAgent"></td>
+        </tr>
+        <tr>
+            <td><b>Navigator.appVersion</b>(версия браузера)</td>
+            <td id="appVersion"></td>
+        </tr>
+        <tr>
+            <td><b>Navigator.appName</b>(название браузера)</td>
+            <td id="appName"></td>
+        </tr>
+        <tr>
+            <td><b>Navigator.appCodeName</b>(кодовое 
+                название браузера)</td>
+            <td id="appCodeName"></td>
+        </tr>
+        <tr>
+            <td><b>Navigator.platform</b>(ОС)</td>
+            <td id="platform"></td>
+        </tr>
+        <tr>
+            <td><b>Navigator.javaEnabled()</b>(включена ли поддержка Java в браузере пользователя )</td>
+            <td id="javaEnabled"></td>
+        </tr>
+        <tr>
+            <td><b>Screen.width / Screen.height</b>(определяет ширину/высоту экрана пользователя)</td>
+            <td id="screenSize"></td>
+        </tr>
+        <tr>
+            <td><b>Screen.colorDepth</b>(узнать глубину цвета 
+                (измеряется в битах на пиксель))</td>
+            <td id="colorDepth"></td>
+        </tr>
+        <tr>
+            <td><b>HistoryLength</b>(узнать количество 
+                посещенных URL, хранящихся в списке)</td>
+            <td id="historyLength"></td>
+        </tr>
+        <tr>
+            <td><b>Location.href</b>(хранит URL текущего документа целиком)</td>
+            <td id="locationHref"></td>
+        </tr>
+        <tr>
+            <td><b>Location.pathname</b>(узнать путь к загруженному документу)</td>
+            <td id="locationPathname"></td>
+        </tr>
+        <tr>
+            <td><b>Location.host</b>(содержит имя домена загруженного документа)</td>
+            <td id="locationHost"></td>
+        </tr>
+    </table>
+    <button onclick="closeWindow()">Закрыть окно</button>
+
+    <script>
+            document.getElementById("userAgent").textContent = navigator.userAgent;
+            document.getElementById("appVersion").textContent = navigator.appVersion;
+            document.getElementById("appName").textContent = navigator.appName;
+            document.getElementById("appCodeName").textContent = navigator.appCodeName;
+            document.getElementById("platform").textContent = navigator.platform;
+            document.getElementById("javaEnabled").textContent = navigator.javaEnabled();
+            document.getElementById("screenSize").textContent = `${screen.width} / ${screen.height}`;
+            document.getElementById("colorDepth").textContent = screen.colorDepth;
+            document.getElementById("historyLength").textContent = history.length;
+            document.getElementById("locationHref").textContent = location.href;
+            document.getElementById("locationPathname").textContent = location.pathname;
+            document.getElementById("locationHost").textContent = location.host; //не работает из-за ограничений безопасности браузера
+        function closeWindow() {
+            window.close(); // закрыть текущее окно
+        }
+    </script>
+</body>
+</html>

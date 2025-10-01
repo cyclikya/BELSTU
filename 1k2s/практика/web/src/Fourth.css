@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap');
+
+.fourth{
+    z-index: 5;
+    height: 45vh;
+    background-color: #d2ccbc;
+    display: grid;
+    grid-template-columns: 30% 70%; /* Две колонки одинаковой ширины */
+    align-items: center;
+    padding: 1vw;
+  }
+  
+  .contact-info {
+    grid-column: 2; /* Левая колонка */
+  }
+
+  h2{
+    margin-left: 5vw;
+    font-size: 2.6vw;
+    font-weight: 1000;
+    margin-bottom: 0;
+  }
+
+  .contact-info p{
+    margin-left: 5vw;
+    width: 70vw;
+    text-align: left;
+    font-size: 1.7vw;
+    font-weight: 1000;
+  }
+  
+  .logo {
+    grid-column: 1;
+    display: flex;
+    justify-content:center;
+  }
+  
+  .logo img {
+    margin-top: -1vw;
+    height: 49vh;
+    padding: 0;
+  }

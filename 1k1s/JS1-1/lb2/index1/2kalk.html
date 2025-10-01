@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        kalk
+    </title>
+</head>
+<body>
+    <script type="text/javascript">
+        var st = () => {
+            var pr1 = (10 + 5);
+            document.write('<p style="color: brown; font-size: 15pt; font-family: Times New Roman">Сложение двух чисел = ' + pr1 + '</p>');
+            var pr2 = ("10" + "5");
+            document.write('<p style="color: brown; font-size: 15pt; font-family: Times New Roman">Сложение двух строк = ' + pr2 + '</p>');
+            var pr3 = (30 + "45");
+            document.write('<p style="color: brown; font-size: 15pt; font-family: Times New Roman">Сложение числа и строки = ' + pr3 + '</p>');
+            var pr4 = ("90" + 10);
+            document.write('<p style="color: brown; font-size: 15pt; font-family: Times New Roman">Сложение строки и числа = ' + pr4 + '</p>');
+            alert("Результатом сложения строки и числа всегда будет строка");
+        }
+    </script>
+    <input type="button" value="Начать" onclick="st()">
+</body>
+</html>

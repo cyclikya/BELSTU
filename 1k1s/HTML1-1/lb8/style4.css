@@ -1,0 +1,55 @@
+.BELSTU, .IT, .PIM, .HTIT {
+    display: inline-block;
+    border: 1px solid black;
+    width: 20%;
+    height: 20px;
+    text-align: center;
+    margin-left: 4%;
+    position: relative;
+}
+
+.BELSTU a, .IT a, .PIM a, .HTIT a {text-decoration: none;}
+
+.ITbl {
+    display: none;
+    position: absolute;
+    width: 100%;
+    border: 1px solid black;
+    text-align: left;
+}
+
+
+.BELSTU {
+    background: url('BELSTU.png') left top no-repeat;
+    background-size: 20px 20px;
+}
+
+.IT {
+    background: url('BELSTU.png') left top no-repeat;
+    background-size: 20px 20px;
+    transition: background-image 0s linear;}
+.IT:hover {background-image: url('FIT.jpg');}
+
+.PIM {
+    background: url('BELSTU.png') left top no-repeat;
+    background-size: 20px 20px;
+    transition: background-image 0s linear;}
+.PIM:hover {background-image: url('PIM.png');}
+
+.HTIT {
+    background: url('BELSTU.png') left top no-repeat;
+    background-size: 20px 20px;
+    transition: background-image 0s linear;}
+.HTIT:hover {background-image: url('HTIT.png');}
+
+
+li{
+    text-align: center;
+    margin-left: -40px;
+    padding: 3px;
+    list-style-type: none;
+    border: 1px solid black;
+}
+ul{margin: 0px;}
+
+.IT:hover .ITbl {display: block;}

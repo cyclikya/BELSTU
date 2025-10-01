@@ -1,0 +1,70 @@
+.zd6 *{
+    display: block;
+}
+
+@keyframes img6_1 {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(200px);
+    }
+}
+@keyframes img6_2 {
+    0% {
+        transform: translateX(0) scaleX(1) scaleY(1);
+    }
+    50% {
+        transform: translateX(400px) scaleX(1.5) scaleY(0.5);
+    }
+    100% {
+        transform: translateX(200px) scaleX(1) scaleY(1);
+    }
+}
+@keyframes img6_3 {
+    0% { 
+        left: 0;  opacity: 0; 
+    }
+    50% { 
+        left: 50%; opacity: 1; 
+    }
+    100% { 
+        left: 100%; opacity: 0; 
+    }
+}
+@keyframes img6_4 {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(50px);
+
+    }
+}
+@keyframes img6_5 {
+    0% {
+        left: 150px;
+        top: 0;
+    }
+    25% {
+        left: 300px;
+        top: 0;
+    }
+    50% {
+        left: 300px;
+        top: 150px;
+    }
+    75% {
+        left: 150px;
+        top: 150px;
+    }
+    100% {
+        left: 150px;
+        top: 0;
+    }
+}
+.zd6 .first {animation: img6_1 3s linear infinite;}
+.zd6 .second {animation: img6_2 3s linear infinite;}
+.zd6 .third {animation: img6_3 3s linear infinite; position: relative;}
+.zd6 .fourth {animation: img6_4 3s linear infinite;}
+.zd6 .fifth {animation: img6_5 3s linear infinite; position: relative;}

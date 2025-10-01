@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Хуки</title>
+    <link rel="icon" href="../Dependencies/img/favicon.ico"/>
+    <link rel="stylesheet" href="../Dependencies/css/main.css">
+    <link rel="stylesheet" href="../Dependencies/css/header.css">
+    <link rel="stylesheet" href="../Dependencies/css/body.css">
+    <link rel="stylesheet" href="../Dependencies/css/footer.css">
+    <link rel="stylesheet" href="../Dependencies/css/first.css">
+    <link rel="stylesheet" href="../Dependencies/css/text.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@500;600&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;1,100&family=Open+Sans:ital,wght@0,400;1,400;1,500&family=Roboto+Condensed:wght@500;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="body">
+    <header class="header">
+        <img src="../Dependencies/img/1174949_js_react js_logo_react_react native_icon.png" alt="My Photo"
+            class="photo" />
+        <nav class="navbar">
+            <ul>
+                <li>
+                    <a href="../main.html">React</a>
+                </li>
+            </ul>
+            <div><a href="../pages/table-of-contents.html">Оглавление</a>
+                <a href="https://belstu.by/">Сайт BSTU</a>
+                <a href="https://react.dev/">Официальная документация</a>
+                <a href="../labs/labs.html">Лабораторный практикум</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <div class="text">
+            <div class="intro">Хуки</div>
+            <p><span class="abbr">Хуки</span> — нововведение в React 16.8, которое позволяет использовать состояние
+                и другие возможности React без
+                написания классов.
+            </p>
+            <div class="code-block">
+                <span class="extends">import</span> React, <span class="skobki">&#123;</span> useState <span
+                    class="skobki">&#125;</span> <span class="extends">from</span> 'react'; <br>
+
+                <span class="extends">Function</span> <span class="keyword"></span><span
+                    class="skobki">&#40;</span><span class="skobki">&#41;</span> <span class="skobki">&#123;</span> <br>
+                <span class="hex">// Объявление переменной состояния, которую мы назовём "count" <br>
+                    <span class="extends">const</span> <span class="skobki">&#91;</span>count, setCount<span
+                        class="skobki">&#93;</span> = <span class="keyword">useState</span><span
+                        class="skobki">&#40;</span>0<span class="skobki">&#41;</span>; <br>
+                    <span class="extends">return</span> <span class="skobki">&#123;</span> <br>
+                    &nbsp;&#60;div&#62; <br>
+                    &nbsp;&nbsp;&#60;p&#62;Вы кликнули <span class="skobki">&#123;</span>count<span
+                        class="skobki">&#125;</span>раз&#60;/p&#62; <br>
+                    &nbsp;&nbsp;&#60;<span class="return-statement">button</span> <span
+                        class="extends">onClick</span>=<span class="skobki">&#123;</span><span
+                        class="skobki">&#40;&#41;</span> => <span class="keyword">setCount</span><span
+                        class="skobki">&#40;</span>count + 1<span class="skobki">&#41;</span><span
+                        class="skobki">&#125;</span>&#62; <br>
+                    &nbsp;&nbsp;Нажми на меня <br>
+                    &nbsp; &#60;/<span class="return-statement">button</span>&#62; <br>
+                    &#60;/ div &#62; <br>
+                    <span class="skobki">&#41;</span>; <br>
+                    <span class="skobki">&#125;</span>
+            </div>
+            <p><span class="abbr">HOOKS</span> — механизм в React, который позволяет работать полностью без классов.</p>
+            <p><span class="abbr">Хуки</span> — это функции, с помощью которых вы можете «подцепиться» к состоянию
+                и методам жизненного цикла React из функциональных компонентов.
+            </p>
+            <p>Хуки не работают внутри классов — они дают вам возможность использовать React без классов </p>
+            <div class="intro">Введение в хуки</div>
+            <p>Перед тем, как начинать детальный разбор, стоит обратите внимание, что хуки:
+            <ul>
+                <li>Полностью на ваше усмотрение. <br> Вы можете попробовать хуки в одних компонентах, не изменяя код
+                    в других.
+                </li>
+                <li>100% обратно совместимы.<br> Хуки не содержат изменений, которые могут поломать ваш
+                    существующий код.
+                </li>
+                <li>Доступны прямо сейчас.<br> Хуки доступны с выходом версии 16.8.0.
+                </li>
+                <li>Хуки не меняют ваши знания о концепциях в React.  <br>Вместо этого, хуки предоставляют более прямой
+                    доступ к API уже знакомых вам понятий: пропсов, состояния, контекста, рефов, и жизненного цикла.
+                </li>
+            </ul>
+            </p>
+            <p>Хуки решают множество, казалось бы, несвязанных между собой, проблем в React:
+            <ul>
+                <li>Трудно повторно использовать логику состояний между компонентами.<br> В React нет способа
+                    «присоединить»
+                    повторно используемое поведение к компоненту (например, подключение к хранилищу).
+                </li>
+                <li>Сложные компоненты становятся трудными для понимания. <br>Часто приходится поддерживать компоненты,
+                    которые изначально были простыми, но превратились в неуправляемый беспорядок. Каждый метод
+                    жизненного цикла часто содержит смесь несвязанной логики.
+                </li>
+                <li>Классы путают как людей, так и машины.<br> Вдобавок к усложнению организации кода и его повторного
+                    использования, классы создают существенный барьер в изучении React. Нужно понимать, как работает
+                    <span class="highlighted-text">this</span> в JavaScript, поведение которого отличается от
+                    большинства языков.
+                </li>
+            </ul>
+            </p>
+            <div class="intro">Хук состояния</div>
+            <p>Перед работой с определенным видом хука, стоит разобраться что же такое хук.
+            </p>
+            <p><span class="abbr">Хук</span> — это специальная функция, которая позволяет «подцепиться» к возможностям
+                React.
+            </p>
+            <p>!!!Хуки НЕ работают внутри классов, а используются вместо них.
+            </p>
+            <div class="intro">Виды хуков</div>
+            <p>Вот основные виды хуков:
+            <ul>
+                <li><span class="highlighted-text">useState</span>: предназначен для управления состоянием компонентов
+                </li>
+                <li><span class="highlighted-text">useEffect</span>: предназначен для перехвата различного рода
+                    изменений в компонентах, которые нельзя обработать внутри компонентов
+                </li>
+                <li><span class="highlighted-text">useContext</span>: позволяет подписываться на контекст React
+                </li>
+                <li><span class="highlighted-text">useReducer</span>: позволяет управлять локальным состоянием сложных
+                    компонентов
+                </li>
+                <li><span class="highlighted-text">useCallback</span>: позволяет управлять функциями обратного вызова
+                </li>
+                <li><span class="highlighted-text">useMemo</span>: предназначен для управления мемоизированными (грубо
+                    говоря кэшированными) значениями
+                </li>
+                <li><span class="highlighted-text">useId</span>: предназначен для генерации уникального идентификатора
+                </li>
+                <li><span class="highlighted-text">useTransition</span>: применяется для создания переходов при
+                    рендеринге
+                </li>
+            </ul>
+            </p>
+            <br>
+            <br>
+            <p>Ранее приведенный код функционального компонента с использованием хука.
+            </p>
+            <p>Пример начинается с того, что импортирует хук <span class="highlighted-text">useState</span> из React.
+            </p>
+            <p>В функциональном компоненте нам недоступен <span class="highlighted-text">this</span>, поэтому мы не
+                можем задать или считать состояние через
+                <span class="highlighted-text">this.state</span>. Вместо этого мы вызываем хук <span
+                    class="highlighted-text">useState</span> напрямую изнутри нашего компонента.
+            </p>
+            <div class="code-block">
+                <span class="extends">import</span> React, <span class="skobki">&#123;</span> useState <span
+                    class="skobki">&#125;</span> <span class="extends">from</span> 'react'; <br>
+
+                <span class="extends">Function</span> <span class="keyword"></span><span
+                    class="skobki">&#40;</span><span class="skobki">&#41;</span> <span class="skobki">&#123;</span> <br>
+                <span class="hex">// Объявление переменной состояния, которую мы назовём "count" <br>
+                    <span class="extends">const</span> <span class="skobki">&#91;</span>count, setCount<span
+                        class="skobki">&#93;</span> = <span class="keyword">useState</span><span
+                        class="skobki">&#40;</span>0<span class="skobki">&#41;</span>; <br>
+                    <span class="extends">return</span> <span class="skobki">&#123;</span> <br>
+                    &nbsp;&#60;div&#62; <br>
+                    &nbsp;&nbsp;&#60;p&#62;Вы кликнули <span class="skobki">&#123;</span>count<span
+                        class="skobki">&#125;</span>раз&#60;/p&#62; <br>
+                    &nbsp;&nbsp;&#60;<span class="return-statement">button</span> <span
+                        class="extends">onClick</span>=<span class="skobki">&#123;</span><span
+                        class="skobki">&#40;&#41;</span> => <span class="keyword">setCount</span><span
+                        class="skobki">&#40;</span>count + 1<span class="skobki">&#41;</span><span
+                        class="skobki">&#125;</span>&#62; <br>
+                    &nbsp;&nbsp;Нажми на меня <br>
+                    &nbsp; &#60;/<span class="return-statement">button</span>&#62; <br>
+                    &#60;/ div &#62; <br>
+                    <span class="skobki">&#41;</span>; <br>
+                    <span class="skobki">&#125;</span>
+            </div>
+            <p>Что делает вызов useState?<br>
+                Он объявляет «переменную состояния». Таким образом мы можем «сохранить» некоторые значения между
+                вызовами функции. <br>
+                <span class="highlighted-text">useState</span> — это новый способ использовать те же возможности, что
+                даёт this.state в
+                классах. Обычно переменные «исчезают» при выходе из функции. К переменным состояния это не относится,
+                потому что их сохраняет React.
+            </p>
+            <p>Какие аргументы передавать useState? <br>
+                Единственный аргумент <span class="highlighted-text">useState</span> — это исходное состояние. В отличие
+                от случая с классами, состояние может быть и не объектом, а строкой или числом, если нам так удобно.
+                Поскольку в нашем примере отслеживается количество сделанных пользователем кликов, мы передаём 0 в
+                качестве исходного значения переменной.
+            </p>
+            <p>Что возвращается из useState? <br>
+                Вызов <span class="highlighted-text">useState</span> вернёт пару значений: текущее состояние и функцию,
+                обновляющую состояние. Поэтому мы пишем :
+            <div class="code-block"><span class="extends">const</span> <span class="skobki">&#91;</span>count,
+                setCount<span class="skobki">&#93;</span> = <span class="keyword">useState</span><span
+                    class="skobki">&#40;</span><span class="skobki">&#41;</span>; <br></div>
+            </p>
+            <p> Это похоже на <span class="highlighted-text">this.state.count</span> и <span
+                    class="highlighted-text">this.setState</span> в классах, с той лишь разницей, что сейчас мы
+                принимаем
+                их сразу в паре.</p>
+            <br>
+            <br>
+            <p>Мы объявляем переменную состояния <span class="highlighted-text">count</span> и устанавливаем ей значение
+                0. React будет помнить текущее
+                (наиболее свежее) значение между рендерингами и передавать его нашей функции. Если мы захотим изменить
+                <span class="highlighted-text">count</span>, мы вызовем <span class="highlighted-text">setCount</span>.
+            </p>
+            <p>Чтобы  отобразить текущее состояние, необходимо использовать переменную <span
+                    class="highlighted-text">count</span> напрямую:
+            </p>
+            <div class="code-block">&#60;p&#62;Вы кликнули <span class="skobki">&#123;</span>count<span
+                    class="skobki">&#125;</span>раз&#60;/p&#62;
+            </div>
+            <p>Для обновления состояния count используется код:
+            </p>
+            <div class="code-block">
+                &nbsp;&nbsp;&#60;<span class="return-statement">button</span> <span class="extends">onClick</span>=<span
+                    class="skobki">&#123;</span><span class="skobki">&#40;&#41;</span> => <span
+                    class="keyword">setCount</span><span class="skobki">&#40;</span>count + 1<span
+                    class="skobki">&#41;</span><span class="skobki">&#125;</span>&#62; <br>
+                Нажми на меня <br>
+                &nbsp; &#60;/<span class="return-statement">button</span>&#62; <br>
+                &#60;/ div &#62;
+            </div>
+            <div class="intro">Что делают квадратные скобки?</div>
+            <p>Вы могли обратить внимание на квадратные скобки в месте, где объявляется переменная состояния:
+            </p>
+            <div class="code-block"><span class="extends">const</span> <span class="skobki">&#91;</span>count,
+                setCount<span class="skobki">&#93;</span> = <span class="keyword">useState</span><span
+                    class="skobki">&#40;</span>0<span class="skobki">&#41;</span>; <br></div>
+            <p>Такой синтаксис в JavaScript называется «деструктуризацией массивов (array destructuring)». Он означает,
+                что мы создаём две новые переменные, <span class="highlighted-text">count</span> и <span
+                    class="highlighted-text">setCount</span>. В <span class="highlighted-text">count</span> будет
+                записано первое значение,
+                вернувшееся из <span class="highlighted-text">useState</span>, а в <span
+                    class="highlighted-text">setCount</span> — второе, что равносильно такому коду:
+            </p>
+            <div class="code-block">
+                <span class="extends">var</span> countStateVariable = <span class="keyword">useState</span><span
+                    class="skobki">&#40;</span>'0'<span class="skobki">&#41;</span>; <span class="hex">// Возвращает
+                    пару значений</span> <br>
+                <span class="extends">var</span> count = countStateVariable<span class="skobki">&#91;</span>0<span
+                    class="skobki">&#93;</span>; <span class="hex">// Извлекаем первое значение</span> <br>
+                <span class="extends">var</span> setCount = countStateVariable<span class="skobki">&#91;</span>1<span
+                    class="skobki">&#93;</span>; <span class="hex">// Извлекаем второе значение</span> <br>
+            </div>
+            <br>
+            <br>
+            <p>Хук эффекта даёт вам возможность выполнять побочные эффекты в функциональном компоненте:
+            </p>
+            <div class="code-block">
+                <span class="extends">import</span> React, <span class="skobki">&#123;</span> useState, useEffect <span
+                    class="skobki">&#125;</span> <span class="extends">from</span> 'react'; <br>
+                <span class="extends">function</span> <span class="keyword">Example</span><span
+                    class="skobki">&#40;</span><span class="skobki">&#41;</span> <span class="skobki">&#123;</span> <br>
+                <span class="extends">const</span> <span class="skobki">&#91;</span>count,
+                setCount<span class="skobki">&#93;</span> = <span class="keyword">useState</span><span
+                    class="skobki">&#40;</span>0<span class="skobki">&#41;</span>; <br>
+
+                <span class="hex"> // Аналогично componentDidMount и componentDidUpdate:</span> <br>
+                <span class="keyword">useEffect</span><span class="skobki">&#40;&#40;&#41;</span> => <span
+                    class="skobki">&#123;</span> <br>
+                <span class="hex">// Обновляем заголовок документа с помощью API браузера</span> <br>
+                document.title = <span class="skobki">`Вы нажали &#36;&#123;</span>count<span
+                    class="skobki">&#125;раз`</span> ; <br>
+                <span class="skobki">&#125;&#41;</span>;<br>
+                <span class="extends">return</span> <span class="skobki">&#123;</span> <br>
+                &nbsp;&#60;div&#62; <br>
+                &nbsp;&nbsp;&#60;p&#62;Вы нажали <span class="skobki">&#123;</span>count<span
+                    class="skobki">&#125;</span>раз&#60;/p&#62; <br>
+                &nbsp;&nbsp;&#60;<span class="return-statement">button</span> <span class="extends">onClick</span>=<span
+                    class="skobki">&#123;</span><span class="skobki">&#40;&#41;</span> => <span
+                    class="keyword">setCount</span><span class="skobki">&#40;</span>count + 1<span
+                    class="skobki">&#41;</span><span class="skobki">&#125;</span>&#62; <br>
+                &nbsp;&nbsp;Нажми на меня <br>
+                &nbsp; &#60;/<span class="return-statement">button</span>&#62; <br>
+                &#60;/ div &#62; <br>
+                <span class="skobki">&#41;</span>; <br>
+                <span class="skobki">&#125;</span>
+            </div>
+            <p>Побочными эффектами в React-компонентах могут быть: загрузка данных, оформление подписки и изменение DOM
+                вручную. Неважно, называете ли вы эти операции «побочными эффектами» (или просто «эффектами») или нет,
+                скорее всего вам доводилось ранее использовать их в своих компонентах.
+            </p>
+            <p>Хук <span class="highlighted-text">useEffect</span> представляет собой совокупность методов <span
+                    class="highlighted-text">componentDidMount</span>, <span
+                    class="highlighted-text">componentDidUpdate</span>, и
+                <span class="highlighted-text">componentWillUnmount</span>.
+            </p>
+            <div class="intro">Эффекты без сброса
+            </div>
+            <p>Иногда мы хотим выполнить дополнительный код после того, как React обновил DOM. <br>
+                Сетевые запросы, изменения DOM вручную, логирование — всё это примеры эффектов, которые не требуют
+                сброса. После того,
+                как мы запустили их, можно сразу забыть о них, ведь больше никаких дополнительных действий не требуется.
+            </p>
+            <p>Мы уже рассматривали этот пример немного ранее, но давайте разберём его более подробно:
+            </p>
+            <div class="code-block">
+                <span class="extends">import</span> React, <span class="skobki">&#123;</span> useState, useEffect <span
+                    class="skobki">&#125;</span> <span class="extends">from</span> 'react'; <br>
+                <span class="extends">function</span> <span class="keyword">Example</span><span
+                    class="skobki">&#40;</span><span class="skobki">&#41;</span> <span class="skobki">&#123;</span> <br>
+                <span class="extends">const</span> <span class="skobki">&#91;</span>count,
+                setCount<span class="skobki">&#93;</span> = <span class="keyword">useState</span><span
+                    class="skobki">&#40;</span>0<span class="skobki">&#41;</span>; <br>
+
+                <span class="hex"> // Аналогично componentDidMount и componentDidUpdate:</span> <br>
+                <span class="keyword">useEffect</span><span class="skobki">&#40;&#40;&#41;</span> => <span
+                    class="skobki">&#123;</span> <br>
+                <span class="hex">// Обновляем заголовок документа с помощью API браузера</span> <br>
+                document.title = <span class="skobki">`Вы нажали &#36;&#123;</span>count<span
+                    class="skobki">&#125;раз`</span> ; <br>
+                <span class="skobki">&#125;&#41;</span>;<br>
+                <span class="extends">return</span> <span class="skobki">&#123;</span> <br>
+                &nbsp;&#60;div&#62; <br>
+                &nbsp;&nbsp;&#60;p&#62;Вы нажали <span class="skobki">&#123;</span>count<span
+                    class="skobki">&#125;</span>раз&#60;/p&#62; <br>
+                &nbsp;&nbsp;&#60;<span class="return-statement">button</span> <span class="extends">onClick</span>=<span
+                    class="skobki">&#123;</span><span class="skobki">&#40;&#41;</span> => <span
+                    class="keyword">setCount</span><span class="skobki">&#40;</span>count + 1<span
+                    class="skobki">&#41;</span><span class="skobki">&#125;</span>&#62; <br>
+                &nbsp;&nbsp;Нажми на меня <br>
+                &nbsp; &#60;/<span class="return-statement">button</span>&#62; <br>
+                &#60;/ div &#62; <br>
+                <span class="skobki">&#41;</span>; <br>
+                <span class="skobki">&#125;</span>
+            </div>
+            <div class="intro">Подребнее о useEffect</div>
+            <p>Что же делает useEffect?
+            <ul>
+                <li>Используя этот хук, вы говорите React сделать что-то после рендера. React запомнит функцию (то есть
+                    «эффект»), которую вы передали и вызовет её после того, как внесёт все изменения в DOM.</li>
+                <li>В этом эффекте мы устанавливаем заголовок документа, но мы также можем выполнить запрос данных или
+                    вызвать какой-нибудь императивный API.</li>
+            </ul>
+            </p>
+            <br>
+            <p>Почему же мы вызываем useEffect непосредственно внутри компонента?
+            <ul>
+                <li>Это даёт нам доступ к переменной состояния <span class="highlighted-text">count</span> (или любым
+                    другим
+                    пропсам) прямиком из эффекта</li>
+                <li>Нам не нужен специальный API для доступа к этой переменной — она уже находится у нас в области
+                    видимости
+                    функции.</li>
+            </ul>
+            </p>
+            <br>
+            <p>Выполняется ли useEffect после каждого рендера?
+            </p>
+            <p>Разумеется! По умолчанию он будет выполняться после каждого рендера и обновления.
+            </p>
+            <p>Вместо того, чтобы воспринимать это с позиции «монтирования» и «обновления», советуется просто иметь в
+                виду, что эффекты выполняются после каждого рендера. React гарантирует, что он запустит эффект только
+                после того, как DOM уже обновился.
+            </p>
+            <p>В отличие от <span class="highlighted-text">componentDidMount</span> или <span
+                    class="highlighted-text">componentDidUpdate</span>, эффекты, запланированные с помощью <span
+                    class="highlighted-text">useEffect</span>, не
+                блокируют браузер при попытке обновить экран.
+            </p>
+            <p>Ваше приложение будет быстрее реагировать на действия пользователя, даже когда эффект ещё не закончился.
+            </p>
+            <div class="intro">Эффекты со сбросом</div>
+            <p>Ранее мы рассмотрели побочные эффекты, которые не требуют сброса.
+            </p>
+            <p>Однако, есть случаи, когда сброс всё же необходим. Например, нам может потребоваться установить
+                подписку на какой-нибудь внешний источник данных. В этом случае очень важно выполнять сброс, чтобы
+                не случилось утечек памяти!
+            </p>
+            <p>
+
+            </p>
+
+            <div class="code-block">
+                <span class="extends">import</span> React, <span class="skobki">&#123;</span> useState, useEffect <span
+                    class="skobki">&#125;</span> <span class="extends">from</span> 'react'; <br>
+                <br>
+                <span class="extends">function</span> <span class="keyword">FriendStatus</span><span
+                    class="skobki">&#40;</span>props<span class="skobki">&#41;</span> <span class="skobki">&#123;</span>
+                <br>
+                <span class="extends">const</span> <span class="skobki">&#91;</span>isOnline,
+                setIsOnline<span class="skobki">&#93;</span> = <span class="keyword">useState</span><span
+                    class="skobki">&#40;</span><span class="extends">null</span><span class="skobki">&#41;</span>; <br>
+                <br>
+                <span class="keyword">useEffect</span><span class="skobki">&#40;&#40;&#41;</span> => <span
+                    class="skobki">&#123;</span> <br>
+                <span class="extends">function</span> <span class="keyword">handleStatusChange</span><span
+                    class="skobki">&#40;</span>status<span class="skobki">&#41;</span> <span
+                    class="skobki">&#123;</span> <br>
+                <span class="keyword">setIsOnline</span><span class="skobki">&#40;</span>status.isOnline<span
+                    class="skobki">&#41;</span> <br>
+                <span class="skobki">&#125;</span> <br>
+                ChatAPI.<span class="keyword">subscribeToFriendStatus</span> <span
+                    class="skobki">&#40;</span>props.friend.id, handleStatusChange<span class="skobki">&#41;</span>;
+                <br>
+                <span class="hex">// Указываем, как сбросить этот эффект: </span> <br>
+                <span class="extends">return function</span> <span class="keyword">cleanup</span><span
+                    class="skobki">&#40;&#41; &#123;</span> <br>
+                ChatAPI.<span class="keyword">unsubscribeToFriendStatus</span>(props.friend.id, handleStatusChange);<br>
+                <span class="skobki">&#125;</span>;<br>
+                <span class="skobki">&#125;&#41;</span>;
+                <br>
+                <span class="extends">if</span> <span class="skobki">&#40;</span>isOnline === <span
+                    class="extends">null</span><span class="skobki">&#41;</span> <span class="skobki">&#123;</span> <br>
+                <span class="extends">return </span> <span class="skobki">'Загрузка...'</span>;<br>
+                <span class="skobki">&#125;</span>;<br>
+                <span class="extends">return </span> isOnline ? <span class="skobki">'В сети' : 'Не в сети'</span>; <br>
+                <span class="skobki">&#125;</span>;<br>
+            </div>
+            <p>При изучении кода могут возникнуть вопросы, давайте рассмотрим возможные:
+            <ul>
+                <li>Зачем мы вернули функцию из нашего эффекта? <br>
+                    Это необязательный механизм сброса эффектов. Каждый эффект может возвратить функцию, которая
+                    сбросит его. Это даёт нам возможность объединить вместе логику оформления и отмены подписки. Они,
+                    всё-таки, часть одного и того же эффекта!
+                </li>
+                <li>Когда именно React будет сбрасывать эффект? <br>
+                    React будет сбрасывать эффект перед тем, как компонент размонтируется. Однако, как мы уже знаем,
+                    эффекты выполняются не один раз, а при каждом рендере. Вот почему React также сбрасывает эффект
+                    из предыдущего рендера, перед тем, как запустить следующий.
+                </li>
+                <li>Нам не нужно возвращать именованную функцию из эффекта. Мы назвали её «сбросом», чтобы объяснить
+                    её предназначение. Вы можете по желанию возвратить стрелочную функцию или назвать её как-то
+                    по-другому.
+                </li>
+            </ul>
+            </p>
+            <div class="intro">Используйте разные хуки для разных задач
+            </div>
+            <p>Вы можете использовать несколько эффектов. Это даёт возможность разделять разную несвязанную между собой
+                логику между разными эффектами.
+            </p>
+            <p>С помощью хуков, мы можем разделить наш код основываясь на том, что он делает, а не по принципам методов
+                жизненного цикла. React будет выполнять каждый используемый эффект в компоненте, согласно порядку
+                их объявления.
+            </p>
+            <div class="intro">Оптимизация производительности за счёт пропуска эффектов
+            </div>
+            <p>В некоторых случаях сброс или выполнение эффекта при каждом рендере может вызвать проблему
+                с производительностью. Вы можете сделать так, чтобы React пропускал вызов эффекта, если определённые
+                значения остались без изменений между последующими рендерами. Чтобы сделать это, передайте массив в
+                <span class="highlighted-text">useEffect</span> вторым необязательным аргументом.
+            </p>
+            <div class="code-block">
+                <span class="keyword">useEffect</span><span class="skobki">&#40;&#40;&#41;</span> => <span
+                    class="skobki">&#123;</span> <br>
+                document.title = <span class="skobki">`Вы нажали &#36;&#123;</span>count<span
+                    class="skobki">&#125;раз`</span> ; <br>
+                <span class="skobki">&#125;</span>,<span class="skobki">&#91;</span>count<span
+                    class="skobki">&#93;&#41;</span>;
+            </div>
+            <p>Если вы хотите использовать эту оптимизацию, обратите внимание на то, чтобы массив включал в себя все
+                значения из области видимости компонента (такие как пропсы и состояние), которые могут изменяться
+                с течением
+                времени, и которые будут использоваться эффектом.
+            </p>
+            <p>Если вы хотите запустить эффект и сбросить его только один раз (при монтировании и размонтировании), вы
+                можете передать пустой массив ([]) вторым аргументом. React посчитает, что ваш эффект не зависит от
+                каких-либо значений из пропсов или состояния и поэтому не будет выполнять повторных запусков эффекта.
+                Это не обрабатывается как особый случай — он напрямую следует из логики работы массивов зависимостей.
+                Если вы передадите пустой массив ([]), пропсы и состояние внутри эффекта всегда будут иметь значения,
+                присвоенные им изначально. Не забывайте, что React откладывает выполнение <span
+                    class="highlighted-text">useEffect</span>, пока браузер не
+                отрисует все изменения, поэтому выполнение дополнительной работы не является существенной проблемой.
+            </p>
+            <div class="intro">Правила хуков</div>
+            <p>Используйте хуки только на верхнем уровне
+            <ul>
+                <li>Не вызывайте хуки внутри циклов, условных операторов или вложенных функций. Вместо этого всегда
+                    используйте хуки только внутри React-функций, до возврата какого-либо значения из них. Исполнение
+                    этого правила гарантирует, что хуки вызываются в одинаковой последовательности при каждом рендере
+                    компонента. Это позволит React правильно сохранять состояние хуков между множественными вызовами
+                    <span class="highlighted-text">useState</span> и <span class="highlighted-text">useEffect</span>.
+                </li>
+            </ul>
+            </p>
+            <p>Не вызывайте хуки из обычных функций JavaScript. Вместо этого можно:
+            <ul>
+                <li>Вызывать хуки из функционального компонента React.
+                </li>
+                <li>Вызывать хуки из пользовательского хука.
+                </li>
+                <li>Следуя этому правилу, можно гарантировать, что вся логика состояния компонента чётко видна
+                    из исходного кода.
+                </li>
+            </ul>
+            </p>
+            <div>Создание пользовательских хуков
+            </div>
+            <p>Пример кода пользовательского хука:
+            </p>
+            <div class="code-block">
+                <span class="extends">import</span> React, <span class="skobki">&#123;</span> useState, useEffect <span
+                    class="skobki">&#125;</span> <span class="extends">from</span> 'react'; <br>
+                <br>
+
+                <span class="extends">function</span> <span class="keyword">useFriendStatus</span><span
+                    class="skobki">&#40;</span>props<span class="skobki">&#41;</span> <span class="skobki">&#123;</span>
+                <br>
+                <span class="extends">const</span> <span class="skobki">&#91;</span>isOnline,
+                setIsOnline<span class="skobki">&#93;</span> = <span class="keyword">useState</span><span
+                    class="skobki">&#40;</span><span class="extends">null</span><span class="skobki">&#41;</span>; <br>
+                <br>
+
+                <span class="keyword">useEffect</span><span class="skobki">&#40;&#40;&#41;</span> => <span
+                    class="skobki">&#123;</span> <br>
+                <span class="extends">function</span> <span class="keyword">handleStatusChange</span><span
+                    class="skobki">&#40;</span>status<span class="skobki">&#41;</span> <span
+                    class="skobki">&#123;</span> <br>
+                <span class="keyword">setIsOnline</span><span class="skobki">&#40;</span>status.isOnline<span
+                    class="skobki">&#41;</span> <br>
+                <span class="skobki">&#125;</span> <br>
+
+                ChatAPI.<span class="keyword">subscribeToFriendStatus</span><span class="skobki">&#40;</span>friendID,
+                handleStatusChange<span class="skobki">&#41;</span>; <br>
+                <span class="extends">return</span> <span class="skobki">&#40;&#41;</span> => <span
+                    class="skobki">&#123;</span> <br>
+                <span class="keyword">unsubscribeToFriendStatus</span><span class="skobki">&#40;</span>friendID,
+                handleStatusChange<span class="skobki">&#41;</span>; <br>
+                <span class="skobki">&#125;</span> ;<br>
+                <span class="skobki">&#125;&#41;</span> ;<br>
+                <span class="extends">return</span> isOnline; <br>
+                <span class="skobki">&#125;</span>; <br>
+            </div>
+            <p>Создание пользовательских хуков позволяет вам перенести логику компонентов в функции, которые можно
+                повторно использовать.
+            </p>
+            <p>Когда мы хотим, чтобы две JavaScript-функции разделяли какую-то логику, мы извлекаем её в третью функцию.
+                И компоненты и хуки являются функциями, поэтому с ними это тоже работает!
+            </p>
+            <p>Пользовательский хук — это JavaScript-функция, имя которой начинается с «use», и которая может вызывать
+                другие хуки.
+            </p>
+            <p>В отличие от React-компонента, пользовательский хук не обязательно должен иметь конкретную сигнатуру. Мы
+                можем решить, что он принимает в качестве аргументов, и должен ли он что-либо возвращать. Другими
+                словами, всё как в обычных функциях. Имя функции-хука всегда следует начинать с use, чтобы вы могли
+                сразу увидеть, что к ней применяются правила хуков.
+            </p>
+            <p>Пользовательские хуки — это скорее соглашение, соответствующее дизайну хуков, нежели чем возможность
+                самого React.
+            </p>
+            <br>
+            <p>У хука, используемого в двух компонентах, одинаковое состояние? <br>
+                Нет. Пользовательские хуки — это механизм повторного использования логики с состоянием (например,
+                установка
+                подписки и сохранение текущего значения), но каждый раз, когда вы используете пользовательский хук, всё
+                состояние и эффекты внутри него полностью изолированы.
+            </p>
+            <div class="intro">Передача информации между хуками</div>
+            <p>Продемонстрируем это, используя другой компонент из нашего гипотетического примера чата. Это средство
+                выбора получателей сообщений чата, которое показывает, находится ли выбранный в данный момент друг в
+                сети:</p>
+            <div class="code-block">
+                <span class="extends">const</span> friendList = <span class="skobki">&#91;</span> <br>
+                <span class="skobki">&#123;</span> <span class="keyword">id</span>: 1, <span
+                    class="keyword">name</span>: 'Татьяна' <span class="skobki">&#125;</span>, <br>
+                <span class="skobki">&#123;</span> <span class="keyword">id</span>: 2, <span
+                    class="keyword">name</span>: 'Алла' <span class="skobki">&#125;</span>, <br>
+                <span class="skobki">&#123;</span> <span class="keyword">id</span>: 3, <span
+                    class="keyword">name</span>: 'Лиля' <span class="skobki">&#125;</span>, <br>
+                <span class="skobki">&#93;</span>; <br>
+
+                <span class="extends">function</span> <span class="keyword">ChatRecipientPicker</span><span
+                    class="skobki">&#40;</span><span class="skobki">&#41;</span> <span class="skobki">&#123;</span>
+                <br>
+                <span class="extends">const</span> <span class="skobki">&#91;</span>recipientID,
+                setRecipientID<span class="skobki">&#93;</span> = <span class="keyword">useState</span><span
+                    class="skobki">&#40;</span><span class="extends">1</span><span class="skobki">&#41;</span>; <br>
+                <br>
+                <span class="extends">const</span> isRecipientOnline = <span class="keyword">useFriendStatus</span><span
+                    class="skobki">&#40;</span>recipientID<span class="skobki">&#41;</span>; <br>
+                <br>
+                <span class="extends">return</span> <span class="skobki">&#40;</span><br>
+                &nbsp;&#60; &#62; <br>
+                &nbsp;&nbsp;&#60;<span class="jsx-element">Circle</span> <span class="class-name">const</span>=<span
+                    class="skobki">&#123;</span>isRecipientOnline ? 'green' : 'red'<span class="skobki">&#125;</span>
+                /&#62; <br>
+                &nbsp;&nbsp; &#60;select <br>
+                &nbsp;&nbsp;&nbsp; <span class="extends">value</span>=<span class="skobki">&#123;</span>recipientID<span
+                    class="skobki">&#125;</span> <br>
+                &nbsp;&nbsp;&nbsp;<span class="extends">onChange</span>=<span class="skobki">&#123;</span>e => <span
+                    class="keyword">setRecipientID</span><span class="skobki">&#40;</span><span
+                    class="keyword">Number</span><span class="skobki">&#40;</span>e.target.value<span
+                    class="skobki">&#41;&#41;&#125;</span> <br>
+                &nbsp;&nbsp; &#62; <br>
+                &nbsp;&nbsp; <span class="skobki">&#123;</span>friendList.map<span class="skobki">&#40;</span>friend =>
+                <span class="skobki">&#40;</span> <br>
+                &nbsp;&nbsp;&nbsp; &#60;option <span class="extends">key</span>=<span
+                    class="skobki">&#123;</span>friend.id<span class="skobki">&#125;</span> <span
+                    class="extends">value</span>=<span class="skobki">&#123;</span>friend.id<span
+                    class="skobki">&#125;</span>&#62; <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="skobki">&#123;</span>friend.name <span class="skobki">&#125;</span>
+                <br>
+                &nbsp;&nbsp;&nbsp; &#60;/option&#62; <br>
+                &nbsp;&nbsp; <span class="skobki">&#41;&#41;&#125;</span> <br>
+                &nbsp;&#60;/select&#62; <br>
+                &#60;/&#62; <br>
+                &nbsp; <span class="skobki">&#41;</span>; <br>
+                <span class="skobki">&#125;</span>
+            </div>
+            <p>Пользовательские хуки предлагают гибкую логику совместного использования, которая раньше была невозможна
+                в React-компонентах. Вы можете написать собственные хуки, которые охватывают широкий спектр вариантов
+                использования, таких как обработка форм, анимация, декларативные подписки, таймеры и, возможно, многих
+                других, которые мы не рассматривали. Более того, вы можете создавать хуки, которые также просты
+                в использовании, как и встроенные функции React.
+            </p>
+            <p>Попробуйте не добавлять абстракцию слишком рано. Теперь, когда функциональные компоненты обладают
+                большими возможностями, вполне вероятно, средний функциональный компонент станет длиннее в вашей кодовой
+                базе. Это нормально, не думайте, что вы должны немедленно разделить его на хуки. Но мы также рекомендуем
+                вам находить ситуации, когда пользовательский хук поможет скрыть сложную логику за простым интерфейсом
+                или распутать большой компонент.
+            </p>
+        </div>
+
+    </main>
+
+    <div class="button-container">
+        <a href="../pages/table-of-contents.html" class="go-to-toc-button">
+            Перейти к оглавлению <span>&rarr;</span>
+        </a>
+
+    </div>
+
+
+
+</body>
+
+</html>

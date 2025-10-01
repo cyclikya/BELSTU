@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Заказать</title>
+	<link rel="icon" href="img/logo_cozy.svg" type="image/x-icon">
+	<link href="css/index.css" rel="stylesheet" media="all">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link href="css/order.css" rel="stylesheet" media="all">
+	<link href="css/header.css" rel="stylesheet" media="all">
+	<link href="css/footer.css" rel="stylesheet" media="all">
+
+	<link rel="alternate" type="application/xml" title="XML" href="footer.xml" />
+
+	<link
+		href="https://fonts.googleapis.com/css?family=Montserrat+Alternates:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic"
+		rel="stylesheet" />
+</head>
+
+<body>
+
+	<header>
+		<a href="index.html">
+			<div class="img-container">
+				<div class="header-top-row">
+					<a href="index.html">
+						<img src="img/logo_cozy2.svg" class="logo">
+					</a>
+				</div>
+			</div>
+		</a>
+		<a href="katalog.html" id="button">Каталог</a>
+	</header>
+
+	<div class="backgr2">
+		<img src="img/backgr2.jpg">
+	</div>
+	<main>
+		<div class="form-container">
+			<form>
+				<table>
+					<caption>
+						<h3>Оформить заказ</h3>
+					</caption>
+					<tr>
+						<td>Фамилия: </td>
+						<td><input type="text">
+						</td>
+					</tr>
+					<tr>
+						<td>Имя: </td>
+						<td><input type="text">
+						</td>
+					</tr>
+					<tr>
+						<td>Отчество: </td>
+						<td><input type="text">
+						</td>
+					</tr>
+					<tr>
+						<td>Телефон: </td>
+						<td><input type="text" class="nope">
+						</td>
+					</tr>
+					<tr>
+						<td>Адрес доставки: </td>
+						<td><input type="text">
+						</td>
+					</tr>
+					<tr>
+						<td>Откуда вы узнали о нас? </td>
+						<td>
+							<select>
+								<option>Выберите вариант</option>
+								<option>Tiktok</option>
+								<option>Instagram</option>
+								<option>От друзей</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>Сумма к оплате:</td>
+						<td id="price"></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+		<div class="button-container">
+			<br><input type="submit" value="Вернуться" onclick="">
+			<input type="submit" value="Заказать" onclick="orderPlaced()">
+
+			<script>
+				function orderPlaced() {
+						alert('Ваш заказ успешно оформлен.Желаем, вам удачного дня !');
+						location.reload();
+				}
+				document.querySelector('input[value="Вернуться"]').addEventListener('click', function(event) {
+					event.preventDefault();
+					window.location.href = 'katalog.html';
+				});
+			</script>
+
+		</div>
+	</main>
+	<footer>
+	</footer>
+		<script>
+			document.addEventListener('DOMContentLoaded', function () {
+				var xsltProcessor = new XSLTProcessor();
+				// Загрузка XSLT файла
+				loadXMLDoc('footer.xsl', function (xslDoc) {
+					xsltProcessor.importStylesheet(xslDoc);
+					// Загрузка XML файла и преобразование его в HTML
+					loadXMLDoc('footer.xml', function (xmlDoc) {
+						var resultDocument = xsltProcessor.transformToFragment(xmlDoc, document);
+						document.querySelector('footer').appendChild(resultDocument);
+					});
+				});
+			});
+
+			function loadXMLDoc(filePath, callback) {
+				var xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function () {
+					if (this.readyState == 4 && this.status == 200) {
+						callback(this.responseXML);
+					}
+				};
+				xhttp.open("GET", filePath, true);
+				xhttp.send();
+			}
+		</script>
+		<script src="price.js">
+			// Получаем значение цены продукта из локального хранилища
+			var productPrice = localStorage.getItem('productPrice');
+
+			// Проверяем, была ли сохранена цена продукта в локальном хранилище
+			if (productPrice) {
+				// Находим тег с индексом price и устанавливаем его текстовое содержимое равным значению цены продукта
+				document.getElementById('price').textContent = productPrice;
+			} else {
+				console.log('Цена продукта не найдена в локальном хранилище.');
+			}
+		</script>
+		<script>
+			document.addEventListener('DOMContentLoaded', function () {
+				var productPrice = localStorage.getItem('productPrice');
+				if (productPrice) {
+					document.getElementById('price').textContent = productPrice + ' р.';
+				} else {
+					console.log('Цена продукта не найдена в локальном хранилище.');
+				}
+			});
+		</script>
+</body>
+
+
+</html>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE fruits [
+<!ELEMENT fruits (head, fruit+)> <!--Добавляем +, чтобы указать, что таких элементов может быть несколько -->
+<!ELEMENT head (glName, glColor, glTaste)> 
+<!ELEMENT fruit (name, color, taste)> 
+<!ELEMENT glName (#PCDATA)> <!--#PCDATA означает разбираемые текстовые данные-->
+<!ELEMENT glColor (#PCDATA)> 
+<!ELEMENT glTaste (#PCDATA)> 
+<!ELEMENT element (#PCDATA)> 
+<!ELEMENT name  (#PCDATA)> 
+<!ELEMENT color (#PCDATA)> 
+<!ELEMENT taste (#PCDATA)> 
+]>
+<?xml-stylesheet type="text/css" href="C:\Users\vugor\OneDrive\Рабочий стол\HTML\lb12\style.css"?>
+<fruits>
+  <head>
+    <glName>фрукт</glName>
+    <glColor>цвет</glColor>
+    <glTaste>вкус</glTaste>
+  </head>
+  <fruit>
+    <name>Яблоко</name>
+    <color>Красное</color>
+    <taste>Сладкое</taste>
+  </fruit>
+  <fruit>
+    <name>Банан</name>
+    <color>Желтый</color>
+    <taste>Сладкий</taste>
+  </fruit>
+  <fruit>
+    <name>Апельсин</name>
+    <color>Оранжевый</color>
+    <taste>Кисло-сладкий</taste>
+  </fruit>
+</fruits>

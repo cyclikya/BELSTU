@@ -1,0 +1,3 @@
+﻿  main.cpp
+C:\Users\vugor\OneDrive\Рабочий стол\C++(OAuP)\Laba4\lb4\lb4\main.cpp(14,19): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+  lb4.vcxproj -> C:\Users\vugor\OneDrive\Рабочий стол\C++(OAuP)\Laba4\lb4\Debug\lb4.exe

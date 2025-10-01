@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        day
+    </title>
+</head>
+<body>
+    <script type="text/javascript">
+        function start() {
+            let x = Number(prompt('Введите номер дня недели (1-7)'));
+
+            switch (x) {
+                case 1:
+                    document.write('<p style="color: brown; font-size: 15pt; font-family: Times New Roman">Сегодня понедельник</p>');
+                    break;
+                case 2:
+                    document.write('<p style="color: brown; font-size: 15pt; font-family: Times New Roman">Сегодня вторник</p>');
+                    break;
+                case 3:
+                    document.write('<p style="color: brown; font-size: 15pt; font-family: Times New Roman">Сегодня среда</p>');
+                    break;
+                case 4:
+                    document.write('<p style="color: brown; font-size: 15pt; font-family: Times New Roman">Сегодня четверг</p>');
+                    break;
+                case 5:
+                    document.write('<p style="color: brown; font-size: 15pt; font-family: Times New Roman">Сегодня пятница</p>');
+                    break;
+                case 6:
+                    document.write('<p style="color: brown; font-size: 15pt; font-family: Times New Roman">Сегодня суббота</p>');
+                    break;
+                case 7:
+                    document.write('<p style="color: brown; font-size: 15pt; font-family: Times New Roman">Сегодня воскресенье</p>');
+                    break;
+                default:
+                    document.write('<p style="color: brown; font-size: 15pt; font-family: Times New Roman">Вы ввели число больше 7 или не числовое значение, повторите попытку</p>');
+                    break;
+            }
+        }
+    </script>
+    <input type="button" value="Начать" onclick="start()">
+</body>
+</html>

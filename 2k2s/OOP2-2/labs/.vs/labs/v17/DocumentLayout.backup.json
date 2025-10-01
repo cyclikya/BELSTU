@@ -1,0 +1,135 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k2s\\OOP2-2\\labs\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{8EC4AD58-02C4-465F-A10B-B9C797880BAF}|lab3\\lab3.csproj|c:\\users\\vugor\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k2s\\oop2-2\\labs\\lab3\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8EC4AD58-02C4-465F-A10B-B9C797880BAF}|lab3\\lab3.csproj|solutionrelative:lab3\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8EC4AD58-02C4-465F-A10B-B9C797880BAF}|lab3\\lab3.csproj|c:\\users\\vugor\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k2s\\oop2-2\\labs\\lab3\\search.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8EC4AD58-02C4-465F-A10B-B9C797880BAF}|lab3\\lab3.csproj|solutionrelative:lab3\\search.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8EC4AD58-02C4-465F-A10B-B9C797880BAF}|lab3\\lab3.csproj|C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k2s\\OOP2-2\\labs\\lab3\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8EC4AD58-02C4-465F-A10B-B9C797880BAF}|lab3\\lab3.csproj|solutionrelative:lab3\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8EC4AD58-02C4-465F-A10B-B9C797880BAF}|lab3\\lab3.csproj|C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k2s\\OOP2-2\\labs\\lab3\\form2.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8EC4AD58-02C4-465F-A10B-B9C797880BAF}|lab3\\lab3.csproj|solutionrelative:lab3\\form2.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8EC4AD58-02C4-465F-A10B-B9C797880BAF}|lab3\\lab3.csproj|C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k2s\\OOP2-2\\labs\\lab3\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{8EC4AD58-02C4-465F-A10B-B9C797880BAF}|lab3\\lab3.csproj|solutionrelative:lab3\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8EC4AD58-02C4-465F-A10B-B9C797880BAF}|lab3\\lab3.csproj|C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k2s\\OOP2-2\\labs\\lab3\\sort.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{8EC4AD58-02C4-465F-A10B-B9C797880BAF}|lab3\\lab3.csproj|solutionrelative:lab3\\sort.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 156,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Form1.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "DocumentMoniker": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k2s\\OOP2-2\\labs\\lab3\\Form1.cs",
+              "RelativeDocumentMoniker": "lab3\\Form1.cs",
+              "ToolTip": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k2s\\OOP2-2\\labs\\lab3\\Form1.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "RelativeToolTip": "lab3\\Form1.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-20T09:51:18.743Z",
+              "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k2s\\OOP2-2\\labs\\lab3\\Form1.cs",
+              "RelativeDocumentMoniker": "lab3\\Form1.cs",
+              "ToolTip": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k2s\\OOP2-2\\labs\\lab3\\Form1.cs",
+              "RelativeToolTip": "lab3\\Form1.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAA6wFkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-19T14:58:07.754Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Sort.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "DocumentMoniker": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k2s\\OOP2-2\\labs\\lab3\\Sort.cs",
+              "RelativeDocumentMoniker": "lab3\\Sort.cs",
+              "ToolTip": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k2s\\OOP2-2\\labs\\lab3\\Sort.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "RelativeToolTip": "lab3\\Sort.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-20T14:10:19.648Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Form2.cs",
+              "DocumentMoniker": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k2s\\OOP2-2\\labs\\lab3\\Form2.cs",
+              "RelativeDocumentMoniker": "lab3\\Form2.cs",
+              "ToolTip": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k2s\\OOP2-2\\labs\\lab3\\Form2.cs",
+              "RelativeToolTip": "lab3\\Form2.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAYwDEAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-20T14:27:48.5Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 160,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Search.cs",
+              "DocumentMoniker": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k2s\\OOP2-2\\labs\\lab3\\Search.cs",
+              "RelativeDocumentMoniker": "lab3\\Search.cs",
+              "ToolTip": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k2s\\OOP2-2\\labs\\lab3\\Search.cs",
+              "RelativeToolTip": "lab3\\Search.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAYwC8AAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-20T14:32:11.804Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Form2.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k2s\\OOP2-2\\labs\\lab3\\Form2.Designer.cs",
+              "RelativeDocumentMoniker": "lab3\\Form2.Designer.cs",
+              "ToolTip": "C:\\Users\\vugor\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\2k2s\\OOP2-2\\labs\\lab3\\Form2.Designer.cs",
+              "RelativeToolTip": "lab3\\Form2.Designer.cs",
+              "ViewState": "AgIAACoBAAAAAAAAAAAYwD8BAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-20T14:31:46.443Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

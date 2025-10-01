@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript">
+        function start() {
+            var x = 9;
+            var y = 1;
+            var a = (76 * x / y) + (23 * y);
+            var b = (4 * y) + (14 * x / 7) + 180;
+            document.write('<p style="color: brown; font-size: 15pt; font-family: Times New Roman">Значение первого выражения: ' + a + '</p>');
+            document.write('<p style="color: brown; font-size: 15pt; font-family: Times New Roman">Значение второго выражения: ' + b + '</p>');
+            document.write('<p style="color: brown; font-size: 15pt; font-family: Times New Roman">Остаток от деления одного выражения на другое: ' + (a % b) + '</p>');
+            var divisionResult = a / b;
+            alert('Значение деления ответа первого выражения на второе: ' + divisionResult);
+        }
+    </script>
+</head>
+<body>
+    <input type="button" value="Начать" onclick="start()">
+</body>
+</html>

@@ -1,0 +1,4 @@
+﻿  laba8.cpp
+C:\Users\vugor\OneDrive\Рабочий стол\C++(OAuP)\laba8\laba8\laba8.cpp(32,11): warning C4101: t: неиспользованная локальная переменная
+C:\Users\vugor\OneDrive\Рабочий стол\C++(OAuP)\laba8\laba8\laba8.cpp(57,37): warning C4101: max: неиспользованная локальная переменная
+  laba8.vcxproj -> C:\Users\vugor\OneDrive\Рабочий стол\C++(OAuP)\laba8\Debug\laba8.exe

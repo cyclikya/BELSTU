@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Введение</title>
+    <link rel="icon" href="../Dependencies/img/favicon.ico"/>
+    <link rel="stylesheet" href="../Dependencies/css/main.css">
+    <link rel="stylesheet" href="../Dependencies/css/header.css">
+    <link rel="stylesheet" href="../Dependencies/css/body.css">
+    <link rel="stylesheet" href="../Dependencies/css/footer.css">
+    <link rel="stylesheet" href="../Dependencies/css/first.css">
+    <link rel="stylesheet" href="../Dependencies/css/text.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@500;600&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;1,100&family=Open+Sans:ital,wght@0,400;1,400;1,500&family=Roboto+Condensed:wght@500;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="body">
+    <header class="header">
+        <img src="../Dependencies/img/1174949_js_react js_logo_react_react native_icon.png" alt="My Photo"
+            class="photo" />
+        <nav class="navbar">
+            <ul>
+                <li>
+                    <a href="../main.html">React</a>
+                </li>
+            </ul>
+            <div><a href="../pages/table-of-contents.html">Оглавление</a>
+                <a href="https://belstu.by/">Сайт BSTU</a>
+                <a href="https://react.dev/">Официальная документация</a>
+                <a href="../labs/labs.html">Лабораторный практикум</a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="main">
+            <div class="text">
+            <div class="intro">React JS — это JavaScript-библиотека, разработанная в Facebook для создания
+                пользовательских интерфейсов, которая популяризировала идею использования виртуального DOM
+            </div>
+            <div class="content">
+                <ul class="points-list">
+                    <li>Для создания функциональных интерактивных веб-интерфейсов, работая с которыми, не нужно
+                        постоянно обновлять страницу.</li>
+                    <li>Быстрой и удобной реализации отдельных компонентов и страниц целиком — элементы в React легко
+                        использовать повторно.</li>
+                    <li>Работы с серверной частью сайта или разработки мобильных приложений. В таких случаях React
+                        используют совместно с инструментами, адаптирующими веб-технологии под другие цели
+                    </li>
+                </ul>
+                <img src="../Dependencies/img/Рисунок1.png" class="img1">
+                <ul class="points-list-two">
+                    <li>SPA (Single Page Application) – это малая, полупустая HTML страница, на которую приходится многo
+                        JS
+                    </li>
+                    <li>Раньше при переходе категорий внутри страницы, сервер возвращал полную страницу HTML, сходную с
+                        предыдущей (примерно 95% прошлой страницы). Для каждого изменения приходилось обновлять
+                        полностью страницу.
+                    </li>
+                    <li>Например, если взять уже существующий ВКонтакте, то при получении пользователем нового
+                        сообщения, серверу приходилось присылать новый HTML файл, и при каждом сообщении пришлось бы
+                        обновлять страницу.
+                    </li>
+            </div>
+
+            <div class="dom-scrip"> DOM </div>
+            <div class="discription-dom">
+                <div class="firts-dom">
+                    <p>DOM (Document Object Model) — способ представления структурного документа с помощью объектов. Это
+                        кроссплатформенное и языко-независимое соглашение для представления и взаимодействия с данными в
+                        HTML, XML и т.д.
+                    </p>
+                    <p>Главная проблема DOM — он никогда не был рассчитан для создания динамического пользовательского
+                        интерфейса (UI). Мы можем работать с ним, используя JavaScript и библиотеки наподобие jQuery, но
+                        их
+                        использование не решает проблем с производительностью.
+                        Посмотрите на современные социальные сети, такие как Twitter, Facebook или Pinterest.
+                    </p>
+                    <p>После небольшого скроллинга, мы будем иметь десятки тысяч DOM-узлов, эффективно взаимодействовать
+                        с
+                        которыми — задача не из легких
+                    </p>
+                </div>
+                <div class="second-dom">
+                    <p>Виртуальный DOM (VDOM) — это концепция программирования, в которой идеальное или «виртуальное»
+                        представление пользовательского интерфейса хранится в памяти и синхронизируется с «настоящим»
+                        DOM при помощи библиотеки, такой как ReactDOM. Этот процесс называется согласованием.
+                    </p>
+                </div>
+            </div>
+            </div>
+            <div class="first-app"> Начало разработки
+                <p>Вам понадобятся Node.js не ниже версии 10.13 и npm не ниже версии 5.6 на вашем компьютере. </p>
+            </div>
+            <div class="text">
+                <p>1. Откройте терминал или командную строку и выполните следующую команду, чтобы
+                    установить  <span class="highlighted-text">create-react-app</span> глобально:
+                    <span class="highlighted-text">npm install-g create-react-app</span>
+                </p>
+                <p>2. После загрузки для создания проекта выполните команды:
+                    <span class="highlighted-text">npx</span> или <span class="highlighted-text">npm create-react-app
+                        my-app</span>
+                </p>
+                <p>3. <span class="highlighted-text">create-react-app</span> сгенерирует новый проект в каталоге с
+                    именем my-app (или какое бы имя вы не
+                    дали
+                    своему проекту). Перейдите в каталог проекта, запустив команду:
+                    <span class="highlighted-text">cd my-app</span>
+                </p>
+                <p>4. Запустите сервер разработки <span class="highlighted-text">npm start</span>
+                </p>
+                <div class=" code-block">
+                    npx create-react-app my-app <br>
+                    <span class="cd">cd</span> my-app <br>
+                    <span class="keyword">npm</span> start
+                </div>
+
+                <div class="intro">JSX</div>
+                <div class="text">
+
+                    <p>JSX – это специальный XML-подобный синтаксис технологии React, который позволяет нам очень просто
+                        описывать пользовательский интерфейс.
+                    </p>
+                    <p>
+                        Несмотря на то, что JSX очень похож на HTML, он им не является. JSX – это расширение синтаксиса
+                        JavaScript, которое во время компиляции транслируется в обычный JavaScript.
+                    </p>
+                </div>
+                <div class="code-block">
+                    <span class="extends"> const</span> name = <span class="skobki">'Иван Царевич'</span>; <br>
+                    <span class="extends"> const</span> element = &#60;h1&#62;Здравствуй, <span
+                        class="skobki">&#123;</span>name<span class="skobki">&#125;</span>!&#60;/h1&#62;;
+                </div>
+                <p>В примере правее мы встраиваем результат вызова JavaScript-функции formatName(user) в элемент:</p>
+                <div class="code-block">
+                    <span class="extends"> function</span> <span class="keyword">formatName</span><span
+                        class="skobki">&#40;</span>user<span class="skobki">&#41;</span> <span
+                        class="skobki">&#123;</span> <br>
+                    <span class="extends"> return</span> user.firstName + <span class="skobki">' '</span> +
+                    user.lastName; <br>
+                    <span class="skobki">&#125;</span> <br>
+                    <br>
+                    <span class="extends"> const</span> user = <span class="skobki">&#123;</span> <br>
+                    <span class="keyword">firstName</span>: 'Марья', <br>
+                    <span class="keyword">lastName</span>: 'Моревна' <br>
+                    <span class="skobki">&#125;</span>; <br>
+                    <br>
+                    <span class="extends"> const</span> element = <span class="skobki">&#40;</span> <br>
+                    &#60;h1&#62; <br>
+                    Здравствуй, <span class="skobki">&#123;</span><span class="keyword">formatName</span><span
+                        class="skobki">&#40;</span>user<span class="skobki">&#41;&#125;</span>! <br>
+                    &#60;/h1&#62; <br>
+                    <span class="skobki">&#41;</span>;
+                </div>
+                <div class="text">
+                    <p> После компиляции каждое JSX-выражение становится обычным вызовом JavaScript-функции,
+                        результат
+                        которого — объект JavaScript.
+                        Из этого следует, что JSX можно использовать внутри инструкций if и циклов for, присваивать
+                        переменным, передавать функции в качестве аргумента и возвращать из функции.
+                    </p>
+
+                    <div class="code-block">
+                        <span class="extends"> function</span> <span class="keyword">getGreeting</span><span
+                            class="skobki">&#40;</span>user<span class="skobki">&#41;</span> <span
+                            class="skobki">&#123;</span> <br>
+                        <span class="extends"> if</span><span class="skobki">&#40;</span>user<span
+                            class="skobki">&#41;</span> <span class="skobki">&#123;</span> <br>
+                        <span class="extends"> return</span> &#60;h1&#62;Здравствуй, <span
+                            class="skobki">&#123;</span>formatName<span class="skobki">&#40;</span>user<span
+                            class="skobki">&#41;&#125;</span>!</h1>; <br>
+                        <span class="skobki">&#125;</span> <br>
+                        <span class="extends"> return</span> &#60;h1&#62;Здравствуй, незнакомец!&#60;/h1&#62;; <br>
+                        <span class="skobki">&#125  ;</span>
+                    </div>
+
+                    <div class="button-container">
+                        <a href="../pages/table-of-contents.html" class="go-to-toc-button">
+                            Перейти к оглавлению <span>&rarr;</span>
+                        </a>
+                    </div>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+nav{
+    display: flex;
+}
+nav *{
+    display: inline-block;
+    border: 1px solid green;
+    margin: 0px;
+    background-color: yellow;
+    color: green;
+}
+a {
+   padding: 10px; 
+   text-decoration: none;
+}

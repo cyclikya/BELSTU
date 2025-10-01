@@ -1,0 +1,52 @@
+.zd5 *{
+    border: 5px solid blue;
+    opacity: 0;
+    position: absolute;
+}
+
+@keyframes img5_1 {
+    25%, 50%,75%, 100% {
+        opacity: 0%;
+    }
+    0% {
+        opacity: 100%;
+    }
+}
+@keyframes img5_2 {
+    0%, 50%, 75%, 100% {
+        opacity: 0%;
+    }
+    25% {
+        opacity: 100%;
+    }
+}
+@keyframes img5_3 {
+    0%, 25%, 75%, 100% {
+        opacity: 0%;
+    }
+    50% {
+        opacity: 100%;
+    }
+}
+@keyframes img5_4 {
+    0%, 25%, 50%, 100% {
+        opacity: 0%;
+    }
+    75% {
+        opacity: 100%;
+    }
+}
+@keyframes img5_5 {
+    0%, 25%, 50%,75%  {
+        opacity: 0%;
+    }
+    100% {
+        opacity: 100%;
+    }
+}
+
+.zd5 .first {animation: img5_1 5s linear infinite;}
+.zd5 .second {animation: img5_2 5s linear infinite;}
+.zd5 .third {animation: img5_3 5s linear infinite;}
+.zd5 .fourth {animation: img5_4 5s linear infinite;}
+.zd5 .fifth {animation: img5_5 5s linear infinite;}

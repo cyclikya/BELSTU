@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Жанры музыки</title>
+    <style>
+        span{color:red}
+    </style>
+    <script>
+        function pr1() {
+            for(var i = 0; i < document.all.length; i++) 
+            {
+            alert("Тег под номером " + (i + 1) + " : " + document.all[i].tagName + ";");
+            }
+        }   
+
+        function pr2() {
+            for (let i = 0; i < document.body.childElementCount; i++) {
+            console.log(document.body.children[i].tagName + "  ");
+            }
+        }
+
+        function pr3() {
+            //первый способ
+                alert("1) Вывод в окно содержимое первого элемента span(используя для доступа к элементу коллекцию all): " + document.querySelectorAll("span")[0].innerText);
+
+            //второй способ
+                alert("2) Вывод в окно содержимое первого элемента span(используя частную коллекцию (span)): " + document.getElementsByTagName("span")[0].innerText);
+
+            // третий способ
+                alert("3) Вывод в окно содержимое первого элемента span(используя идентификатор элемента): " + document.getElementById("sp").innerText);
+        }
+
+        function pr4() {
+            let sum = 0;
+            for (let i = 0; i < document.querySelectorAll('td').length; i++) {
+                sum += parseFloat(document.querySelectorAll('td')[i].textContent);
+            }
+      
+            let sr = sum / document.querySelectorAll('td').length;
+            let theSecond = document.getElementsByTagName("span");
+                theSecond[1].innerText = sr;
+    }
+    </script>
+    </head>
+    <body>
+        <h1 style="color:green; font-family:'Times New Roman'; text-align-last: center;">
+            Жанры музыки
+        </h1>
+        <h3>Рок</h3>
+            <p   color="darkblue" size="3" face="arial">
+                Рок-музыка (<span>англ. Rock music</span>) — обобщающее название ряда направлений популярной музыки. Слово rock (в переводе с английского «качать», «укачивать», «качаться») в данном случае указывает на характерные для этих направлений ритмические ощущения, связанные с определённой формой движения, по аналогии с roll, twist, swing, shake…
+            </p>
+        <p> Посчитанный ср балл: <span>-</span></p>
+        <h3> Хип-хоп</h3>
+            <p   color="purple" size="4" face="Times New Roman">
+                Возник Хип-Хоп <span> в 1973 году </span> благодаря ямайскому Диджей Кул Херк включая на местной вечеринке в Бронксе на 1520 Sendgwick Avenue, знаменитые тогда песни и микшировав их он создал один из наиболее известных направлений в музыке.
+                В начале 1980-х сначала наркоторговцы, а затем и лейблы заинтересовались новыми талантами из бедных районов, увидев в этом прибыль.
+            </p>
+        <h3>Джаз</h3>
+            <p   color="firebrick" size="5" face="Adobe Arabic">
+                Джаз (<span id="sp">англ. jazz</span>) — форма музыкального искусства, возникшая в конце XIX — начале XX века в США в результате синтеза африканской и европейской культур и получившая впоследствии повсеместное распространение. Характерными чертами музыкального языка джаза изначально стали импровизация, полиритмия, основанная на синкопированных ритма, и уникальный комплекс приёмов исполнения ритмической фактуры — свинг. Дальнейшее развитие джаза происходило за счёт освоения джазовыми музыкантами и композиторами новых ритмических и гармонических моделей.
+            </p>
+        <table border="1">
+            <tr>
+                <th>Математика</th>
+                <td>70</td>
+            </tr>
+            <tr>
+                <th>Русский</th>
+                <td>91</td>
+            </tr>
+            <tr>
+                <th>Химия</th>
+                <td>82</td>
+            </tr>
+        </table>
+        <input type='button' value='Задание 1' onclick='pr1()'>
+        <input type='button' value='Задание 2' onclick='pr2()'>
+        <input type='button' value='Задание 3' onclick='pr3()'>
+        <input type='button' value='Задание 4' onclick='pr4()'>
+</body>
+</html>

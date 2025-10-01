@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторная работа 6</title>
+    <link rel="icon" href="../../Dependencies/img/favicon.ico"/>
+    <link rel="stylesheet" href="../../Dependencies/css/main.css">
+    <link rel="stylesheet" href="../../Dependencies/css/header.css">
+    <link rel="stylesheet" href="../../Dependencies/css/body.css">
+    <link rel="stylesheet" href="../../Dependencies/css/footer.css">
+    <link rel="stylesheet" href="../../Dependencies/css/first.css">
+    <link rel="stylesheet" href="../../Dependencies/css/text.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@500;600&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;1,100&family=Open+Sans:ital,wght@0,400;1,400;1,500&family=Roboto+Condensed:wght@500;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="body">
+    <header class="header">
+        <img src="../../Dependencies/img/1174949_js_react js_logo_react_react native_icon.png" alt="My Photo"
+            class="photo" />
+        <nav class="navbar">
+            <ul>
+                <li>
+                    <a href="../../main.html">React</a>
+                </li>
+            </ul>
+            <div><a href="../../pages/table-of-contents.html">Оглавление</a>
+                <a href="../../https://belstu.by/">Сайт BSTU</a>
+                <a href="../../https://react.dev/">Официальная документация</a>
+                <a href="../../labs/labs.html">Лабораторный практикум</a>
+            </div>
+        </nav>
+    </header>
+    <main class="main">
+        <div class="text">
+            <div class="intro">Лабораторная работа №6</div>
+            <div class="section">Задание 1</div>
+            <p>Создайте компонент <span class="abbr">ColorPicker</span>, который будет представлять выбор цвета с
+                использованием хуков в React.
+            <ul>
+                <li>Создайте компонент <span class="abbr">ColorPicker</span>, который будет отображать палитру цветов.
+                </li>
+                <br>
+                <li>Используйте хук <span class="abbr">useState</span> для создания состояния <span
+                        class="abbr">selectedColor</span>, которое будет хранить выбранный цвет.
+                </li><br>
+                <li>Отобразите палитру цветов на странице. Каждый цвет должен быть представлен в виде прямоугольника или
+                    круга.</li><br>
+                <li>Добавьте обработчик событий, чтобы при выборе цвета он сохранялся в состоянии <span
+                        class="abbr">selectedColor</span>.
+                </li><br>
+                <li>Отобразите выбранный цвет на странице, например, с помощью текста или прямоугольника с выбранным
+                    цветом внутри.</li> <br>
+                <li>Добавьте возможность пользователю изменять выбранный цвет. Например, можно добавить кнопку
+                    <span class="abbr">Reset</span>, при нажатии на которую выбранный цвет будет сброшен на начальное
+                    значение.
+                </li><br>
+                <li>Добавьте возможность пользователю сохранить выбранный цвет. Например, можно добавить кнопку <span
+                        class="abbr">Save</span>, при нажатии на которую выбранный цвет будет добавлен в список
+                    сохраненных цветов.</li><br>
+                <li>Используйте хук <span class="abbr">useEffect</span> для сохранения списка сохраненных цветов в
+                    локальном хранилище браузера. При загрузке страницы проверьте, есть ли сохраненные цвета в
+                    хранилище, и если есть, отобразите их на странице.</li>
+            </ul>
+            </p>
+
+        </div>
+    </main>
+</body>
+
+</html>
