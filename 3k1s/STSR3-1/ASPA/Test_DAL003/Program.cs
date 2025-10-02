@@ -30,7 +30,7 @@ internal class Program
                 Console.WriteLine($"Id = {celebrity7.Id}, Firstname = {celebrity7.Firstname}, " +
                     $"Surname = {celebrity7.Surname}, PhotoPath = {celebrity7.PhotoPath}");
             }
-            Celebrity? celebrity222 = repository.getCelebrityById(222);
+            Celebrity? celebrity222 = repository.getCelebrityById(2222);
             if (celebrity222 != null)
             {
                 Console.WriteLine($"Id = {celebrity222.Id}, Firstname = {celebrity222.Firstname}, " +
@@ -47,14 +47,14 @@ internal class Program
                 Console.WriteLine($"Id = {celebrity.Id}, Firstname = {celebrity.Firstname}, " +
                                    $"Surname = {celebrity.Surname}, PhotoPath = {celebrity.PhotoPath}");
             }
-            foreach (Celebrity celebrity in repository.getCelebritiesBySurname("XXXX"))
+            foreach (Celebrity celebrity in repository.getCelebritiesBySurname("22222"))
             {
                 Console.WriteLine($"Id = {celebrity.Id}, Firstname = {celebrity.Firstname}, " +
                                    $"Surname = {celebrity.Surname}, PhotoPath = {celebrity.PhotoPath}");
             }
             Console.WriteLine($"PhotoPathById = {repository.getPhotoPathId(4)}");
             Console.WriteLine($"PhotoPathById = {repository.getPhotoPathId(6)}");
-            Console.WriteLine($"PhotoPathById = {repository.getPhotoPathId(222)}");
+            Console.WriteLine($"PhotoPathById = {repository.getPhotoPathId(2222)}");
         }
     }
 }

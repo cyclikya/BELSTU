@@ -9,6 +9,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{C20CC057-1661-425F-B268-3875FA7E2286}|Test_DAL003\\Test_DAL003.csproj|c:\\general\\belstu\\3k1s\\stsr3-1\\aspa\\test_dal003\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C20CC057-1661-425F-B268-3875FA7E2286}|Test_DAL003\\Test_DAL003.csproj|solutionrelative:test_dal003\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08EA3758-62EB-4928-AA1A-3B485D8FAFB4}|ASPA003\\ASPA003.csproj|c:\\general\\belstu\\3k1s\\stsr3-1\\aspa\\aspa003\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08EA3758-62EB-4928-AA1A-3B485D8FAFB4}|ASPA003\\ASPA003.csproj|solutionrelative:aspa003\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,13 +38,26 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\General\\BELSTU\\3k1s\\STSR3-1\\ASPA\\ASPA003\\Program.cs",
+              "RelativeDocumentMoniker": "ASPA003\\Program.cs",
+              "ToolTip": "C:\\General\\BELSTU\\3k1s\\STSR3-1\\ASPA\\ASPA003\\Program.cs",
+              "RelativeToolTip": "ASPA003\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-02T18:41:26.208Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\General\\BELSTU\\3k1s\\STSR3-1\\ASPA\\Test_DAL003\\Program.cs",
               "RelativeDocumentMoniker": "Test_DAL003\\Program.cs",
               "ToolTip": "C:\\General\\BELSTU\\3k1s\\STSR3-1\\ASPA\\Test_DAL003\\Program.cs",
               "RelativeToolTip": "Test_DAL003\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-01T14:15:06.992Z",
               "EditorCaption": ""
@@ -53,7 +70,7 @@
               "RelativeDocumentMoniker": "DAL003\\Class1.cs",
               "ToolTip": "C:\\General\\BELSTU\\3k1s\\STSR3-1\\ASPA\\DAL003\\Class1.cs",
               "RelativeToolTip": "DAL003\\Class1.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAA7wCEAAABQAAAAAAAAAA==",
+              "ViewState": "AgIAABYAAAAAAAAAAAAiwDkAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-01T14:05:48.305Z",
               "EditorCaption": ""

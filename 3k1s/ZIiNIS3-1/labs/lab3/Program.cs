@@ -8,7 +8,7 @@ namespace InformationSystemsAnalysis
     public class Program
     {
         private static readonly string base64Alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-        private static readonly string datskyAlphabet = "abcdefghijklmnopqrstuvwxyzæøå";
+        private static readonly string datskyAlphabet = "abcdefghijklmnopqrstuvwxyzæøå,.!?";
         private static readonly char paddingChar = '=';
 
         public static void Main(string[] args)
@@ -97,7 +97,7 @@ namespace InformationSystemsAnalysis
             double base64Redundancy = (base64Hartley - base64Shannon) / base64Hartley;
 
             Console.WriteLine("-----Датский:");
-            Console.WriteLine($"Кол-во уникальных символов: {GetUniqueCharacters(text).Count}");
+            Console.WriteLine($"Кол-во уникальных символов: {GetUniqueCharacters(text.ToLower()).Count}");
             Console.WriteLine($"Энтропия(Хартли): {textHartley:F4} бит/символ");
             Console.WriteLine($"Энтропия(Шеннона): {textShannon:F4} бит/символ");
             Console.WriteLine($"Избыточность: {textRedundancy:P2}");
