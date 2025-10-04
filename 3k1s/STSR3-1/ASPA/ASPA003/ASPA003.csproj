@@ -7,6 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="Photo\Berners-Lee.jpg" />
+    <Content Include="Photo\Chomsky.jpg" />
+    <Content Include="Photo\Codd.jpg" />
+    <Content Include="Photo\Dijkstra.jpg" />
+    <Content Include="Photo\Knuth.jpg" />
+    <Content Include="Photo\Linus.jpg" />
+    <Content Include="Photo\Neumann.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\DAL003\DAL003.csproj" />
   </ItemGroup>
 

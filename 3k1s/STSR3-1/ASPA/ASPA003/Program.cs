@@ -15,6 +15,12 @@ app.UseStaticFiles(new StaticFileOptions
         ctx.Context.Response.Headers.Add("Content-Disposition", "attachment");
     }
 });
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+        Path.Combine(builder.Environment.ContentRootPath, "Photo")),
+    RequestPath = "/Photo"
+});
 
 app.UseDirectoryBrowser(new DirectoryBrowserOptions
 {
@@ -40,3 +46,4 @@ using (IRepository repository = new Repository("Celebrities"))
 //localhost:7278/Celebrities/1
 //localhost:7278/Celebrities/BySurname/Chomsky
 //localhost:7278/Celebrities/PhotoPathById/6
+//localhost:7278/Celebrities/Photo/Dijkstra.jpg

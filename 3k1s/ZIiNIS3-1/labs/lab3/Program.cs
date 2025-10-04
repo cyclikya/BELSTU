@@ -133,6 +133,10 @@ namespace InformationSystemsAnalysis
             Console.WriteLine(BytesToBinaryString(xorAB));
 
             byte[] xorABB = XORBuffers(xorAB, asciiB);
+
+            Console.WriteLine("\na XOR b XOR b:");
+            Console.WriteLine(BytesToBinaryString(xorABB));
+
             string result = ASCIIToString(xorABB);
 
             Console.WriteLine($"\na XOR b XOR b:'{result}'");
