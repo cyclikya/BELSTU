@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "Новый профиль",
+    "Projects": [
+      {
+        "Path": "ServerT\\ServerT.vcxproj",
+        "Action": "StartWithoutDebugging"
+      },
+      {
+        "Path": "ClientT\\ClientT.vcxproj",
+        "Action": "StartWithoutDebugging"
+      }
+    ]
+  }
+]

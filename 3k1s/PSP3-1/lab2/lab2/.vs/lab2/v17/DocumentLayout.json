@@ -36,7 +36,7 @@
               "RelativeDocumentMoniker": "ServerT\\ServerT.cpp",
               "ToolTip": "C:\\General\\BELSTU\\3k1s\\PSP3-1\\lab2\\lab2\\ServerT\\ServerT.cpp",
               "RelativeToolTip": "ServerT\\ServerT.cpp",
-              "ViewState": "AgIAAEgAAAAAAAAAAAAIwFwAAAAcAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-09-20T06:07:43.575Z",
               "IsPinned": true,
@@ -55,6 +55,10 @@
               "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{004be353-6879-467c-9d1e-9ac23cdf6d49}"
+            },
+            {
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "ClientT.cpp",
@@ -62,7 +66,7 @@
               "RelativeDocumentMoniker": "ClientT\\ClientT.cpp",
               "ToolTip": "C:\\General\\BELSTU\\3k1s\\PSP3-1\\lab2\\lab2\\ClientT\\ClientT.cpp",
               "RelativeToolTip": "ClientT\\ClientT.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGEAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAB0AAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-09-20T06:14:39.635Z",
               "EditorCaption": ""
