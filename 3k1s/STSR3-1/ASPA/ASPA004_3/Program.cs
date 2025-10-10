@@ -55,16 +55,24 @@ class Program
             app.Map("/Celebrities/Error", (HttpContext ctx) =>
             {
                 Exception? ex = ctx.Features.Get<IExceptionHandlerFeature>()?.Error;
-                IResult rc = Results.Problem(detail: "Panic", instance: app.Environment.EnvironmentName, title: "ASPA004", statusCode: 500);
+                string detail = ex?.Message ?? "Panic";
+                if (app.Environment.IsDevelopment() && ex?.StackTrace != null)
+                    detail += "\n\n" + ex.StackTrace;
+                IResult rc;
+
                 if (ex != null)
                 {
-                    if (ex is UpdateCelebrityException) rc = Results.NotFound(ex.Message);
-                    if (ex is DeleteCelebrityException) rc = Results.NotFound(ex.Message);
-                    if (ex is FileNotFoundException) rc = Results.Problem(title: "ASPA00", detail: ex.Message, instance: app.Environment.EnvironmentName, statusCode: 500);
-                    if (ex is FoundByIdException) rc = Results.NotFound(ex.Message);
-                    if (ex is BadHttpRequestException) rc = Results.BadRequest(ex.Message);
-                    if (ex is SaveException) rc = Results.Problem(title: "ASPA004/SaveChanges", detail: ex.Message, instance: app.Environment.EnvironmentName, statusCode: 500);
-                    if (ex is AddCelebrityException) rc = Results.Problem(title: "ASPA004/addCelebrity", detail: ex.Message, instance: app.Environment.EnvironmentName, statusCode: 500);
+                    rc = Results.Problem(
+                            detail: ex.Message,
+                            instance: app.Environment.EnvironmentName,
+                            statusCode: 500);
+                }
+                else
+                {
+                    rc = Results.Problem(
+                            detail: detail,
+                            instance: app.Environment.EnvironmentName,
+                            statusCode: 500);
                 }
                 return rc;
             });

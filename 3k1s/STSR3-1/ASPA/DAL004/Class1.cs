@@ -150,8 +150,9 @@ namespace DAL004
 
             if (string.IsNullOrWhiteSpace(celebrity.PhotoPath) || !File.Exists(photoFullPath))
             {
-                throw new Exception($"Invalid photo path: {photoFullPath}");
+                throw new FileNotFoundException($"Could not find file '{photoFullPath}'");
             }
+
 
             int newId = _celebrities.Length > 0 ? _celebrities.Max(c => c.Id) + 1 : 1;
             var newCelebrity = celebrity with { Id = newId };

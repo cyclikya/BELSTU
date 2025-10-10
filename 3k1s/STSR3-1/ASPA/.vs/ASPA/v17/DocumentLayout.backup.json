@@ -3,24 +3,16 @@
   "WorkspaceRootPath": "C:\\General\\BELSTU\\3k1s\\STSR3-1\\ASPA\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E3F2366D-5301-4D47-9E73-8BAD02533B3B}|Test_DAL004\\Test_DAL004.csproj|c:\\general\\belstu\\3k1s\\stsr3-1\\aspa\\test_dal004\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E3F2366D-5301-4D47-9E73-8BAD02533B3B}|Test_DAL004\\Test_DAL004.csproj|solutionrelative:test_dal004\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{81216392-34C7-4D15-AC89-10591B74086C}|ASPA004_1\\ASPA004_1.csproj|c:\\general\\belstu\\3k1s\\stsr3-1\\aspa\\aspa004_1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{81216392-34C7-4D15-AC89-10591B74086C}|ASPA004_1\\ASPA004_1.csproj|solutionrelative:aspa004_1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{18284C0D-B2BF-41D8-8CC1-F070BC39A14E}|DAL004\\DAL004.csproj|c:\\general\\belstu\\3k1s\\stsr3-1\\aspa\\dal004\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{18284C0D-B2BF-41D8-8CC1-F070BC39A14E}|DAL004\\DAL004.csproj|solutionrelative:dal004\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{18284C0D-B2BF-41D8-8CC1-F070BC39A14E}|DAL004\\DAL004.csproj|c:\\general\\belstu\\3k1s\\stsr3-1\\aspa\\dal004\\celebrities\\celebrities.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{18284C0D-B2BF-41D8-8CC1-F070BC39A14E}|DAL004\\DAL004.csproj|solutionrelative:dal004\\celebrities\\celebrities.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{82D0FD6E-B337-43BE-8B27-6C781DD95D47}|ASPA004_3\\ASPA004_3.csproj|c:\\general\\belstu\\3k1s\\stsr3-1\\aspa\\aspa004_3\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{82D0FD6E-B337-43BE-8B27-6C781DD95D47}|ASPA004_3\\ASPA004_3.csproj|solutionrelative:aspa004_3\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4F528478-55D2-4E8A-9213-04487D29161A}|ASPA004_2\\ASPA004_2.csproj|c:\\general\\belstu\\3k1s\\stsr3-1\\aspa\\aspa004_2\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4F528478-55D2-4E8A-9213-04487D29161A}|ASPA004_2\\ASPA004_2.csproj|solutionrelative:aspa004_2\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{81216392-34C7-4D15-AC89-10591B74086C}|ASPA004_1\\ASPA004_1.csproj|c:\\general\\belstu\\3k1s\\stsr3-1\\aspa\\aspa004_1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{81216392-34C7-4D15-AC89-10591B74086C}|ASPA004_1\\ASPA004_1.csproj|solutionrelative:aspa004_1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,33 +22,34 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Celebrities.json",
-              "DocumentMoniker": "C:\\General\\BELSTU\\3k1s\\STSR3-1\\ASPA\\DAL004\\Celebrities\\Celebrities.json",
-              "RelativeDocumentMoniker": "DAL004\\Celebrities\\Celebrities.json",
-              "ToolTip": "C:\\General\\BELSTU\\3k1s\\STSR3-1\\ASPA\\DAL004\\Celebrities\\Celebrities.json",
-              "RelativeToolTip": "DAL004\\Celebrities\\Celebrities.json",
-              "ViewState": "AgIAABUAAAAAAAAAAAAAABkAAAADAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-10-09T21:06:19.352Z",
+              "Title": "Class1.cs",
+              "DocumentMoniker": "C:\\General\\BELSTU\\3k1s\\STSR3-1\\ASPA\\DAL004\\Class1.cs",
+              "RelativeDocumentMoniker": "DAL004\\Class1.cs",
+              "ToolTip": "C:\\General\\BELSTU\\3k1s\\STSR3-1\\ASPA\\DAL004\\Class1.cs",
+              "RelativeToolTip": "DAL004\\Class1.cs",
+              "ViewState": "AgIAAH4AAAAAAAAAAAAUwJgAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-10T05:19:38.115Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\General\\BELSTU\\3k1s\\STSR3-1\\ASPA\\Test_DAL004\\Program.cs",
-              "RelativeDocumentMoniker": "Test_DAL004\\Program.cs",
-              "ToolTip": "C:\\General\\BELSTU\\3k1s\\STSR3-1\\ASPA\\Test_DAL004\\Program.cs",
-              "RelativeToolTip": "Test_DAL004\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-09T21:50:04.921Z",
+              "DocumentIndex": 2,
+              "Title": "Celebrities.json",
+              "DocumentMoniker": "C:\\General\\BELSTU\\3k1s\\STSR3-1\\ASPA\\DAL004\\Celebrities\\Celebrities.json",
+              "RelativeDocumentMoniker": "DAL004\\Celebrities\\Celebrities.json",
+              "ToolTip": "C:\\General\\BELSTU\\3k1s\\STSR3-1\\ASPA\\DAL004\\Celebrities\\Celebrities.json",
+              "RelativeToolTip": "DAL004\\Celebrities\\Celebrities.json",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAACsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-10-09T21:06:19.352Z",
+              "IsPinned": true,
               "EditorCaption": ""
             },
             {
@@ -74,44 +67,24 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{004be353-6879-467c-9d1e-9ac23cdf6d49}"
-            },
+            }
+          ]
+        },
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\General\\BELSTU\\3k1s\\STSR3-1\\ASPA\\ASPA004_1\\Program.cs",
               "RelativeDocumentMoniker": "ASPA004_1\\Program.cs",
               "ToolTip": "C:\\General\\BELSTU\\3k1s\\STSR3-1\\ASPA\\ASPA004_1\\Program.cs",
               "RelativeToolTip": "ASPA004_1\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAYwCIAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-09T20:44:19.734Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\General\\BELSTU\\3k1s\\STSR3-1\\ASPA\\ASPA004_2\\Program.cs",
-              "RelativeDocumentMoniker": "ASPA004_2\\Program.cs",
-              "ToolTip": "C:\\General\\BELSTU\\3k1s\\STSR3-1\\ASPA\\ASPA004_2\\Program.cs",
-              "RelativeToolTip": "ASPA004_2\\Program.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAAAwBUAAABJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-09T20:34:48.77Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\General\\BELSTU\\3k1s\\STSR3-1\\ASPA\\ASPA004_3\\Program.cs",
-              "RelativeDocumentMoniker": "ASPA004_3\\Program.cs",
-              "ToolTip": "C:\\General\\BELSTU\\3k1s\\STSR3-1\\ASPA\\ASPA004_3\\Program.cs",
-              "RelativeToolTip": "ASPA004_3\\Program.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAAAgwDoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-09T20:38:04.111Z",
               "EditorCaption": ""
             }
           ]
