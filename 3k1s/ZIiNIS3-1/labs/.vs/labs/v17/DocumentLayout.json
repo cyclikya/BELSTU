@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "C:\\General\\BELSTU\\3k1s\\ZIiNIS3-1\\labs\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E3E25A2F-AE54-4E98-B6D2-630BD610D47A}|lab3\\lab3.csproj|c:\\general\\belstu\\3k1s\\ziinis3-1\\labs\\lab3\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E3E25A2F-AE54-4E98-B6D2-630BD610D47A}|lab3\\lab3.csproj|solutionrelative:lab3\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6AFFA3F1-68EB-4A70-BDDC-04E8612CA97F}|lab4\\lab4.csproj|c:\\general\\belstu\\3k1s\\ziinis3-1\\labs\\lab4\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6AFFA3F1-68EB-4A70-BDDC-04E8612CA97F}|lab4\\lab4.csproj|solutionrelative:lab4\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,7 +14,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -29,16 +29,20 @@
               "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{004be353-6879-467c-9d1e-9ac23cdf6d49}"
+            },
+            {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\General\\BELSTU\\3k1s\\ZIiNIS3-1\\labs\\lab3\\Program.cs",
-              "RelativeDocumentMoniker": "lab3\\Program.cs",
-              "ToolTip": "C:\\General\\BELSTU\\3k1s\\ZIiNIS3-1\\labs\\lab3\\Program.cs",
-              "RelativeToolTip": "lab3\\Program.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAAwCEAAAA+AAAAAAAAAA==",
+              "DocumentMoniker": "C:\\General\\BELSTU\\3k1s\\ZIiNIS3-1\\labs\\lab4\\Program.cs",
+              "RelativeDocumentMoniker": "lab4\\Program.cs",
+              "ToolTip": "C:\\General\\BELSTU\\3k1s\\ZIiNIS3-1\\labs\\lab4\\Program.cs",
+              "RelativeToolTip": "lab4\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-01T12:59:24.555Z",
+              "WhenOpened": "2025-10-09T19:23:45.244Z",
               "EditorCaption": ""
             }
           ]
