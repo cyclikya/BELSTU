@@ -1,3 +1,48 @@
+# Visual Studio files
 .vs/
-.vsidx
+*.ipch
+*.sdf
+*.suo
+*.user
+*.db
+*.opendb
+*.VC.db
+*.opensdf
+.entities/
+.local/
+.objects/
+.project/
+.screenshots/
+.settings/
+.templates/
+.tmh/
+entry-points.json
+project.json
+project.uiproj
 
+# Database files
+*.ndf
+*.ldf
+*.mdf
+
+# Compiled files
+*.exe
+*.dll
+*.obj
+*.pdb
+*.bin
+
+# Other
+.DS_Store
+Thumbs.db
+__pycache__/
+*.pyc
+
+# UiPath files
+.entities/
+.local/
+.objects/
+.project/
+.settings/
+.templates/
+.tmh
