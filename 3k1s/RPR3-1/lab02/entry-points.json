@@ -3,7 +3,32 @@
   "entryPoints": [
     {
       "filePath": "task01.xaml",
-      "uniqueId": "05f8d735-6fdb-4f45-ab08-0f42df19b965",
+      "uniqueId": "7406e900-b54f-4bef-b816-1351f0d6c76e",
+      "type": "process"
+    },
+    {
+      "filePath": "task02.xaml",
+      "uniqueId": "6d95a1bd-84c3-4612-9966-69958316dab4",
+      "type": "process"
+    },
+    {
+      "filePath": "task03.xaml",
+      "uniqueId": "69f956dc-96e0-4bd7-8c86-c208834c66ef",
+      "type": "process"
+    },
+    {
+      "filePath": "task04.xaml",
+      "uniqueId": "3a079518-03db-4291-8254-d19ed08865dc",
+      "type": "process"
+    },
+    {
+      "filePath": "task05.xaml",
+      "uniqueId": "2cb982de-0bbf-480f-9ffb-1bbb10f0feb6",
+      "type": "process"
+    },
+    {
+      "filePath": "task06.xaml",
+      "uniqueId": "2241aa00-8e6d-4e19-8eca-3b56596a97ac",
       "type": "process"
     }
   ]

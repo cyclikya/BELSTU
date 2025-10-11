@@ -1,15 +1,21 @@
 {
   "name": "lab02",
-  "projectId": "7b85e19d-4da8-4275-b478-b68edfd9450c",
-  "description": "",
-  "main": "task01.xaml",
+  "projectId": "9b8aa2d4-2907-4bd3-8afd-ccae02eee47f",
+  "description": "1",
+  "main": "task06.xaml",
   "dependencies": {
-    "UiPath.System.Activities": "[25.8.1]"
+    "UiPath.Excel.Activities": "[2.22.0-preview]",
+    "UiPath.Mail.Activities": "[1.20.3]",
+    "UiPath.PDF.Activities": "[3.24.0]",
+    "UiPath.System.Activities": "[23.8.1-preview]",
+    "UiPath.Testing.Activities": "[23.8.0-preview]",
+    "UiPath.UIAutomation.Activities": "[23.6.2-preview]",
+    "UiPath.Word.Activities": "[2.2.0]"
   },
   "webServices": [],
   "entitiesStores": [],
   "schemaVersion": "4.0",
-  "studioVersion": "25.0.176.0",
+  "studioVersion": "23.8.0.0",
   "projectVersion": "1.0.0",
   "runtimeOptions": {
     "autoDispose": false,
@@ -18,7 +24,7 @@
     "isAttended": false,
     "requiresUserInteraction": true,
     "supportsPersistence": false,
-    "workflowSerialization": "NewtonsoftJson",
+    "workflowSerialization": "DataContract",
     "excludedLoggedData": [
       "Private:*",
       "*password*"
@@ -45,7 +51,37 @@
   "entryPoints": [
     {
       "filePath": "task01.xaml",
-      "uniqueId": "05f8d735-6fdb-4f45-ab08-0f42df19b965",
+      "uniqueId": "7406e900-b54f-4bef-b816-1351f0d6c76e",
+      "input": [],
+      "output": []
+    },
+    {
+      "filePath": "task02.xaml",
+      "uniqueId": "6d95a1bd-84c3-4612-9966-69958316dab4",
+      "input": [],
+      "output": []
+    },
+    {
+      "filePath": "task03.xaml",
+      "uniqueId": "69f956dc-96e0-4bd7-8c86-c208834c66ef",
+      "input": [],
+      "output": []
+    },
+    {
+      "filePath": "task04.xaml",
+      "uniqueId": "3a079518-03db-4291-8254-d19ed08865dc",
+      "input": [],
+      "output": []
+    },
+    {
+      "filePath": "task05.xaml",
+      "uniqueId": "2cb982de-0bbf-480f-9ffb-1bbb10f0feb6",
+      "input": [],
+      "output": []
+    },
+    {
+      "filePath": "task06.xaml",
+      "uniqueId": "2241aa00-8e6d-4e19-8eca-3b56596a97ac",
       "input": [],
       "output": []
     }

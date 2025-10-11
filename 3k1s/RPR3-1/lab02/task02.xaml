@@ -68,7 +68,7 @@
       <AssemblyReference>UiPath.Workflow</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="620.8,915.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="885.2,736" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="s:String[]" Name="Result1" />
       <Variable x:TypeArguments="x:String" Default="Платформа UiPath" Name="Text" />
@@ -79,19 +79,19 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence sap:VirtualizedContainerService.HintSize="558.4,803.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence sap:VirtualizedContainerService.HintSize="500.8,712.8" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <Sequence DisplayName="SplitArea" sap:VirtualizedContainerService.HintSize="496,325.6" sap2010:WorkflowViewState.IdRef="Sequence_3">
+      <Sequence DisplayName="SplitArea" sap:VirtualizedContainerService.HintSize="467.2,319.2" sap2010:WorkflowViewState.IdRef="Sequence_3">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <Assign sap:VirtualizedContainerService.HintSize="433.6,82.4" sap2010:WorkflowViewState.IdRef="Assign_1">
+        <Assign sap:VirtualizedContainerService.HintSize="433.6,113.6" sap2010:WorkflowViewState.IdRef="Assign_1">
           <Assign.To>
             <OutArgument x:TypeArguments="s:String[]">[Result1]</OutArgument>
           </Assign.To>
@@ -99,9 +99,9 @@
             <InArgument x:TypeArguments="s:String[]">[Split(Text, "U")]</InArgument>
           </Assign.Value>
         </Assign>
-        <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="433.6,91.2" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[Result1(1)]" />
+        <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="433.6,113.6" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[Result1(1)]" />
       </Sequence>
-      <Sequence DisplayName="SubsringArea" sap:VirtualizedContainerService.HintSize="496,194.4" sap2010:WorkflowViewState.IdRef="Sequence_4">
+      <Sequence DisplayName="SubsringArea" sap:VirtualizedContainerService.HintSize="467.2,196.8" sap2010:WorkflowViewState.IdRef="Sequence_4">
         <Sequence.Variables>
           <Variable x:TypeArguments="x:String" Name="variable1" />
           <Variable x:TypeArguments="x:String" Name="variable2" />
@@ -111,7 +111,7 @@
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <Assign sap:VirtualizedContainerService.HintSize="433.6,82.4" sap2010:WorkflowViewState.IdRef="Assign_2">
+        <Assign sap:VirtualizedContainerService.HintSize="433.6,104.8" sap2010:WorkflowViewState.IdRef="Assign_2">
           <Assign.To>
             <OutArgument x:TypeArguments="x:String">[Result2]</OutArgument>
           </Assign.To>
@@ -120,7 +120,7 @@
           </Assign.Value>
         </Assign>
       </Sequence>
-      <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="496,91.2" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[Result2]" />
+      <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="467.2,113.6" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[Result2]" />
     </Sequence>
   </Sequence>
 </Activity>
