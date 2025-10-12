@@ -74,7 +74,7 @@ int main() {
                 cout << "Получено [" << messageCount << "]: " << buffer << endl;
 
                 // Отправка сообщения обратно клиенту (эхо)
-                if (send(cS, buffer, bytesRecv, NULL) == SOCKET_ERROR)
+                if (send(cS, buffer, sizeof(buffer) - 1, NULL) == SOCKET_ERROR)
                     throw SetErrorMsgText("send:", WSAGetLastError());
 
                 cout << "Отправлено эхо: " << buffer << endl;
