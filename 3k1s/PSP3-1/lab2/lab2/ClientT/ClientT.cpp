@@ -1,4 +1,4 @@
-﻿#define _WINSOCK_DEPRECATED_NO_WARNINGS
+#define _WINSOCK_DEPRECATED_NO_WARNINGS
 #include <iostream>
 #include <winsock2.h>
 #include <string>
@@ -14,65 +14,66 @@ int main() {
     WSADATA wsaData;
     SOCKET cC;
 
+    int port = 2000;
+    string ip = "127.0.0.1";
+
     try {
-        // Инициализация библиотеки Winsock
         if (WSAStartup(MAKEWORD(2, 0), &wsaData) != 0)
             throw SetErrorMsgText("Startup:", WSAGetLastError());
 
-        // Создание клиентского сокета
         if ((cC = socket(AF_INET, SOCK_STREAM, NULL)) == INVALID_SOCKET)
             throw SetErrorMsgText("socket:", WSAGetLastError());
 
-        // Подключение к серверу
         SOCKADDR_IN serv;
         serv.sin_family = AF_INET;
-        serv.sin_port = htons(2000);
-        serv.sin_addr.s_addr = inet_addr("127.0.0.1");
+        serv.sin_port = htons(port);
+        serv.sin_addr.s_addr = inet_addr(ip.c_str());
 
         if (connect(cC, (sockaddr*)&serv, sizeof(serv)) == SOCKET_ERROR)
             throw SetErrorMsgText("connect:", WSAGetLastError());
 
         cout << "Подключение к серверу установлено." << endl;
 
-        // Ввод количества сообщений
         int messageCount;
         cout << "Введите количество сообщений для отправки: ";
         cin >> messageCount;
 
-        // Измерение времени начала обмена
         clock_t startTime = clock();
 
-        // Основной цикл обмена сообщениями
-        for (int i = 1; i <= messageCount; i++) {
-            // Формирование сообщения
-            string message = "Hello from Client " + to_string(i);
+        string message = "Hello from Client 1";
 
-            // Отправка сообщения серверу
+        for (int i = 1; i <= messageCount; i++) {
+
             if (send(cC, message.c_str(), message.length(), NULL) == SOCKET_ERROR)
                 throw SetErrorMsgText("send:", WSAGetLastError());
 
             cout << "Отправлено [" << i << "/" << messageCount << "]: " << message << endl;
 
-            // Прием эхо-ответа от сервера
             char buffer[1024];
             int bytesRecv = recv(cC, buffer, sizeof(buffer) - 1, NULL);
             if (bytesRecv == SOCKET_ERROR)
                 throw SetErrorMsgText("recv:", WSAGetLastError());
 
             buffer[bytesRecv] = '\0';
-            cout << "Получено эхо: " << buffer << endl;
+            string receivedMsg(buffer);
+            cout << "Получено эхо: " << receivedMsg << endl;
 
-            // Вывод прогресса каждые 100 сообщений
+            if (i < messageCount) {
+                size_t pos = receivedMsg.find_last_of(" ");
+                if (pos != string::npos) {
+                    int currentNumber = stoi(receivedMsg.substr(pos + 1));
+                    message = "Hello from Client " + to_string(currentNumber + 1);
+                }
+            }
+
             if (i % 100 == 0) {
                 cout << "Обработано " << i << " сообщений из " << messageCount << endl;
             }
         }
 
-        // Отправка сообщения нулевой длины для завершения работы сервера
         if (send(cC, "", 0, NULL) == SOCKET_ERROR)
             throw SetErrorMsgText("send:", WSAGetLastError());
 
-        // Измерение времени окончания и расчет
         clock_t endTime = clock();
         double elapsedTime = (double)(endTime - startTime) / CLOCKS_PER_SEC;
 
@@ -82,7 +83,6 @@ int main() {
         cout << "Среднее время на сообщение: " << (elapsedTime * 1000 / messageCount) << " мс" << endl;
         cout << "Сообщений в секунду: " << (messageCount / elapsedTime) << endl;
 
-        // Завершение работы клиента
         closesocket(cC);
 
         if (WSACleanup() == SOCKET_ERROR)
