@@ -1,0 +1,6 @@
+C:\General\BELSTU\3k1s\STSR3-1\ASPA\Test_ASPA005_3\obj\Debug\net8.0\Test_ASPA005_3.csproj.AssemblyReference.cache
+C:\General\BELSTU\3k1s\STSR3-1\ASPA\Test_ASPA005_3\obj\Debug\net8.0\Test_ASPA005_3.GeneratedMSBuildEditorConfig.editorconfig
+C:\General\BELSTU\3k1s\STSR3-1\ASPA\Test_ASPA005_3\obj\Debug\net8.0\Test_ASPA005_3.AssemblyInfoInputs.cache
+C:\General\BELSTU\3k1s\STSR3-1\ASPA\Test_ASPA005_3\obj\Debug\net8.0\Test_ASPA005_3.AssemblyInfo.cs
+C:\General\BELSTU\3k1s\STSR3-1\ASPA\Test_ASPA005_3\obj\Debug\net8.0\Test_ASPA005_3.csproj.CoreCompileInputs.cache
+C:\General\BELSTU\3k1s\STSR3-1\ASPA\Test_ASPA005_3\obj\Debug\net8.0\Test_ASPA005_3.sourcelink.json

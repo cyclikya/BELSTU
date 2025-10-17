@@ -1,0 +1,44 @@
+[
+  {
+    "Id": 1,
+    "Firstname": "Noam",
+    "Surname": "Chomsky",
+    "PhotoPath": "Chomsky.jpg"
+  },
+  {
+    "Id": 2,
+    "Firstname": "Tim",
+    "Surname": "Berners-Lee",
+    "PhotoPath": "Berners-Lee.jpg"
+  },
+  {
+    "Id": 3,
+    "Firstname": "Edgar",
+    "Surname": "Codd",
+    "PhotoPath": "Codd.jpg"
+  },
+  {
+    "Id": 4,
+    "Firstname": "Donald",
+    "Surname": "Knuth",
+    "PhotoPath": "Knuth.jpg"
+  },
+  {
+    "Id": 5,
+    "Firstname": "Linus",
+    "Surname": "Torvalds",
+    "PhotoPath": "Torvalds.jpg"
+  },
+  {
+    "Id": 6,
+    "Firstname": "John",
+    "Surname": "Neumann",
+    "PhotoPath": "Neumann.jpg"
+  },
+  {
+    "Id": 7,
+    "Firstname": "Edsger",
+    "Surname": "Dijkstra",
+    "PhotoPath": "Dijkstra.jpg"
+  }
+]

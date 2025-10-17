@@ -1,0 +1,12 @@
+C:\General\BELSTU\3k1s\STSR3-1\ASPA\DAL005\bin\Debug\net8.0\DAL005.deps.json
+C:\General\BELSTU\3k1s\STSR3-1\ASPA\DAL005\bin\Debug\net8.0\DAL005.dll
+C:\General\BELSTU\3k1s\STSR3-1\ASPA\DAL005\bin\Debug\net8.0\DAL005.pdb
+C:\General\BELSTU\3k1s\STSR3-1\ASPA\DAL005\obj\Debug\net8.0\DAL005.GeneratedMSBuildEditorConfig.editorconfig
+C:\General\BELSTU\3k1s\STSR3-1\ASPA\DAL005\obj\Debug\net8.0\DAL005.AssemblyInfoInputs.cache
+C:\General\BELSTU\3k1s\STSR3-1\ASPA\DAL005\obj\Debug\net8.0\DAL005.AssemblyInfo.cs
+C:\General\BELSTU\3k1s\STSR3-1\ASPA\DAL005\obj\Debug\net8.0\DAL005.csproj.CoreCompileInputs.cache
+C:\General\BELSTU\3k1s\STSR3-1\ASPA\DAL005\obj\Debug\net8.0\DAL005.sourcelink.json
+C:\General\BELSTU\3k1s\STSR3-1\ASPA\DAL005\obj\Debug\net8.0\DAL005.dll
+C:\General\BELSTU\3k1s\STSR3-1\ASPA\DAL005\obj\Debug\net8.0\refint\DAL005.dll
+C:\General\BELSTU\3k1s\STSR3-1\ASPA\DAL005\obj\Debug\net8.0\DAL005.pdb
+C:\General\BELSTU\3k1s\STSR3-1\ASPA\DAL005\obj\Debug\net8.0\ref\DAL005.dll

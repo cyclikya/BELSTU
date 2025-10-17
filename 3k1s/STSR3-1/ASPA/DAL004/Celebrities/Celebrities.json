@@ -1,11 +1,5 @@
 [
   {
-    "Id": 1,
-    "Firstname": "Noam",
-    "Surname": "Chomsky",
-    "PhotoPath": "Chomsky.jpg"
-  },
-  {
     "Id": 2,
     "Firstname": "Tim",
     "Surname": "Berners-Lee",
@@ -40,5 +34,29 @@
     "Firstname": "Edsger",
     "Surname": "Dijkstra",
     "PhotoPath": "Dijkstra.jpg"
+  },
+  {
+    "Id": 8,
+    "Firstname": "ForValidate",
+    "Surname": "xx",
+    "PhotoPath": "ForUpdate.jpg"
+  },
+  {
+    "Id": 9,
+    "Firstname": "Noam",
+    "Surname": "Chomsky",
+    "PhotoPath": "Chomsky.jpg"
+  },
+  {
+    "Id": 10,
+    "Firstname": "NoJPG",
+    "Surname": "NoJPG",
+    "PhotoPath": "NoJPG.jpg"
+  },
+  {
+    "Id": 11,
+    "Firstname": "NoJPG2",
+    "Surname": "NoJPG2",
+    "PhotoPath": "NoJPG2.jpg"
   }
 ]
