@@ -28,17 +28,14 @@ class Program
             return celebrity;
         });
 
-        // --- POST /Celebrities ---
         app.MapPost("/Celebrities", (Celebrity celebrity, IRepository repository, HttpContext ctx) =>
         {
-            // Валидация фамилии
             if (string.IsNullOrWhiteSpace(celebrity.Surname) || celebrity.Surname.Length < 2)
             {
                 ctx.Response.StatusCode = 409;
                 return Results.Json(new { error = "POST /Celebrities error, Surname is wrong" });
             }
 
-            // Проверка на дубликат фамилии
             var duplicates = repository.getCelebritiesBySurname(celebrity.Surname);
             if (duplicates.Length > 0)
             {
@@ -46,7 +43,6 @@ class Program
                 return Results.Json(new { error = "Value: POST /Celebrities error, Surname is doubled" });
             }
 
-            // Проверка фото
             if (!string.IsNullOrWhiteSpace(celebrity.PhotoPath))
             {
                 string fileName = Path.GetFileName(celebrity.PhotoPath);
@@ -57,7 +53,6 @@ class Program
                 }
             }
 
-            // Добавление
             int? id = repository.addCelebrity(celebrity);
             if (id == null)
                 throw new AddCelebrityException("POST /Celebrities error, id == null");
@@ -86,7 +81,6 @@ class Program
             return Results.Ok(new Celebrity((int)Id, celebrity.Firstname, celebrity.Surname, celebrity.PhotoPath));
         });
 
-        // --- Глобальный обработчик ошибок ---
         app.Map("/Celebrities/Error", (HttpContext ctx) =>
         {
             Exception? ex = ctx.Features.Get<IExceptionHandlerFeature>()?.Error;
