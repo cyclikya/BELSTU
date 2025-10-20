@@ -1,6 +1,7 @@
 # Visual Studio files
 .vs/
 *.ipch
+*.pch
 *.sdf
 *.suo
 *.user
@@ -46,3 +47,4 @@ __pycache__/
 .settings/
 .templates/
 .tmh
+
