@@ -1,0 +1,2 @@
+﻿  ClientU.cpp
+C:\General\BELSTU\3k1s\PSP3-1\lab3\lab3\lab3\ClientU.cpp(46,40): error C4996: 'inet_addr': Use inet_pton() or InetPton() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings

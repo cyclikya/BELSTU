@@ -1,0 +1,50 @@
+﻿Сборка начата 18.09.2025 23:06:02.
+Уровень детализации журнала: Normal.     1>Проект "D:\5 СЕМ\СП\1 лаба\OS10_01\OS10_02\OS10_02.vcxproj" в узле 2 (целевые объекты Build).
+     1>PrepareForBuild:
+         Структурированный вывод включен. Форматирование диагностики компилятора будет отражать иерархию ошибок. Подробнее см. https://aka.ms/cpp/structured-output.
+         Создание каталога "Debug\OS10_02.tlog\".
+       InitializeBuildStatus:
+         Создание "Debug\OS10_02.tlog\unsuccessfulbuild", так как было задано "AlwaysCreate".
+         Обращение к "Debug\OS10_02.tlog\unsuccessfulbuild".
+       ClCompile:
+         C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\bin\HostX86\x86\CL.exe /c /ZI /JMC /nologo /W3 /WX- /diagnostics:column /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /permissive- /Fo"Debug\\" /Fd"Debug\vc143.pdb" /external:W3 /Gd /TP /analyze- /FC /errorReport:prompt OS10_02.cpp
+         OS10_02.cpp
+       Link:
+         C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\bin\HostX86\x86\link.exe /ERRORREPORT:PROMPT /OUT:"D:\5 СЕМ\СП\1 лаба\OS10_01\Debug\OS10_02.exe" /INCREMENTAL /ILK:"Debug\OS10_02.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\5 СЕМ\СП\1 лаба\OS10_01\Debug\OS10_02.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\5 СЕМ\СП\1 лаба\OS10_01\Debug\OS10_02.lib" /MACHINE:X86 Debug\OS10_02.obj
+     1>OS10_02.obj : error LNK2019: ссылка на неразрешенный внешний символ "public: __thiscall HT::Element::Element(void const *,int)" (??0Element@HT@@QAE@PBXH@Z) в функции _main.
+     1>OS10_02.obj : error LNK2019: ссылка на неразрешенный внешний символ "public: __thiscall HT::Element::Element(void const *,int,void const *,int)" (??0Element@HT@@QAE@PBXH0H@Z) в функции _main.
+     1>OS10_02.obj : error LNK2019: ссылка на неразрешенный внешний символ "struct HT::HTHandle * __cdecl HT::Create(int,int,int,int,wchar_t const * const)" (?Create@HT@@YAPAUHTHandle@1@HHHHQB_W@Z) в функции _main.
+     1>OS10_02.obj : error LNK2019: ссылка на неразрешенный внешний символ "struct HT::HTHandle * __cdecl HT::Open(wchar_t const * const)" (?Open@HT@@YAPAUHTHandle@1@QB_W@Z) в функции __catch$_main$0.
+     1>OS10_02.obj : error LNK2019: ссылка на неразрешенный внешний символ "int __cdecl HT::Snap(struct HT::HTHandle *)" (?Snap@HT@@YAHPAUHTHandle@1@@Z) в функции _main.
+     1>OS10_02.obj : error LNK2019: ссылка на неразрешенный внешний символ "int __cdecl HT::Close(struct HT::HTHandle *)" (?Close@HT@@YAHPAUHTHandle@1@@Z) в функции _main.
+     1>OS10_02.obj : error LNK2019: ссылка на неразрешенный внешний символ "int __cdecl HT::Insert(struct HT::HTHandle *,struct HT::Element *)" (?Insert@HT@@YAHPAUHTHandle@1@PAUElement@1@@Z) в функции _main.
+     1>OS10_02.obj : error LNK2019: ссылка на неразрешенный внешний символ "int __cdecl HT::Delete(struct HT::HTHandle *,struct HT::Element *)" (?Delete@HT@@YAHPAUHTHandle@1@PAUElement@1@@Z) в функции _main.
+     1>OS10_02.obj : error LNK2019: ссылка на неразрешенный внешний символ "struct HT::Element * __cdecl HT::Get(struct HT::HTHandle *,struct HT::Element *)" (?Get@HT@@YAPAUElement@1@PAUHTHandle@1@PAU21@@Z) в функции _main.
+     1>OS10_02.obj : error LNK2019: ссылка на неразрешенный внешний символ "int __cdecl HT::Update(struct HT::HTHandle *,struct HT::Element *,void const *,int)" (?Update@HT@@YAHPAUHTHandle@1@PAUElement@1@PBXH@Z) в функции _main.
+     1>OS10_02.obj : error LNK2019: ссылка на неразрешенный внешний символ "char * __cdecl HT::GetHTLastError(struct HT::HTHandle *)" (?GetHTLastError@HT@@YAPADPAUHTHandle@1@@Z) в функции __catch$_main$0.
+     1>OS10_02.obj : error LNK2019: ссылка на неразрешенный внешний символ "void __cdecl HT::Print(struct HT::Element const *)" (?Print@HT@@YAXPBUElement@1@@Z) в функции _main.
+     1>D:\5 СЕМ\СП\1 лаба\OS10_01\Debug\OS10_02.exe : fatal error LNK1120: неразрешенных внешних элементов: 12
+     1>Сборка проекта "D:\5 СЕМ\СП\1 лаба\OS10_01\OS10_02\OS10_02.vcxproj" завершена (целевые объекты Build) с ошибкой.
+
+Ошибка сборки.
+
+       "D:\5 СЕМ\СП\1 лаба\OS10_01\OS10_02\OS10_02.vcxproj" (целевой объект Build ) (1) ->
+       (Целевой объект Link) -> 
+         OS10_02.obj : error LNK2019: ссылка на неразрешенный внешний символ "public: __thiscall HT::Element::Element(void const *,int)" (??0Element@HT@@QAE@PBXH@Z) в функции _main.
+         OS10_02.obj : error LNK2019: ссылка на неразрешенный внешний символ "public: __thiscall HT::Element::Element(void const *,int,void const *,int)" (??0Element@HT@@QAE@PBXH0H@Z) в функции _main.
+         OS10_02.obj : error LNK2019: ссылка на неразрешенный внешний символ "struct HT::HTHandle * __cdecl HT::Create(int,int,int,int,wchar_t const * const)" (?Create@HT@@YAPAUHTHandle@1@HHHHQB_W@Z) в функции _main.
+         OS10_02.obj : error LNK2019: ссылка на неразрешенный внешний символ "struct HT::HTHandle * __cdecl HT::Open(wchar_t const * const)" (?Open@HT@@YAPAUHTHandle@1@QB_W@Z) в функции __catch$_main$0.
+         OS10_02.obj : error LNK2019: ссылка на неразрешенный внешний символ "int __cdecl HT::Snap(struct HT::HTHandle *)" (?Snap@HT@@YAHPAUHTHandle@1@@Z) в функции _main.
+         OS10_02.obj : error LNK2019: ссылка на неразрешенный внешний символ "int __cdecl HT::Close(struct HT::HTHandle *)" (?Close@HT@@YAHPAUHTHandle@1@@Z) в функции _main.
+         OS10_02.obj : error LNK2019: ссылка на неразрешенный внешний символ "int __cdecl HT::Insert(struct HT::HTHandle *,struct HT::Element *)" (?Insert@HT@@YAHPAUHTHandle@1@PAUElement@1@@Z) в функции _main.
+         OS10_02.obj : error LNK2019: ссылка на неразрешенный внешний символ "int __cdecl HT::Delete(struct HT::HTHandle *,struct HT::Element *)" (?Delete@HT@@YAHPAUHTHandle@1@PAUElement@1@@Z) в функции _main.
+         OS10_02.obj : error LNK2019: ссылка на неразрешенный внешний символ "struct HT::Element * __cdecl HT::Get(struct HT::HTHandle *,struct HT::Element *)" (?Get@HT@@YAPAUElement@1@PAUHTHandle@1@PAU21@@Z) в функции _main.
+         OS10_02.obj : error LNK2019: ссылка на неразрешенный внешний символ "int __cdecl HT::Update(struct HT::HTHandle *,struct HT::Element *,void const *,int)" (?Update@HT@@YAHPAUHTHandle@1@PAUElement@1@PBXH@Z) в функции _main.
+         OS10_02.obj : error LNK2019: ссылка на неразрешенный внешний символ "char * __cdecl HT::GetHTLastError(struct HT::HTHandle *)" (?GetHTLastError@HT@@YAPADPAUHTHandle@1@@Z) в функции __catch$_main$0.
+         OS10_02.obj : error LNK2019: ссылка на неразрешенный внешний символ "void __cdecl HT::Print(struct HT::Element const *)" (?Print@HT@@YAXPBUElement@1@@Z) в функции _main.
+         D:\5 СЕМ\СП\1 лаба\OS10_01\Debug\OS10_02.exe : fatal error LNK1120: неразрешенных внешних элементов: 12
+
+    Предупреждений: 0
+    Ошибок: 13
+
+Прошло времени 00:00:01.33
