@@ -1,0 +1,7 @@
+{
+  // Celebrities.config.json
+  "Celebrities": {
+    "PhotoFolder": "C:\\General\\BELSTU\\3k1s\\STSR3-1\\ASPA\\DAL_Celebrity_MSSQL\\PhotoCelebrities\\",
+    "ConnectionString": "Host=localhost;Port=5432;Database=Celebrity;Username=postgres;Password=vivi5567"
+  }
+}

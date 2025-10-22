@@ -105,8 +105,20 @@ class Test
         await test.ExecuteGET<float?>("https://localhost:7034/B/2.5", (float? x, float? y, int status) => (x == 2.5 && y == null && status == 200) ? Test.NOK : Test.OK);
         await test.ExecuteGET<float?>("https://localhost:7034/B/2", (float? x, float? y, int status) => (x == 2.0 && y == null && status == 200) ? Test.NOK : Test.OK);
         await test.ExecuteGET<float?>("https://localhost:7034/B/2X", (float? x, float? y, int status) => (x == null && y == null && status == 404) ? Test.OK : Test.NOK);
-        await test.ExecutePOST<float?>("https://localhost:7034/B/2.5/3.2", (float? x, float? y, int status) => (x == 2.5 && y == 3.2 && status == 200) ? Test.OK : Test.NOK);
-        await test.ExecuteDELETE<float?>("https://localhost:7034/B/2.5-3.2", (float? x, float? y, int status) => (x == 2.5 && y == 3.2 && status == 200) ? Test.OK : Test.NOK);
+        
+        await test.ExecutePOST<float?>("https://localhost:7034/B/2.5/3.2",
+            (float? x, float? y, int status) =>
+                (x == 2.5 &&
+                y == 3.2 &&
+                status == 200)
+                ? Test.OK : Test.NOK);
+        
+        await test.ExecuteDELETE<float?>("https://localhost:7034/B/2.5-3.2",
+            (float? x, float? y, int status) => 
+                (x == 2.5 &&
+                y == 3.2 &&
+                status == 200)
+                ? Test.OK : Test.NOK);
 
         Console.WriteLine("-- /C -------------------------------------");
 

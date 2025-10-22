@@ -1,0 +1,16 @@
+C:\General\BELSTU\3k1s\STSR3-1\ASPA\DAL_Celebrity_MSSQL\bin\Debug\net8.0\DAL_Celebrity_Npgsql.deps.json
+C:\General\BELSTU\3k1s\STSR3-1\ASPA\DAL_Celebrity_MSSQL\bin\Debug\net8.0\DAL_Celebrity_Npgsql.dll
+C:\General\BELSTU\3k1s\STSR3-1\ASPA\DAL_Celebrity_MSSQL\bin\Debug\net8.0\DAL_Celebrity_Npgsql.pdb
+C:\General\BELSTU\3k1s\STSR3-1\ASPA\DAL_Celebrity_MSSQL\bin\Debug\net8.0\DAL_Celebrity.dll
+C:\General\BELSTU\3k1s\STSR3-1\ASPA\DAL_Celebrity_MSSQL\bin\Debug\net8.0\DAL_Celebrity.pdb
+C:\General\BELSTU\3k1s\STSR3-1\ASPA\DAL_Celebrity_MSSQL\obj\Debug\net8.0\DAL_Celebrity_Npgsql.csproj.AssemblyReference.cache
+C:\General\BELSTU\3k1s\STSR3-1\ASPA\DAL_Celebrity_MSSQL\obj\Debug\net8.0\DAL_Celebrity_Npgsql.GeneratedMSBuildEditorConfig.editorconfig
+C:\General\BELSTU\3k1s\STSR3-1\ASPA\DAL_Celebrity_MSSQL\obj\Debug\net8.0\DAL_Celebrity_Npgsql.AssemblyInfoInputs.cache
+C:\General\BELSTU\3k1s\STSR3-1\ASPA\DAL_Celebrity_MSSQL\obj\Debug\net8.0\DAL_Celebrity_Npgsql.AssemblyInfo.cs
+C:\General\BELSTU\3k1s\STSR3-1\ASPA\DAL_Celebrity_MSSQL\obj\Debug\net8.0\DAL_Celebrity_Npgsql.csproj.CoreCompileInputs.cache
+C:\General\BELSTU\3k1s\STSR3-1\ASPA\DAL_Celebrity_MSSQL\obj\Debug\net8.0\DAL_Celebrity_Npgsql.sourcelink.json
+C:\General\BELSTU\3k1s\STSR3-1\ASPA\DAL_Celebrity_MSSQL\obj\Debug\net8.0\DAL_Cele.C7D75316.Up2Date
+C:\General\BELSTU\3k1s\STSR3-1\ASPA\DAL_Celebrity_MSSQL\obj\Debug\net8.0\DAL_Celebrity_Npgsql.dll
+C:\General\BELSTU\3k1s\STSR3-1\ASPA\DAL_Celebrity_MSSQL\obj\Debug\net8.0\refint\DAL_Celebrity_Npgsql.dll
+C:\General\BELSTU\3k1s\STSR3-1\ASPA\DAL_Celebrity_MSSQL\obj\Debug\net8.0\DAL_Celebrity_Npgsql.pdb
+C:\General\BELSTU\3k1s\STSR3-1\ASPA\DAL_Celebrity_MSSQL\obj\Debug\net8.0\ref\DAL_Celebrity_Npgsql.dll

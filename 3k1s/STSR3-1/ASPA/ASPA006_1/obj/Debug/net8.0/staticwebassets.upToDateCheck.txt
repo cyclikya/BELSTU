@@ -1,0 +1,3 @@
+wwwroot\css\Celebrities.css
+wwwroot\Index.html
+wwwroot\js\Celebrities.js

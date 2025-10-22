@@ -1,0 +1,331 @@
+{
+  "Version": 1,
+  "Hash": "UxIjtG/i1AovFZ4hukb/PfTBes8YGuZM1NMGfU3f4H0=",
+  "Source": "ASPA006_1",
+  "BasePath": "_content/ASPA006_1",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "ASPA006_1\\wwwroot",
+      "Source": "ASPA006_1",
+      "ContentRoot": "C:\\General\\BELSTU\\3k1s\\STSR3-1\\ASPA\\ASPA006_1\\wwwroot\\",
+      "BasePath": "_content/ASPA006_1",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\General\\BELSTU\\3k1s\\STSR3-1\\ASPA\\ASPA006_1\\wwwroot\\css\\Celebrities.css",
+      "SourceId": "ASPA006_1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\General\\BELSTU\\3k1s\\STSR3-1\\ASPA\\ASPA006_1\\wwwroot\\",
+      "BasePath": "_content/ASPA006_1",
+      "RelativePath": "css/Celebrities#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "kcpiymzcmg",
+      "Integrity": "LAWhflNlW43t5QfrANnDabnvxdn+LHoqoOjJjIG/GXg=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\Celebrities.css"
+    },
+    {
+      "Identity": "C:\\General\\BELSTU\\3k1s\\STSR3-1\\ASPA\\ASPA006_1\\wwwroot\\Index.html",
+      "SourceId": "ASPA006_1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\General\\BELSTU\\3k1s\\STSR3-1\\ASPA\\ASPA006_1\\wwwroot\\",
+      "BasePath": "_content/ASPA006_1",
+      "RelativePath": "Index#[.{fingerprint}]?.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "o11me4izpa",
+      "Integrity": "NBO8eLxyNnSnYGjj97KslwnAAGRzqDP7Nt68JUh534o=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Index.html"
+    },
+    {
+      "Identity": "C:\\General\\BELSTU\\3k1s\\STSR3-1\\ASPA\\ASPA006_1\\wwwroot\\js\\Celebrities.js",
+      "SourceId": "ASPA006_1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\General\\BELSTU\\3k1s\\STSR3-1\\ASPA\\ASPA006_1\\wwwroot\\",
+      "BasePath": "_content/ASPA006_1",
+      "RelativePath": "js/Celebrities#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "g80fa76z9w",
+      "Integrity": "8JTbC21aKDACVJG/lr7ZFrlcI1Mw8gVZnACRT7QbBXw=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\Celebrities.js"
+    }
+  ],
+  "Endpoints": [
+    {
+      "Route": "css/Celebrities.css",
+      "AssetFile": "C:\\General\\BELSTU\\3k1s\\STSR3-1\\ASPA\\ASPA006_1\\wwwroot\\css\\Celebrities.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "87"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"LAWhflNlW43t5QfrANnDabnvxdn+LHoqoOjJjIG/GXg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 22 May 2025 16:59:24 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-LAWhflNlW43t5QfrANnDabnvxdn+LHoqoOjJjIG/GXg="
+        }
+      ]
+    },
+    {
+      "Route": "css/Celebrities.kcpiymzcmg.css",
+      "AssetFile": "C:\\General\\BELSTU\\3k1s\\STSR3-1\\ASPA\\ASPA006_1\\wwwroot\\css\\Celebrities.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "87"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"LAWhflNlW43t5QfrANnDabnvxdn+LHoqoOjJjIG/GXg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 22 May 2025 16:59:24 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "kcpiymzcmg"
+        },
+        {
+          "Name": "label",
+          "Value": "css/Celebrities.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-LAWhflNlW43t5QfrANnDabnvxdn+LHoqoOjJjIG/GXg="
+        }
+      ]
+    },
+    {
+      "Route": "Index.html",
+      "AssetFile": "C:\\General\\BELSTU\\3k1s\\STSR3-1\\ASPA\\ASPA006_1\\wwwroot\\Index.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "396"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"NBO8eLxyNnSnYGjj97KslwnAAGRzqDP7Nt68JUh534o=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 22 May 2025 16:59:24 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-NBO8eLxyNnSnYGjj97KslwnAAGRzqDP7Nt68JUh534o="
+        }
+      ]
+    },
+    {
+      "Route": "Index.o11me4izpa.html",
+      "AssetFile": "C:\\General\\BELSTU\\3k1s\\STSR3-1\\ASPA\\ASPA006_1\\wwwroot\\Index.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "396"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"NBO8eLxyNnSnYGjj97KslwnAAGRzqDP7Nt68JUh534o=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 22 May 2025 16:59:24 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "o11me4izpa"
+        },
+        {
+          "Name": "label",
+          "Value": "Index.html"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-NBO8eLxyNnSnYGjj97KslwnAAGRzqDP7Nt68JUh534o="
+        }
+      ]
+    },
+    {
+      "Route": "js/Celebrities.g80fa76z9w.js",
+      "AssetFile": "C:\\General\\BELSTU\\3k1s\\STSR3-1\\ASPA\\ASPA006_1\\wwwroot\\js\\Celebrities.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1719"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"8JTbC21aKDACVJG/lr7ZFrlcI1Mw8gVZnACRT7QbBXw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 23 May 2025 12:26:11 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "g80fa76z9w"
+        },
+        {
+          "Name": "label",
+          "Value": "js/Celebrities.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-8JTbC21aKDACVJG/lr7ZFrlcI1Mw8gVZnACRT7QbBXw="
+        }
+      ]
+    },
+    {
+      "Route": "js/Celebrities.js",
+      "AssetFile": "C:\\General\\BELSTU\\3k1s\\STSR3-1\\ASPA\\ASPA006_1\\wwwroot\\js\\Celebrities.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1719"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"8JTbC21aKDACVJG/lr7ZFrlcI1Mw8gVZnACRT7QbBXw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 23 May 2025 12:26:11 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-8JTbC21aKDACVJG/lr7ZFrlcI1Mw8gVZnACRT7QbBXw="
+        }
+      ]
+    }
+  ]
+}

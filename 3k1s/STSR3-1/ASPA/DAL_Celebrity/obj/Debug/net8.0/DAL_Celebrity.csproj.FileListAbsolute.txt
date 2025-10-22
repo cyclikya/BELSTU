@@ -1,0 +1,12 @@
+C:\General\BELSTU\3k1s\STSR3-1\ASPA\DAL_Celebrity\bin\Debug\net8.0\DAL_Celebrity.deps.json
+C:\General\BELSTU\3k1s\STSR3-1\ASPA\DAL_Celebrity\bin\Debug\net8.0\DAL_Celebrity.dll
+C:\General\BELSTU\3k1s\STSR3-1\ASPA\DAL_Celebrity\bin\Debug\net8.0\DAL_Celebrity.pdb
+C:\General\BELSTU\3k1s\STSR3-1\ASPA\DAL_Celebrity\obj\Debug\net8.0\DAL_Celebrity.GeneratedMSBuildEditorConfig.editorconfig
+C:\General\BELSTU\3k1s\STSR3-1\ASPA\DAL_Celebrity\obj\Debug\net8.0\DAL_Celebrity.AssemblyInfoInputs.cache
+C:\General\BELSTU\3k1s\STSR3-1\ASPA\DAL_Celebrity\obj\Debug\net8.0\DAL_Celebrity.AssemblyInfo.cs
+C:\General\BELSTU\3k1s\STSR3-1\ASPA\DAL_Celebrity\obj\Debug\net8.0\DAL_Celebrity.csproj.CoreCompileInputs.cache
+C:\General\BELSTU\3k1s\STSR3-1\ASPA\DAL_Celebrity\obj\Debug\net8.0\DAL_Celebrity.sourcelink.json
+C:\General\BELSTU\3k1s\STSR3-1\ASPA\DAL_Celebrity\obj\Debug\net8.0\DAL_Celebrity.dll
+C:\General\BELSTU\3k1s\STSR3-1\ASPA\DAL_Celebrity\obj\Debug\net8.0\refint\DAL_Celebrity.dll
+C:\General\BELSTU\3k1s\STSR3-1\ASPA\DAL_Celebrity\obj\Debug\net8.0\DAL_Celebrity.pdb
+C:\General\BELSTU\3k1s\STSR3-1\ASPA\DAL_Celebrity\obj\Debug\net8.0\ref\DAL_Celebrity.dll
