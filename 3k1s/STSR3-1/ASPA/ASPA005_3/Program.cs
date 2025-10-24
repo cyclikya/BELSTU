@@ -80,26 +80,9 @@ app.MapPut("/E/{x:minlength(2):maxlength(12)}", (HttpContext context, [FromRoute
     return Results.Ok(new { path = context.Request.Path.Value, x });
 });
 
-//12-x
-app.MapGet("/E/12-{x}", (HttpContext context, [FromRoute] string x) =>
-{
-    return Results.Ok(new { path = context.Request.Path.Value, x, y = (string?)null });
-});
-
-//2–12
-app.MapPut("/E/{x:alpha:minlength(2):maxlength(12)}", (HttpContext context, [FromRoute] string x) =>
-{
-    return Results.Ok(new { path = context.Request.Path.Value, x, y = (string?)null });
-});
-
 
 
 // ---F-----------
-app.MapGet("/F/{x:alpha:minlength(1):maxlength(12)}", (HttpContext context, [FromRoute] string x) =>
-{
-    return Results.Ok(new { path = context.Request.Path.Value, x });
-});
-
 //email
 app.MapPut("/F/{x:regex(^[\\w.]+@[\\w.]+\\.by$)}", (HttpContext context, [FromRoute] string x) =>
 {

@@ -107,18 +107,10 @@ class Test
         await test.ExecuteGET<float?>("https://localhost:7034/B/2X", (float? x, float? y, int status) => (x == null && y == null && status == 404) ? Test.OK : Test.NOK);
         
         await test.ExecutePOST<float?>("https://localhost:7034/B/2.5/3.2",
-            (float? x, float? y, int status) =>
-                (x == 2.5 &&
-                y == 3.2 &&
-                status == 200)
-                ? Test.OK : Test.NOK);
+            (float? x, float? y, int status) => (x == 2.5f && y == 3.2f && status == 200) ? Test.NOK : Test.OK);
         
         await test.ExecuteDELETE<float?>("https://localhost:7034/B/2.5-3.2",
-            (float? x, float? y, int status) => 
-                (x == 2.5 &&
-                y == 3.2 &&
-                status == 200)
-                ? Test.OK : Test.NOK);
+            (float? x, float? y, int status) => (x == 2.5f && y == 3.2f && status == 200) ? Test.NOK : Test.OK);
 
         Console.WriteLine("-- /C -------------------------------------");
 

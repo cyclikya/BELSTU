@@ -1,31 +1,60 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
+using System.Collections.Generic;
 
 namespace lab6
 {
     class Program
     {
+        //static int CalculateRequiredR(int k)
+        //{
+        //    int r = 1;
+        //    while (Math.Pow(2, r) < (k + r + 1)) r++;
+        //    return r;
+        //}
+        static int CalculateRequiredK(int r)
+        {
+            return (1 << r) - r - 1;
+        }
+
+        static string GenerateRandomXk(int k)
+        {
+            Random random = new Random();
+            string result = "";
+
+            for (int i = 0; i < k; i++)
+            {
+                result += random.Next(0, 2).ToString();
+            }
+
+            return result;
+        }
+
         static void Main(string[] args)
         {
-            // x^6 + x^3 + 1
-            string Xk = "1100001";
-            string Xr = "1000011";
+            string g = "1000011";  // Порождающий полином
 
-            int k = Xk.Length;
-            int n = 13;
-            int r = n - k;
+            int r = g.Length - 1;   // Степень полинома (длина минус 1)
+            int k = CalculateRequiredK(r);
+            int n = r + k;
+
+            // Автоматическая генерация Xk
+            string Xk = GenerateRandomXk(k);
 
             int[] masXk = new int[k];
             StrInMas(masXk, Xk);
 
-            int[] masXr = new int[Xr.Length];
-            StrInMas(masXr, Xr);
+            int[] masXr = new int[g.Length];
+            StrInMas(masXr, g);
 
-            Console.WriteLine($"Сообщение: {Xk}");
-            Console.WriteLine($"Порождающий полином: {Xr}");
-            Console.WriteLine($"Длина сообщения: {k}");
-            Console.WriteLine($"Кол-во проверочных символов: {r}");
+            // Вывод результатов
+            Console.WriteLine($"r = {r} (степень полинома)");
+            Console.WriteLine($"k = {k} (информационные биты)");
+            Console.WriteLine($"n = {n} (длина кодового слова)");
+            Console.WriteLine($"Xk = {Xk} (сгенерированное информационное слово)");
+            Console.WriteLine($"g(x) = {g} (порождающий полином)");
             Console.WriteLine($"Длина сообщения из k={k} символов формируется блок n={n}  символов. ");
 
             int[,] generationMatrix = new int[k, n];
@@ -56,7 +85,12 @@ namespace lab6
             {
                 masXn[k + j] = residue[k + j];
             }
-
+            Console.WriteLine($"r = {r} (степень полинома)");
+            Console.WriteLine($"k = {k} (информационные биты)");
+            Console.WriteLine($"n = {n} (длина кодового слова)");
+            Console.WriteLine($"Xk = {Xk} (сгенерированное информационное слово)");
+            Console.WriteLine($"g(x) = {g} (порождающий полином)");
+            Console.WriteLine($"Длина сообщения из k={k} символов формируется блок n={n}  символов. ");
             Console.WriteLine("\nИтоговое кодовое слово (c):");
             OutMass(masXn);
 
