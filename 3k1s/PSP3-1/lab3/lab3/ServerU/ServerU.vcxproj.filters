@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\..\..\..\Users\vugor\Downloads\ServerU.cpp">
+    <ClCompile Include="ServerU.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
