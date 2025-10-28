@@ -123,11 +123,6 @@ crashlytics-build.properties
 *.mov
 *.avi
 
-# Audio
-*.wav
-*.mp3
-*.ogg
-
 # Images (раскомментируй если не хранишь исходники текстур)
 # *.psd
 # *.tga
@@ -165,3 +160,4 @@ $RECYCLE.BIN/
 # ===================================
 __pycache__/
 *.pyc
+
