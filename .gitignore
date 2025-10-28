@@ -1,5 +1,9 @@
-# Visual Studio files
+# ===================================
+# VISUAL STUDIO / IDE GENERATED FILES
+# ===================================
 .vs/
+.idea/
+.vscode/
 *.ipch
 *.pch
 *.sdf
@@ -9,6 +13,25 @@
 *.opendb
 *.VC.db
 *.opensdf
+*.csproj
+*.unityproj
+*.sln
+*.pidb
+*.pdb
+*.mdb
+*.tmp
+*.booproj
+*.svd
+*.DotSettings
+*.DotSettings.user
+
+# JetBrains / Rider
+.idea/
+*.iml
+
+# ===================================
+# UIPATH PROJECT FILES
+# ===================================
 .entities/
 .local/
 .objects/
@@ -21,85 +44,71 @@ entry-points.json
 project.json
 project.uiproj
 
-# Database files
+# ===================================
+# DATABASE FILES
+# ===================================
 *.ndf
 *.ldf
 *.mdf
 
-# Compiled files
+# ===================================
+# COMPILED / BUILD FILES
+# ===================================
 *.exe
 *.dll
 *.obj
 *.pdb
 *.bin
-
-# Other
-.DS_Store
-Thumbs.db
-__pycache__/
-*.pyc
-
-# UiPath files
-.entities/
-.local/
-.objects/
-.project/
-.settings/
-.templates/
-.tmh
-
-*.avi
-
-# =============== #
-# Unity generated #
-# =============== #
-[Tt]emp/
-[Oo]bj/
-[Bb]uild/
-[Bb]uilds/
-[Ll]ogs/
-[Uu]ser[Ss]ettings/
-[Mm]emoryCaptures/
-[Ll]ibrary/
-[Ww]ebGL[Tt]emp/
-
-# Unity asset meta files
-*.meta
-
-# Unity Package Manager cache
-**/PackageCache/
-
-# Auto-generated Visual Studio files
-*.csproj
-*.unityproj
-*.sln
-*.psd
-*.pidb
-
-# Unity3D generated meta files
-*.pidb.meta
-*.pdb.meta
-
-# Crashlytics generated file
-crashlytics-build.properties
-
-# Packed Addressables
-[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
-
-# Temporary auto-generated Android files
-**/assets/bin/Data/Managed/*.so
-**/assets/bin/Data/Managed/*.dll
-
-# =========================== #
-# Unity large binary files #
-# =========================== #
-# Native plugins and libraries
 *.a
 *.so
 *.dylib
 *.bundle
 
-# Compression files
+# ===================================
+# UNITY GENERATED FILES
+# ===================================
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Mm]emoryCaptures/
+[Uu]ser[Ss]ettings/
+[Ww]ebGL[Tt]emp/
+[Bb]urstCache/
+[Bb]uildReport/
+[Bb]ee/
+[Cc]ache/
+[Gg]I[Bb]ackup/
+[Gg]ICache/
+LightingData.asset
+LightingData.asset.meta
+sysinfo.txt
+*.stacktrace
+*.dmp
+
+# Addressables
+[Aa]sset[Bb]undles/
+[Aa]ddressable[Aa]ssets[Dd]ata/
+[Aa]ddressableAssetsData/
+[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
+
+# Unity Package Manager cache
+**/PackageCache/
+Packages/packages-lock.json
+
+# Auto-generated Android build files
+**/assets/bin/Data/Managed/*.so
+**/assets/bin/Data/Managed/*.dll
+
+# Unity crashlytics
+crashlytics-build.properties
+
+# ===================================
+# UNITY LARGE / MEDIA FILES
+# ===================================
+# Archives
 *.7z
 *.dmg
 *.gz
@@ -109,35 +118,50 @@ crashlytics-build.properties
 *.tar
 *.zip
 
-# Video files
+# Video
 *.mp4
 *.mov
 *.avi
 
-# Audio files
+# Audio
 *.wav
 *.mp3
 *.ogg
 
-# Image files (можно раскомментировать если не нужно хранить исходники текстур)
+# Images (раскомментируй если не хранишь исходники текстур)
 # *.psd
 # *.tga
 # *.tiff
+# *.xcf
 
-# ==================== #
-# OS generated files #
-# ==================== #
+# ===================================
+# OS GENERATED FILES
+# ===================================
 .DS_Store*
 ._*
 .Spotlight-V100
 .Trashes
 ehthumbs.db
 [Tt]humbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*~
 
-# ================ #
-# Backup files #
-# ================ #
+# ===================================
+# BACKUPS / TEMPORARY FILES
+# ===================================
 *.bak
 *.tmp
 *.temp
-*~
+*.old
+*.backup
+*.orig
+*.diff
+*.swp
+*.lock
+
+# ===================================
+# PYTHON CACHE (если есть скрипты)
+# ===================================
+__pycache__/
+*.pyc
