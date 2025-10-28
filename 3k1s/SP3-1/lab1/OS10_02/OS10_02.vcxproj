@@ -130,11 +130,6 @@
   <ItemGroup>
     <ClCompile Include="OS10_02.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\OS10_HTAPI\OS10_HTAPI.vcxproj">
-      <Project>{145215d0-8626-4766-9f8d-3c82b093db03}</Project>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

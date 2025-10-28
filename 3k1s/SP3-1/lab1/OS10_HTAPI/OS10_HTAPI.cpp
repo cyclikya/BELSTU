@@ -104,7 +104,7 @@ namespace HT
 			throw "create file mapping view error";
 		}
 
-		ZeroMemory(lpFileMap, size);
+		ZeroMemory(lpFileMap, size); 
 
 		wchar_t mutexName[512];
 		swprintf_s(mutexName, L"HTMutex_%s", FileName);
@@ -275,8 +275,8 @@ namespace HT
 		bool isInserted = FALSE;
 
 		for (int i = 0, j = HashFunction(el, ht->Capacity, 0);
-				i != ht->Capacity && !isInserted;
-				j = NextHash(j, ht->Capacity, ++i))
+			i != ht->Capacity && !isInserted;
+			j = NextHash(j, ht->Capacity, ++i))
 		{
 			Element* elFromHT = GetElementFromHT(ht, j);
 			if (elFromHT == NULL || IsDeleted(elFromHT))
@@ -473,11 +473,11 @@ namespace HT
 		}
 		delete[] arrKeyBytes;
 
-		double A = 0.6180339887; 
+		double A = 0.6180339887;  
 		double frac = (A * sumBytes) - int(A * sumBytes);
 		int hashIndex = int(size * frac); 
 
-		return (p + hashIndex) % size;
+		return (p + hashIndex) % size; 
 	}
 
 
