@@ -1,4 +1,4 @@
-#define _WINSOCK_DEPRECATED_NO_WARNINGS
+ï»¿#define _WINSOCK_DEPRECATED_NO_WARNINGS
 #include <winsock2.h>
 #include <ws2tcpip.h>
 #include <iostream>
@@ -29,10 +29,10 @@ int main() {
 
         WSADATA wsaData;
         int res = WSAStartup(MAKEWORD(2, 2), &wsaData);
-        cout << "Winsock èíèöèàëèçèðîâàí.\n";
+        cout << "Winsock Ð¸Ð½Ð¸Ñ†Ð¸Ð°Ð»Ð¸Ð·Ð¸Ñ€Ð¾Ð²Ð°Ð½.\n";
 
         SOCKET servSock = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
-        cout << "UDP ñîêåò ñîçäàí.\n";
+        cout << "UDP ÑÐ¾ÐºÐµÑ‚ ÑÐ¾Ð·Ð´Ð°Ð½.\n";
 
         sockaddr_in servAddr{};
         servAddr.sin_family = AF_INET;
@@ -45,9 +45,9 @@ int main() {
             WSACleanup();
             throw std::runtime_error("Bind failed. WSA error: " + std::to_string(err));
         }
-        cout << "Ñîêåò ïðèâÿçàí ê ïîðòó 2000 è ãîòîâ ïðèíèìàòü ñîîáùåíèÿ.\n";
+        cout << "Ð¡Ð¾ÐºÐµÑ‚ Ð¿Ñ€Ð¸Ð²ÑÐ·Ð°Ð½ Ðº Ð¿Ð¾Ñ€Ñ‚Ñƒ 2000 Ð¸ Ð³Ð¾Ñ‚Ð¾Ð² Ð¿Ñ€Ð¸Ð½Ð¸Ð¼Ð°Ñ‚ÑŒ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ñ.\n";
 
-        cout << "Ñåðâåð çàïóùåí â ìíîãîïîëüçîâàòåëüñêîì ðåæèìå. Îæèäàåì ïîäêëþ÷åíèé...\n";
+        cout << "Ð¡ÐµÑ€Ð²ÐµÑ€ Ð·Ð°Ð¿ÑƒÑ‰ÐµÐ½ Ð² Ð¼Ð½Ð¾Ð³Ð¾Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŒÑÐºÐ¾Ð¼ Ñ€ÐµÐ¶Ð¸Ð¼Ðµ. ÐžÐ¶Ð¸Ð´Ð°ÐµÐ¼ Ð¿Ð¾Ð´ÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ð¹...\n";
 
         int clientCount = 0;
         const int BUF_SIZE = 1024;
@@ -57,7 +57,7 @@ int main() {
             sockaddr_in clientAddr{};
             int clientAddrLen = sizeof(clientAddr);
 
-            cout << "Æäåì âõîäÿùåå ñîîáùåíèå (recvfrom)...\n";
+            cout << "Ð–Ð´ÐµÐ¼ Ð²Ñ…Ð¾Ð´ÑÑ‰ÐµÐµ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ðµ (recvfrom)...\n";
 
             int bytesReceived = recvfrom(servSock, buffer, BUF_SIZE - 1, 0,
                 (sockaddr*)&clientAddr, &clientAddrLen);
@@ -67,12 +67,12 @@ int main() {
             inet_ntop(AF_INET, &clientAddr.sin_addr, clientIp, sizeof(clientIp));
 
             clientCount++;
-            cout << "Êëèåíò #" << clientCount << " - " << clientIp << ":" << ntohs(clientAddr.sin_port) << "\n";
-            cout << "Ïîëó÷åíî " << bytesReceived << " áàéò: \"" << buffer << "\"\n";
+            cout << "ÐšÐ»Ð¸ÐµÐ½Ñ‚ #" << clientCount << " - " << clientIp << ":" << ntohs(clientAddr.sin_port) << "\n";
+            cout << "ÐŸÐ¾Ð»ÑƒÑ‡ÐµÐ½Ð¾ " << bytesReceived << " Ð±Ð°Ð¹Ñ‚: \"" << buffer << "\"\n";
 
             //Sleep(3000);
 
-            string reply = string("Echo from ServerU [Êëèåíò #") + std::to_string(clientCount) + "]: " + buffer;
+            string reply = string("Echo from ServerU [ÐšÐ»Ð¸ÐµÐ½Ñ‚ #") + std::to_string(clientCount) + "]: " + buffer;
             int sent = sendto(servSock, reply.c_str(), (int)reply.size(), 0,
                 (sockaddr*)&clientAddr, clientAddrLen);
 
@@ -81,25 +81,25 @@ int main() {
                 cerr << "sendto failed. WSA error: " << err << "\n";
             }
             else {
-                cout << "Îòïðàâëåíî " << sent << " áàéò â àäðåñ êëèåíòà.\n";
+                cout << "ÐžÑ‚Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¾ " << sent << " Ð±Ð°Ð¹Ñ‚ Ð² Ð°Ð´Ñ€ÐµÑ ÐºÐ»Ð¸ÐµÐ½Ñ‚Ð°.\n";
             }
 
             cout << "----------------------------------------\n";
 
             
             if (strcmp(buffer, "exit") == 0) {
-                cout << "Ïîëó÷åíà êîìàíäà exit. Çàâåðøåíèå ðàáîòû ñåðâåðà.\n";
+                cout << "ÐŸÐ¾Ð»ÑƒÑ‡ÐµÐ½Ð° ÐºÐ¾Ð¼Ð°Ð½Ð´Ð° exit. Ð—Ð°Ð²ÐµÑ€ÑˆÐµÐ½Ð¸Ðµ Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹ ÑÐµÑ€Ð²ÐµÑ€Ð°.\n";
                 break;
             }
         }
 
         closesocket(servSock);
         WSACleanup();
-        cout << "ServerU çàâåðøèë ðàáîòó. Îáñëóæåíî êëèåíòîâ: " << clientCount << endl;
+        cout << "ServerU Ð·Ð°Ð²ÐµÑ€ÑˆÐ¸Ð» Ñ€Ð°Ð±Ð¾Ñ‚Ñƒ. ÐžÐ±ÑÐ»ÑƒÐ¶ÐµÐ½Ð¾ ÐºÐ»Ð¸ÐµÐ½Ñ‚Ð¾Ð²: " << clientCount << endl;
         return 0;
     }
     catch (const std::exception& ex) {
-        cerr << "[ÎØÈÁÊÀ] " << ex.what() << endl;
+        cerr << "[ÐžÐ¨Ð˜Ð‘ÐšÐ] " << ex.what() << endl;
         return 1;
     }
 }
