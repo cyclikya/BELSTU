@@ -1,2 +1,2 @@
 ﻿  OS10_02.cpp
-  OS10_02.vcxproj -> C:\General\BELSTU\3k1s\SP3-1\lab1\x64\Debug\OS10_02.exe
+LINK : fatal error LNK1104: не удается открыть файл "..\x64\Debug\OS10_HTAPI.lib"
