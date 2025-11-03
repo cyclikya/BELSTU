@@ -1,0 +1,6 @@
+﻿  ServerB.cpp
+C:\General\BELSTU\3k1s\PSP3-1\lab4\serverB\ServerB.cpp(42,68): warning C4566: символ, представленный универсальным именем символа "\u2192", невозможно представить в текущей кодовой странице (1251)
+C:\General\BELSTU\3k1s\PSP3-1\lab4\serverB\ServerB.cpp(55,31): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+C:\General\BELSTU\3k1s\PSP3-1\lab4\serverB\ServerB.cpp(63,13): warning C4566: символ, представленный универсальным именем символа "\u2192", невозможно представить в текущей кодовой странице (1251)
+C:\General\BELSTU\3k1s\PSP3-1\lab4\serverB\ServerB.cpp(92,37): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+  serverB.vcxproj -> C:\General\BELSTU\3k1s\PSP3-1\lab4\x64\Debug\ServerB.exe
