@@ -1,38 +1,69 @@
-﻿//cl /EHsc /O2 lab-05a.cpp /link /OUT:lab-05a.exe
+﻿#include <windows.h>
 #include <iostream>
-#include <windows.h>
 #include <bitset>
+#include <string>
+#include <conio.h>
 
-using namespace std;
+std::string affinityMaskToString(DWORD_PTR mask) {
+    std::string result;
+    for (int i = sizeof(DWORD_PTR) * 8 - 1; i >= 0; i--) {
+        result += (mask & (1ULL << i)) ? '1' : '0';
+        if (i % 8 == 0 && i != 0) result += ' ';
+    }
+    return result;
+}
+
+std::string priorityClassToString(DWORD priorityClass) {
+    switch (priorityClass) {
+    case IDLE_PRIORITY_CLASS: return "IDLE";
+    case BELOW_NORMAL_PRIORITY_CLASS: return "BELOW_NORMAL";
+    case NORMAL_PRIORITY_CLASS: return "NORMAL";
+    case ABOVE_NORMAL_PRIORITY_CLASS: return "ABOVE_NORMAL";
+    case HIGH_PRIORITY_CLASS: return "HIGH";
+    case REALTIME_PRIORITY_CLASS: return "REALTIME";
+    default: return "UNKNOWN";
+    }
+}
+
+std::string threadPriorityToString(int priority) {
+    switch (priority) {
+    case THREAD_PRIORITY_IDLE: return "IDLE";
+    case THREAD_PRIORITY_LOWEST: return "LOWEST";
+    case THREAD_PRIORITY_BELOW_NORMAL: return "BELOW_NORMAL";
+    case THREAD_PRIORITY_NORMAL: return "NORMAL";
+    case THREAD_PRIORITY_ABOVE_NORMAL: return "ABOVE_NORMAL";
+    case THREAD_PRIORITY_HIGHEST: return "HIGHEST";
+    case THREAD_PRIORITY_TIME_CRITICAL: return "TIME_CRITICAL";
+    default: return "UNKNOWN";
+    }
+}
 
 int main() {
-    setlocale(LC_ALL, "Russian");
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
 
     DWORD processId = GetCurrentProcessId();
     DWORD threadId = GetCurrentThreadId();
+    DWORD processPriorityClass = GetPriorityClass(GetCurrentProcess());
+    int threadPriority = GetThreadPriority(GetCurrentThread());
 
-    HANDLE hProcess = GetCurrentProcess();
-    HANDLE hThread = GetCurrentThread();
+    DWORD_PTR processAffinity, systemAffinity;
+    GetProcessAffinityMask(GetCurrentProcess(), &processAffinity, &systemAffinity);
 
-    DWORD processPriorityClass = GetPriorityClass(hProcess);
-    int threadPriority = GetThreadPriority(hThread);
+    SYSTEM_INFO systemInfo;
+    GetSystemInfo(&systemInfo);
 
-    DWORD_PTR processAffinityMask, systemAffinityMask;
-    GetProcessAffinityMask(hProcess, &processAffinityMask, &systemAffinityMask);
+    DWORD currentProcessor = GetCurrentProcessorNumber();
 
-    SYSTEM_INFO sysInfo;
-    GetSystemInfo(&sysInfo);
-    DWORD cpuCount = sysInfo.dwNumberOfProcessors;
-    DWORD cpuNumber = GetCurrentProcessorNumber();
+    std::cout << "Идентификатор процесса: " << processId << std::endl;
+    std::cout << "Идентификатор потока: " << threadId << std::endl;
+    std::cout << "Уровень процесса: " << priorityClassToString(processPriorityClass) << std::endl;
+    std::cout << "Уровень потока: " << threadPriorityToString(threadPriority) << std::endl;
+    std::cout << "Маска родственности процесса: " << affinityMaskToString(processAffinity) << std::endl;
+    std::cout << "Системная маска родственности: " << affinityMaskToString(systemAffinity) << std::endl;
+    std::cout << "Доступно процессоров: " << systemInfo.dwNumberOfProcessors << std::endl;
+    std::cout << "Текущий процессор: " << currentProcessor << std::endl;
 
-    cout << "Идентификатор процесса: " << processId << endl;
-    cout << "Идентификатор потока: " << threadId << endl;
-    cout << "Класс приоритета процесса: " << processPriorityClass << endl;
-    cout << "Приоритет потока: " << threadPriority << endl;
-    cout << "Маска родственности процесса: " << bitset<8>(processAffinityMask) << endl;
-    cout << "Системная маска родственности: " << bitset<8>(systemAffinityMask) << endl;
-    cout << "Доступно процессоров: " << cpuCount << endl;
-    cout << "Номер процессора для потока: " << cpuNumber << endl;
-
-    return 0;
+    std::cout << "\nНажмите любую клавишу для выхода..." << std::endl;
+    _getch(); return 0;
 }

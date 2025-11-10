@@ -1,71 +1,97 @@
-﻿// lab-05b.cpp
-#include <iostream>
+﻿#include <iostream>
 #include <unistd.h>
 #include <sys/wait.h>
-#include <sys/types.h>
 #include <sched.h>
-#include <sys/resource.h>
-#include <cstring>
+#include <string>
 #include <cstdlib>
+#include <cstring>
+#include <locale.h>
 
-using namespace std;
-
-void set_affinity_mask(pid_t pid, unsigned long mask) {
-    cpu_set_t cpus;
-    CPU_ZERO(&cpus);
-    for (int i = 0; i < (int)sizeof(unsigned long) * 8; ++i) {
-        if (mask & (1UL << i)) CPU_SET(i, &cpus);
-    }
-    if (sched_setaffinity(pid, sizeof(cpus), &cpus) != 0) {
-        perror("sched_setaffinity");
-    }
+void printUsage() {
+    std::cout << "Использование: ./Lab-05b <маска_родственности> <nice1> <nice2>" << std::endl;
+    std::cout << "Маска родственности: -1 - все процессоры, 0 - CPU0, 1 - CPU1, и т.д." << std::endl;
+    std::cout << "Значения nice: от -20 (высший) до 19 (низший)" << std::endl;
 }
 
 int main(int argc, char* argv[]) {
     setlocale(LC_ALL, "ru_RU.UTF-8");
-    if (argc < 4) {
-        cerr << "Использование: lab-05b <mask> <prio_child1> <prio_child2>\n";
-        cerr << "mask: целое (битовая маска CPU, например 1 или 3). 0 означает 'все CPU'.\n";
+
+    if (argc != 4) {
+        printUsage();
+        std::cout << "Нажмите Enter для выхода...";
+        std::cin.get();
         return 1;
     }
 
-    unsigned long mask = strtoul(argv[1], nullptr, 0);
-    int pr1 = atoi(argv[2]); // nice value for child1
-    int pr2 = atoi(argv[3]); // nice value for child2
+    int cpu_mask = std::stoi(argv[1]);
+    int nice1 = std::stoi(argv[2]);
+    int nice2 = std::stoi(argv[3]);
 
-    cout << "Параметры: mask=" << mask << " pr1=" << pr1 << " pr2=" << pr2 << endl;
+    std::cout << "Маска родственности: " << cpu_mask << std::endl;
+    std::cout << "Nice процесса 1: " << nice1 << std::endl;
+    std::cout << "Nice процесса 2: " << nice2 << std::endl;
 
-    if (mask == 0) {
-        // 0 => keep default (all CPUs) - do nothing
+    pid_t pid1 = fork();
+    if (pid1 == 0) {
+        if (cpu_mask != -1) {
+            cpu_set_t set;
+            CPU_ZERO(&set);
+            CPU_SET(cpu_mask, &set);
+            if (sched_setaffinity(0, sizeof(cpu_set_t), &set) == -1) {
+                perror("sched_setaffinity");
+                exit(1);
+            }
+        }
+
+        if (setpriority(PRIO_PROCESS, 0, nice1) == -1) {
+            perror("setpriority");
+            exit(1);
+        }
+
+        execl("./Lab-05x", "Lab-05x", NULL);
+        perror("execl");
+        exit(1);
     }
 
-    pid_t p1 = fork();
-    if (p1 == 0) {
-        // child 1
-        if (mask != 0) set_affinity_mask(0, mask);
-        // set nice (may require permissions for negative values)
-        if (setpriority(PRIO_PROCESS, 0, pr1) != 0) perror("setpriority child1");
-        execl("./lab-05x", "lab-05x", (char*)NULL);
-        perror("execl child1");
-        _exit(1);
+    pid_t pid2 = fork();
+    if (pid2 == 0) {
+        if (cpu_mask != -1) {
+            cpu_set_t set;
+            CPU_ZERO(&set);
+            CPU_SET(cpu_mask, &set);
+            if (sched_setaffinity(0, sizeof(cpu_set_t), &set) == -1) {
+                perror("sched_setaffinity");
+                exit(1);
+            }
+        }
+
+        if (setpriority(PRIO_PROCESS, 0, nice2) == -1) {
+            perror("setpriority");
+            exit(1);
+        }
+
+        execl("./Lab-05x", "Lab-05x", NULL);
+        perror("execl");
+        exit(1);
     }
 
-    pid_t p2 = fork();
-    if (p2 == 0) {
-        // child 2
-        if (mask != 0) set_affinity_mask(0, mask);
-        if (setpriority(PRIO_PROCESS, 0, pr2) != 0) perror("setpriority child2");
-        execl("./lab-05x", "lab-05x", (char*)NULL);
-        perror("execl child2");
-        _exit(1);
-    }
+    std::cout << "Процесс 1 запущен с PID: " << pid1 << std::endl;
+    std::cout << "Процесс 2 запущен с PID: " << pid2 << std::endl;
 
-    // parent: optionally set parent's affinity too (not required)
-    // wait children
-    int status;
-    waitpid(p1, &status, 0);
-    cout << "Дочерний процесс 1 завершился, код: " << WEXITSTATUS(status) << endl;
-    waitpid(p2, &status, 0);
-    cout << "Дочерний процесс 2 завершился, код: " << WEXITSTATUS(status) << endl;
+    std::cout << "Оба процесса запущены успешно!" << std::endl;
+    std::cout << "Для мониторинга используйте команды:" << std::endl;
+    std::cout << "ps -p " << pid1 << "," << pid2 << " -o pid,ni,psr,comm" << std::endl;
+    std::cout << "cat /proc/" << pid1 << "/status | grep -i cpu" << std::endl;
+    std::cout << "cat /proc/" << pid2 << "/status | grep -i cpu" << std::endl;
+
+    int status1, status2;
+    waitpid(pid1, &status1, 0);
+    waitpid(pid2, &status2, 0);
+
+    std::cout << "Оба процесса завершены." << std::endl;
+
+    std::cout << "Нажмите Enter для выхода...";
+    std::cin.get();
+
     return 0;
 }

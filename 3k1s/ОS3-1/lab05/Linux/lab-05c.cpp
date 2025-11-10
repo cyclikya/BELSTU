@@ -1,85 +1,107 @@
-﻿// lab-05c.cpp
-#include <iostream>
-#include <locale>
-#include <clocale>
-#include <pthread.h>
+﻿#include <iostream>
+#include <stdlib.h>
 #include <unistd.h>
+#include <pthread.h>
 #include <sys/syscall.h>
-#include <sys/resource.h>
 #include <sched.h>
-#include <cstring>
+#include <time.h>
+#include <sys/resource.h>
+#include <string>
+#include <locale.h>
 
-using namespace std;
-pid_t gettid_wrap() { return (pid_t)syscall(SYS_gettid); }
+typedef struct {
+    int threadId;
+    int niceValue;
+    int iterationsCompleted;
+    int finished;
+} ThreadData;
 
-struct ThreadArg {
-    int thread_prio;
-    const char* name;
-};
+void* ThreadFunction(void* lpParam) {
+    ThreadData* data = (ThreadData*)lpParam;
+    clock_t startTime = clock();
 
-void* thread_func(void* arg) {
-    ThreadArg* ta = (ThreadArg*)arg;
-    pid_t tid = gettid_wrap();
+    const int TOTAL_ITERATIONS = 1000000;
+    const int REPORT_INTERVAL = 1000;
+    const int DELAY_US = 200000;
 
-    // setpriority for THIS thread (tid)
-    if (setpriority(PRIO_PROCESS, tid, ta->thread_prio) != 0) {
-        perror("setpriority (thread)");
+    pid_t processId = getpid();
+    pid_t threadId = syscall(SYS_gettid);
+
+    if (setpriority(PRIO_PROCESS, 0, data->niceValue) == -1) {
+        perror("setpriority");
     }
+    int actualNice = getpriority(PRIO_PROCESS, 0);
 
-    pid_t pid = getpid();
-    for (int i = 1; i <= 1000000; ++i) {
-        if (i % 1000 == 0) {
-            usleep(200000);
-            int nicev = getpriority(PRIO_PROCESS, tid); // may return priority for thread
-            int cpu = sched_getcpu();
-            cout << "[" << ta->name << "] Итерация: " << i
-                << " | PID=" << pid << " | TID=" << tid
-                << " | nice=" << nicev
-                << " | CPU=" << cpu << endl;
-            cout.flush();
+    std::cout << "Поток " << data->threadId << " запущен. Nice: " << actualNice << std::endl;
+
+    for (int i = 0; i <= TOTAL_ITERATIONS; i++) {
+        data->iterationsCompleted = i;
+
+        if (i % REPORT_INTERVAL == 0) {
+            int currentProcessor = sched_getcpu();
+            std::cout << "Поток " << data->threadId << " | Итерация: " << i
+                << " | PID: " << processId << " | TID: " << threadId
+                << " | Nice: " << actualNice << " | CPU: " << currentProcessor << std::endl;
+
+            usleep(DELAY_US);
         }
     }
 
-    return nullptr;
+    clock_t endTime = clock();
+    double elapsedTime = (double)(endTime - startTime) / CLOCKS_PER_SEC;
+
+    std::cout << "Поток " << data->threadId << " завершен. Время: " << elapsedTime << "с" << std::endl;
+
+    data->finished = 1;
+    return NULL;
 }
 
 int main(int argc, char* argv[]) {
     setlocale(LC_ALL, "ru_RU.UTF-8");
-    if (argc < 5) {
-        cerr << "Использование: lab-05c <mask> <proc_prio> <thr1_prio> <thr2_prio>\n";
-        cerr << "mask: 0 - все CPU, либо битовая маска (например 1)\n";
+
+    if (argc != 4) {
+        std::cout << "Использование: ./Lab-05c <маска_родственности> <nice1> <nice2>" << std::endl;
+        std::cout << "Маска родственности: -1 - все процессоры, 0 - CPU0, 1 - CPU1, и т.д." << std::endl;
+        std::cout << "Значения nice: от -20 (высший) до 19 (низший)" << std::endl;
+        std::cout << "Нажмите Enter для выхода...";
+        std::cin.get();
         return 1;
     }
 
-    unsigned long mask = strtoul(argv[1], nullptr, 0);
-    int proc_prio = atoi(argv[2]);
-    int thr1_prio = atoi(argv[3]);
-    int thr2_prio = atoi(argv[4]);
+    int cpu_mask = atoi(argv[1]);
+    int nice1 = atoi(argv[2]);
+    int nice2 = atoi(argv[3]);
 
-    cout << "Параметры: mask=" << mask << " proc_prio=" << proc_prio
-        << " thr1=" << thr1_prio << " thr2=" << thr2_prio << endl;
+    std::cout << "Маска родственности: " << cpu_mask << std::endl;
+    std::cout << "Nice потока 1: " << nice1 << std::endl;
+    std::cout << "Nice потока 2: " << nice2 << std::endl;
 
-    // set process priority
-    if (setpriority(PRIO_PROCESS, 0, proc_prio) != 0) perror("setpriority(proc)");
-
-    // set process affinity if mask != 0
-    if (mask != 0) {
-        cpu_set_t cpus;
-        CPU_ZERO(&cpus);
-        for (int i = 0; i < (int)sizeof(unsigned long) * 8; ++i)
-            if (mask & (1UL << i)) CPU_SET(i, &cpus);
-        if (sched_setaffinity(0, sizeof(cpus), &cpus) != 0) perror("sched_setaffinity");
+    if (cpu_mask != -1) {
+        cpu_set_t set;
+        CPU_ZERO(&set);
+        CPU_SET(cpu_mask, &set);
+        if (sched_setaffinity(0, sizeof(cpu_set_t), &set) == -1) {
+            perror("sched_setaffinity");
+            return 1;
+        }
     }
 
-    pthread_t t1, t2;
-    ThreadArg a1{ thr1_prio, "T1" };
-    ThreadArg a2{ thr2_prio, "T2" };
+    ThreadData data1 = { 1, nice1, 0, 0 };
+    ThreadData data2 = { 2, nice2, 0, 0 };
 
-    pthread_create(&t1, nullptr, thread_func, &a1);
-    pthread_create(&t2, nullptr, thread_func, &a2);
+    pthread_t threads[2];
+    pthread_create(&threads[0], NULL, ThreadFunction, &data1);
+    pthread_create(&threads[1], NULL, ThreadFunction, &data2);
 
-    pthread_join(t1, nullptr);
-    pthread_join(t2, nullptr);
+    pthread_join(threads[0], NULL);
+    pthread_join(threads[1], NULL);
+
+    std::cout << "Итерации потока 1: " << data1.iterationsCompleted << std::endl;
+    std::cout << "Итерации потока 2: " << data2.iterationsCompleted << std::endl;
+    std::cout << "Разница в итерациях: " << abs(data1.iterationsCompleted - data2.iterationsCompleted) << std::endl;
+
+    std::cout << "Нажмите Enter для выхода...";
+    std::cin.get();
 
     return 0;
 }
