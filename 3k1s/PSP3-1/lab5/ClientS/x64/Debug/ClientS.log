@@ -1,0 +1,3 @@
+﻿  ClientS.cpp
+C:\General\BELSTU\3k1s\PSP3-1\lab5\ClientS\ClientS.cpp(99,39): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+  ClientS.vcxproj -> C:\General\BELSTU\3k1s\PSP3-1\lab5\x64\Debug\ClientS.exe

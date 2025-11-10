@@ -1,0 +1,5 @@
+﻿  Server.cpp
+C:\General\BELSTU\3k1s\PSP3-1\lab5\Server\Server.cpp(101,16): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\General\BELSTU\3k1s\PSP3-1\lab5\Server\Server.cpp(132,43): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+C:\General\BELSTU\3k1s\PSP3-1\lab5\Server\Server.cpp(162,31): warning C4101: errorMsgText: неиспользованная локальная переменная
+  Server.vcxproj -> C:\General\BELSTU\3k1s\PSP3-1\lab5\x64\Debug\Server.exe
