@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="5.0" client="site" method="upgrade">
+    <name>mod_contactcompact</name>
+    <version>1.1</version>
+    <author>Vi</author>
+    <creationDate>2025-11-11</creationDate>
+    <description>Компактная контактная форма с арифметической капчей</description>
+    <files>
+        <filename module="mod_contactcompact">mod_contactcompact.php</filename>
+        <folder>tmpl</folder>
+        <folder>css</folder>
+    </files>
+</extension>
