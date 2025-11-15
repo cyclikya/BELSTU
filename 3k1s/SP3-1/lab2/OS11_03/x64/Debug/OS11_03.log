@@ -1,0 +1,8 @@
+﻿  OS11_03.cpp
+C:\5sem\sp\Lab11(2)\Lab11\OS11_HTAPI\HT.h(29,30): warning C4091: __declspec(dllimport): пропускается слева от "HT::HTHandle", когда ни одна переменная не объявлена
+  (компиляция исходного файла "../OS11_03/OS11_03.cpp")
+  
+C:\5sem\sp\Lab11(2)\Lab11\OS11_HTAPI\HT.h(48,30): warning C4091: __declspec(dllimport): пропускается слева от "HT::Element", когда ни одна переменная не объявлена
+  (компиляция исходного файла "../OS11_03/OS11_03.cpp")
+  
+  OS11_03.vcxproj -> C:\5sem\sp\Lab11(2)\Lab11\x64\Debug\OS11_03.exe

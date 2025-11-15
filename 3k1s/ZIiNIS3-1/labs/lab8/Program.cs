@@ -11,17 +11,17 @@ internal class Program
 
         RunBWTTest("Виолетта");
         RunBWTTest("Угоренко");
-        string wordByVariant = "достопримечательность";
-        string firstThree = wordByVariant.Substring(0, 3);
+        RunBWTTest("достопримечательность");
 
-        // Преобразование трёх символов в бинарную последовательность ASCII
-        byte[] bytes = Encoding.ASCII.GetBytes(firstThree);
+        string input = "дос";
+        Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+        var encoding = Encoding.GetEncoding(866);
+        byte[] bytes = encoding.GetBytes(input);
         string binaryString = string.Join("", bytes.Select(b => Convert.ToString(b, 2).PadLeft(8, '0')));
 
-        Console.WriteLine("\n\n3 первых символа слова по варианту: " + firstThree);
-        Console.WriteLine("Бинарное представление по ASCII: " + binaryString);
+        Console.WriteLine("\n3 первых символа слова по варианту: " + input);
+        Console.WriteLine("Бинарное представление по ASCII: " + binaryString + "\n");
 
-        // Выполнение прямого и обратного преобразования
         RunBWTTest(binaryString);
     }
 
@@ -30,7 +30,7 @@ internal class Program
         Stopwatch codingTime = new Stopwatch();
         Stopwatch decodingTime = new Stopwatch();
 
-        Console.WriteLine($"\n-----------------------Работа со строкой: {input}");
+        Console.WriteLine($"-----------------------Работа со строкой: {input}");
         Console.WriteLine($"M = {input} | k = {input.Length}");
 
         // === Прямое преобразование (сжатие) ===
@@ -73,6 +73,6 @@ internal class Program
         decodingTime.Stop();
 
         Console.WriteLine($"\nВремя прямого преобразования: {codingTime.ElapsedMilliseconds} мс");
-        Console.WriteLine($"Время обратного преобразования: {decodingTime.ElapsedMilliseconds} мс");
+        Console.WriteLine($"Время обратного преобразования: {decodingTime.ElapsedMilliseconds} мс\n");
     }
 }
