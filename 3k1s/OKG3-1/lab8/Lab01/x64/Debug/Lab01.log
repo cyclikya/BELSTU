@@ -1,0 +1,11 @@
+﻿  ChildView.cpp
+  LibSurface.cpp
+C:\General\BELSTU\3k1s\OKG3-1\lab8\Lab01\LibSurface.cpp(191,12): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+  (компиляция исходного файла "/LibSurface.cpp")
+  
+C:\General\BELSTU\3k1s\OKG3-1\lab8\Lab01\LibSurface.cpp(192,12): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+  (компиляция исходного файла "/LibSurface.cpp")
+  
+  Создание кода...
+C:\General\BELSTU\3k1s\OKG3-1\lab8\Lab01\LibSurface.cpp(120,1): warning C4715: CPlot3D::GetNumberRegion: значение возвращается не при всех путях выполнения
+  Lab01.vcxproj -> C:\General\BELSTU\3k1s\OKG3-1\lab8\x64\Debug\Lab06.exe
