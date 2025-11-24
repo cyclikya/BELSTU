@@ -1,0 +1,5 @@
+﻿  ClientMS.cpp
+C:\General\BELSTU\3k1s\PSP3-1\lab07\ClientMS\ClientMS.cpp(52,49): warning C4267: аргумент: преобразование из "size_t" в "DWORD"; возможна потеря данных
+C:\General\BELSTU\3k1s\PSP3-1\lab07\ClientMS\ClientMS.cpp(82,53): warning C4267: аргумент: преобразование из "size_t" в "DWORD"; возможна потеря данных
+C:\General\BELSTU\3k1s\PSP3-1\lab07\ClientMS\ClientMS.cpp(99,49): warning C4267: аргумент: преобразование из "size_t" в "DWORD"; возможна потеря данных
+  ClientMS.vcxproj -> C:\General\BELSTU\3k1s\PSP3-1\lab07\x64\Debug\ClientMS.exe
