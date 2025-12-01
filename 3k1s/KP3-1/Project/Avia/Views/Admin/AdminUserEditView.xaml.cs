@@ -1,19 +1,24 @@
+using Avia.ViewModels;
 using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace Avia.Views;
+namespace Avia.Views.Admin;
 
-public partial class AdminFlightEditView : Window
+/// <summary>
+/// Окно для добавления и редактирования пользователей.
+/// Используется как для создания новых пользователей (Add), так и для редактирования существующих (Edit).
+/// </summary>
+public partial class AdminUserEditView : Window
 {
-    public AdminFlightEditView()
+    public AdminUserEditView()
     {
         InitializeComponent();
-        Loaded += AdminFlightEditView_Loaded;
+        Loaded += AdminUserEditView_Loaded;
     }
 
-    private void AdminFlightEditView_Loaded(object sender, RoutedEventArgs e)
+    private void AdminUserEditView_Loaded(object sender, RoutedEventArgs e)
     {
         var datePickers = FindVisualChildren<DatePicker>(this);
         foreach (var datePicker in datePickers)
@@ -51,6 +56,14 @@ public partial class AdminFlightEditView : Window
                     textBox.Text = datePicker.SelectedDate.Value.ToString("dd.MM.yyyy");
                 }
             }), System.Windows.Threading.DispatcherPriority.Loaded);
+        }
+    }
+
+    private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+    {
+        if (DataContext is AdminUserEditViewModel viewModel)
+        {
+            viewModel.Password = ((PasswordBox)sender).Password;
         }
     }
 

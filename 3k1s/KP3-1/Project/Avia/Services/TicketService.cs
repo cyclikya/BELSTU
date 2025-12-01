@@ -73,6 +73,22 @@ public class TicketService : ITicketService
         await _context.SaveChangesAsync();
     }
 
+    public async Task UpdateTicketAsync(Ticket ticket)
+    {
+        _context.Tickets.Update(ticket);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task DeleteTicketAsync(int ticketId)
+    {
+        var ticket = await _context.Tickets.FindAsync(ticketId);
+        if (ticket == null)
+            throw new InvalidOperationException("Ticket not found");
+
+        _context.Tickets.Remove(ticket);
+        await _context.SaveChangesAsync();
+    }
+
     public async Task<List<Ticket>> SearchTicketsAsync(int? userId, int? flightId)
     {
         var query = _context.Tickets

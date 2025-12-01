@@ -198,6 +198,7 @@ public partial class App : Application
         services.AddTransient<ClientMainViewModel>();
         services.AddTransient<AdminUserEditViewModel>();
         services.AddTransient<AdminFlightEditViewModel>();
+        services.AddTransient<AdminTicketEditViewModel>();
         services.AddTransient<BuyTicketViewModel>();
         services.AddTransient<PersonalCabinetViewModel>();
 
@@ -206,8 +207,9 @@ public partial class App : Application
         services.AddTransient<RegistrationView>();
         services.AddTransient<AdminMainView>();
         services.AddTransient<ClientMainView>();
-        services.AddTransient<AdminUserEditView>();
-        services.AddTransient<AdminFlightEditView>();
+        services.AddTransient<Views.Admin.AdminUserEditView>();
+        services.AddTransient<Views.Admin.AdminFlightEditView>();
+        services.AddTransient<Views.Admin.AdminTicketEditView>();
         services.AddTransient<BuyTicketView>();
         services.AddTransient<PersonalCabinetView>();
         }

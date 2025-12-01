@@ -1,5 +1,6 @@
-SELECT * FROM avia.users
-ORDER BY userid ASC 
+SELECT * FROM avia.Users
+SELECT * FROM avia.Flights
+SELECT * FROM avia.Tickets
 
 -- =========================================
 --   ТЕСТОВЫЕ ДАННЫЕ ДЛЯ БД: AviaTickets
@@ -12,9 +13,9 @@ SET search_path TO avia;
 -- 1. ОЧИСТКА СУЩЕСТВУЮЩИХ ДАННЫХ (опционально)
 -- =========================================
 -- Раскомментируйте следующие строки, если нужно очистить данные перед вставкой:
--- DELETE FROM Tickets;
--- DELETE FROM Flights;
--- DELETE FROM Users;
+DELETE FROM avia.Tickets;
+DELETE FROM avia.Flights;
+DELETE FROM avia.Users;
 
 -- =========================================
 -- 2. ТЕСТОВЫЕ ПОЛЬЗОВАТЕЛИ
@@ -23,26 +24,26 @@ SET search_path TO avia;
 -- Администратор
 -- Пароль: admin123
 -- Хеш вычислен через SHA256: admin123 -> Base64
-INSERT INTO Users (PassportNumber, Pass, LastName, FirstName, MiddleName, AccessRole, BirthDate, CreatedAt)
+INSERT INTO avia.Users (PassportNumber, Pass, LastName, FirstName, MiddleName, AccessRole, BirthDate, CreatedAt)
 VALUES 
-('ADMIN001', 'JAvlGPq9JyTdtvBO6x2llnRI1+gxwIyPqCKAn3THIKk=', 'Иванов', 'Иван', 'Иванович', 'admin'::role_type, '1980-01-15', CURRENT_TIMESTAMP);
+('ADMIN001', 'JAvlGPq9JyTdtvBO6x2llnRI1+gxwIyPqCKAn3THIKk=', 'Иванов', 'Иван', 'Иванович', 'admin'::avia.role_type, '1980-01-15', CURRENT_TIMESTAMP);
 
 -- Клиенты
 -- Пароль: user123
 -- Хеш вычислен через SHA256: user123 -> Base64
-INSERT INTO Users (PassportNumber, Pass, LastName, FirstName, MiddleName, AccessRole, BirthDate, CreatedAt)
+INSERT INTO avia.Users (PassportNumber, Pass, LastName, FirstName, MiddleName, AccessRole, BirthDate, CreatedAt)
 VALUES 
-('USER001', '5gbjiw2MGbJM8O44CBgxYup81j/3kS27IrXoAyhrREY=', 'Петров', 'Петр', 'Петрович', 'client'::role_type, '1990-05-20', CURRENT_TIMESTAMP),
-('USER002', '5gbjiw2MGbJM8O44CBgxYup81j/3kS27IrXoAyhrREY=', 'Сидорова', 'Анна', 'Сергеевна', 'client'::role_type, '1995-08-12', CURRENT_TIMESTAMP),
-('USER003', '5gbjiw2MGbJM8O44CBgxYup81j/3kS27IrXoAyhrREY=', 'Козлов', 'Дмитрий', 'Александрович', 'client'::role_type, '1988-11-30', CURRENT_TIMESTAMP),
-('USER004', '5gbjiw2MGbJM8O44CBgxYup81j/3kS27IrXoAyhrREY=', 'Морозова', 'Елена', 'Владимировна', 'client'::role_type, '1992-03-25', CURRENT_TIMESTAMP),
-('USER005', '5gbjiw2MGbJM8O44CBgxYup81j/3kS27IrXoAyhrREY=', 'Волков', 'Алексей', 'Николаевич', 'client'::role_type, '1987-07-18', CURRENT_TIMESTAMP);
+('USER001', '5gbjiw2MGbJM8O44CBgxYup81j/3kS27IrXoAyhrREY=', 'Петров', 'Петр', 'Петрович', 'client'::avia.role_type, '1990-05-20', CURRENT_TIMESTAMP),
+('USER002', '5gbjiw2MGbJM8O44CBgxYup81j/3kS27IrXoAyhrREY=', 'Сидорова', 'Анна', 'Сергеевна', 'client'::avia.role_type, '1995-08-12', CURRENT_TIMESTAMP),
+('USER003', '5gbjiw2MGbJM8O44CBgxYup81j/3kS27IrXoAyhrREY=', 'Козлов', 'Дмитрий', 'Александрович', 'client'::avia.role_type, '1988-11-30', CURRENT_TIMESTAMP),
+('USER004', '5gbjiw2MGbJM8O44CBgxYup81j/3kS27IrXoAyhrREY=', 'Морозова', 'Елена', 'Владимировна', 'client'::avia.role_type, '1992-03-25', CURRENT_TIMESTAMP),
+('USER005', '5gbjiw2MGbJM8O44CBgxYup81j/3kS27IrXoAyhrREY=', 'Волков', 'Алексей', 'Николаевич', 'client'::avia.role_type, '1987-07-18', CURRENT_TIMESTAMP);
 
 -- =========================================
 -- 3. ТЕСТОВЫЕ РЕЙСЫ
 -- =========================================
 
-INSERT INTO Flights (DepartureCity, ArrivalCity, DepartureDate, DepartureTime, ArrivalDate, ArrivalTime, Airline, EconomyPrice, BusinessPrice, EconomySeats, BusinessSeats, BaggagePrice)
+INSERT INTO avia.Flights (DepartureCity, ArrivalCity, DepartureDate, DepartureTime, ArrivalDate, ArrivalTime, Airline, EconomyPrice, BusinessPrice, EconomySeats, BusinessSeats, BaggagePrice)
 VALUES 
 -- Рейсы из Минска
 ('Минск', 'Москва', '2025-12-15', '08:00:00', '2025-12-15', '10:30:00', 'Белавиа', 150.00, 350.00, 120, 30, 25.00),
@@ -79,35 +80,35 @@ VALUES
 -- =========================================
 
 -- Билеты для USER001 (Петров)
-INSERT INTO Tickets (FlightID, UserID, ClassType, Baggage, PurchaseDate, Status)
+INSERT INTO avia.Tickets (FlightID, UserID, ClassType, Baggage, PurchaseDate, Status)
 VALUES 
-(1, 2, 'economy'::class_type, true, CURRENT_TIMESTAMP - INTERVAL '5 days', 'active'::ticket_status),
-(4, 2, 'business'::class_type, true, CURRENT_TIMESTAMP - INTERVAL '3 days', 'active'::ticket_status),
-(7, 2, 'economy'::class_type, false, CURRENT_TIMESTAMP - INTERVAL '10 days', 'cancelled'::ticket_status);
+(1, 2, 'economy'::avia.class_type, true, CURRENT_TIMESTAMP - INTERVAL '5 days', 'active'::avia.ticket_status),
+(4, 2, 'business'::avia.class_type, true, CURRENT_TIMESTAMP - INTERVAL '3 days', 'active'::avia.ticket_status),
+(7, 2, 'economy'::avia.class_type, false, CURRENT_TIMESTAMP - INTERVAL '10 days', 'cancelled'::avia.ticket_status);
 
 -- Билеты для USER002 (Сидорова)
-INSERT INTO Tickets (FlightID, UserID, ClassType, Baggage, PurchaseDate, Status)
+INSERT INTO avia.Tickets (FlightID, UserID, ClassType, Baggage, PurchaseDate, Status)
 VALUES 
-(2, 3, 'economy'::class_type, true, CURRENT_TIMESTAMP - INTERVAL '2 days', 'active'::ticket_status),
-(10, 3, 'business'::class_type, true, CURRENT_TIMESTAMP - INTERVAL '1 day', 'active'::ticket_status);
+(2, 3, 'economy'::avia.class_type, true, CURRENT_TIMESTAMP - INTERVAL '2 days', 'active'::avia.ticket_status),
+(10, 3, 'business'::avia.class_type, true, CURRENT_TIMESTAMP - INTERVAL '1 day', 'active'::avia.ticket_status);
 
 -- Билеты для USER003 (Козлов)
-INSERT INTO Tickets (FlightID, UserID, ClassType, Baggage, PurchaseDate, Status)
+INSERT INTO avia.Tickets (FlightID, UserID, ClassType, Baggage, PurchaseDate, Status)
 VALUES 
-(3, 4, 'business'::class_type, true, CURRENT_TIMESTAMP - INTERVAL '7 days', 'active'::ticket_status),
-(13, 4, 'economy'::class_type, false, CURRENT_TIMESTAMP - INTERVAL '4 days', 'active'::ticket_status);
+(3, 4, 'business'::avia.class_type, true, CURRENT_TIMESTAMP - INTERVAL '7 days', 'active'::avia.ticket_status),
+(13, 4, 'economy'::avia.class_type, false, CURRENT_TIMESTAMP - INTERVAL '4 days', 'active'::avia.ticket_status);
 
 -- Билеты для USER004 (Морозова)
-INSERT INTO Tickets (FlightID, UserID, ClassType, Baggage, PurchaseDate, Status)
+INSERT INTO avia.Tickets (FlightID, UserID, ClassType, Baggage, PurchaseDate, Status)
 VALUES 
-(5, 5, 'economy'::class_type, true, CURRENT_TIMESTAMP - INTERVAL '6 days', 'active'::ticket_status),
-(8, 5, 'business'::class_type, true, CURRENT_TIMESTAMP - INTERVAL '8 days', 'cancelled'::ticket_status);
+(5, 5, 'economy'::avia.class_type, true, CURRENT_TIMESTAMP - INTERVAL '6 days', 'active'::avia.ticket_status),
+(8, 5, 'business'::avia.class_type, true, CURRENT_TIMESTAMP - INTERVAL '8 days', 'cancelled'::avia.ticket_status);
 
 -- Билеты для USER005 (Волков)
-INSERT INTO Tickets (FlightID, UserID, ClassType, Baggage, PurchaseDate, Status)
+INSERT INTO avia.Tickets (FlightID, UserID, ClassType, Baggage, PurchaseDate, Status)
 VALUES 
-(11, 6, 'business'::class_type, true, CURRENT_TIMESTAMP - INTERVAL '9 days', 'active'::ticket_status),
-(14, 6, 'economy'::class_type, true, CURRENT_TIMESTAMP - INTERVAL '11 days', 'active'::ticket_status);
+(11, 6, 'business'::avia.class_type, true, CURRENT_TIMESTAMP - INTERVAL '9 days', 'active'::avia.ticket_status),
+(14, 6, 'economy'::avia.class_type, true, CURRENT_TIMESTAMP - INTERVAL '11 days', 'active'::avia.ticket_status);
 
 -- =========================================
 -- 5. ИНФОРМАЦИЯ О ТЕСТОВЫХ ДАННЫХ

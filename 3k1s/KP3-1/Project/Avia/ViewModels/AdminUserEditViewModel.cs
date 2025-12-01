@@ -39,6 +39,9 @@ public partial class AdminUserEditViewModel : ViewModelBase
     [ObservableProperty]
     private bool isEditMode = false;
 
+    [ObservableProperty]
+    private string windowTitle = "Добавление пользователя";
+
     private int? _userId;
 
     public AdminUserEditViewModel(IUserService userService, NavigationService navigationService)
@@ -57,6 +60,7 @@ public partial class AdminUserEditViewModel : ViewModelBase
         Role = user.AccessRole;
         BirthDate = user.BirthDate;
         IsEditMode = true;
+        WindowTitle = "Редактирование пользователя";
     }
 
     [RelayCommand]
@@ -64,17 +68,72 @@ public partial class AdminUserEditViewModel : ViewModelBase
     {
         ErrorMessage = string.Empty;
 
-        if (string.IsNullOrWhiteSpace(PassportNumber) ||
-            string.IsNullOrWhiteSpace(LastName) ||
-            string.IsNullOrWhiteSpace(FirstName))
+        // Валидация обязательных полей
+        if (string.IsNullOrWhiteSpace(PassportNumber))
         {
-            ErrorMessage = "Заполните все обязательные поля";
+            ErrorMessage = "Номер паспорта обязателен";
+            return;
+        }
+
+        if (PassportNumber.Length < 5 || PassportNumber.Length > 20)
+        {
+            ErrorMessage = "Номер паспорта должен содержать от 5 до 20 символов";
+            return;
+        }
+
+        if (string.IsNullOrWhiteSpace(LastName))
+        {
+            ErrorMessage = "Фамилия обязательна";
+            return;
+        }
+
+        if (LastName.Length < 2 || LastName.Length > 50)
+        {
+            ErrorMessage = "Фамилия должна содержать от 2 до 50 символов";
+            return;
+        }
+
+        if (string.IsNullOrWhiteSpace(FirstName))
+        {
+            ErrorMessage = "Имя обязательно";
+            return;
+        }
+
+        if (FirstName.Length < 2 || FirstName.Length > 50)
+        {
+            ErrorMessage = "Имя должно содержать от 2 до 50 символов";
+            return;
+        }
+
+        if (MiddleName != null && MiddleName.Length > 50)
+        {
+            ErrorMessage = "Отчество не должно превышать 50 символов";
+            return;
+        }
+
+        var age = DateTime.UtcNow.Year - BirthDate.Year;
+        if (DateTime.UtcNow.DayOfYear < BirthDate.DayOfYear) age--;
+        if (age < 18)
+        {
+            ErrorMessage = "Пользователь должен быть старше 18 лет";
+            return;
+        }
+
+        if (BirthDate > DateTime.UtcNow)
+        {
+            ErrorMessage = "Дата рождения не может быть в будущем";
             return;
         }
 
         if (!IsEditMode && string.IsNullOrWhiteSpace(Password))
         {
             ErrorMessage = "Пароль обязателен для нового пользователя";
+            return;
+        }
+
+        if (!IsEditMode && Password.Length < 6)
+        {
+            ErrorMessage = "Пароль должен содержать минимум 6 символов";
             return;
         }
 

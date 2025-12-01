@@ -9,6 +9,8 @@ public interface ITicketService
     Task<Ticket?> GetTicketByIdAsync(int ticketId);
     Task<Ticket> BuyTicketAsync(int userId, int flightId, ClassType classType, bool baggage);
     Task CancelTicketAsync(int ticketId);
+    Task UpdateTicketAsync(Ticket ticket);
+    Task DeleteTicketAsync(int ticketId);
     Task<List<Ticket>> SearchTicketsAsync(int? userId, int? flightId);
     Task<List<Ticket>> FilterTicketsByStatusAsync(TicketStatus status);
 }

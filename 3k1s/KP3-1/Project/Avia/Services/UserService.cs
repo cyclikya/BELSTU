@@ -73,6 +73,12 @@ public class UserService : IUserService
         if (user.AccessRole == RoleType.Admin)
             throw new InvalidOperationException("Cannot delete administrator");
 
+        // Удаляем все билеты, купленные этим пользователем
+        var tickets = await _context.Tickets
+            .Where(t => t.UserId == userId)
+            .ToListAsync();
+        _context.Tickets.RemoveRange(tickets);
+
         _context.Users.Remove(user);
         await _context.SaveChangesAsync();
     }

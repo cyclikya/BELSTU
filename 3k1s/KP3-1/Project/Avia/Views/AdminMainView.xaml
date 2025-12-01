@@ -35,7 +35,12 @@
 
                     <DataGrid Grid.Row="1" ItemsSource="{Binding Users}" 
                               SelectedItem="{Binding SelectedUser}"
-                              AutoGenerateColumns="False" Margin="10">
+                              AutoGenerateColumns="False" 
+                              IsReadOnly="True"
+                              CanUserAddRows="False"
+                              CanUserDeleteRows="False"
+                              SelectionMode="Single"
+                              Margin="10">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ID" Binding="{Binding UserId}" Width="50"/>
                             <DataGridTextColumn Header="Паспорт" Binding="{Binding PassportNumber}" Width="120"/>
@@ -64,7 +69,12 @@
 
                     <DataGrid Grid.Row="1" ItemsSource="{Binding Flights}" 
                               SelectedItem="{Binding SelectedFlight}"
-                              AutoGenerateColumns="False" Margin="10">
+                              AutoGenerateColumns="False" 
+                              IsReadOnly="True"
+                              CanUserAddRows="False"
+                              CanUserDeleteRows="False"
+                              SelectionMode="Single"
+                              Margin="10">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ID" Binding="{Binding FlightId}" Width="50"/>
                             <DataGridTextColumn Header="Откуда" Binding="{Binding DepartureCity}" Width="100"/>
@@ -80,9 +90,27 @@
             </TabItem>
 
             <TabItem Header="Билеты" Tag="Tickets">
-                <DataGrid ItemsSource="{Binding Tickets}" 
-                          SelectedItem="{Binding SelectedTicket}"
-                          AutoGenerateColumns="False" Margin="10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10">
+                        <Button Content="Создать" Command="{Binding CreateTicketCommand}" Margin="5"/>
+                        <Button Content="Редактировать" Command="{Binding EditTicketCommand}" Margin="5"/>
+                        <Button Content="Удалить" Command="{Binding DeleteTicketCommand}" Margin="5"/>
+                    </StackPanel>
+
+                    <DataGrid Grid.Row="1" 
+                              ItemsSource="{Binding Tickets}" 
+                              SelectedItem="{Binding SelectedTicket}"
+                              AutoGenerateColumns="False" 
+                              IsReadOnly="True"
+                              CanUserAddRows="False"
+                              CanUserDeleteRows="False"
+                              SelectionMode="Single"
+                              Margin="10">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="ID" Binding="{Binding TicketId}" Width="50"/>
                         <DataGridTextColumn Header="Пользователь" Binding="{Binding User.LastName}" Width="120"/>
@@ -92,7 +120,8 @@
                         <DataGridTextColumn Header="Дата покупки" Binding="{Binding PurchaseDate, StringFormat=dd.MM.yyyy HH:mm}" Width="150"/>
                         <DataGridTextColumn Header="Статус" Binding="{Binding Status}" Width="80"/>
                     </DataGrid.Columns>
-                </DataGrid>
+                    </DataGrid>
+                </Grid>
             </TabItem>
         </TabControl>
     </Grid>

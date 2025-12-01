@@ -4,6 +4,7 @@ using Avia.Services.Interfaces;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 namespace Avia.ViewModels;
 
@@ -157,6 +158,40 @@ public partial class AdminMainViewModel : ViewModelBase
             try
             {
                 await _flightService.DeleteFlightAsync(SelectedFlight.FlightId);
+                await LoadDataAsync();
+            }
+            catch (Exception ex)
+            {
+                // Handle error
+            }
+        }
+    }
+
+    [RelayCommand]
+    private async Task CreateTicket()
+    {
+        await _navigationService.ShowDialogAsync<AdminTicketEditViewModel>(vm => Task.CompletedTask);
+        await LoadDataAsync();
+    }
+
+    [RelayCommand]
+    private async Task EditTicket()
+    {
+        if (SelectedTicket != null)
+        {
+            await _navigationService.ShowDialogAsync<AdminTicketEditViewModel>(vm => vm.SetTicketAsync(SelectedTicket));
+            await LoadDataAsync();
+        }
+    }
+
+    [RelayCommand]
+    private async Task DeleteTicket()
+    {
+        if (SelectedTicket != null)
+        {
+            try
+            {
+                await _ticketService.DeleteTicketAsync(SelectedTicket.TicketId);
                 await LoadDataAsync();
             }
             catch (Exception ex)

@@ -78,6 +78,12 @@ public class FlightService : IFlightService
         if (flight == null)
             throw new InvalidOperationException("Flight not found");
 
+        // Удаляем все билеты, связанные с этим рейсом
+        var tickets = await _context.Tickets
+            .Where(t => t.FlightId == flightId)
+            .ToListAsync();
+        _context.Tickets.RemoveRange(tickets);
+
         _context.Flights.Remove(flight);
         await _context.SaveChangesAsync();
     }

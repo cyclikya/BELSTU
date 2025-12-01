@@ -1,7 +1,9 @@
 using Microsoft.Extensions.DependencyInjection;
+using System.Threading.Tasks;
 using System.Windows;
 using Avia.ViewModels;
 using Avia.Views;
+using Avia.Views.Admin;
 
 namespace Avia.Infrastructure;
 
@@ -86,6 +88,7 @@ public class NavigationService
             ClientMainViewModel => new ClientMainView { DataContext = viewModel },
             AdminUserEditViewModel => new AdminUserEditView { DataContext = viewModel },
             AdminFlightEditViewModel => new AdminFlightEditView { DataContext = viewModel },
+            AdminTicketEditViewModel => new AdminTicketEditView { DataContext = viewModel },
             BuyTicketViewModel => new BuyTicketView { DataContext = viewModel },
             PersonalCabinetViewModel => new PersonalCabinetView { DataContext = viewModel },
             _ => throw new InvalidOperationException($"Unknown ViewModel type: {typeof(TViewModel).Name}")
@@ -111,7 +114,18 @@ public class NavigationService
     {
         var viewModel = _serviceProvider.GetRequiredService<TViewModel>();
         configure(viewModel);
-        var window = CreateWindowForViewModel<TViewModel>(viewModel);
+        var window = CreateWindowForViewModel(viewModel);
+        window.ShowDialog();
+    }
+
+    public async Task ShowDialogAsync<TViewModel>(Func<TViewModel, Task> configure) where TViewModel : ViewModelBase
+    {
+        var viewModel = _serviceProvider.GetRequiredService<TViewModel>();
+        if (configure != null)
+        {
+            await configure(viewModel);
+        }
+        var window = CreateWindowForViewModel(viewModel);
         window.ShowDialog();
     }
 }

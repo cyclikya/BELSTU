@@ -66,5 +66,6 @@ public class Flight
     // Computed properties
     public DateTime DepartureDateTime => DepartureDate.Date.Add(DepartureTime);
     public DateTime ArrivalDateTime => ArrivalDate.Date.Add(ArrivalTime);
+    public string FlightDisplay => $"{DepartureCity} → {ArrivalCity} ({DepartureDate:dd.MM.yyyy})";
 }
 

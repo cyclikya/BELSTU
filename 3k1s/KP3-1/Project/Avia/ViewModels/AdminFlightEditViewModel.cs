@@ -3,6 +3,9 @@ using Avia.Infrastructure;
 using Avia.Services.Interfaces;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using System.ComponentModel;
+using System.Globalization;
+using System.Text.RegularExpressions;
 using System.Windows;
 
 namespace Avia.ViewModels;
@@ -54,7 +57,95 @@ public partial class AdminFlightEditViewModel : ViewModelBase
     [ObservableProperty]
     private bool isEditMode = false;
 
+    [ObservableProperty]
+    private string windowTitle = "Добавление рейса";
+
     private int? _flightId;
+
+    // Строковые свойства для валидации
+    public string DepartureTimeString
+    {
+        get => DepartureTime.ToString(@"hh\:mm");
+        set
+        {
+            if (TimeSpan.TryParseExact(value, @"hh\:mm", CultureInfo.InvariantCulture, out var time))
+            {
+                DepartureTime = time;
+            }
+        }
+    }
+
+    public string ArrivalTimeString
+    {
+        get => ArrivalTime.ToString(@"hh\:mm");
+        set
+        {
+            if (TimeSpan.TryParseExact(value, @"hh\:mm", CultureInfo.InvariantCulture, out var time))
+            {
+                ArrivalTime = time;
+            }
+        }
+    }
+
+    public string EconomyPriceString
+    {
+        get => EconomyPrice.ToString("F2", CultureInfo.InvariantCulture);
+        set
+        {
+            if (decimal.TryParse(value, NumberStyles.Any, CultureInfo.InvariantCulture, out var price) && price >= 0)
+            {
+                EconomyPrice = price;
+            }
+        }
+    }
+
+    public string BusinessPriceString
+    {
+        get => BusinessPrice.ToString("F2", CultureInfo.InvariantCulture);
+        set
+        {
+            if (decimal.TryParse(value, NumberStyles.Any, CultureInfo.InvariantCulture, out var price) && price >= 0)
+            {
+                BusinessPrice = price;
+            }
+        }
+    }
+
+    public string EconomySeatsString
+    {
+        get => EconomySeats.ToString();
+        set
+        {
+            if (int.TryParse(value, out var seats) && seats > 0)
+            {
+                EconomySeats = seats;
+            }
+        }
+    }
+
+    public string BusinessSeatsString
+    {
+        get => BusinessSeats.ToString();
+        set
+        {
+            if (int.TryParse(value, out var seats) && seats > 0)
+            {
+                BusinessSeats = seats;
+            }
+        }
+    }
+
+    public string BaggagePriceString
+    {
+        get => BaggagePrice.ToString("F2", CultureInfo.InvariantCulture);
+        set
+        {
+            if (decimal.TryParse(value, NumberStyles.Any, CultureInfo.InvariantCulture, out var price) && price >= 0)
+            {
+                BaggagePrice = price;
+            }
+        }
+    }
 
     public AdminFlightEditViewModel(IFlightService flightService, NavigationService navigationService)
     {
@@ -78,6 +169,14 @@ public partial class AdminFlightEditViewModel : ViewModelBase
         BusinessSeats = flight.BusinessSeats;
         BaggagePrice = flight.BaggagePrice;
         IsEditMode = true;
+        WindowTitle = "Редактирование рейса";
+        OnPropertyChanged(nameof(DepartureTimeString));
+        OnPropertyChanged(nameof(ArrivalTimeString));
+        OnPropertyChanged(nameof(EconomyPriceString));
+        OnPropertyChanged(nameof(BusinessPriceString));
+        OnPropertyChanged(nameof(EconomySeatsString));
+        OnPropertyChanged(nameof(BusinessSeatsString));
+        OnPropertyChanged(nameof(BaggagePriceString));
     }
 
     [RelayCommand]
@@ -85,11 +184,61 @@ public partial class AdminFlightEditViewModel : ViewModelBase
     {
         ErrorMessage = string.Empty;
 
-        if (string.IsNullOrWhiteSpace(DepartureCity) ||
-            string.IsNullOrWhiteSpace(ArrivalCity) ||
-            string.IsNullOrWhiteSpace(Airline))
+        // Валидация обязательных полей
+        if (string.IsNullOrWhiteSpace(DepartureCity))
         {
-            ErrorMessage = "Заполните все обязательные поля";
+            ErrorMessage = "Город отправления обязателен";
+            return;
+        }
+
+        if (string.IsNullOrWhiteSpace(ArrivalCity))
+        {
+            ErrorMessage = "Город прибытия обязателен";
+            return;
+        }
+
+        if (string.IsNullOrWhiteSpace(Airline))
+        {
+            ErrorMessage = "Авиакомпания обязательна";
+            return;
+        }
+
+        if (EconomyPrice <= 0)
+        {
+            ErrorMessage = "Цена эконом должна быть больше 0";
+            return;
+        }
+
+        if (BusinessPrice <= 0)
+        {
+            ErrorMessage = "Цена бизнес должна быть больше 0";
+            return;
+        }
+
+        if (EconomySeats <= 0)
+        {
+            ErrorMessage = "Количество мест эконом должно быть больше 0";
+            return;
+        }
+
+        if (BusinessSeats <= 0)
+        {
+            ErrorMessage = "Количество мест бизнес должно быть больше 0";
+            return;
+        }
+
+        if (BaggagePrice < 0)
+        {
+            ErrorMessage = "Цена багажа не может быть отрицательной";
+            return;
+        }
+
+        var departureDateTime = DepartureDate.Date.Add(DepartureTime);
+        var arrivalDateTime = ArrivalDate.Date.Add(ArrivalTime);
+
+        if (arrivalDateTime <= departureDateTime)
+        {
+            ErrorMessage = "Дата и время прибытия должны быть позже даты и времени вылета";
             return;
         }
 
