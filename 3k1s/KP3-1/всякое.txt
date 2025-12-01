@@ -1,3 +1,21 @@
+-оформить панель управления клиентами
+-оформить все модальные окна к панели управления клиентами
+
+-оформить панель управления рейсами
+-оформить все модальные окна к панели управления рейсами
+
+-оформить панель управления билетами
+-оформить все модальные окна к панели управления билетами
+
+-проверить всю возможную валидацию данных (где могла забыть)
+
+-реализовать выбор месть при помощи интерактивных кнопок
+
+
+
+
+
+
     public static class PasswordHasher
     {
         public static string HashPassword(string password)
@@ -15,11 +33,6 @@
             return string.Equals(hashedEnteredPassword, hashedPassword, StringComparison.Ordinal);
         }
     }
-
-
-
-
-
 
 CREATE OR REPLACE FUNCTION hash_password(password VARCHAR)
 RETURNS VARCHAR AS $$
