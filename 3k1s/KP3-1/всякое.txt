@@ -1,0 +1,48 @@
+    public static class PasswordHasher
+    {
+        public static string HashPassword(string password)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+                return Convert.ToBase64String(bytes);
+            }
+        }
+
+        public static bool VerifyPassword(string enteredPassword, string hashedPassword)
+        {
+            string hashedEnteredPassword = HashPassword(enteredPassword);
+            return string.Equals(hashedEnteredPassword, hashedPassword, StringComparison.Ordinal);
+        }
+    }
+
+
+
+
+
+
+CREATE OR REPLACE FUNCTION hash_password(password VARCHAR)
+RETURNS VARCHAR AS $$
+DECLARE
+    hash_bytes BYTEA;
+    hash_text VARCHAR;
+BEGIN
+    hash_bytes := digest(password::text, 'sha256');
+    hash_text := encode(hash_bytes, 'base64');
+    IF length(hash_text) > 60 THEN
+        hash_text := substring(hash_text FROM 1 FOR 60);
+    END IF;
+    RETURN hash_text;
+END;
+$$ LANGUAGE plpgsql;
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
+
+
+
+INSERT INTO "Users" (… "Password" ...) VALUES
+(... hash_password('1234'::text)...);
+
+
+
+
+

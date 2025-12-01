@@ -1,0 +1,177 @@
+<UserControl x:Class="Avia.Views.TicketCard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" 
+             d:DesignHeight="150" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Margin" Value="10,5"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect BlurRadius="10" ShadowDepth="2" Opacity="0.2"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    
+    <Border>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="1"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="1"/>
+                <ColumnDefinition Width="250"/>
+            </Grid.ColumnDefinitions>
+            
+            <!-- Левая секция: Цена, маршрут, дата покупки, статус, кнопка -->
+            <Grid Grid.Column="0" Margin="15">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                
+                <TextBlock Grid.Row="0" 
+                           Text="{Binding Price}" 
+                           FontSize="28" 
+                           FontWeight="Bold" 
+                           Foreground="#1E3A8A"
+                           Margin="0,0,0,10"/>
+                
+                <TextBlock Grid.Row="1" 
+                           Text="{Binding Route}" 
+                           FontSize="16" 
+                           FontWeight="SemiBold"
+                           Margin="0,0,0,5"/>
+                
+                <TextBlock Grid.Row="2" 
+                           Text="{Binding PurchaseDate}" 
+                           FontSize="12" 
+                           Foreground="#666"
+                           Margin="0,0,0,5"/>
+                
+                <TextBlock Grid.Row="3" 
+                           Text="{Binding StatusText}" 
+                           FontSize="12" 
+                           Foreground="{Binding StatusColor}"
+                           Margin="0,0,0,10"/>
+                
+                <Button Grid.Row="5" 
+                        Content="Отменить" 
+                        Command="{Binding CancelTicketCommand}"
+                        CommandParameter="{Binding Ticket}"
+                        Background="#E0F2FE" 
+                        Foreground="#1E3A8A"
+                        BorderThickness="0"
+                        Padding="15,8"
+                        FontSize="14"
+                        FontWeight="SemiBold"
+                        Cursor="Hand"
+                        HorizontalAlignment="Stretch"
+                        Visibility="{Binding CanCancel}">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}" 
+                                                CornerRadius="6"
+                                                Padding="{TemplateBinding Padding}">
+                                            <ContentPresenter HorizontalAlignment="Center" 
+                                                            VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#BAE6FD"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </Grid>
+            
+            <!-- Разделитель 1 -->
+            <Rectangle Grid.Column="1" Fill="#E5E7EB" Margin="0,10"/>
+            
+            <!-- Средняя секция: Авиакомпания, дата, время -->
+            <Grid Grid.Column="2" Margin="15">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                
+                <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
+                    <TextBlock Text="✈" FontSize="20" Margin="0,0,8,0"/>
+                    <TextBlock Text="{Binding Airline}" 
+                               FontSize="18" 
+                               FontWeight="SemiBold"
+                               VerticalAlignment="Center"/>
+                </StackPanel>
+                
+                <TextBlock Grid.Row="1" 
+                           Text="{Binding FormattedDate}" 
+                           FontSize="14" 
+                           FontWeight="Medium"
+                           Margin="0,0,0,8"/>
+                
+                <StackPanel Grid.Row="2" Orientation="Horizontal">
+                    <TextBlock Text="{Binding DepartureTime, StringFormat='{}{0:hh\\:mm} отъезд'}" 
+                               FontSize="13"
+                               Margin="0,0,8,0"/>
+                    <TextBlock Text="•" 
+                               FontSize="12" 
+                               Foreground="#1E3A8A"
+                               Margin="0,0,8,0"/>
+                    <TextBlock Text="{Binding ArrivalTime, StringFormat='{}{0:hh\\:mm} прибытие'}" 
+                               FontSize="13"/>
+                </StackPanel>
+            </Grid>
+            
+            <!-- Разделитель 2 -->
+            <Rectangle Grid.Column="3" Fill="#E5E7EB" Margin="0,10"/>
+            
+            <!-- Правая секция: Длительность, номер рейса, класс и место -->
+            <Grid Grid.Column="4" Margin="15">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                
+                <TextBlock Grid.Row="0" 
+                           Text="{Binding Duration}" 
+                           FontSize="13" 
+                           Margin="0,0,0,15"/>
+                
+                <Border Grid.Row="1" 
+                        Background="#F3F4F6" 
+                        CornerRadius="4" 
+                        Padding="10,8">
+                    <StackPanel>
+                        <TextBlock Text="{Binding FlightNumber}" 
+                                   FontSize="12" 
+                                   FontWeight="Medium"
+                                   Margin="0,0,0,5"/>
+                        <TextBlock Text="{Binding ClassAndSeat}" 
+                                   FontSize="11" 
+                                   Foreground="#666"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>
+

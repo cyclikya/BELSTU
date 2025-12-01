@@ -21,6 +21,7 @@ CREATE TYPE ticket_status AS ENUM ('active', 'cancelled');
 -- =========================================
 CREATE TABLE Users (
     UserID SERIAL PRIMARY KEY,
+	Pass VARCHAR(255) NOT NULL,
     PassportNumber VARCHAR(20) UNIQUE NOT NULL,
     LastName VARCHAR(50) NOT NULL,
     FirstName VARCHAR(50) NOT NULL,
@@ -66,6 +67,23 @@ CREATE TABLE Tickets (
 -- =========================================
 -- 5. ФУНКЦИИ
 -- =========================================
+
+CREATE OR REPLACE FUNCTION hash_password(password VARCHAR)
+RETURNS VARCHAR AS $$
+DECLARE
+    hash_bytes BYTEA;
+    hash_text VARCHAR;
+BEGIN
+    hash_bytes := digest(password::text, 'sha256');
+    hash_text := encode(hash_bytes, 'base64');
+    IF length(hash_text) > 60 THEN
+        hash_text := substring(hash_text FROM 1 FOR 60);
+    END IF;
+    RETURN hash_text;
+END;
+$$ LANGUAGE plpgsql;
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
+
 
 -- Возвращает количество доступных мест по рейсу и классу
 CREATE OR REPLACE FUNCTION fn_GetAvailableSeats(p_FlightID INT, p_Class class_type)

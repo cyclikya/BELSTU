@@ -1,0 +1,134 @@
+<Window x:Class="Avia.Views.PersonalCabinetView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:views="clr-namespace:Avia.Views"
+        xmlns:converters="clr-namespace:Avia.Converters"
+        xmlns:entities="clr-namespace:Avia.Data.Entities"
+        mc:Ignorable="d"
+        Title="Личный кабинет" 
+        WindowState="Maximized"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent">
+    <Window.Resources>
+        <DropShadowEffect x:Key="DropShadowEffect" BlurRadius="10" ShadowDepth="3" Opacity="0.3"/>
+
+        <DataTemplate DataType="{x:Type entities:Ticket}">
+            <views:TicketCard Ticket="{Binding}" 
+                              CancelTicketCommand="{Binding DataContext.CancelTicketByIdCommand, RelativeSource={RelativeSource AncestorType=Window, Mode=FindAncestor}}"/>
+        </DataTemplate>
+
+        <Style TargetType="Button">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="15,8"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#1E40AF"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <!-- Фоновый градиент -->
+        <Grid.Background>
+            <SolidColorBrush Color="#78D0F3"/>
+        </Grid.Background>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Навигация -->
+        <Border Grid.Row="0" Background="#1E3A8A" Padding="20,10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                    <Button Content="закрыть" Command="{Binding CloseCommand}"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <Ellipse Width="12" Height="12" Fill="#10B981" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding UserDisplayName}" 
+                               Foreground="White" 
+                               FontSize="14"
+                               VerticalAlignment="Center"
+                               Margin="0,0,15,0"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Заголовок для панели билетов -->
+        <TextBlock Grid.Row="1" 
+                   Text="Панель билетов" 
+                   FontSize="32" 
+                   FontWeight="Bold" 
+                   Foreground="White"
+                   HorizontalAlignment="Center"
+                   Margin="0,30,0,20"/>
+
+        <!-- Информация об аккаунте для личного кабинета -->
+        <Border Grid.Row="1" 
+                Background="White" 
+                Opacity="0.95" 
+                CornerRadius="15" 
+                Padding="30,25" 
+                Margin="50,100,50,20"
+                Effect="{StaticResource DropShadowEffect}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <StackPanel Grid.Column="0" Margin="0,0,30,0">
+                    <Border Width="80" Height="80" Background="#1E3A8A" CornerRadius="40" Margin="0,0,0,15">
+                        <TextBlock Text="👤" FontSize="50" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+                    </Border>
+                </StackPanel>
+                
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="{Binding UserDisplayName}" 
+                               FontSize="24" 
+                               FontWeight="Bold" 
+                               Foreground="#1E3A8A"
+                               Margin="0,0,0,10"/>
+                    <TextBlock Text="{Binding UserPassportNumber}" 
+                               FontSize="16" 
+                               Foreground="#1E3A8A"
+                               Margin="0,0,0,5"/>
+                    <TextBlock Text="{Binding UserBirthDate}" 
+                               FontSize="16" 
+                               Foreground="#1E3A8A"
+                               Margin="0,0,0,5"/>
+                    <TextBlock Text="{Binding UserTicketsCount}" 
+                               FontSize="16" 
+                               Foreground="#1E3A8A"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Основной контент -->
+        <Grid Grid.Row="2" Margin="50,0,50,30">
+            <!-- Результаты для личного кабинета -->
+            <ScrollViewer VerticalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Disabled">
+                <ItemsControl ItemsSource="{Binding DisplayedItems}"/>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</Window>
+

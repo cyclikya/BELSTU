@@ -1,0 +1,74 @@
+<Window x:Class="Avia.Views.AdminUserEditView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:data="clr-namespace:Avia.Data.Entities"
+        mc:Ignorable="d"
+        Title="Редактирование пользователя" Height="500" Width="400"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Номер паспорта:" Margin="0,0,0,5"/>
+        <TextBox Grid.Row="1" Text="{Binding PassportNumber, UpdateSourceTrigger=PropertyChanged}" 
+                 Margin="0,0,0,15" Height="30"/>
+
+        <TextBlock Grid.Row="2" Text="Пароль (оставьте пустым для сохранения):" Margin="0,0,0,5"/>
+        <PasswordBox x:Name="PasswordBox" Grid.Row="3" 
+                     PasswordChanged="PasswordBox_PasswordChanged"
+                     Margin="0,0,0,15" Height="30"/>
+
+        <TextBlock Grid.Row="4" Text="Фамилия:" Margin="0,0,0,5"/>
+        <TextBox Grid.Row="5" Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}" 
+                 Margin="0,0,0,15" Height="30"/>
+
+        <TextBlock Grid.Row="6" Text="Имя:" Margin="0,0,0,5"/>
+        <TextBox Grid.Row="7" Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}" 
+                 Margin="0,0,0,15" Height="30"/>
+
+        <TextBlock Grid.Row="8" Text="Отчество:" Margin="0,0,0,5"/>
+        <TextBox Grid.Row="9" Text="{Binding MiddleName, UpdateSourceTrigger=PropertyChanged}" 
+                 Margin="0,0,0,15" Height="30"/>
+
+        <TextBlock Grid.Row="10" Text="Роль:" Margin="0,0,0,5"/>
+        <ComboBox Grid.Row="11" SelectedItem="{Binding Role}" 
+                  Margin="0,0,0,15" Height="30">
+            <ComboBox.ItemsSource>
+                <x:Array Type="{x:Type data:RoleType}">
+                    <data:RoleType>Client</data:RoleType>
+                    <data:RoleType>Admin</data:RoleType>
+                </x:Array>
+            </ComboBox.ItemsSource>
+        </ComboBox>
+
+        <TextBlock Grid.Row="12" Text="Дата рождения:" Margin="0,0,0,5"/>
+        <DatePicker Grid.Row="13" SelectedDate="{Binding BirthDate}" 
+                    Margin="0,0,0,15" Height="30"/>
+
+        <TextBlock Grid.Row="14" Text="{Binding ErrorMessage}" 
+                   Foreground="Red" TextWrapping="Wrap" 
+                   Margin="0,0,0,10"/>
+
+        <StackPanel Grid.Row="15" Orientation="Horizontal" 
+                    HorizontalAlignment="Center">
+            <Button Content="Сохранить" Command="{Binding SaveCommand}" 
+                    Width="100" Height="35" Margin="5"/>
+            <Button Content="Отмена" Command="{Binding CancelCommand}" 
+                    Width="100" Height="35" Margin="5"/>
+        </StackPanel>
+    </Grid>
+</Window>
+
