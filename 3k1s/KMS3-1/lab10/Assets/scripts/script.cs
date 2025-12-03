@@ -25,9 +25,7 @@ public class script : MonoBehaviour, IPointerClickHandler
         Vector3 forceVector = direction * forse;
 
         Rigidbody rb = gameObject.GetComponent<Rigidbody>();
-        if (rb != null)
-        {
-            rb.AddForceAtPosition(forceVector, target);
-        }
+        
+        rb.AddForceAtPosition(forceVector, target);
     }
 }

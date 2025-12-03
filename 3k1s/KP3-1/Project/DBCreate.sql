@@ -1,24 +1,13 @@
--- =========================================
---   СХЕМА БД: AviaTickets
---   Проект: "Авиабилеты"
---   Автор: Угоренко В.Р.
---   Язык: PostgreSQL
--- =========================================
-
 DROP SCHEMA IF EXISTS avia CASCADE;
 CREATE SCHEMA avia;
 SET search_path TO avia;
 
--- =========================================
--- 1. Типы ENUM
--- =========================================
+-- ENUM
 CREATE TYPE role_type AS ENUM ('admin', 'client');
 CREATE TYPE class_type AS ENUM ('economy', 'business');
 CREATE TYPE ticket_status AS ENUM ('active', 'cancelled');
 
--- =========================================
--- 2. Таблица пользователей
--- =========================================
+-- пользователи
 CREATE TABLE Users (
     UserID SERIAL PRIMARY KEY,
 	Pass VARCHAR(255) NOT NULL,
@@ -32,9 +21,7 @@ CREATE TABLE Users (
     LastLogin TIMESTAMP
 );
 
--- =========================================
--- 3. Таблица рейсов
--- =========================================
+-- рейсы
 CREATE TABLE Flights (
     FlightID SERIAL PRIMARY KEY,
     DepartureCity VARCHAR(100) NOT NULL,
@@ -51,9 +38,7 @@ CREATE TABLE Flights (
     BaggagePrice DECIMAL(10,2) DEFAULT 0 CHECK (BaggagePrice >= 0)
 );
 
--- =========================================
--- 4. Таблица билетов
--- =========================================
+-- билеты
 CREATE TABLE Tickets (
     TicketID SERIAL PRIMARY KEY,
     FlightID INT NOT NULL REFERENCES Flights(FlightID) ON DELETE CASCADE,
@@ -64,10 +49,7 @@ CREATE TABLE Tickets (
     Status ticket_status DEFAULT 'active' NOT NULL
 );
 
--- =========================================
--- 5. ФУНКЦИИ
--- =========================================
-
+-- функции
 CREATE OR REPLACE FUNCTION hash_password(password VARCHAR)
 RETURNS VARCHAR AS $$
 DECLARE
@@ -140,9 +122,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
--- =========================================
--- 6. ПРОЦЕДУРЫ
--- =========================================
+--процедуры
 
 -- Создать пользователя
 CREATE OR REPLACE PROCEDURE sp_CreateUser(
@@ -230,9 +210,7 @@ BEGIN
 END;
 $$;
 
--- =========================================
--- 7. ТРИГГЕРЫ
--- =========================================
+--триггеры
 
 -- Проверка дат рейса
 CREATE OR REPLACE FUNCTION trg_ValidateFlightDates()

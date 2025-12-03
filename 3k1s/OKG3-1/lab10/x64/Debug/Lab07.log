@@ -1,0 +1,42 @@
+﻿Сборка начата 16.05.2024 20:36:19.
+Уровень детализации журнала: Normal.     1>Проект "D:\лабы\ОКГ\Lab07\Lab07\Lab07\Lab07.vcxproj" в узле 2 (целевые объекты Build).
+     1>PrepareForBuild:
+         Структурированный вывод включен. Форматирование диагностики компилятора будет отражать иерархию ошибок. Подробнее см. https://aka.ms/cpp/structured-output.
+       InitializeBuildStatus:
+         Создание "x64\Debug\Lab10.tlog\unsuccessfulbuild", так как было задано "AlwaysCreate".
+         Обращение к "x64\Debug\Lab10.tlog\unsuccessfulbuild".
+       ClCompile:
+         C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\bin\HostX64\x64\CL.exe /c /ZI /JMC /nologo /W3 /WX- /diagnostics:column /sdl /Od /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /D _AFXDLL /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"x64\Debug\\" /Fd"x64\Debug\vc143.pdb" /external:W3 /Gd /TP /FC /errorReport:prompt main.cpp
+         main.cpp
+         _WIN32_WINNT not defined. Defaulting to _WIN32_WINNT_MAXVER (see WinSDKVer.h)
+     1>D:\лабы\ОКГ\Lab07\Lab07\Lab07\LibSurface.h(270,12): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+         (компиляция исходного файла "main.cpp")
+         
+     1>D:\лабы\ОКГ\Lab07\Lab07\Lab07\LibSurface.h(271,12): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+         (компиляция исходного файла "main.cpp")
+         
+     1>D:\лабы\ОКГ\Lab07\Lab07\Lab07\LibSurface.h(200): warning C4715: CPlot3D::GetNumberRegion: значение возвращается не при всех путях выполнения
+       ResourceCompile:
+         Для всех выходных данных обновления не требуется.
+       Link:
+         C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\bin\HostX64\x64\link.exe /ERRORREPORT:PROMPT /OUT:"D:\лабы\ОКГ\Lab07\Lab07\x64\Debug\Lab10.exe" /INCREMENTAL /ILK:"x64\Debug\Lab10.ilk" /NOLOGO /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /manifestinput:"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\Include\Manifest\dpiaware.manifest" /DEBUG /PDB:"D:\лабы\ОКГ\Lab07\Lab07\x64\Debug\Lab10.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /ENTRY:"wWinMainCRTStartup" /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\лабы\ОКГ\Lab07\Lab07\x64\Debug\Lab10.lib" /MACHINE:X64 x64\Debug\Lab10.res
+         x64\Debug\CMatrix.obj
+         x64\Debug\main.obj
+         Lab07.vcxproj -> D:\лабы\ОКГ\Lab07\Lab07\x64\Debug\Lab10.exe
+       FinalizeBuildStatus:
+         Файл "x64\Debug\Lab10.tlog\unsuccessfulbuild" удаляется.
+         Обращение к "x64\Debug\Lab10.tlog\Lab10.lastbuildstate".
+     1>Сборка проекта "D:\лабы\ОКГ\Lab07\Lab07\Lab07\Lab07.vcxproj" завершена (целевые объекты Build).
+
+Сборка успешно завершена.
+
+       "D:\лабы\ОКГ\Lab07\Lab07\Lab07\Lab07.vcxproj" (целевой объект Build ) (1) ->
+       (Целевой объект ClCompile) -> 
+         D:\лабы\ОКГ\Lab07\Lab07\Lab07\LibSurface.h(270,12): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+         D:\лабы\ОКГ\Lab07\Lab07\Lab07\LibSurface.h(271,12): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+         D:\лабы\ОКГ\Lab07\Lab07\Lab07\LibSurface.h(200): warning C4715: CPlot3D::GetNumberRegion: значение возвращается не при всех путях выполнения
+
+    Предупреждений: 3
+    Ошибок: 0
+
+Прошло времени 00:00:02.04
