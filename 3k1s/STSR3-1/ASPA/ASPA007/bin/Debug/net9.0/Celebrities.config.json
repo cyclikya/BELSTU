@@ -1,0 +1,7 @@
+﻿{
+  "Celebrities": {
+    "PhotosRequestPath": "/Photos",
+    "PhotosFolder": "C:\\General\\BELSTU\\3k1s\\STSR3-1\\ASPA\\ASPA007\\Photos",
+    "ConnectionString": "Host=localhost;Port=5432;Database=Celebrity;Username=postgres;Password=vivi5567"
+  }
+}

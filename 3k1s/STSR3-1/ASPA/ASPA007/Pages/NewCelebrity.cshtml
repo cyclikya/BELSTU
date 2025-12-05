@@ -1,0 +1,204 @@
+﻿@page
+@using DAL_Celebrity_Npgsql
+@model Lab7.Pages.NewCelebrityModel
+@{
+    bool Confirm = (bool)(ViewData["Confirm"] ?? false);
+    Celebrity celebrity = Model.Celebrity ?? new Celebrity();
+}
+
+<h2>New Celebrity</h2>
+
+<div style="display: flex; gap: 30px; align-items: flex-start; margin-top: 20px;">
+    @if (!Confirm)
+    {
+        <!-- Левая часть: большое круглое изображение -->
+        <div style="flex-shrink: 0;">
+            <img id="photoPreview"
+                 style="width: 300px;
+                        height: 300px;
+                        border-radius: 50%;
+                        object-fit: cover;
+                        border: 4px solid #d4af37;"
+                 title="New Celebrity"
+                 src="@Model.PhotosRequestPath/diamond.png" />
+        </div>
+
+        <!-- Правая часть: форма в коричневой области -->
+        <div style="background-color: #c59d67;
+                   min-width: 400px;
+                   padding: 15px;">
+            <form method="post" enctype="multipart/form-data" style="display: flex; flex-direction: column; gap: 15px;">
+                <div>
+                    <label for="fullname" style="display: block; color: white; margin-bottom: 5px; font-weight: bold;">Celebrities Name</label>
+                    <input id="fullname"
+                           name="fullname"
+                           type="text"
+                           placeholder="Enter celebrity name"
+                           style="width: 100%; 
+                                  font-size: 14px;
+                                  box-sizing: border-box;"
+                           required />
+                </div>
+
+                <div>
+                    <label for="nationality" style="display: block; color: white; margin-bottom: 5px; font-weight: bold;">Nation</label>
+                    <input id="nationality"
+                           name="nationality"
+                           type="text"
+                           placeholder="Enter 2-letter code"
+                           minlength="2"
+                           maxlength="2"
+                           style="width: 100%; 
+                                  font-size: 14px;
+                                  box-sizing: border-box;"
+                           required />
+                </div>
+
+                <input id="upload"
+                       name="upload"
+                       type="file"
+                       style="display: none;"
+                       accept="image/jpeg,image/jpg,image/png"
+                       onchange="onChange(this)"
+                       required />
+
+                <button id="buttonLoad"
+                        type="button"
+                        style="width: 100%;
+                               padding: 12px;
+                               font-size: 16px; 
+                               font-weight: bold;
+                               cursor: pointer;"
+                        onclick="document.getElementById('upload').click()">
+                    Upload Photo
+                </button>
+
+                <p id="fileName" style="color: #f5e6d3; font-size: 12px; margin: 0; min-height: 20px;"></p>
+
+                <div style="display: flex; gap: 10px; margin-top: 10px;">
+                    <button type="submit" 
+                            style="flex: 1; 
+                                   padding: 12px;
+                                   font-size: 16px; 
+                                   font-weight: bold;
+                                   cursor: pointer;">
+                        OK
+                    </button>
+                    <a href="/Celebrities"
+                       style="flex: 1;
+                              padding: 12px;
+                              font-size: 16px;
+                              font-weight: bold;
+                              text-align: center;
+                              text-decoration: none;
+                              background-color: #8b6f47;
+                              color: white;
+                              border: none;
+                              display: inline-block;
+                              box-sizing: border-box;">
+                        CANCEL
+                    </a>
+                </div>
+            </form>
+        </div>
+    }
+    else
+    {
+        <!-- Левая часть: большое круглое изображение -->
+        <div style="flex-shrink: 0;">
+            <img id="photoPreview"
+                 style="width: 300px;
+                        height: 300px;
+                        object-fit: cover;"
+                 title="New Celebrity"
+                 src="@($"/api/Celebrities/photo/{celebrity.ReqPhotoPath}")" />
+        </div>
+
+        <!-- Правая часть: форма подтверждения в коричневой области -->
+        <div style="background-color: #c59d67;
+                     padding: 30px;
+                     min-width: 400px;">
+            <form method="post" style="display: flex; flex-direction: column; gap: 15px;">
+                <div>
+                    <label style="display: block; margin-bottom: 5px; font-weight: bold;">Celebrities Name</label>
+                    <input name="fullname"
+                           type="text"
+                           value="@celebrity.FullName"
+                           style="width: 100%;
+                                  font-size: 14px;
+                                  box-sizing: border-box;"
+                           readonly />
+                </div>
+
+                <div>
+                    <label style="display: block;  margin-bottom: 5px; font-weight: bold;">Nation</label>
+                    <input name="nationality"
+                           type="text"
+                           value="@celebrity.Nationality"
+                           minlength="2"
+                           maxlength="2"
+                           style="width: 100%; 
+                                  font-size: 14px;
+                                  box-sizing: border-box;"
+                           readonly />
+                </div>
+
+                <input name="filename"
+                       type="hidden"
+                       value="@celebrity.ReqPhotoPath" />
+
+                <button name="press"
+                        type="submit"
+                        value="Confirm"
+                        style="width: 100%; 
+                               padding: 12px; 
+                               background-color: #4a7c59; 
+                               color: white; 
+                               border: none; 
+                               font-size: 16px; 
+                               font-weight: bold;
+                               cursor: pointer;
+                               margin-top: 10px;">
+                    CONFIRMATION
+                </button>
+
+                <a href="/Celebrities"
+                   style="width: 100%; 
+                          padding: 12px; 
+                          background-color: #8b6f47; 
+                          color: white; 
+                          border: none; 
+                          font-size: 16px; 
+                          font-weight: bold;
+                          text-align: center;
+                          text-decoration: none;
+                          display: inline-block;
+                          box-sizing: border-box;">
+                    CANCEL
+                </a>
+            </form>
+        </div>
+    }
+    <script>
+        function onChange(input) {
+            const file = input.files[0];
+            if (file) {
+                // Показать имя файла
+                const fileNameElement = document.getElementById('fileName');
+                if (fileNameElement) {
+                    fileNameElement.innerText = "Файл: " + file.name;
+                }
+
+                // Предпросмотр изображения
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const preview = document.getElementById('photoPreview');
+                    if (preview) {
+                        preview.src = e.target.result;
+                    }
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+</div>
