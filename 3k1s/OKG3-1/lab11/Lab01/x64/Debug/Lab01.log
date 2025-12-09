@@ -1,0 +1,18 @@
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(534,5): warning MSB8028: промежуточный каталог (x64\Debug\) содержит файлы, которые используются совместно с другим проектом (Lab09.vcxproj).  Это может привести к ошибкам очистки и перестроения.
+  stdafx.cpp
+  ChildView.cpp
+  CMatrix.cpp
+C:\General\BELSTU\3k1s\OKG3-1\lab11\Lab01\ChildView.cpp(132,8): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+  (компиляция исходного файла "/ChildView.cpp")
+  
+  Lab09.cpp
+  LibGraph.cpp
+C:\General\BELSTU\3k1s\OKG3-1\lab11\Lab01\LibGraph.cpp(87,8): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+  (компиляция исходного файла "/LibGraph.cpp")
+  
+C:\General\BELSTU\3k1s\OKG3-1\lab11\Lab01\LibGraph.cpp(89,9): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+  (компиляция исходного файла "/LibGraph.cpp")
+  
+  MainFrm.cpp
+  Создание кода...
+  Lab01.vcxproj -> C:\General\BELSTU\3k1s\OKG3-1\lab11\x64\Debug\lab11.exe
