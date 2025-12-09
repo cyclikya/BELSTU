@@ -1,6 +1,7 @@
 using Avia.Data.Entities;
 using Avia.Infrastructure;
 using Avia.Services.Interfaces;
+using Avia.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Windows;
@@ -112,15 +113,29 @@ public partial class BuyTicketViewModel : ViewModelBase
 
         try
         {
-            // Покупаем билеты в цикле
+            // Покупаем билеты в цикле, обновляя доступность после каждого билета
             for (int i = 0; i < SeatsCount; i++)
             {
+                // Проверяем доступность перед покупкой каждого билета
+                var currentAvailable = await _flightService.GetAvailableSeatsAsync(Flight.FlightId, SelectedClass);
+                if (currentAvailable <= 0)
+                {
+                    ErrorMessage = $"Недостаточно мест. Доступно: {currentAvailable}";
+                    return;
+                }
+
                 await _ticketService.BuyTicketAsync(
                     _authService.CurrentUser.UserId,
                     Flight.FlightId,
                     SelectedClass,
                     IncludeBaggage);
+
+                // Обновляем доступные места после покупки
+                AvailableSeats = await _flightService.GetAvailableSeatsAsync(Flight.FlightId, SelectedClass);
             }
+
+            // Обновляем список рейсов в главном окне после покупки
+            RefreshMainWindowFlights();
 
             CloseWindow();
         }
@@ -140,6 +155,19 @@ public partial class BuyTicketViewModel : ViewModelBase
     {
         Application.Current.Windows.OfType<Window>()
             .FirstOrDefault(w => w.DataContext == this)?.Close();
+    }
+
+    private async void RefreshMainWindowFlights()
+    {
+        // Находим главное окно ClientMainView и обновляем его данные
+        var mainWindow = Application.Current.Windows.OfType<ClientMainView>().FirstOrDefault();
+        if (mainWindow?.DataContext is ClientMainViewModel viewModel)
+        {
+            await viewModel.LoadDataAsync();
+            // Дополнительно обновляем FlightCard после небольшой задержки
+            await System.Threading.Tasks.Task.Delay(500);
+            viewModel.RefreshFlightCards();
+        }
     }
 }
 

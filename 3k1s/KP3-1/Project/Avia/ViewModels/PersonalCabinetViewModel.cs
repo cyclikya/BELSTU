@@ -6,6 +6,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
 
 namespace Avia.ViewModels;
 
@@ -107,11 +108,26 @@ public partial class PersonalCabinetViewModel : ViewModelBase
             {
                 await _ticketService.CancelTicketAsync(ticket.TicketId);
                 await LoadDataAsync();
+                // Обновляем список рейсов в главном окне после отмены билета
+                RefreshMainWindowFlights();
             }
             catch (Exception)
             {
                 // Handle error
             }
+        }
+    }
+
+    private async void RefreshMainWindowFlights()
+    {
+        // Находим главное окно ClientMainView и обновляем его данные
+        var mainWindow = Application.Current.Windows.OfType<ClientMainView>().FirstOrDefault();
+        if (mainWindow?.DataContext is ClientMainViewModel viewModel)
+        {
+            await viewModel.LoadDataAsync();
+            // Дополнительно обновляем FlightCard после небольшой задержки
+            await System.Threading.Tasks.Task.Delay(500);
+            viewModel.RefreshFlightCards();
         }
     }
 

@@ -80,7 +80,7 @@ public partial class FlightCard : UserControl
         }
     }
 
-    private async Task UpdateBindingsAsync(Flight flight)
+    public async Task UpdateBindingsAsync(Flight flight)
     {
         if (flight == null)
         {
@@ -96,21 +96,27 @@ public partial class FlightCard : UserControl
         var duration = CalculateDuration(flight);
         var flightNumber = $"Nº{flight.FlightId}";
 
-        // Вычисляем доступные места
+        // Вычисляем доступные места - ВСЕГДА запрашиваем актуальные данные из БД
         string availableSeats = $"Эконом: {flight.EconomySeats}, Бизнес: {flight.BusinessSeats}";
         
         if (FlightService != null)
         {
             try
             {
+                // Всегда запрашиваем актуальные данные из БД, а не используем значения из объекта Flight
                 var seatsInfo = await FlightService.GetAvailableSeatsInfoAsync(flight.FlightId);
                 availableSeats = $"эконом: {seatsInfo.EconomyAvailable}/{seatsInfo.EconomyTotal} бизнес: {seatsInfo.BusinessAvailable}/{seatsInfo.BusinessTotal}";
+                System.Diagnostics.Debug.WriteLine($"FlightCard: Updated seats info for flight {flight.FlightId}: {availableSeats}");
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine($"Error loading seats info: {ex.Message}");
                 // Используем значения по умолчанию
             }
+        }
+        else
+        {
+            System.Diagnostics.Debug.WriteLine($"FlightCard: FlightService is null for flight {flight.FlightId}");
         }
 
         // Устанавливаем через DataContext для привязок

@@ -110,6 +110,9 @@ public partial class TicketCard : UserControl
         var classType = ticket.ClassType == ClassType.Economy ? "эконом" : "бизнес";
         var classAndSeat = $"{classType}-место №{ticket.TicketId}";
         
+        // Проверка, прошел ли рейс
+        var isPastFlight = flight.DepartureDateTime < DateTime.Now;
+        
         // Статус
         var statusText = ticket.Status == TicketStatus.Active ? "активен" : "отменён";
         var statusColor = ticket.Status == TicketStatus.Active 
@@ -135,7 +138,8 @@ public partial class TicketCard : UserControl
             DepartureTime = flight.DepartureTime,
             ArrivalTime = flight.ArrivalTime,
             Airline = flight.Airline,
-            CanCancel = ticket.Status == TicketStatus.Active ? Visibility.Visible : Visibility.Collapsed,
+            CanCancel = (ticket.Status == TicketStatus.Active && !isPastFlight) ? Visibility.Visible : Visibility.Collapsed,
+            IsPastFlight = isPastFlight,
             CancelTicketCommand = CancelTicketCommand
         };
 
@@ -192,6 +196,7 @@ public class TicketCardViewModel : ObservableObject
     private TimeSpan _arrivalTime;
     private string _airline = string.Empty;
     private Visibility _canCancel;
+    private bool _isPastFlight;
     private ICommand? _cancelTicketCommand;
 
     public Ticket? Ticket { get => _ticket; set => SetProperty(ref _ticket, value); }
@@ -208,6 +213,7 @@ public class TicketCardViewModel : ObservableObject
     public TimeSpan ArrivalTime { get => _arrivalTime; set => SetProperty(ref _arrivalTime, value); }
     public string Airline { get => _airline; set => SetProperty(ref _airline, value); }
     public Visibility CanCancel { get => _canCancel; set => SetProperty(ref _canCancel, value); }
+    public bool IsPastFlight { get => _isPastFlight; set => SetProperty(ref _isPastFlight, value); }
     public ICommand? CancelTicketCommand { get => _cancelTicketCommand; set => SetProperty(ref _cancelTicketCommand, value); }
 }
 

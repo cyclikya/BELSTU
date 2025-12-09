@@ -1,10 +1,12 @@
 using Avia.Data.Entities;
 using Avia.Infrastructure;
 using Avia.Services.Interfaces;
+using Avia.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
 
 namespace Avia.ViewModels;
 
@@ -203,6 +205,13 @@ public partial class ClientMainViewModel : ViewModelBase
             var flightsList = await _flightService.GetAllFlightsAsync();
             _allFlights = flightsList.ToList();
             ApplyFiltersAndUpdate();
+            // Принудительно обновляем FlightCard после обновления данных
+            // Используем Dispatcher для обновления после того, как UI обновится
+            System.Windows.Application.Current.Dispatcher.BeginInvoke(new Action(async () =>
+            {
+                await System.Threading.Tasks.Task.Delay(300);
+                RefreshFlightCards();
+            }), System.Windows.Threading.DispatcherPriority.Loaded);
         }
         catch (Exception)
         {
@@ -242,6 +251,12 @@ public partial class ClientMainViewModel : ViewModelBase
 
     private bool ApplyFilters(Flight flight)
     {
+        // Фильтр прошедших рейсов - не показывать рейсы, которые уже прошли
+        if (flight.DepartureDateTime < DateTime.Now)
+        {
+            return false;
+        }
+
         // Фильтр по дате вылета
         if (DepartureDate.HasValue && flight.DepartureDate.Date != DepartureDate.Value.Date)
         {
@@ -389,6 +404,8 @@ public partial class ClientMainViewModel : ViewModelBase
             flightsToDisplay = flightsToDisplay.OrderByDescending(f => Math.Max(f.EconomyPrice, f.BusinessPrice)).ToList();
         }
         
+        // Очищаем и добавляем заново, чтобы принудительно обновить FlightCard
+        // Это заставит WPF пересоздать элементы и обновить привязки
         DisplayedItems.Clear();
         foreach (var flight in flightsToDisplay)
         {
@@ -397,23 +414,87 @@ public partial class ClientMainViewModel : ViewModelBase
         OnPropertyChanged(nameof(DisplayedItems));
     }
 
-    [RelayCommand]
-    private void BuyTicket()
+    public void RefreshFlightCards()
     {
-        if (SelectedFlight != null)
+        // Находим главное окно и обновляем все FlightCard
+        var mainWindow = System.Windows.Application.Current.Windows.OfType<Views.ClientMainView>().FirstOrDefault();
+        if (mainWindow != null)
         {
-            _navigationService.ShowDialog<BuyTicketViewModel>(vm => vm.SetFlight(SelectedFlight));
-            LoadDataAsync();
+            // Находим все FlightCard в визуальном дереве и обновляем их
+            var flightCards = FindVisualChildren<Views.FlightCard>(mainWindow).ToList();
+            System.Diagnostics.Debug.WriteLine($"RefreshFlightCards: Found {flightCards.Count} FlightCard(s)");
+            
+            foreach (var card in flightCards)
+            {
+                if (card.Flight != null)
+                {
+                    // Убеждаемся, что FlightService установлен
+                    if (card.FlightService == null)
+                    {
+                        card.FlightService = _flightService;
+                        System.Diagnostics.Debug.WriteLine($"RefreshFlightCards: Set FlightService for flight {card.Flight.FlightId}");
+                    }
+                    
+                    // Принудительно обновляем привязки для каждого FlightCard
+                    var flight = card.Flight; // Сохраняем ссылку на Flight
+                    var flightId = flight.FlightId; // Сохраняем ID для отладки
+                    _ = card.Dispatcher.BeginInvoke(new Action(async () =>
+                    {
+                        System.Diagnostics.Debug.WriteLine($"RefreshFlightCards: Updating FlightCard for flight {flightId}");
+                        // Принудительно обновляем привязки с актуальными данными из БД
+                        await card.UpdateBindingsAsync(flight);
+                    }), System.Windows.Threading.DispatcherPriority.Loaded);
+                }
+            }
+        }
+        else
+        {
+            System.Diagnostics.Debug.WriteLine("RefreshFlightCards: ClientMainView not found");
+        }
+    }
+
+    private static IEnumerable<T> FindVisualChildren<T>(System.Windows.DependencyObject? depObj) where T : System.Windows.DependencyObject
+    {
+        if (depObj != null)
+        {
+            for (int i = 0; i < System.Windows.Media.VisualTreeHelper.GetChildrenCount(depObj); i++)
+            {
+                System.Windows.DependencyObject? child = System.Windows.Media.VisualTreeHelper.GetChild(depObj, i);
+                if (child != null && child is T t)
+                {
+                    yield return t;
+                }
+
+                if (child != null)
+                {
+                    foreach (T childOfChild in FindVisualChildren<T>(child))
+                    {
+                        yield return childOfChild;
+                    }
+                }
+            }
         }
     }
 
     [RelayCommand]
-    private void BuyTicketForFlight(Flight flight)
+    private async Task BuyTicket()
+    {
+        if (SelectedFlight != null)
+        {
+            _navigationService.ShowDialog<BuyTicketViewModel>(vm => vm.SetFlight(SelectedFlight));
+            // Обновляем данные после закрытия диалога
+            await LoadDataAsync();
+        }
+    }
+
+    [RelayCommand]
+    private async Task BuyTicketForFlight(Flight flight)
     {
         if (flight != null)
         {
             _navigationService.ShowDialog<BuyTicketViewModel>(vm => vm.SetFlight(flight));
-            LoadDataAsync();
+            // Обновляем данные после закрытия диалога
+            await LoadDataAsync();
         }
     }
 

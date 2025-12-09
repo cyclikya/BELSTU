@@ -6,7 +6,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="150" d:DesignWidth="800">
     <UserControl.Resources>
-        <Style TargetType="Border">
+        <Style TargetType="Border" x:Key="CardBorderStyle">
             <Setter Property="Background" Value="White"/>
             <Setter Property="CornerRadius" Value="8"/>
             <Setter Property="BorderThickness" Value="0"/>
@@ -17,10 +17,16 @@
                     <DropShadowEffect BlurRadius="10" ShadowDepth="2" Opacity="0.2"/>
                 </Setter.Value>
             </Setter>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsPastFlight}" Value="True">
+                    <Setter Property="Opacity" Value="0.5"/>
+                    <Setter Property="Background" Value="#F5F5F5"/>
+                </DataTrigger>
+            </Style.Triggers>
         </Style>
     </UserControl.Resources>
     
-    <Border>
+    <Border Style="{StaticResource CardBorderStyle}">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200"/>
@@ -46,25 +52,67 @@
                            FontSize="28" 
                            FontWeight="Bold" 
                            Foreground="#1E3A8A"
-                           Margin="0,0,0,10"/>
+                           Margin="0,0,0,10">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsPastFlight}" Value="True">
+                                    <Setter Property="Foreground" Value="#9CA3AF"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
                 
                 <TextBlock Grid.Row="1" 
                            Text="{Binding Route}" 
                            FontSize="16" 
                            FontWeight="SemiBold"
-                           Margin="0,0,0,5"/>
+                           Margin="0,0,0,5">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsPastFlight}" Value="True">
+                                    <Setter Property="Foreground" Value="#9CA3AF"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
                 
                 <TextBlock Grid.Row="2" 
                            Text="{Binding PurchaseDate}" 
                            FontSize="12" 
                            Foreground="#666"
-                           Margin="0,0,0,5"/>
+                           Margin="0,0,0,5">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Foreground" Value="#666"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsPastFlight}" Value="True">
+                                    <Setter Property="Foreground" Value="#9CA3AF"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
                 
                 <TextBlock Grid.Row="3" 
                            Text="{Binding StatusText}" 
                            FontSize="12" 
                            Foreground="{Binding StatusColor}"
-                           Margin="0,0,0,10"/>
+                           Margin="0,0,0,10">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Foreground" Value="{Binding StatusColor}"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsPastFlight}" Value="True">
+                                    <Setter Property="Foreground" Value="#9CA3AF"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
                 
                 <Button Grid.Row="5" 
                         Content="Отменить" 
@@ -104,7 +152,18 @@
             </Grid>
             
             <!-- Разделитель 1 -->
-            <Rectangle Grid.Column="1" Fill="#E5E7EB" Margin="0,10"/>
+            <Rectangle Grid.Column="1" Fill="#E5E7EB" Margin="0,10">
+                <Rectangle.Style>
+                    <Style TargetType="Rectangle">
+                        <Setter Property="Fill" Value="#E5E7EB"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsPastFlight}" Value="True">
+                                <Setter Property="Fill" Value="#D1D5DB"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Rectangle.Style>
+            </Rectangle>
             
             <!-- Средняя секция: Авиакомпания, дата, время -->
             <Grid Grid.Column="2" Margin="15">
@@ -115,34 +174,106 @@
                 </Grid.RowDefinitions>
                 
                 <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
-                    <TextBlock Text="✈" FontSize="20" Margin="0,0,8,0"/>
+                    <TextBlock Text="✈" FontSize="20" Margin="0,0,8,0">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsPastFlight}" Value="True">
+                                        <Setter Property="Foreground" Value="#9CA3AF"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
                     <TextBlock Text="{Binding Airline}" 
                                FontSize="18" 
                                FontWeight="SemiBold"
-                               VerticalAlignment="Center"/>
+                               VerticalAlignment="Center">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsPastFlight}" Value="True">
+                                        <Setter Property="Foreground" Value="#9CA3AF"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
                 </StackPanel>
                 
                 <TextBlock Grid.Row="1" 
                            Text="{Binding FormattedDate}" 
                            FontSize="14" 
                            FontWeight="Medium"
-                           Margin="0,0,0,8"/>
+                           Margin="0,0,0,8">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsPastFlight}" Value="True">
+                                    <Setter Property="Foreground" Value="#9CA3AF"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
                 
                 <StackPanel Grid.Row="2" Orientation="Horizontal">
                     <TextBlock Text="{Binding DepartureTime, StringFormat='{}{0:hh\\:mm} отъезд'}" 
                                FontSize="13"
-                               Margin="0,0,8,0"/>
+                               Margin="0,0,8,0">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsPastFlight}" Value="True">
+                                        <Setter Property="Foreground" Value="#9CA3AF"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
                     <TextBlock Text="•" 
                                FontSize="12" 
                                Foreground="#1E3A8A"
-                               Margin="0,0,8,0"/>
+                               Margin="0,0,8,0">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Foreground" Value="#1E3A8A"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsPastFlight}" Value="True">
+                                        <Setter Property="Foreground" Value="#9CA3AF"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
                     <TextBlock Text="{Binding ArrivalTime, StringFormat='{}{0:hh\\:mm} прибытие'}" 
-                               FontSize="13"/>
+                               FontSize="13">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsPastFlight}" Value="True">
+                                        <Setter Property="Foreground" Value="#9CA3AF"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
                 </StackPanel>
             </Grid>
             
             <!-- Разделитель 2 -->
-            <Rectangle Grid.Column="3" Fill="#E5E7EB" Margin="0,10"/>
+            <Rectangle Grid.Column="3" Fill="#E5E7EB" Margin="0,10">
+                <Rectangle.Style>
+                    <Style TargetType="Rectangle">
+                        <Setter Property="Fill" Value="#E5E7EB"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsPastFlight}" Value="True">
+                                <Setter Property="Fill" Value="#D1D5DB"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Rectangle.Style>
+            </Rectangle>
             
             <!-- Правая секция: Длительность, номер рейса, класс и место -->
             <Grid Grid.Column="4" Margin="15">
@@ -154,20 +285,61 @@
                 <TextBlock Grid.Row="0" 
                            Text="{Binding Duration}" 
                            FontSize="13" 
-                           Margin="0,0,0,15"/>
+                           Margin="0,0,0,15">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsPastFlight}" Value="True">
+                                    <Setter Property="Foreground" Value="#9CA3AF"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
                 
                 <Border Grid.Row="1" 
                         Background="#F3F4F6" 
                         CornerRadius="4" 
                         Padding="10,8">
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Setter Property="Background" Value="#F3F4F6"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsPastFlight}" Value="True">
+                                    <Setter Property="Background" Value="#E5E7EB"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
                     <StackPanel>
                         <TextBlock Text="{Binding FlightNumber}" 
                                    FontSize="12" 
                                    FontWeight="Medium"
-                                   Margin="0,0,0,5"/>
+                                   Margin="0,0,0,5">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsPastFlight}" Value="True">
+                                            <Setter Property="Foreground" Value="#9CA3AF"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
                         <TextBlock Text="{Binding ClassAndSeat}" 
                                    FontSize="11" 
-                                   Foreground="#666"/>
+                                   Foreground="#666">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Foreground" Value="#666"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsPastFlight}" Value="True">
+                                            <Setter Property="Foreground" Value="#9CA3AF"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
                     </StackPanel>
                 </Border>
             </Grid>
