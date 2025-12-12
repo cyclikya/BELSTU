@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "gf/aPn8tmS7uFgb3Km5BPUUHUYSDrHpXLZtUiESOUt0=",
+  "Hash": "9csOv8yXoOTbw/j42N3thTNl50jqpuAqN7hqx9YMQnk=",
   "Source": "ASPA002_1",
   "BasePath": "_content/ASPA002_1",
   "Mode": "Default",
@@ -31,8 +31,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "gubh6kq015",
-      "Integrity": "yHNYQRgoRTzX3J7An+TIaUbZjToEQqevUI2w1ASQoas=",
+      "Fingerprint": "rpeiun92ny",
+      "Integrity": "ATuaVf5T3enPZ/5O/hpmrTuiwk8A7YaK10zbI2972IE=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\index.css"
@@ -52,8 +52,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "b8hngbgc1r",
-      "Integrity": "BS13055DRg7hkgZuezyUw1tnqvtXczSPCbkbxEYLSjU=",
+      "Fingerprint": "qr7k8fvzwa",
+      "Integrity": "qkd3DKK9PgX0jhT22swgMnoQeA9TsImRF4QoUdtMHYA=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Index.html"
@@ -92,7 +92,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "100"
+          "Value": "90"
         },
         {
           "Name": "Content-Type",
@@ -100,11 +100,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"yHNYQRgoRTzX3J7An+TIaUbZjToEQqevUI2w1ASQoas=\""
+          "Value": "\"ATuaVf5T3enPZ/5O/hpmrTuiwk8A7YaK10zbI2972IE=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 09 Oct 2025 15:38:49 GMT"
+          "Value": "Tue, 28 Oct 2025 19:55:31 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -114,12 +114,12 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-yHNYQRgoRTzX3J7An+TIaUbZjToEQqevUI2w1ASQoas="
+          "Value": "sha256-ATuaVf5T3enPZ/5O/hpmrTuiwk8A7YaK10zbI2972IE="
         }
       ]
     },
     {
-      "Route": "css/index.gubh6kq015.css",
+      "Route": "css/index.rpeiun92ny.css",
       "AssetFile": "C:\\General\\BELSTU\\3k1s\\STSR3-1\\ASPA\\ASPA002_1\\wwwroot\\css\\index.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -129,7 +129,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "100"
+          "Value": "90"
         },
         {
           "Name": "Content-Type",
@@ -137,11 +137,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"yHNYQRgoRTzX3J7An+TIaUbZjToEQqevUI2w1ASQoas=\""
+          "Value": "\"ATuaVf5T3enPZ/5O/hpmrTuiwk8A7YaK10zbI2972IE=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 09 Oct 2025 15:38:49 GMT"
+          "Value": "Tue, 28 Oct 2025 19:55:31 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -151,7 +151,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "gubh6kq015"
+          "Value": "rpeiun92ny"
         },
         {
           "Name": "label",
@@ -159,52 +159,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-yHNYQRgoRTzX3J7An+TIaUbZjToEQqevUI2w1ASQoas="
-        }
-      ]
-    },
-    {
-      "Route": "Index.b8hngbgc1r.html",
-      "AssetFile": "C:\\General\\BELSTU\\3k1s\\STSR3-1\\ASPA\\ASPA002_1\\wwwroot\\Index.html",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "713"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/html"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"BS13055DRg7hkgZuezyUw1tnqvtXczSPCbkbxEYLSjU=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 09 Oct 2025 15:38:49 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "b8hngbgc1r"
-        },
-        {
-          "Name": "label",
-          "Value": "Index.html"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-BS13055DRg7hkgZuezyUw1tnqvtXczSPCbkbxEYLSjU="
+          "Value": "sha256-ATuaVf5T3enPZ/5O/hpmrTuiwk8A7YaK10zbI2972IE="
         }
       ]
     },
@@ -219,7 +174,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "713"
+          "Value": "690"
         },
         {
           "Name": "Content-Type",
@@ -227,11 +182,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"BS13055DRg7hkgZuezyUw1tnqvtXczSPCbkbxEYLSjU=\""
+          "Value": "\"qkd3DKK9PgX0jhT22swgMnoQeA9TsImRF4QoUdtMHYA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 09 Oct 2025 15:38:49 GMT"
+          "Value": "Tue, 28 Oct 2025 19:55:31 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -241,7 +196,52 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-BS13055DRg7hkgZuezyUw1tnqvtXczSPCbkbxEYLSjU="
+          "Value": "sha256-qkd3DKK9PgX0jhT22swgMnoQeA9TsImRF4QoUdtMHYA="
+        }
+      ]
+    },
+    {
+      "Route": "Index.qr7k8fvzwa.html",
+      "AssetFile": "C:\\General\\BELSTU\\3k1s\\STSR3-1\\ASPA\\ASPA002_1\\wwwroot\\Index.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "690"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"qkd3DKK9PgX0jhT22swgMnoQeA9TsImRF4QoUdtMHYA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 28 Oct 2025 19:55:31 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "qr7k8fvzwa"
+        },
+        {
+          "Name": "label",
+          "Value": "Index.html"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-qkd3DKK9PgX0jhT22swgMnoQeA9TsImRF4QoUdtMHYA="
         }
       ]
     },
@@ -268,7 +268,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 09 Oct 2025 15:38:49 GMT"
+          "Value": "Tue, 28 Oct 2025 19:55:31 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -313,7 +313,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 09 Oct 2025 15:38:49 GMT"
+          "Value": "Tue, 28 Oct 2025 19:55:31 GMT"
         },
         {
           "Name": "Cache-Control",

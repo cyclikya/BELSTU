@@ -29,7 +29,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 09 Oct 2025 15:38:49 GMT"
+          "Value": "Tue, 28 Oct 2025 19:55:31 GMT"
         }
       ],
       "EndpointProperties": [
@@ -48,6 +48,51 @@
       ]
     },
     {
+      "Route": "Neumann.elsb2knlnz.html",
+      "AssetFile": "Neumann.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "292"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ftiG8kr7UfSeONZxjBLoAdhgN/WgQ/nbmgj7JhULDik=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 28 Oct 2025 19:55:31 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "elsb2knlnz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ftiG8kr7UfSeONZxjBLoAdhgN/WgQ/nbmgj7JhULDik="
+        },
+        {
+          "Name": "label",
+          "Value": "Neumann.html"
+        }
+      ]
+    },
+    {
       "Route": "Neumann.html",
       "AssetFile": "Neumann.html",
       "Selectors": [],
@@ -62,7 +107,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "304"
+          "Value": "292"
         },
         {
           "Name": "Content-Type",
@@ -70,17 +115,17 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"xWncJaertm6QnAhgqp+kOyTQJ6q1pPGbNijtLS6Me2w=\""
+          "Value": "\"ftiG8kr7UfSeONZxjBLoAdhgN/WgQ/nbmgj7JhULDik=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 09 Oct 2025 15:38:49 GMT"
+          "Value": "Tue, 28 Oct 2025 19:55:31 GMT"
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-xWncJaertm6QnAhgqp+kOyTQJ6q1pPGbNijtLS6Me2w="
+          "Value": "sha256-ftiG8kr7UfSeONZxjBLoAdhgN/WgQ/nbmgj7JhULDik="
         }
       ]
     },
@@ -111,58 +156,13 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 09 Oct 2025 15:38:49 GMT"
+          "Value": "Tue, 28 Oct 2025 19:55:31 GMT"
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
           "Value": "sha256-+R9bTSEvE/+B1T+29R7tVXL8Sh/bfqCsbDnV2UYeHso="
-        }
-      ]
-    },
-    {
-      "Route": "Neumann.r45p0cs12n.html",
-      "AssetFile": "Neumann.html",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "304"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/html"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"xWncJaertm6QnAhgqp+kOyTQJ6q1pPGbNijtLS6Me2w=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 09 Oct 2025 15:38:49 GMT"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "r45p0cs12n"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-xWncJaertm6QnAhgqp+kOyTQJ6q1pPGbNijtLS6Me2w="
-        },
-        {
-          "Name": "label",
-          "Value": "Neumann.html"
         }
       ]
     }

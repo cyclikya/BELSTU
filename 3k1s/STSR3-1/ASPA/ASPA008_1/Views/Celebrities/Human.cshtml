@@ -1,0 +1,48 @@
+﻿@using DAL_Celebrity_Npgsql;
+@using System.Globalization;
+@using System.Linq;
+@using ASPA008_1.Controllers;
+@model CelebritiesController.HumanModel;
+@{
+    Layout = "_CelebritiesLayout";
+    Celebrity celebrity = Model.celebrity;
+    Dictionary<string, string> references = Model.references ?? new Dictionary<string, string>();
+    string photopath = $"{Model.photosrequespath}/{celebrity.ReqPhotoPath}";
+}
+
+@* @section subhead{<h2>Celebrities/Human/@ViewBag.id = @ViewData["id"]</h2>} *@
+@section subhead{
+
+}
+
+<div style="display:flex; flex-direction:column" class="all">
+    <div class="forButton">
+        <button onclick="location.href='@Url.Action("DeleteHumanForm", "Celebrities", new { id = celebrity.Id })'" class="change">Delete</button>
+        <button onclick="location.href='@Url.Action("EditHumanForm", "Celebrities", new { id = celebrity.Id })'" class="change">Edit</button>
+    </div>
+    <div style="display:flex;">
+        <div class="celebrity-box" style="margin-top: 20px">
+            @Html.CelebrityPhoto(celebrity.Id, celebrity.FullName, photopath, 300, 0)
+        </div>
+        <div class="celebrity-box dop">
+            <h2 style="margin-bottom: 20px;">@celebrity.FullName</h2>
+            @foreach(Lifeevent live in Model.lifeevents)
+            {
+                <p>@live.Date?.ToString("dd.MM.yyyy", CultureInfo.InvariantCulture) @live.Description</p>
+            }
+            @if (references != null && references.Count > 0)
+            {
+                var firstReference = references.First();
+                string linkId = "wiki_link_0";
+                <div style="margin-top: 20px;">
+                    <a id="@linkId" href="@firstReference.Value" target="_blank" style="display:none;">@firstReference.Key</a>
+                    <button onclick="document.getElementById('@linkId').click();">
+                        @firstReference.Key
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+@section foot{}
+

@@ -1,0 +1,32 @@
+﻿@using ASPA008_1;
+@using ASPA008_1.Controllers
+@using DAL_Celebrity_Npgsql
+@using Microsoft.AspNetCore.Mvc.Rendering;
+@inject CelebritiesAPI.CountryCodes Countries;
+@model string
+@{
+    Layout = "_CelebritiesLayout";
+    Celebrity? c = (Celebrity?)(ViewData["Celebrity"] ?? null);
+    SelectList slcountries = new SelectList(Countries, "code", "countryLabel", c.Nationality);
+}
+<div class="editdiv" style="height: 350px">
+    <div class="celebrity-box img">
+        <img id="previewImage" src="@($"{Model}/{c.ReqPhotoPath}")" class="celebrity-photo" style="height:300px; width:auto;" />
+    </div>
+    <div class="celebrity-box form_c">
+        @using (Html.BeginForm("DeleteCelebrity", "Celebrities", FormMethod.Post, new { enctype = "multipart/form-data", id = "deleteForm" }))
+        {
+            <input type="hidden" name="id" value="@c.Id" />
+            <input type="hidden" name="_method" value="delete" />
+            <input type="hidden" name="currentPhotoPath" value="@c.ReqPhotoPath" />
+            <div class="row">
+                @Html.TextBox("fullname", c.FullName, new { @class = "col-8", @readonly = true})
+                @Html.TextBox("Nationality", c.Nationality, new { @class = "col-4", @readonly = true })
+            </div>
+            <div class="row">
+                <button class="col-6" type="submit"> DELETE CONFIRM </button>
+                <button class="col-6" type="button" onclick="location.href='/@c.Id'">CANCEL</button>
+            </div>
+        }
+    </div>
+</div>

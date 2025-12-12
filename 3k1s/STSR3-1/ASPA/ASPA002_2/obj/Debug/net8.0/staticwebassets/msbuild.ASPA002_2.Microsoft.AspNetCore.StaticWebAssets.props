@@ -12,8 +12,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>r45p0cs12n</Fingerprint>
-      <Integrity>xWncJaertm6QnAhgqp+kOyTQJ6q1pPGbNijtLS6Me2w=</Integrity>
+      <Fingerprint>elsb2knlnz</Fingerprint>
+      <Integrity>ftiG8kr7UfSeONZxjBLoAdhgN/WgQ/nbmgj7JhULDik=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Neumann.html'))</OriginalItemSpec>

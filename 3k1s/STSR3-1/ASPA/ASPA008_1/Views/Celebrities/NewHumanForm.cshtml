@@ -1,0 +1,27 @@
+﻿@using DAL_Celebrity_Npgsql;
+@using System.Globalization;
+@using static ASPA008_1.CelebrityHelpers
+@model string
+@{
+    Layout = "_CelebritiesLayout";
+    bool Confirm = (bool)(ViewData["Confirm"] ?? false);
+    Celebrity? c = (Celebrity?)(ViewData["Celebrity"] ?? null);
+}
+
+@section subhead{}
+
+<div style="display: flex; height: 400px" class="all">
+    <div class="celebrity-box img">
+        @if (!Confirm)
+        {
+            @Html.CelebrityPhoto(0, "New Celebrity", $"{Model}/{"NewCelebrity.jpg"}", 300, 0)
+        }
+        else
+        {
+            @Html.CelebrityPhoto(c.Id, c.FullName, $"{Model}/{c.ReqPhotoPath}", 300, 0)
+        }
+    </div>
+    <div class="celebrity-box form_c">
+        <partial name="_InFormNewCelebrity"></partial>
+    </div>
+</div>

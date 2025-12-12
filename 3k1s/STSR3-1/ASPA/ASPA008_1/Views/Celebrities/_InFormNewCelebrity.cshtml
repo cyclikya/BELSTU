@@ -1,0 +1,56 @@
+﻿@using ASPA008_1;
+@using ASPA008_1.Controllers
+@using DAL_Celebrity_Npgsql
+@using Microsoft.AspNetCore.Mvc.Rendering;
+@inject CelebritiesAPI.CountryCodes Countries;
+@{
+    SelectList slcountries = new SelectList(Countries, "code", "countryLabel");
+    bool Confirm = (bool)(ViewData["Confirm"] ?? false);
+    Celebrity? c = (Celebrity?)(ViewData["Celebrity"] ?? null);
+}
+@if (!Confirm)
+{
+    @using (Html.BeginForm("AddCelebrity", "Celebrities", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="row">
+            @Html.TextBox("fullname", "", new { @class = "col-8", placeholder = "Celebrities Name", required = "true" })
+            @Html.DropDownList("Nationality", slcountries, new { @class = "col-4" })
+        </div>
+        <div class="row">
+            <input id="upload" name="upload" type="file" style="display: none;" accept="image/jpeg" onchange="onChange(this)" required />
+            <button class="col-12" id="butupload" type="button" onclick="document.getElementById('upload').click()"> Upload photo </button>
+        </div>
+        <div class="row">
+            <button class="col-6" type="submit"> OK </button>
+            <button class="col-6" type="reset" onclick="location.href='/'"> CANCEL </button>
+        </div>
+    }
+}
+else if (c != null)
+{
+    @using (Html.BeginForm("ConfirmAddCelebrity", "Celebrities", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="row">
+            @Html.TextBox("fullname", c.FullName, new { @class = "col-8", @readonly = "true" })
+            @Html.DropDownList("Nationality", slcountries, new { @class = "col-4", SelectedValue = c.Nationality, @readonly = "true" })
+        </div>
+        <div class="row">
+            <input type="hidden" name="uploadFileName" value="@c.ReqPhotoPath" />
+        </div>
+        <div class="row">
+            <button class="col-6" type="submit"> CONFIRM </button>
+            <button class="col-6" type="button" onclick="location.href='/0'"> CANCEL </button>
+        </div>
+    }
+}
+
+<script>
+    function onChange(input) {
+        const button = document.getElementById('butupload');
+        if (input.files && input.files[0]) {
+            button.textContent = input.files[0].name;
+        } else {
+            button.textContent = "Upload photo";
+        }
+    }
+</script>

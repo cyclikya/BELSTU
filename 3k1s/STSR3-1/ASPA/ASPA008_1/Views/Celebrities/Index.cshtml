@@ -1,0 +1,41 @@
+﻿@using ASPA008_1.Controllers;
+@using DAL_Celebrity_Npgsql;
+@model CelebritiesController.IndexModel;
+@{
+    Layout = "_CelebritiesLayout";
+    int h = 150, w = 0;
+}
+
+@section subhead{
+    <h2>Celebrities</h2>
+}
+
+@* <img id="0" title="New Celebrity" src="@Model.PhotosRequestPath/NewCelebrity.jpg"
+     onload="onPhotoLoad(this, @h, @w)"
+     onclick="onPhotoClick(0)" /> *@
+
+@Html.CelebrityPhoto(0, "New Celebrity", $"{Model.PhotosRequestPath}/{"NewCelebrity.jpg"}", 300, 0)
+
+@foreach (Celebrity c in Model.Celebrities)
+{
+   @*  <img id="@c.Id" src="@Model.PhotosRequestPath/@c.ReqPhotoPath"
+         onload="onPhotoLoad(this, @h, @w)"
+         onclick="onPhotoClick(@c.Id)" /> *@
+    @Html.CelebrityPhoto(c.Id, c.FullName, $"{Model.PhotosRequestPath}/{c.ReqPhotoPath}", 300, 0)
+}
+
+@section foot {
+    <hr />
+    <table><tbody id="Lifeevents"></tbody></table>
+}
+
+<script>
+    function onPhotoLoad(e, w, h) {
+        let k = e.width / e.height;
+        if (h != 0 && w == 0) e.width = k * h;
+        if (h == 0 && w != 0) e.height = w / k;
+    }
+    function onPhotoClick(id) {
+        location.href = `/${id}`;
+    }
+</script>

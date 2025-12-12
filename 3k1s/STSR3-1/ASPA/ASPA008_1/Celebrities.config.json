@@ -1,0 +1,13 @@
+{
+  // Celebrities.config.json
+  // -- PhotoRequestPath     - префикс в URI запроса
+  // -- PhotosFolder         - директория с папками
+  // -- ConnectionString     - строка подключения к бд
+  // -- ISO3166alpha2Path    - путь к файлу записей про страны
+  "Celebrities": {
+    "PhotoRequestPath": "/Photos",
+    "PhotosFolder": "Photos",
+    "ConnectionString": "Host=localhost;Port=5432;Database=Celebrity;Username=postgres;Password=vivi5567",
+    "ISO3166alpha2Path": "CountryCodes\\Лабораторная_08__iso3166-1-alpha2-country-codes.json"
+  }
+}
