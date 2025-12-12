@@ -27,7 +27,7 @@ namespace ASPA008_1.Controllers
         {
             return View(new IndexModel(config.Value.PhotosRequestPath, repo.GetAllCelebrities()));
         }
-        [InfoAsyncActionFilter(infotype:"Wikipedia, Facebook")]
+        [InfoAsyncActionFilter(infotype:"Wikipedia")]
         public IActionResult Human(int id)
         {
             IActionResult rc = NotFound();

@@ -24,43 +24,6 @@ namespace ASPA008_1
             return new HtmlString(result);
         }
 
-        //public static HtmlString BeginForm(this IHtmlHelper html, FormMethod method, object type)
-        //{
-        //    string enctype = string.Empty;
-        //    if (type != null)
-        //    {
-        //        var dict = HtmlHelper.AnonymousObjectToHtmlAttributes(type);
-        //        if (dict.TryGetValue("enctype", out object encValue))
-        //        {
-        //            enctype = $" enctype=\"{encValue}\"";
-        //        }
-        //    }
-        //    string result = $"<form method=\"{method}\" {enctype}>";
-        //    return new HtmlString(result);
-        //}
-
-        //public static HtmlString DropDownList(this IHtmlHelper html, string nat, SelectList sel, object c)
-        //{
-        //    string cls = string.Empty;
-        //    if (c != null)
-        //    {
-        //        var dict = HtmlHelper.AnonymousObjectToHtmlAttributes(c);
-        //        if (dict.TryGetValue("class", out object cl))
-        //        {
-        //           cls = $" class\"{cl}\"";
-        //        }
-        //    }
-
-        //    string opts = "";
-        //    foreach(var opt in sel)
-        //    {
-        //        string select = opt.Selected ? " selected " : "";
-        //        opts += $"<option value=\"{opt.Value}\"{select}>{opt.Text}</option>";
-        //    }
-        //    string result = $"<select name=\"{nat}\" id=\"{nat}\" {cls}>{opts}</select>";
-        //    return new HtmlString(result);
-        //}
-
 
     }
 }

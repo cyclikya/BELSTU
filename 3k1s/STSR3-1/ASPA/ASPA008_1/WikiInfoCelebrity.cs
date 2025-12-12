@@ -41,7 +41,8 @@ namespace ASPA008_1
                                 if (titles.ValueKind == JsonValueKind.Array && urls.ValueKind == JsonValueKind.Array)
                                 {
                                     int count = Math.Min(titles.GetArrayLength(), urls.GetArrayLength());
-                                    for (int i = 0; i < count; i++)
+                                    int maxReferences = 3; // Фиксированное количество ссылок
+                                    for (int i = 0; i < count && info.wikiReferens.Count < maxReferences; i++)
                                     {
                                         string title = titles[i].GetString() ?? string.Empty;
                                         string url = urls[i].GetString() ?? string.Empty;

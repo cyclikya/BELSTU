@@ -32,13 +32,22 @@
             }
             @if (references != null && references.Count > 0)
             {
-                var firstReference = references.First();
-                string linkId = "wiki_link_0";
                 <div style="margin-top: 20px;">
-                    <a id="@linkId" href="@firstReference.Value" target="_blank" style="display:none;">@firstReference.Key</a>
-                    <button onclick="document.getElementById('@linkId').click();">
-                        @firstReference.Key
-                    </button>
+                    <h3>Wikipedia References:</h3>
+                    @{
+                        int linkIndex = 0;
+                        foreach (var reference in references.Take(3))
+                        {
+                            string linkId = $"wiki_link_{linkIndex}";
+                            <div style="margin-bottom: 10px;">
+                                <a id="@linkId" href="@reference.Value" target="_blank" style="display:none;">@reference.Key</a>
+                                <button onclick="document.getElementById('@linkId').click();" style="margin-right: 10px;">
+                                    @reference.Key
+                                </button>
+                            </div>
+                            linkIndex++;
+                        }
+                    }
                 </div>
             }
         </div>
