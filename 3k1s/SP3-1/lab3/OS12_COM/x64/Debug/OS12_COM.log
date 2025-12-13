@@ -1,0 +1,14 @@
+﻿  dllmain.cpp
+  Math.cpp
+  MathFactory.cpp
+  Registry.cpp
+  Создание кода...
+C:\5sem\sp\OS_Labs_6sem-master\OS_Labs_6sem-master\OS_Lab12\OS12_COM\Registry.cpp(146,24): warning C4267: аргумент: преобразование из "size_t" в "DWORD"; возможна потеря данных
+OS12_COM.def(1): warning LNK4017: оператор LIBARY не поддерживается на конечной платформе; пропущен
+OS12_COM.def : warning LNK4104: экспорт символа "DllCanUnloadNow" должен быть PRIVATE
+OS12_COM.def : warning LNK4104: экспорт символа "DllGetClassObject" должен быть PRIVATE
+OS12_COM.def : warning LNK4104: экспорт символа "DllInstall" должен быть PRIVATE
+OS12_COM.def : warning LNK4104: экспорт символа "DllRegisterServer" должен быть PRIVATE
+OS12_COM.def : warning LNK4104: экспорт символа "DllUnregisterServer" должен быть PRIVATE
+     Создается библиотека C:\5sem\sp\OS_Labs_6sem-master\OS_Labs_6sem-master\OS_Lab12\x64\Debug\OS12_COM.lib и объект C:\5sem\sp\OS_Labs_6sem-master\OS_Labs_6sem-master\OS_Lab12\x64\Debug\OS12_COM.exp
+  OS12_COM.vcxproj -> C:\5sem\sp\OS_Labs_6sem-master\OS_Labs_6sem-master\OS_Lab12\x64\Debug\OS12_COM.dll
