@@ -89,7 +89,7 @@ ListContact Contacts;
 #pragma endregion
 
 // Асинхронная функция срабатывания таймера
-void CALLBACK ASWTimer(LPVOID Lprm, DWORD, DWORD) {
+void CALLBACK ASWTimer(ULONG_PTR Lprm, DWORD, DWORD) {
 	Contact* client = (Contact*)Lprm; //преобразуем переданный параметр
 	//EnterCriticalSection(&scListContact); //входим в критическую секцию
 	client->TimerOff = true; 	//ставим метку срабатывания таймера
@@ -103,7 +103,7 @@ void CALLBACK ASWTimer(LPVOID Lprm, DWORD, DWORD) {
 	std::cout << std::endl << client->srvname << ";" << std::endl;
 }
 // Асинхронная функция запуска обслуживающего потока
-void CALLBACK ASStartMessage(DWORD Lprm) {
+void CALLBACK ASStartMessage(ULONG_PTR Lprm) {
 	Contact* client = (Contact*)Lprm;
 	/*EnterCriticalSection(&scListContact);*/
 	// Ставим метку срабатывания таймера
@@ -119,7 +119,7 @@ void CALLBACK ASStartMessage(DWORD Lprm) {
 	std::cout << std::endl << sn << " started;" << std::endl;
 }
 // Асинхронная функция завершения обслуживающего потока
-void CALLBACK ASFinishMessage(DWORD Lprm) {
+void CALLBACK ASFinishMessage(ULONG_PTR Lprm) {
 	Contact* client = (Contact*)Lprm;
 	/*EnterCriticalSection(&scListContact);*/
 	// Ставим метку срабатывания таймера

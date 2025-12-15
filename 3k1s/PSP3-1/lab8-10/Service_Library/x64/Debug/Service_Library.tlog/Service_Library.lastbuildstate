@@ -1,2 +1,2 @@
-#TargetFrameworkVersion=v4.0:PlatformToolSet=v142:EnableManagedIncrementalBuild=false:VCToolArchitecture=Native32Bit:WindowsTargetPlatformVersion=10.0
-Debug|x64|D:\_Labs_3_course\_Labs_1_sem\SHIMAN\PRACTICE\SH_Laba_8_10\SH_Laba_8_10\|
+PlatformToolSet=v143:VCToolArchitecture=Native64Bit:VCToolsVersion=14.43.34808:TargetPlatformVersion=10.0.22621.0:
+Debug|x64|C:\General\BELSTU\3k1s\PSP3-1\lab8-10\SH_Laba_8_10\|
