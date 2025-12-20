@@ -186,7 +186,10 @@
                                    Foreground="#1E3A8A"
                                    FontSize="14"
                                    Margin="0,0,0,8"/>
-                        <TextBox Text="{Binding PassportNumber, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox Text="{Binding PassportNumber, UpdateSourceTrigger=PropertyChanged}"
+                                 PreviewTextInput="PassportTextBox_PreviewTextInput"
+                                 TextChanged="PassportTextBox_TextChanged"
+                                 DataObject.Pasting="PassportTextBox_Pasting"/>
                     </StackPanel>
                     <StackPanel Grid.Column="2">
                         <TextBlock Text="Дата рождения" 
@@ -220,6 +223,8 @@
                             <Border x:Name="PasswordBoxBorder" Background="White" BorderBrush="#1E3A8A" BorderThickness="1" CornerRadius="8">
                                 <PasswordBox x:Name="PasswordBoxHidden" 
                                              PasswordChanged="PasswordBox_PasswordChanged"
+                                             PreviewTextInput="PasswordBoxHidden_PreviewTextInput"
+                                             DataObject.Pasting="PasswordBoxHidden_Pasting"
                                              BorderThickness="0"
                                              Background="Transparent"
                                              Visibility="Visible"/>
@@ -227,6 +232,8 @@
                             <TextBox x:Name="PasswordBoxVisible" 
                                      Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"
                                      TextChanged="PasswordBoxVisible_TextChanged"
+                                     PreviewTextInput="PasswordBoxVisible_PreviewTextInput"
+                                     DataObject.Pasting="PasswordBoxVisible_Pasting"
                                      Visibility="Collapsed"/>
                             <TextBlock x:Name="PasswordToggleIcon"
                                        Text="👁" 
@@ -248,6 +255,8 @@
                             <Border x:Name="ConfirmPasswordBoxBorder" Background="White" BorderBrush="#1E3A8A" BorderThickness="1" CornerRadius="8">
                                 <PasswordBox x:Name="ConfirmPasswordBoxHidden" 
                                              PasswordChanged="ConfirmPasswordBox_PasswordChanged"
+                                             PreviewTextInput="PasswordBoxHidden_PreviewTextInput"
+                                             DataObject.Pasting="PasswordBoxHidden_Pasting"
                                              BorderThickness="0"
                                              Background="Transparent"
                                              Visibility="Visible"/>
@@ -255,6 +264,8 @@
                             <TextBox x:Name="ConfirmPasswordBoxVisible" 
                                      Text="{Binding ConfirmPassword, UpdateSourceTrigger=PropertyChanged}"
                                      TextChanged="ConfirmPasswordBoxVisible_TextChanged"
+                                     PreviewTextInput="PasswordBoxVisible_PreviewTextInput"
+                                     DataObject.Pasting="PasswordBoxVisible_Pasting"
                                      Visibility="Collapsed"/>
                             <TextBlock x:Name="ConfirmPasswordToggleIcon"
                                        Text="👁" 

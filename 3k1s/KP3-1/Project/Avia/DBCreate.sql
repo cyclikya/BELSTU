@@ -1,4 +1,4 @@
--- =========================================
+﻿-- =========================================
 --   СХЕМА БД: AviaTickets
 --   Проект: "Авиабилеты"
 --   Автор: Угоренко В.Р.
@@ -291,4 +291,4 @@ CREATE INDEX idx_tickets_flight ON Tickets(FlightID);
 -- =========================================
 -- Подключение EF Core: можно использовать имя схемы "avia" и таблицы как DbSet
 -- Пример строки подключения:
--- Host=localhost;Port=5432;Database=AviaTickets;Username=postgres;Password=vivi5567;
+-- Host=localhost;Port=5432;Database=AviaDB;Username=postgres;Password=vivi5567;

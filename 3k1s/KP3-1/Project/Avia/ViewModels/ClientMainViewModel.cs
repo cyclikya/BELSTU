@@ -1,4 +1,4 @@
-using Avia.Data.Entities;
+﻿using Avia.Data.Entities;
 using Avia.Infrastructure;
 using Avia.Services.Interfaces;
 using Avia.Views;
@@ -113,6 +113,9 @@ public partial class ClientMainViewModel : ViewModelBase
     [ObservableProperty]
     private bool filterEvening;
 
+    [ObservableProperty]
+    private bool hasFlights;
+
     public string UserDisplayName
     {
         get
@@ -161,7 +164,7 @@ public partial class ClientMainViewModel : ViewModelBase
         _flightService = flightService;
         _ticketService = ticketService;
 
-        LoadCompaniesAsync();
+        _ = LoadCompaniesAsync();
         _ = LoadDataInternalAsync();
     }
 
@@ -193,108 +196,91 @@ public partial class ClientMainViewModel : ViewModelBase
     }
 
     [RelayCommand]
-    private async Task LoadDataAsync()
+    public async Task LoadDataAsync()
     {
         await LoadDataInternalAsync();
     }
 
     public async Task LoadDataInternalAsync()
     {
-        try
+        var flightsList = await _flightService.GetAllFlightsAsync();
+        _allFlights = flightsList.ToList();
+        ApplyFiltersAndUpdate();
+        _ = System.Windows.Application.Current.Dispatcher.BeginInvoke(new Action(async () =>
         {
-            var flightsList = await _flightService.GetAllFlightsAsync();
-            _allFlights = flightsList.ToList();
-            ApplyFiltersAndUpdate();
-            // Принудительно обновляем FlightCard после обновления данных
-            // Используем Dispatcher для обновления после того, как UI обновится
-            System.Windows.Application.Current.Dispatcher.BeginInvoke(new Action(async () =>
-            {
-                await System.Threading.Tasks.Task.Delay(300);
-                RefreshFlightCards();
-            }), System.Windows.Threading.DispatcherPriority.Loaded);
-        }
-        catch (Exception)
-        {
-            // Handle error
-        }
+            await System.Threading.Tasks.Task.Delay(300);
+            RefreshFlightCards();
+        }), System.Windows.Threading.DispatcherPriority.Loaded);
     }
 
     [RelayCommand]
     private async Task Search()
     {
-        try
-        {
-            await SearchFlights();
-        }
-        catch (Exception)
-        {
-            // Handle error
-        }
+        await SearchFlights();
     }
 
     [RelayCommand]
     private async Task SearchFlights()
     {
-        try
-        {
-            var flightsList = await _flightService.SearchFlightsAsync(DepartureCity, ArrivalCity);
-            _allFlights = flightsList.ToList();
-            ApplyFiltersAndUpdate();
-        }
-        catch (Exception)
-        {
-            // Handle error
-        }
+        var flightsList = await _flightService.SearchFlightsAsync(DepartureCity, ArrivalCity);
+        _allFlights = flightsList.ToList();
+        ApplyFiltersAndUpdate();
     }
 
 
 
     private bool ApplyFilters(Flight flight)
     {
-        // Фильтр прошедших рейсов - не показывать рейсы, которые уже прошли
         if (flight.DepartureDateTime < DateTime.Now)
         {
             return false;
         }
 
-        // Фильтр по дате вылета
         if (DepartureDate.HasValue && flight.DepartureDate.Date != DepartureDate.Value.Date)
         {
             return false;
         }
 
-        // Фильтр по дате прилёта
         if (ArrivalDate.HasValue && flight.ArrivalDate.Date != ArrivalDate.Value.Date)
         {
             return false;
         }
 
-        // Фильтр по цене
-        if (!string.IsNullOrEmpty(FilterPriceFrom) && decimal.TryParse(FilterPriceFrom, out var priceFrom))
+        // Фильтр по цене: рейс подходит, если хотя бы одна из цен (эконом или бизнес) попадает в диапазон
+        decimal priceFrom = 0;
+        decimal priceTo = 0;
+        bool hasPriceFrom = !string.IsNullOrEmpty(FilterPriceFrom) && decimal.TryParse(FilterPriceFrom, out priceFrom);
+        bool hasPriceTo = !string.IsNullOrEmpty(FilterPriceTo) && decimal.TryParse(FilterPriceTo, out priceTo);
+
+        if (hasPriceFrom || hasPriceTo)
         {
-            var minPrice = Math.Min(flight.EconomyPrice, flight.BusinessPrice);
-            if (minPrice < priceFrom)
+            bool economyInRange = true;
+            bool businessInRange = true;
+
+            if (hasPriceFrom)
+            {
+                economyInRange = flight.EconomyPrice >= priceFrom;
+                businessInRange = flight.BusinessPrice >= priceFrom;
+            }
+
+            if (hasPriceTo)
+            {
+                economyInRange = economyInRange && flight.EconomyPrice <= priceTo;
+                businessInRange = businessInRange && flight.BusinessPrice <= priceTo;
+            }
+
+            // Рейс подходит, если хотя бы одна из цен попадает в диапазон
+            if (!economyInRange && !businessInRange)
             {
                 return false;
             }
         }
 
-        if (!string.IsNullOrEmpty(FilterPriceTo) && decimal.TryParse(FilterPriceTo, out var priceTo))
-        {
-            var maxPrice = Math.Max(flight.EconomyPrice, flight.BusinessPrice);
-            if (maxPrice > priceTo)
-            {
-                return false;
-            }
-        }
-
-        // Фильтр по компании
         if (!string.IsNullOrEmpty(FilterCompany) && FilterCompany != "Все компании" && !flight.Airline.Contains(FilterCompany, StringComparison.OrdinalIgnoreCase))
         {
             return false;
         }
 
-        // Фильтр по количеству свободных мест (минимум)
         if (!string.IsNullOrEmpty(FilterMinSeats) && int.TryParse(FilterMinSeats, out var minSeats))
         {
             var totalSeats = flight.EconomySeats + flight.BusinessSeats;
@@ -304,46 +290,37 @@ public partial class ClientMainViewModel : ViewModelBase
             }
         }
 
-        // Фильтр по времени суток
-        if (FilterMorning && flight.DepartureTime.Hours >= 12)
+        // Фильтр по времени суток - интервалы могут суммироваться (Утро/День/Вечер)
+        if (FilterMorning || FilterDay || FilterEvening)
         {
-            return false;
-        }
+            var hour = flight.DepartureTime.Hours;
+            var matchesMorning = FilterMorning && hour < 12;
+            var matchesDay = FilterDay && hour >= 12 && hour < 18;
+            var matchesEvening = FilterEvening && hour >= 18;
 
-        if (FilterDay && (flight.DepartureTime.Hours < 12 || flight.DepartureTime.Hours >= 18))
-        {
-            return false;
+            if (!(matchesMorning || matchesDay || matchesEvening))
+            {
+                return false;
+            }
         }
-
-        if (FilterEvening && flight.DepartureTime.Hours < 18)
-        {
-            return false;
-        }
-
-        // Фильтр "Дешевле" - сортировка по возрастанию цены (применяется при сортировке)
-        // Фильтр "Дороже" - сортировка по убыванию цены (применяется при сортировке)
-        // Эти фильтры применяются после фильтрации, в методе UpdateDisplayedItems
 
         return true;
     }
 
     private bool ApplyTicketFilters(Ticket ticket)
     {
-        // Фильтр по городу отправления
         if (!string.IsNullOrEmpty(TicketSearchDepartureCity) && 
             !ticket.Flight.DepartureCity.Contains(TicketSearchDepartureCity, StringComparison.OrdinalIgnoreCase))
         {
             return false;
         }
 
-        // Фильтр по городу прибытия
         if (!string.IsNullOrEmpty(TicketSearchArrivalCity) && 
             !ticket.Flight.ArrivalCity.Contains(TicketSearchArrivalCity, StringComparison.OrdinalIgnoreCase))
         {
             return false;
         }
 
-        // Фильтр по статусу
         if (!string.IsNullOrEmpty(TicketSearchStatus))
         {
             var statusMatch = TicketSearchStatus switch
@@ -358,14 +335,12 @@ public partial class ClientMainViewModel : ViewModelBase
             }
         }
 
-        // Фильтр по дате полёта
         if (TicketSearchFlightDate.HasValue && 
             ticket.Flight.DepartureDate.Date != TicketSearchFlightDate.Value.Date)
         {
             return false;
         }
 
-        // Фильтр по классу
         if (!string.IsNullOrEmpty(TicketSearchClass))
         {
             var classMatch = TicketSearchClass switch
@@ -380,7 +355,6 @@ public partial class ClientMainViewModel : ViewModelBase
             }
         }
 
-        // Фильтр по номеру билета
         if (!string.IsNullOrEmpty(TicketSearchNumber) && 
             !ticket.TicketId.ToString().Contains(TicketSearchNumber))
         {
@@ -394,7 +368,6 @@ public partial class ClientMainViewModel : ViewModelBase
     {
         var flightsToDisplay = Flights.ToList();
         
-        // Применяем сортировку по цене, если выбраны фильтры "Дешевле" или "Дороже"
         if (FilterCheaper && !FilterMoreExpensive)
         {
             flightsToDisplay = flightsToDisplay.OrderBy(f => Math.Min(f.EconomyPrice, f.BusinessPrice)).ToList();
@@ -404,23 +377,21 @@ public partial class ClientMainViewModel : ViewModelBase
             flightsToDisplay = flightsToDisplay.OrderByDescending(f => Math.Max(f.EconomyPrice, f.BusinessPrice)).ToList();
         }
         
-        // Очищаем и добавляем заново, чтобы принудительно обновить FlightCard
-        // Это заставит WPF пересоздать элементы и обновить привязки
         DisplayedItems.Clear();
         foreach (var flight in flightsToDisplay)
         {
             DisplayedItems.Add(flight);
         }
+
+        HasFlights = DisplayedItems.Any();
         OnPropertyChanged(nameof(DisplayedItems));
     }
 
     public void RefreshFlightCards()
     {
-        // Находим главное окно и обновляем все FlightCard
         var mainWindow = System.Windows.Application.Current.Windows.OfType<Views.ClientMainView>().FirstOrDefault();
         if (mainWindow != null)
         {
-            // Находим все FlightCard в визуальном дереве и обновляем их
             var flightCards = FindVisualChildren<Views.FlightCard>(mainWindow).ToList();
             System.Diagnostics.Debug.WriteLine($"RefreshFlightCards: Found {flightCards.Count} FlightCard(s)");
             
@@ -428,20 +399,17 @@ public partial class ClientMainViewModel : ViewModelBase
             {
                 if (card.Flight != null)
                 {
-                    // Убеждаемся, что FlightService установлен
                     if (card.FlightService == null)
                     {
                         card.FlightService = _flightService;
                         System.Diagnostics.Debug.WriteLine($"RefreshFlightCards: Set FlightService for flight {card.Flight.FlightId}");
                     }
                     
-                    // Принудительно обновляем привязки для каждого FlightCard
-                    var flight = card.Flight; // Сохраняем ссылку на Flight
-                    var flightId = flight.FlightId; // Сохраняем ID для отладки
+                    var flight = card.Flight; 
+                    var flightId = flight.FlightId; 
                     _ = card.Dispatcher.BeginInvoke(new Action(async () =>
                     {
                         System.Diagnostics.Debug.WriteLine($"RefreshFlightCards: Updating FlightCard for flight {flightId}");
-                        // Принудительно обновляем привязки с актуальными данными из БД
                         await card.UpdateBindingsAsync(flight);
                     }), System.Windows.Threading.DispatcherPriority.Loaded);
                 }
@@ -482,7 +450,6 @@ public partial class ClientMainViewModel : ViewModelBase
         if (SelectedFlight != null)
         {
             _navigationService.ShowDialog<BuyTicketViewModel>(vm => vm.SetFlight(SelectedFlight));
-            // Обновляем данные после закрытия диалога
             await LoadDataAsync();
         }
     }
@@ -493,7 +460,6 @@ public partial class ClientMainViewModel : ViewModelBase
         if (flight != null)
         {
             _navigationService.ShowDialog<BuyTicketViewModel>(vm => vm.SetFlight(flight));
-            // Обновляем данные после закрытия диалога
             await LoadDataAsync();
         }
     }
@@ -503,15 +469,8 @@ public partial class ClientMainViewModel : ViewModelBase
     {
         if (SelectedTicket != null && SelectedTicket.Status == TicketStatus.Active)
         {
-            try
-            {
-                await _ticketService.CancelTicketAsync(SelectedTicket.TicketId);
-                await LoadDataAsync();
-            }
-            catch (Exception)
-            {
-                // Handle error
-            }
+            await _ticketService.CancelTicketAsync(SelectedTicket.TicketId);
+            await LoadDataAsync();
         }
     }
 
@@ -520,15 +479,8 @@ public partial class ClientMainViewModel : ViewModelBase
     {
         if (ticket != null && ticket.Status == TicketStatus.Active)
         {
-            try
-            {
-                await _ticketService.CancelTicketAsync(ticket.TicketId);
-                await LoadDataAsync();
-            }
-            catch (Exception)
-            {
-                // Handle error
-            }
+            await _ticketService.CancelTicketAsync(ticket.TicketId);
+            await LoadDataAsync();
         }
     }
 
@@ -561,11 +513,21 @@ public partial class ClientMainViewModel : ViewModelBase
 
     partial void OnFilterCheaperChanged(bool value)
     {
+        // Делает чекбокс "Дешевле" взаимоисключаемым с "Дороже"
+        if (value && FilterMoreExpensive)
+        {
+            FilterMoreExpensive = false;
+        }
         UpdateDisplayedItems();
     }
 
     partial void OnFilterMoreExpensiveChanged(bool value)
     {
+        // Делает чекбокс "Дороже" взаимоисключаемым с "Дешевле"
+        if (value && FilterCheaper)
+        {
+            FilterCheaper = false;
+        }
         UpdateDisplayedItems();
     }
 

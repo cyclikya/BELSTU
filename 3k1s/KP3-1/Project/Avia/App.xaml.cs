@@ -27,11 +27,6 @@ public partial class App : Application
 
         try
         {
-            // Регистрируем ENUM типы PostgreSQL ДО создания подключений
-            Npgsql.NpgsqlConnection.GlobalTypeMapper.MapEnum<Avia.Data.Entities.RoleType>("avia.role_type");
-            Npgsql.NpgsqlConnection.GlobalTypeMapper.MapEnum<Avia.Data.Entities.ClassType>("avia.class_type");
-            Npgsql.NpgsqlConnection.GlobalTypeMapper.MapEnum<Avia.Data.Entities.TicketStatus>("avia.ticket_status");
-
             // Build configuration
             var basePath = Directory.GetCurrentDirectory();
             var configPath = Path.Combine(basePath, "appsettings.json");
@@ -175,9 +170,16 @@ public partial class App : Application
             builder.SearchPath = "avia";
             var finalConnectionString = builder.ConnectionString;
             
+            // Настраиваем маппинг ENUM типов через DataSource (новый подход для Npgsql 7.0+)
+            var dataSourceBuilder = new Npgsql.NpgsqlDataSourceBuilder(finalConnectionString);
+            dataSourceBuilder.MapEnum<Avia.Data.Entities.RoleType>("avia.role_type");
+            dataSourceBuilder.MapEnum<Avia.Data.Entities.ClassType>("avia.class_type");
+            dataSourceBuilder.MapEnum<Avia.Data.Entities.TicketStatus>("avia.ticket_status");
+            var dataSource = dataSourceBuilder.Build();
+            
             services.AddDbContext<AviaDbContext>(options =>
             {
-                options.UseNpgsql(finalConnectionString);
+                options.UseNpgsql(dataSource);
                 options.AddInterceptors(new Data.SearchPathCommandInterceptor());
             });
             System.Diagnostics.Debug.WriteLine("DbContext registered");

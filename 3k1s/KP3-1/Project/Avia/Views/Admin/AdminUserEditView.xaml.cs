@@ -34,7 +34,7 @@ public partial class AdminUserEditView : Window
         FormatDatePickerText((DatePicker)sender);
     }
 
-    private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+    private void DatePicker_SelectedDateChanged(object? sender, SelectionChangedEventArgs e)
     {
         FormatDatePickerText((DatePicker)sender);
     }

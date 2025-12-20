@@ -25,7 +25,7 @@ public partial class PersonalCabinetViewModel : ViewModelBase
     {
         _authService = authService;
         _ticketService = ticketService;
-        LoadDataAsync();
+        _ = LoadDataAsync();
     }
 
     public string UserDisplayName
@@ -62,7 +62,12 @@ public partial class PersonalCabinetViewModel : ViewModelBase
     {
         get
         {
-            return $"Всего билетов: {MyTickets.Count}";
+            var now = DateTime.Now;
+            var cutoff = now.AddHours(1);
+            var activeCount = MyTickets.Count(t => 
+                t.Status == TicketStatus.Active && 
+                t.Flight.DepartureDateTime > cutoff);
+            return $"Всего активных билетов: {activeCount}";
         }
     }
 
@@ -92,7 +97,14 @@ public partial class PersonalCabinetViewModel : ViewModelBase
     private void UpdateDisplayedItems()
     {
         DisplayedItems.Clear();
-        foreach (var ticket in MyTickets)
+        var now = DateTime.Now;
+        var cutoff = now.AddHours(1);
+
+        // Показываем только билеты, у которых рейс ещё не прошёл
+        // и до вылета осталось больше часа
+        var visibleTickets = MyTickets.Where(t => t.Flight.DepartureDateTime > cutoff);
+
+        foreach (var ticket in visibleTickets)
         {
             DisplayedItems.Add(ticket);
         }

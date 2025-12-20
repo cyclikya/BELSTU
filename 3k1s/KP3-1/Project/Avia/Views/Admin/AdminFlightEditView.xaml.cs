@@ -33,7 +33,7 @@ public partial class AdminFlightEditView : Window
         FormatDatePickerText((DatePicker)sender);
     }
 
-    private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+    private void DatePicker_SelectedDateChanged(object? sender, SelectionChangedEventArgs e)
     {
         FormatDatePickerText((DatePicker)sender);
     }

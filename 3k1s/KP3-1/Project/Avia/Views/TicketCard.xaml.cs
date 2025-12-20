@@ -100,15 +100,16 @@ public partial class TicketCard : UserControl
         var route = $"{flight.DepartureCity}-{flight.ArrivalCity}";
         var formattedDate = FormatDate(flight.DepartureDate);
         var duration = CalculateDuration(flight);
-        var flightNumber = $"Nº{flight.FlightId}";
+        var flightNumber = $"Рейс: {flight.FlightId}";
         
         // Вычисляем цену билета
         var basePrice = ticket.ClassType == ClassType.Economy ? flight.EconomyPrice : flight.BusinessPrice;
         var totalPrice = basePrice + (ticket.Baggage ? flight.BaggagePrice : 0);
         
-        // Форматируем класс и место
+        // Форматируем информацию о классе и покупке
         var classType = ticket.ClassType == ClassType.Economy ? "эконом" : "бизнес";
-        var classAndSeat = $"{classType}-место №{ticket.TicketId}";
+        var ticketClassText = $"класс билета: {classType}";
+        var purchaseNumberText = $"номер покупки: {ticket.TicketId}";
         
         // Проверка, прошел ли рейс
         var isPastFlight = flight.DepartureDateTime < DateTime.Now;
@@ -130,7 +131,8 @@ public partial class TicketCard : UserControl
             FormattedDate = formattedDate,
             Duration = duration,
             FlightNumber = flightNumber,
-            ClassAndSeat = classAndSeat,
+            TicketClassText = ticketClassText,
+            PurchaseNumberText = purchaseNumberText,
             Price = $"{totalPrice:F0} р.",
             PurchaseDate = purchaseDate,
             StatusText = statusLabel,
@@ -187,7 +189,8 @@ public class TicketCardViewModel : ObservableObject
     private string _formattedDate = string.Empty;
     private string _duration = string.Empty;
     private string _flightNumber = string.Empty;
-    private string _classAndSeat = string.Empty;
+    private string _ticketClassText = string.Empty;
+    private string _purchaseNumberText = string.Empty;
     private string _price = string.Empty;
     private string _purchaseDate = string.Empty;
     private string _statusText = string.Empty;
@@ -204,7 +207,8 @@ public class TicketCardViewModel : ObservableObject
     public string FormattedDate { get => _formattedDate; set => SetProperty(ref _formattedDate, value); }
     public string Duration { get => _duration; set => SetProperty(ref _duration, value); }
     public string FlightNumber { get => _flightNumber; set => SetProperty(ref _flightNumber, value); }
-    public string ClassAndSeat { get => _classAndSeat; set => SetProperty(ref _classAndSeat, value); }
+    public string TicketClassText { get => _ticketClassText; set => SetProperty(ref _ticketClassText, value); }
+    public string PurchaseNumberText { get => _purchaseNumberText; set => SetProperty(ref _purchaseNumberText, value); }
     public string Price { get => _price; set => SetProperty(ref _price, value); }
     public string PurchaseDate { get => _purchaseDate; set => SetProperty(ref _purchaseDate, value); }
     public string StatusText { get => _statusText; set => SetProperty(ref _statusText, value); }

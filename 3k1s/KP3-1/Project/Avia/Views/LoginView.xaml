@@ -134,7 +134,10 @@
                        Margin="0,0,0,8"/>
             <TextBox Grid.Row="2" 
                      Text="{Binding PassportNumber, UpdateSourceTrigger=PropertyChanged}" 
-                     Margin="0,0,0,20"/>
+                     Margin="0,0,0,20"
+                     PreviewTextInput="PassportTextBox_PreviewTextInput"
+                     TextChanged="PassportTextBox_TextChanged"
+                     DataObject.Pasting="PassportTextBox_Pasting"/>
 
             <!-- Поле "Введите пароль" -->
             <TextBlock Grid.Row="3" 
@@ -146,6 +149,8 @@
                 <Border Background="White" BorderBrush="#1E3A8A" BorderThickness="1" CornerRadius="8">
                     <PasswordBox x:Name="PasswordBoxHidden" 
                                  PasswordChanged="PasswordBox_PasswordChanged"
+                                 PreviewTextInput="PasswordBoxHidden_PreviewTextInput"
+                                 DataObject.Pasting="PasswordBoxHidden_Pasting"
                                  BorderThickness="0"
                                  Background="Transparent"
                                  Visibility="Visible"/>
@@ -153,6 +158,8 @@
                 <TextBox x:Name="PasswordBoxVisible" 
                          Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"
                          TextChanged="PasswordBoxVisible_TextChanged"
+                         PreviewTextInput="PasswordBoxVisible_PreviewTextInput"
+                         DataObject.Pasting="PasswordBoxVisible_Pasting"
                          Visibility="Collapsed"/>
                 <TextBlock x:Name="PasswordToggleIcon"
                            Text="👁" 

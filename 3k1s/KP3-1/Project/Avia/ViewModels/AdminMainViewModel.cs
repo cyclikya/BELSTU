@@ -1,10 +1,11 @@
-using Avia.Data.Entities;
+﻿using Avia.Data.Entities;
 using Avia.Infrastructure;
 using Avia.Services.Interfaces;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Avia.ViewModels;
 
@@ -46,7 +47,7 @@ public partial class AdminMainViewModel : ViewModelBase
         _flightService = flightService;
         _ticketService = ticketService;
 
-        LoadDataAsync();
+        _ = LoadDataAsync();
     }
 
     private readonly IUserService _userService;
@@ -86,7 +87,7 @@ public partial class AdminMainViewModel : ViewModelBase
                 }
             }
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             // Handle error
         }
@@ -103,7 +104,7 @@ public partial class AdminMainViewModel : ViewModelBase
     private void CreateUser()
     {
         _navigationService.ShowDialog<AdminUserEditViewModel>(vm => { });
-        LoadDataAsync();
+        _ = LoadDataAsync();
     }
 
     [RelayCommand]
@@ -112,7 +113,7 @@ public partial class AdminMainViewModel : ViewModelBase
         if (SelectedUser != null)
         {
             _navigationService.ShowDialog<AdminUserEditViewModel>(vm => vm.SetUser(SelectedUser));
-            LoadDataAsync();
+            _ = LoadDataAsync();
         }
     }
 
@@ -128,7 +129,7 @@ public partial class AdminMainViewModel : ViewModelBase
             }
             catch (Exception ex)
             {
-                // Handle error
+                MessageBox.Show($"Ошибка: {ex.Message}");
             }
         }
     }
@@ -137,7 +138,7 @@ public partial class AdminMainViewModel : ViewModelBase
     private void CreateFlight()
     {
         _navigationService.ShowDialog<AdminFlightEditViewModel>(vm => { });
-        LoadDataAsync();
+        _ = LoadDataAsync();
     }
 
     [RelayCommand]
@@ -146,7 +147,7 @@ public partial class AdminMainViewModel : ViewModelBase
         if (SelectedFlight != null)
         {
             _navigationService.ShowDialog<AdminFlightEditViewModel>(vm => vm.SetFlight(SelectedFlight));
-            LoadDataAsync();
+            _ = LoadDataAsync();
         }
     }
 
@@ -162,7 +163,7 @@ public partial class AdminMainViewModel : ViewModelBase
             }
             catch (Exception ex)
             {
-                // Handle error
+                MessageBox.Show($"Ошибка: {ex.Message}");
             }
         }
     }
@@ -196,14 +197,14 @@ public partial class AdminMainViewModel : ViewModelBase
             }
             catch (Exception ex)
             {
-                // Handle error
+                MessageBox.Show($"Ошибка: {ex.Message}");
             }
         }
     }
 
     partial void OnSelectedTabChanged(string value)
     {
-        LoadDataAsync();
+        _ = LoadDataAsync();
     }
 }
 

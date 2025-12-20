@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Avia.ViewModels.AdminFlightEditViewModel">
+    <Position X="4.25" Y="7.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>kABAFIEQQAAAAAQCIAAiABAAIhEACAAAAAABEEEAAUI=</HashCode>
+      <FileName>ViewModels\AdminFlightEditViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Avia.ViewModels.AdminMainViewModel">
+    <Position X="11.5" Y="7.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>IABAAAAkgQAAAAAEMAAAAAo4gAoAAAAAAAAFQACAAgA=</HashCode>
+      <FileName>ViewModels\AdminMainViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Avia.ViewModels.AdminTicketEditViewModel">
+    <Position X="16" Y="7.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>MBBAAKEAQAAAAAAIMEAAAAEQgACAAAAAAAAFQACAAAI=</HashCode>
+      <FileName>ViewModels\AdminTicketEditViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Avia.ViewModels.AdminUserEditViewModel">
+    <Position X="20.75" Y="7.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>EAAAAIEAQABAAAAAJAAAABAAEAAAAAAIAAAFigAAAAI=</HashCode>
+      <FileName>ViewModels\AdminUserEditViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Avia.ViewModels.BuyTicketViewModel">
+    <Position X="6.75" Y="7.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>EAJAAAECQAAAAAAIIAAAAAJgIACABAAAAACAQAAAAQA=</HashCode>
+      <FileName>ViewModels\BuyTicketViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Avia.ViewModels.ClientMainViewModel">
+    <Position X="13.75" Y="7.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AABGGiAEgBABBGACMwCAQAMwjFiACGCAoQAAUAQgAII=</HashCode>
+      <FileName>ViewModels\ClientMainViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Avia.ViewModels.LoginViewModel">
+    <Position X="18.5" Y="7.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAQAIAAAAAAgAAAAAAAAAAAQggAAAAA=</HashCode>
+      <FileName>ViewModels\LoginViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Avia.ViewModels.PersonalCabinetViewModel">
+    <Position X="23.25" Y="7.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAACCAAAAABBEAAAAAAAAAggAAAAACAgAAAQACAAQA=</HashCode>
+      <FileName>ViewModels\PersonalCabinetViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Avia.ViewModels.RegistrationViewModel">
+    <Position X="9.25" Y="7.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAEgAABAAAAAJAAAAAAgEAABAAAAAAAAigAAAAA=</HashCode>
+      <FileName>ViewModels\RegistrationViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Avia.ViewModels.ViewModelBase" Collapsed="true">
+    <Position X="14.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\ViewModelBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

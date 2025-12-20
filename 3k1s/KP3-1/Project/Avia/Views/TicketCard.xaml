@@ -326,7 +326,21 @@
                                 </Style>
                             </TextBlock.Style>
                         </TextBlock>
-                        <TextBlock Text="{Binding ClassAndSeat}" 
+                        <TextBlock Text="{Binding TicketClassText}" 
+                                   FontSize="11" 
+                                   Foreground="#666">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Foreground" Value="#666"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsPastFlight}" Value="True">
+                                            <Setter Property="Foreground" Value="#9CA3AF"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                        <TextBlock Text="{Binding PurchaseNumberText}" 
                                    FontSize="11" 
                                    Foreground="#666">
                             <TextBlock.Style>

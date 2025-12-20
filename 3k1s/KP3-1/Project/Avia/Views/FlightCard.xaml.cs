@@ -94,7 +94,7 @@ public partial class FlightCard : UserControl
         var route = $"{flight.DepartureCity}-{flight.ArrivalCity}";
         var formattedDate = FormatDate(flight.DepartureDate);
         var duration = CalculateDuration(flight);
-        var flightNumber = $"Nº{flight.FlightId}";
+        var flightNumber = $"Рейс: {flight.FlightId}";
 
         // Вычисляем доступные места - ВСЕГДА запрашиваем актуальные данные из БД
         string availableSeats = $"Эконом: {flight.EconomySeats}, Бизнес: {flight.BusinessSeats}";

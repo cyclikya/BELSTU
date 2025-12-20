@@ -346,7 +346,25 @@
             <ScrollViewer Grid.Column="2" 
                           VerticalScrollBarVisibility="Auto"
                           HorizontalScrollBarVisibility="Disabled">
-                <ItemsControl ItemsSource="{Binding DisplayedItems}" Cursor="Hand"/>
+                <StackPanel>
+                    <ItemsControl ItemsSource="{Binding DisplayedItems}" Cursor="Hand"/>
+                    <TextBlock Text="Подходящих рейсов не найдено. Измените фильтры или перезапустите приложение."
+                               Margin="10"
+                               FontSize="16"
+                               Foreground="White"
+                               TextWrapping="Wrap">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding HasFlights}" Value="False">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                </StackPanel>
             </ScrollViewer>
         </Grid>
     </Grid>

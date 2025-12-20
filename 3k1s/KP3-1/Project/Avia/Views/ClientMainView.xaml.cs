@@ -17,7 +17,6 @@ public partial class ClientMainView : Window
 
     private void ClientMainView_Loaded(object sender, RoutedEventArgs e)
     {
-        // Подписываемся на события DatePicker для форматирования даты
         var datePickers = FindVisualChildren<DatePicker>(this);
         foreach (var datePicker in datePickers)
         {
@@ -26,7 +25,6 @@ public partial class ClientMainView : Window
             datePicker.Loaded += DatePicker_Loaded;
         }
 
-        // Убеждаемся, что данные загружены после отображения окна
         if (DataContext is ViewModels.ClientMainViewModel viewModel)
         {
             _ = viewModel.LoadDataInternalAsync();
@@ -38,7 +36,7 @@ public partial class ClientMainView : Window
         FormatDatePickerText((DatePicker)sender);
     }
 
-    private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+    private void DatePicker_SelectedDateChanged(object? sender, SelectionChangedEventArgs e)
     {
         FormatDatePickerText((DatePicker)sender);
     }
@@ -99,7 +97,6 @@ public partial class ClientMainView : Window
 
     private void NumberOnlyTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
     {
-        // Разрешаем только цифры
         Regex regex = new Regex("[^0-9]+");
         e.Handled = regex.IsMatch(e.Text);
     }

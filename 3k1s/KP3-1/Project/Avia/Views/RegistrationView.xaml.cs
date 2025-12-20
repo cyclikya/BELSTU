@@ -1,8 +1,10 @@
 using Avia.ViewModels;
 using System;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Input;
 
 namespace Avia.Views;
 
@@ -16,6 +18,136 @@ public partial class RegistrationView : Window
         InitializeComponent();
         // Подписываемся на событие после инициализации компонентов
         Loaded += RegistrationView_Loaded;
+    }
+
+    private static bool IsAllowedPassportChar(char c)
+    {
+        // Разрешаем только цифры и латинские буквы
+        return char.IsDigit(c) || (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z');
+    }
+
+    private static string NormalizePassportText(string text)
+    {
+        if (string.IsNullOrEmpty(text))
+            return string.Empty;
+
+        var sb = new StringBuilder(text.Length);
+        foreach (var c in text)
+        {
+            if (IsAllowedPassportChar(c))
+            {
+                sb.Append(char.ToUpperInvariant(c));
+            }
+        }
+        return sb.ToString();
+    }
+
+    private static bool ContainsCyrillic(string text)
+    {
+        if (string.IsNullOrEmpty(text))
+            return false;
+
+        foreach (var c in text)
+        {
+            if ((c >= '\u0400' && c <= '\u04FF') || (c >= '\u0500' && c <= '\u052F'))
+                return true;
+        }
+        return false;
+    }
+
+    // Ограничение ввода для поля серии и номера паспорта
+    private void PassportTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+    {
+        // Разрешаем только цифры и латиницу
+        if (e.Text.Any(ch => !IsAllowedPassportChar(ch)))
+        {
+            e.Handled = true;
+        }
+        // Преобразование в верхний регистр делаем в TextChanged через NormalizePassportText
+    }
+
+    private void PassportTextBox_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        if (sender is TextBox textBox)
+        {
+            var normalized = NormalizePassportText(textBox.Text);
+            if (textBox.Text != normalized)
+            {
+                var caretIndex = textBox.CaretIndex;
+                textBox.Text = normalized;
+                textBox.CaretIndex = Math.Min(caretIndex, textBox.Text.Length);
+            }
+        }
+    }
+
+    private void PassportTextBox_Pasting(object sender, DataObjectPastingEventArgs e)
+    {
+        if (e.DataObject.GetDataPresent(DataFormats.Text))
+        {
+            var text = e.DataObject.GetData(DataFormats.Text) as string ?? string.Empty;
+            var normalized = NormalizePassportText(text);
+            if (string.IsNullOrEmpty(normalized))
+            {
+                e.CancelCommand();
+            }
+            else
+            {
+                e.DataObject = new DataObject(DataFormats.Text, normalized);
+            }
+        }
+        else
+        {
+            e.CancelCommand();
+        }
+    }
+
+    // Ограничение ввода для паролей - запрещаем кириллицу
+    private void PasswordBoxHidden_PreviewTextInput(object sender, TextCompositionEventArgs e)
+    {
+        if (ContainsCyrillic(e.Text))
+        {
+            e.Handled = true;
+        }
+    }
+
+    private void PasswordBoxHidden_Pasting(object sender, DataObjectPastingEventArgs e)
+    {
+        if (e.DataObject.GetDataPresent(DataFormats.Text))
+        {
+            var text = e.DataObject.GetData(DataFormats.Text) as string ?? string.Empty;
+            if (ContainsCyrillic(text))
+            {
+                e.CancelCommand();
+            }
+        }
+        else
+        {
+            e.CancelCommand();
+        }
+    }
+
+    private void PasswordBoxVisible_PreviewTextInput(object sender, TextCompositionEventArgs e)
+    {
+        if (ContainsCyrillic(e.Text))
+        {
+            e.Handled = true;
+        }
+    }
+
+    private void PasswordBoxVisible_Pasting(object sender, DataObjectPastingEventArgs e)
+    {
+        if (e.DataObject.GetDataPresent(DataFormats.Text))
+        {
+            var text = e.DataObject.GetData(DataFormats.Text) as string ?? string.Empty;
+            if (ContainsCyrillic(text))
+            {
+                e.CancelCommand();
+            }
+        }
+        else
+        {
+            e.CancelCommand();
+        }
     }
 
     private void RegistrationView_Loaded(object sender, RoutedEventArgs e)
