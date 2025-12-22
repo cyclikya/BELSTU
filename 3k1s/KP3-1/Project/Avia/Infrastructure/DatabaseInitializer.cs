@@ -1,4 +1,4 @@
-using Avia.Data;
+﻿using Avia.Data;
 using Avia.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
@@ -158,7 +158,6 @@ public class DatabaseInitializer
             }
             catch
             {
-                // Игнорируем ошибку
             }
             
             var command = connection.CreateCommand();

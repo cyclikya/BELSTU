@@ -1,4 +1,4 @@
-using Avia.Data;
+﻿using Avia.Data;
 using Avia.Data.Entities;
 using Avia.Infrastructure;
 using Avia.Services.Interfaces;
@@ -38,7 +38,6 @@ public class AuthService : IAuthService
             }
             catch
             {
-                // Игнорируем ошибку
             }
 
             var user = await _context.Users
@@ -84,7 +83,6 @@ public class AuthService : IAuthService
             }
             catch
             {
-                // Игнорируем ошибку
             }
 
             if (await _context.Users.AnyAsync(u => u.PassportNumber == passportNumber))

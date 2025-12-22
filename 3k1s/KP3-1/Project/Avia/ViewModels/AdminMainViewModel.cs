@@ -89,7 +89,6 @@ public partial class AdminMainViewModel : ViewModelBase
         }
         catch (Exception)
         {
-            // Handle error
         }
     }
 

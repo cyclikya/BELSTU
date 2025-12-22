@@ -1,4 +1,4 @@
-using Avia.Data.Entities;
+﻿using Avia.Data.Entities;
 using Avia.Data.Converters;
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
@@ -57,7 +57,6 @@ public class AviaDbContext : DbContext
         }
         catch
         {
-            // Игнорируем ошибку, если search_path уже установлен
         }
     }
 

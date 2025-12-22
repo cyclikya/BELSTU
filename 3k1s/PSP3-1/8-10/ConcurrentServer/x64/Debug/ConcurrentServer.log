@@ -1,0 +1,9 @@
+﻿  AcceptServer.cpp
+C:\General\BELSTU\3k1s\PSP3-1\8-10\ConcurrentServer\AcceptServer.cpp(34,43): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+C:\General\BELSTU\3k1s\PSP3-1\8-10\ConcurrentServer\AcceptServer.cpp(59,49): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+C:\General\BELSTU\3k1s\PSP3-1\8-10\ConcurrentServer\AcceptServer.cpp(66,41): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+C:\General\BELSTU\3k1s\PSP3-1\8-10\ConcurrentServer\AcceptServer.cpp(73,43): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+  ConcurrentServer.cpp
+  PipeServer.cpp
+  Создание кода...
+  ConcurrentServer.vcxproj -> C:\General\BELSTU\3k1s\PSP3-1\8-10\SH_Laba_8_10\x64\Debug\ConcurrentServer.exe

@@ -1,4 +1,4 @@
-using System.Data.Common;
+﻿using System.Data.Common;
 using System.Text.RegularExpressions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
@@ -201,7 +201,6 @@ public class SearchPathCommandInterceptor : DbCommandInterceptor
             }
             catch
             {
-                // Игнорируем ошибку
             }
         }
     }

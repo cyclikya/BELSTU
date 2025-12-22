@@ -184,7 +184,6 @@ public partial class ClientMainViewModel : ViewModelBase
         }
         catch (Exception)
         {
-            // Handle error
         }
     }
 

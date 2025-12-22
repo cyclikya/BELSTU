@@ -1,4 +1,4 @@
-using Avia.Data.Entities;
+﻿using Avia.Data.Entities;
 using Avia.Infrastructure;
 using Avia.Services.Interfaces;
 using Avia.Views;
@@ -90,7 +90,6 @@ public partial class PersonalCabinetViewModel : ViewModelBase
         }
         catch (Exception)
         {
-            // Handle error
         }
     }
 
@@ -125,7 +124,6 @@ public partial class PersonalCabinetViewModel : ViewModelBase
             }
             catch (Exception)
             {
-                // Handle error
             }
         }
     }
