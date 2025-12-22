@@ -129,15 +129,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AcceptServer.h" />
-    <ClInclude Include="ConsolePipe.h" />
-    <ClInclude Include="DispathServer.h" />
-    <ClInclude Include="Error.h" />
-    <ClInclude Include="GarbageCleaner.h" />
     <ClInclude Include="Global.h" />
-    <ClInclude Include="ResponseServer.h" />
+    <ClInclude Include="PipeServer.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AcceptServer.cpp" />
     <ClCompile Include="ConcurrentServer.cpp" />
+    <ClCompile Include="PipeServer.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

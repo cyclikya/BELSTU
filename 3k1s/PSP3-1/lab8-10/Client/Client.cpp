@@ -1,5 +1,7 @@
 ﻿#define _WINSOCK_DEPRECATED_NO_WARNINGS
 #define _CRT_SECURE_NO_WARNINGS
+#define _UNICODE
+#define UNICODE
 
 #include <stdio.h>
 #include <tchar.h>
@@ -9,6 +11,7 @@
 #include <string>
 #include <ctime>
 #include "time.h"
+#include <ws2tcpip.h>
 
 using namespace std;
 
@@ -110,12 +113,124 @@ bool GetServer(char* call, SOCKADDR_IN* from, int* flen, SOCKET* cC, SOCKADDR_IN
 	else return false;
 }
 
-int _tmain(int argc, _TCHAR* argv[]) {
+bool GetServerByCallsign(
+	const char* callsign,
+	int udpPort,
+	sockaddr_in& serverAddr)
+{
+	SOCKET s = socket(AF_INET, SOCK_DGRAM, 0);
+	if (s == INVALID_SOCKET) return false;
+
+	// Установка таймаута
+	DWORD timeout = 5000; // 5 секунд
+	setsockopt(s, SOL_SOCKET, SO_RCVTIMEO, (char*)&timeout, sizeof(timeout));
+
+	BOOL bcast = TRUE;
+	setsockopt(s, SOL_SOCKET, SO_BROADCAST,
+		(char*)&bcast, sizeof(bcast));
+
+	sockaddr_in addr{};
+	addr.sin_family = AF_INET;
+	addr.sin_port = htons(udpPort);
+	addr.sin_addr.s_addr = INADDR_BROADCAST;
+
+	// Отправляем 3 запроса для надежности
+	for (int i = 0; i < 3; i++) {
+		sendto(s, callsign, strlen(callsign), 0,
+			(sockaddr*)&addr, sizeof(addr));
+		Sleep(100);
+	}
+
+	char buf[128]{};
+	sockaddr_in from{};
+	int len = sizeof(from);
+
+	int n = recvfrom(s, buf, sizeof(buf) - 1, 0,
+		(sockaddr*)&from, &len);
+
+	closesocket(s);
+
+	if (n <= 0) {
+		std::cout << "Не удалось найти сервер с позывным '"
+			<< callsign << "' на порту " << udpPort << std::endl;
+		return false;
+	}
+
+	buf[n] = 0;
+	std::cout << "Получен ответ от сервера: " << buf << std::endl;
+
+	// ожидаем "SERVER <port>"
+	int tcpPort;
+	if (sscanf(buf, "SERVER %d", &tcpPort) != 1) {
+		std::cout << "Некорректный формат ответа сервера" << std::endl;
+		return false;
+	}
+
+	serverAddr.sin_family = AF_INET;
+	serverAddr.sin_port = htons(tcpPort);
+	serverAddr.sin_addr = from.sin_addr;
+
+	// Выводим IP для отладки
+	char ipStr[INET_ADDRSTRLEN];
+	inet_ntop(AF_INET, &serverAddr.sin_addr, ipStr, INET_ADDRSTRLEN);
+	std::cout << "Найден сервер: " << ipStr << ":" << tcpPort << std::endl;
+
+	return true;
+}
+int _tmain(int argc, TCHAR* argv[]) {
 	setlocale(LC_ALL, "Russian");
-	int port = 0;
+
+	char callsign[50] = "HELLO";
+	int udpPort = 4000;
+	int iterations = 10;
+	char serverName[50] = "";
+	int port = 2000;
+	int connectionType = 2;
+
+	// Обработка аргументов командной строки
+	if (argc > 1) {
+		for (int i = 1; i < argc; i++) {
+			if (_tcscmp(argv[i], _T("-c")) == 0 && i + 1 < argc) {
+				// Подключение по позывному
+				wcstombs(callsign, argv[++i], sizeof(callsign));
+				connectionType = 2;
+			}
+			else if (_tcscmp(argv[i], _T("-s")) == 0 && i + 1 < argc) {
+				// Подключение по имени сервера
+				wcstombs(serverName, argv[++i], sizeof(serverName));
+				connectionType = 1;
+			}
+			else if (_tcscmp(argv[i], _T("-p")) == 0 && i + 1 < argc) {
+				port = _ttoi(argv[++i]);
+			}
+			else if (_tcscmp(argv[i], _T("-up")) == 0 && i + 1 < argc) {
+				udpPort = _ttoi(argv[++i]);
+			}
+			else if (_tcscmp(argv[i], _T("-i")) == 0 && i + 1 < argc) {
+				iterations = _ttoi(argv[++i]);
+			}
+			else if (_tcscmp(argv[i], _T("-h")) == 0 || _tcscmp(argv[i], _T("--help")) == 0) {
+				std::cout << "Использование:\n"
+					<< "  Client.exe [-c <позывной>] [-s <имя_сервера>] [-p <порт>] [-up <udp_порт>] [-i <итерации>]\n"
+					<< "Примеры:\n"
+					<< "  Client.exe -c HELLO -up 2000 -i 5\n"
+					<< "  Client.exe -s localhost -p 2000 -i 10\n";
+				return 0;
+			}
+		}
+	}
+
+	// Если аргументы не переданы, запрашиваем у пользователя
+	/*if (argc == 1) {
+		std::cout << "1 - Подключение по имени сервера\n"
+			<< "2 - Подключение по позывному\n"
+			<< "Выберите тип подключения: ";
+		std::cin >> connectionType;
+		std::cin.ignore();
+	}*/
+
 	SOCKET  SocketTCP;
 	WSADATA wsaData;
-
 
 	try {
 		if (WSAStartup(MAKEWORD(2, 0), &wsaData) != 0) throw SetErrorMsgText("Startup:", WSAGetLastError());
@@ -132,8 +247,10 @@ int _tmain(int argc, _TCHAR* argv[]) {
 
 		SOCKADDR_IN Server_IN;
 		int Flen = sizeof(Server), connectionType = 0;
-		cout << "1 - Подключение по имени сервера" << endl << "2 - Подключение по позывному" << endl;
+		cout << "1 - Подключение по имени сервера" << endl 
+			<< "2 - Подключение по позывному" << endl;
 		cin >> connectionType;
+
 		if (connectionType == 1) {
 			cout << "Введите имя сервера: ";
 			cin >> Name;
@@ -145,34 +262,20 @@ int _tmain(int argc, _TCHAR* argv[]) {
 		}
 		else if (connectionType == 2) {
 			cout << "Введите позывной сервера: ";
-			cin >> call;
+			cin >> callsign;
 
-			SOCKET SocketUDP;
-			int optval = 1;
-			if ((SocketUDP = socket(AF_INET, SOCK_DGRAM, NULL)) == INVALID_SOCKET) throw SetErrorMsgText("Socket:", WSAGetLastError());
-			if (setsockopt(SocketUDP, SOL_SOCKET, SO_BROADCAST,(char*)&optval, sizeof(int)) == SOCKET_ERROR) throw SetErrorMsgText("Opt:", WSAGetLastError());
+			cout << "Введите UDP порт поиска: ";
+			cin >> udpPort;
 
-			SOCKADDR_IN all;
-			all.sin_family = AF_INET;
-			all.sin_port = htons(bport);
-			//all.sin_addr.s_addr = inet_addr("127.0.0.1"); //172.20.10.15
-			//all.sin_addr.s_addr = inet_addr("172.20.10.15"); //172.20.10.15
-			all.sin_addr.s_addr = inet_addr("127.0.0.1"); //172.20.10.15
-			SOCKADDR_IN from;
+			cout << "Введите количество итераций: ";
+			cin >> iterations;
 
-			memset(&from, 0, sizeof(from));
-			int lc = sizeof(from);
+			sockaddr_in serverAddr{};
+			if (!GetServerByCallsign(callsign, udpPort, serverAddr))
+				throw "Сервер по позывному не найден";
 
-			bool bsr = GetServer(call, &from, &lc, &SocketUDP, &all);
-			if (bsr == false) {
-				throw "Server not found;";
-			}
-			else {
-				Server_IN.sin_addr.s_addr = from.sin_addr.s_addr;
-				if (closesocket(SocketUDP) == SOCKET_ERROR) throw SetErrorMsgText("Closesocket:", WSAGetLastError());
-				cout << "Порт сервера: ";
-				cin >> port;
-			}
+			Server_IN = serverAddr;
+			port = ntohs(serverAddr.sin_port);
 		}
 		else {
 			throw "Wrong code";
@@ -219,7 +322,7 @@ int _tmain(int argc, _TCHAR* argv[]) {
 			cin >> command;
 
 			try {
-				while (true) {
+				for (int i = 0;i<iterations;i++) {
 					if (rcv) {
 						if ((lobuf = send(SocketTCP, command, sizeof(command), NULL)) == SOCKET_ERROR) {
 							throw "Error send";
@@ -228,9 +331,9 @@ int _tmain(int argc, _TCHAR* argv[]) {
 					}
 
 					if ((recv(SocketTCP, obuf, sizeof(obuf), NULL)) == SOCKET_ERROR) {
-							switch (WSAGetLastError()) {
-							case WSAEWOULDBLOCK: Sleep(100); break;
-							default: throw  SetErrorMsgText("Recv:", WSAGetLastError());
+						switch (WSAGetLastError()) {
+						case WSAEWOULDBLOCK: Sleep(100); break;
+						default: throw  SetErrorMsgText("Recv:", WSAGetLastError());
 						}
 					}
 					else {
@@ -239,7 +342,7 @@ int _tmain(int argc, _TCHAR* argv[]) {
 							break;
 						}
 						else
-							printf("Полученное сообщение:[%s]\n", obuf);		
+							printf("Полученное сообщение:[%s]\n", obuf);
 						rcv = true;
 					}
 				}

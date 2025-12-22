@@ -1,90 +1,77 @@
-﻿#include <stdio.h>
-#include <tchar.h>
-#include "iostream"
-#include "Windows.h"                
-#include "ctime"
+﻿#define _CRT_SECURE_NO_WARNINGS
+#include <windows.h>
+#include <iostream>
 #include <string>
-using std::string;
+
 using namespace std;
 
-string GetErrorMsgText(int code) // cформировать текст ошибки
+int main()
 {
-	char buff[50];
-	DWORD bufflen = sizeof(buff);
-	DWORD errorMessageID = ::GetLastError();
-	if (errorMessageID == 0) {
-		return std::string(); //No error message has been recorded
-	}
-	else {
-		return std::system_category().message(errorMessageID);
-	}
-};
-string SetPipeError(string msgText, int code)
-{
-	return msgText + to_string(code) + ". " + GetErrorMsgText(code);
-};
+    setlocale(LC_ALL, "Russian");
 
+    cout << "RConsole started\n";
 
-int _tmain(int argc, _TCHAR* argv[]) {
-	setlocale(LC_ALL, "Russian");
+    string serverName;
+    cout << "Введите имя сервера: ";
+    cin >> serverName;
+    cin.ignore();
 
-	char ReadBuf[50] = "";
-	char WriteBuf[2] = "";
-	DWORD nBytesRead;
-	DWORD nBytesWrite;
+    string pipePath = "\\\\" + serverName + "\\pipe\\cpipe";
 
-	#pragma region SecurityAttributes
-		SECURITY_DESCRIPTOR* m_pSecDesc = (SECURITY_DESCRIPTOR*)LocalAlloc(LPTR, SECURITY_DESCRIPTOR_MIN_LENGTH);
-		SECURITY_ATTRIBUTES m_pSecAttrib = { sizeof(SECURITY_ATTRIBUTES), m_pSecDesc, TRUE };
-		InitializeSecurityDescriptor(m_pSecDesc, SECURITY_DESCRIPTOR_REVISION);
-		SetSecurityDescriptorDacl(m_pSecDesc, TRUE, (PACL)NULL, FALSE);
-	#pragma endregion
+    HANDLE hPipe = CreateFileA(
+        pipePath.c_str(),
+        GENERIC_READ | GENERIC_WRITE,
+        0,
+        nullptr,
+        OPEN_EXISTING,
+        0,
+        nullptr
+    );
 
+    if (hPipe == INVALID_HANDLE_VALUE)
+    {
+        cout << "Ошибка подключения к серверу. Код: "
+            << GetLastError() << endl;
+        return 1;
+    }
 
-	int Code = 0;
+    cout << "Подключено к серверу\n";
+    cout << "Команды:\n";
+    cout << "  OPEN_ACCEPT <port>\n";
+    cout << "  CLOSE_ACCEPT <port>\n";
+    cout << "  start\n";
+    cout << "  stop\n";
+    cout << "  wait\n";
+    cout << "  statistics\n";
+    cout << "  shutdown\n";
+    cout << "  EXIT\n\n";
 
-	char serverName[256];
-	char PipeName[512];
-	bool result;
+    while (true)
+    {
+        string cmd;
+        cout << "> ";
+        getline(cin, cmd);
 
-	try 
-	{
-		printf_s("\n ---------- Доступные команды ---------- \n");
-		printf_s("1 - start  \t (разрешить подключение клиентов к серверу)\n");
-		printf_s("2 - stop  \t (запретить подключение клиентов к серверу)\n");
-		printf_s("3 - exit  \t (завершить работу сервера)\n");
-		printf_s("4 - statistics\t (вывод статистики)\n");
-		printf_s("5 - wait  \t (приостанавливает подключение клиентов)\n");
-		printf_s("6 - shutdown  \t (wait + exit)\n");
-		printf_s("0 - закрыть\n");
-		printf_s("\n ---------- ---------- ---------- ---------- \n");
+        if (cmd.empty())
+            continue;
 
-		cout << "Введите имя севера: ";
-		cin >> serverName;
-		result = sprintf_s(PipeName, "\\\\%s\\pipe\\cpipe", serverName);
+        DWORD written = 0;
+        if (!WriteFile(
+            hPipe,
+            cmd.c_str(),
+            (DWORD)cmd.size() + 1,
+            &written,
+            nullptr))
+        {
+            cout << "Ошибка отправки команды\n";
+            break;
+        }
 
+        if (cmd == "EXIT")
+            break;
+    }
 
-		HANDLE hNamedPipe = CreateFile(PipeName, GENERIC_READ | GENERIC_WRITE, 0, NULL, OPEN_EXISTING, 0, &m_pSecAttrib);
-
-		do {
-			printf_s("Команда: ");
-			scanf_s("%d", &Code);
-			if (Code > 0 && Code < 7) {
-				sprintf_s(WriteBuf, "%d", Code - 1);
-				if (!WriteFile(hNamedPipe, WriteBuf, strlen(WriteBuf) + 1, &nBytesWrite, NULL)) throw "WriteFile: Ошибка ";
-				if (!ReadFile(hNamedPipe, ReadBuf, sizeof(ReadBuf), &nBytesRead, NULL)) throw "ReadFile: Ошибка ";
-				cout << ReadBuf << endl;
-			}
-			if (Code == 0) break;
-		}
-		while (true); 
-
-		if (!CloseHandle(hNamedPipe)) throw SetPipeError("CloseHandle: ", GetLastError());
-	}
-	catch (string ErrorPipeText)
-	{
-		cout << endl << ErrorPipeText;
-	}
-	cout << "RConsole остановлена\n\n";
-	return 0;
+    CloseHandle(hPipe);
+    cout << "RConsole завершена\n";
+    return 0;
 }

@@ -1,111 +1,74 @@
-﻿#define _CRT_SECURE_NO_WARNINGS
-
-#include "Global.h"
+﻿#include "Global.h"
 #include "AcceptServer.h"
-#include "DispathServer.h"
-#include "GarbageCleaner.h"
-#include "ConsolePipe.h"
-#include "ResponseServer.h"
-#include "tchar.h"
+#include "PipeServer.h"
+int main(int argc, char* argv[])
+{
+    setlocale(LC_ALL, "Russian");
+    int port = DEFAULT_PORT;
+    char callsign[64] = SERVER_CALLSIGN;
+    int udpPort = DEFAULT_UDP_PORT;
+    char serverName[64] = SERVER_NAME;
+    char pipeName[64] = PIPE_NAME;
 
+    // Обработка аргументов командной строки
+    for (int i = 1; i < argc; i++) {
+        if (strcmp(argv[i], "-p") == 0 && i + 1 < argc) {
+            port = atoi(argv[++i]);
+        }
+        else if (strcmp(argv[i], "-c") == 0 && i + 1 < argc) {
+            strcpy_s(callsign, argv[++i]);
+        }
+        else if (strcmp(argv[i], "-up") == 0 && i + 1 < argc) {
+            udpPort = atoi(argv[++i]);
+        }
+        else if (strcmp(argv[i], "-n") == 0 && i + 1 < argc) {
+            strcpy_s(serverName, argv[++i]);
+        }
+        else if (strcmp(argv[i], "-h") == 0 || strcmp(argv[i], "--help") == 0) {
+            std::cout << "Использование:\n"
+                << "  Server.exe [-p <tcp_порт>] [-c <позывной>] [-up <udp_порт>] [-n <имя_сервера>]\n"
+                << "Примеры:\n"
+                << "  Server.exe -p 2000 -c HELLO -up 2000\n"
+                << "  Server.exe -p 3000 -c TEST\n";
+            return 0;
+        }
+    }
 
-int _tmain(int argc, _TCHAR* argv[]) {
-	setlocale(LC_ALL, "Russian");
+    WSADATA wsa;
+    WSAStartup(MAKEWORD(2, 2), &wsa);
 
-	try {
+    std::cout << "Concurrent Server started\n";
+    std::cout << "Server name: " << serverName << "\n";
+    std::cout << "Callsign: " << callsign << "\n";
+    std::cout << "Pipe: " << pipeName << "\n";
+    std::cout << "TCP Port: " << port << "\n";
+    std::cout << "UDP Search Port: " << udpPort << "\n";
 
-		if (argc > 1) {
-			int tmp = atoi(argv[1]);
-			if (tmp >= 0 && tmp <= 65535) {
-				port = atoi(argv[1]);
-				cout << "Задан TCP-порт: " << port << endl;
-			}
-			else {
-				cout << "Задан неверный TCP-порт" << endl;
-			}
-		}
-		else {
-			cout << "Используется TCP порт по умолчанию: " << port << endl;
-		}
+    strcpy_s(g_callsign, callsign);
+    g_udpPort = udpPort;
+    g_port = port;
 
-		if (argc > 2) {
-			int tmp = atoi(argv[2]);
-			if (tmp >= 0 && tmp <= 65535) {
-				uport = atoi(argv[2]);
-				cout << "Задан UDP-порт: " << uport << endl;
-			}
-			else {
-				cout << "Задан неверный UDP-порт" << endl;
-			}
-		}
-		else {
-			cout << "Используется UDP порт по умолчанию: " << uport << endl;
-		}
+    g_lastAcceptTime = GetTickCount();
 
-		if (argc > 3) { //3 параметр - имя библиотеки
-			dllname = argv[3];
-		}
+    StartAccept(port); // tcp server запуск
+    StartPipeServer(); // udp server запуск
 
-		if (argc > 4) {
-			npname = argv[4];
-			cout << "Задано имя именованного канала: " << npname << endl;
-		}
-		else cout << "Используется имя именованного канала по умолчанию: " << npname << endl;
+    CreateThread(nullptr, 0, ResponseServer, nullptr, 0, nullptr); // удп поиск по позывному
 
-		if (argc > 5) {
-			ucall = argv[5];
-			cout << "Задан позывной:   " << ucall << endl;
-		}
-			cout << "Используется позывной по умолчанию: " << ucall << endl;
-		srand((unsigned)time(NULL));
+    CreateThread(nullptr, 0, InactivityTimerThread, nullptr, 0, nullptr); // удп поиск по позывному
 
-		volatile TalkersCommand  cmd = START;
+    std::cout << "\nСервер запущен. Состояние:\n";
+    std::cout << "  • TCP сервер слушает порт " << port << "\n";
+    std::cout << "  • UDP поиск по позывному '" << callsign << "' на порту " << udpPort << "\n";
+    std::cout << "  • Именованный канал: \\\\.\\pipe\\" << pipeName << "\n";
+    std::cout << "  • Используйте RConsole для управления\n\n";
 
-		InitializeCriticalSection(&scListContact);
+    while (true) {
+        Sleep(1000);
+    }
 
-
-		st1 = LoadLibrary(dllname);
-		sss = (HANDLE(*)(char*, LPVOID))GetProcAddress(st1, "SSS");
-		if (st1 == NULL) cout << "Ошибка при загрузке DLL" << endl;
-		else cout << "Загружена DLL " << dllname << endl << endl;
-
-
-		hAcceptServer = CreateThread(NULL, NULL, AcceptServer, (LPVOID)&cmd, NULL, NULL);            //main
-		HANDLE hDispathServer = CreateThread(NULL, NULL, DispathServer, (LPVOID)&cmd, NULL, NULL);
-
-		HANDLE hConsolePipe = CreateThread(NULL, NULL, ConsolePipe, (LPVOID)&cmd, NULL, NULL);       //main - Сервер именованного канала
-		HANDLE hGarbageCleaner = CreateThread(NULL, NULL, GarbageCleaner, (LPVOID)&cmd, NULL, NULL); //main
-
-
-		HANDLE hResponseServer = CreateThread(NULL, NULL, ResponseServer, (LPVOID)&cmd, NULL, NULL);
-			
-		SetThreadPriority(hAcceptServer, THREAD_PRIORITY_HIGHEST);			//более активным станет подключение клиентов
-		SetThreadPriority(hGarbageCleaner, THREAD_PRIORITY_BELOW_NORMAL);	//пониженный (в фоновом режиме)
-		SetThreadPriority(hConsolePipe, THREAD_PRIORITY_NORMAL);
-
-		SetThreadPriority(hResponseServer, THREAD_PRIORITY_ABOVE_NORMAL);
-		SetThreadPriority(hDispathServer, THREAD_PRIORITY_NORMAL);
-
-		WaitForSingleObject(hAcceptServer, INFINITE);
-		WaitForSingleObject(hDispathServer, INFINITE);
-		WaitForSingleObject(hConsolePipe, INFINITE);
-		WaitForSingleObject(hGarbageCleaner, INFINITE);
-		WaitForSingleObject(hResponseServer, INFINITE);
-
-		CloseHandle(hAcceptServer);
-		CloseHandle(hDispathServer);
-		CloseHandle(hGarbageCleaner);
-		CloseHandle(hConsolePipe);
-		CloseHandle(hResponseServer);
-
-		DeleteCriticalSection(&scListContact);
-
-		FreeLibrary(st1);
-	}
-	catch (...) {
-		cout << "error" << endl;
-	}
-
-	system("pause");
-	return 0;
+    StopAllAccept();
+    StopPipeServer();
+    WSACleanup();
+    return 0;
 }

@@ -1,4 +1,0 @@
-﻿  Client.cpp
-C:\General\BELSTU\3k1s\PSP3-1\8-10\Client\Client.cpp(104,46): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
-C:\General\BELSTU\3k1s\PSP3-1\8-10\Client\Client.cpp(101,17): warning C4101: obuf: неиспользованная локальная переменная
-  Client.vcxproj -> C:\General\BELSTU\3k1s\PSP3-1\8-10\SH_Laba_8_10\x64\Debug\Client.exe

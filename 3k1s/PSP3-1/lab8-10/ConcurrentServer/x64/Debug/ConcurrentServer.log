@@ -1,11 +1,10 @@
-﻿  ConcurrentServer.cpp
-C:\General\BELSTU\3k1s\PSP3-1\lab8-10\ConcurrentServer\Global.h(143,20): warning C4312: приведение типов: преобразование из "DWORD" в "Contact *" большего размера
-  (компиляция исходного файла "ConcurrentServer.cpp")
-  
-C:\General\BELSTU\3k1s\PSP3-1\lab8-10\ConcurrentServer\Global.h(159,20): warning C4312: приведение типов: преобразование из "DWORD" в "Contact *" большего размера
-  (компиляция исходного файла "ConcurrentServer.cpp")
-  
-C:\General\BELSTU\3k1s\PSP3-1\lab8-10\ConcurrentServer\ResponseServer.h(47,61): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
-  (компиляция исходного файла "ConcurrentServer.cpp")
-  
+﻿  AcceptServer.cpp
+C:\General\BELSTU\3k1s\PSP3-1\lab8-10\ConcurrentServer\AcceptServer.cpp(47,43): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+C:\General\BELSTU\3k1s\PSP3-1\lab8-10\ConcurrentServer\AcceptServer.cpp(72,49): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+C:\General\BELSTU\3k1s\PSP3-1\lab8-10\ConcurrentServer\AcceptServer.cpp(79,41): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+C:\General\BELSTU\3k1s\PSP3-1\lab8-10\ConcurrentServer\AcceptServer.cpp(86,43): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+C:\General\BELSTU\3k1s\PSP3-1\lab8-10\ConcurrentServer\AcceptServer.cpp(215,40): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+  ConcurrentServer.cpp
+  PipeServer.cpp
+  Создание кода...
   ConcurrentServer.vcxproj -> C:\General\BELSTU\3k1s\PSP3-1\lab8-10\SH_Laba_8_10\x64\Debug\ConcurrentServer.exe

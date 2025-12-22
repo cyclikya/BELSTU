@@ -1,4 +1,4 @@
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using System.Threading.Tasks;
 using System.Windows;
 using Avia.ViewModels;
@@ -69,7 +69,6 @@ public class NavigationService
             }
             catch
             {
-                // Игнорируем ошибки
             }
         }
 

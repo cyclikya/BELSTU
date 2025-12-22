@@ -60,6 +60,41 @@ DWORD WINAPI PipeThread(LPVOID)
                     g_pipeRunning = false;
                     break;
                 }
+                else if (command == "stop") {
+                    g_pipeRunning = false;
+                    std::cout << "server stoped" << std::endl;
+                }
+                else if (command == "start") {
+                    g_pipeRunning = true;
+                    std::cout << "server restarted" << std::endl;
+                }
+                else if (command == "wait") {
+                    g_pipeRunning = false;
+                    std::cout << "server waiting" << std::endl;
+                }
+                if (command == "statistics")
+                {
+                    char buf[256];
+                    sprintf_s(buf,
+                        "Total connections: %d\n"
+                        "Active connections: %d\n"
+                        "Timeout connections: %d\n",
+                        g_totalConnections.load(),
+                        g_activeConnections.load(),
+                        g_timeoutConnections.load()
+                    );
+                    std::cout << buf << std::endl;
+                }
+                if (command == "shutdown")
+                {
+                    g_serverRunning = false;
+                    g_acceptEnabled = false;
+
+                    StopAllAccept();
+                    CloseHandle(hPipe);
+
+                    ExitProcess(0);
+                }
             }
         }
 
