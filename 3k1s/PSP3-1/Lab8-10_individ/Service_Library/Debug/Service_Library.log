@@ -1,0 +1,7 @@
+﻿  pch.cpp
+  dllmain.cpp
+C:\General\BELSTU\3k1s\PSP3-1\Lab8-10_individ\Service_Library\RandServer.h(31,16): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  (компиляция исходного файла "/dllmain.cpp")
+  
+     Создается библиотека C:\General\BELSTU\3k1s\PSP3-1\Lab8-10_individ\SH_Laba_8_10\Debug\Service_Library.lib и объект C:\General\BELSTU\3k1s\PSP3-1\Lab8-10_individ\SH_Laba_8_10\Debug\Service_Library.exp
+  Service_Library.vcxproj -> C:\General\BELSTU\3k1s\PSP3-1\Lab8-10_individ\SH_Laba_8_10\Debug\Service_Library.dll

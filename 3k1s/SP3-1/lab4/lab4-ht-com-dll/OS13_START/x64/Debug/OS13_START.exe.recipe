@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <ProjectOutputs>
+    <ProjectOutput>
+      <FullPath>C:\General\BELSTU\3k1s\SP3-1\lab4\lab4-ht-com-dll\x64\Debug\OS13_HTCOM.dll</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>C:\General\BELSTU\3k1s\SP3-1\lab4\lab4-ht-com-dll\x64\Debug\OS13_START.exe</FullPath>
+    </ProjectOutput>
+  </ProjectOutputs>
+  <ContentFiles />
+  <SatelliteDlls />
+  <NonRecipeFileRefs />
+</Project>
