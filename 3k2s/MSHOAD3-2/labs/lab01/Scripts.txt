@@ -1,0 +1,126 @@
+@startuml
+left to right direction
+actor "Администратор" as Admin
+
+rectangle "Система управления лицензиями" {
+  Admin -- (Добавить ПО)
+  Admin -- (Редактировать ПО)
+  Admin -- (Удалить ПО)
+  Admin -- (Управлять лицензиями)
+  Admin -- (Добавить поставщика)
+  Admin -- (Формировать отчеты)
+}
+@enduml
+
+
+@startuml
+left to right direction
+actor "IT-специалист" as IT
+
+rectangle "Система управления лицензиями" {
+  IT -- (Назначить лицензию)
+  IT -- (Отозвать лицензию)
+  IT -- (Установить ПО)
+  IT -- (Проверить срок действия лицензии)
+  IT -- (Обработать заявку)
+}
+@enduml
+
+
+@startuml
+left to right direction
+actor "IT-специалист" as IT
+
+rectangle "Система управления лицензиями" {
+  IT -- (Назначить лицензию)
+  IT -- (Отозвать лицензию)
+  IT -- (Установить ПО)
+  IT -- (Проверить срок действия лицензии)
+  IT -- (Обработать заявку)
+}
+@enduml
+
+
+@startuml
+left to right direction
+actor "Сотрудник" as Employee
+
+rectangle "Система управления лицензиями" {
+  Employee -- (Подать заявку на ПО)
+  Employee -- (Просмотреть свои лицензии)
+  Employee -- (Проверить статус заявки)
+}
+@enduml
+
+
+dbdiagram.io
+______________________________
+Table Vendors {
+  vendor_id int [pk]
+  vendor_name varchar
+  contact_email varchar
+  phone varchar
+}
+
+Table Software {
+  software_id int [pk]
+  name varchar
+  version varchar
+  category varchar
+  vendor_id int [ref: > Vendors.vendor_id]
+}
+
+Table Licenses {
+  license_id int [pk]
+  software_id int [ref: > Software.software_id]
+  license_key varchar [unique]
+  license_type varchar
+  purchase_date date
+  expiration_date date
+  total_seats int
+  cost decimal
+}
+
+Table Departments {
+  department_id int [pk]
+  department_name varchar
+}
+
+Table Employees {
+  employee_id int [pk]
+  full_name varchar
+  email varchar [unique]
+  position varchar
+  department_id int [ref: > Departments.department_id]
+}
+
+Table LicenseAssignments {
+  assignment_id int [pk]
+  license_id int [ref: > Licenses.license_id]
+  employee_id int [ref: > Employees.employee_id]
+  assigned_date date
+  status varchar
+}
+
+Table Installations {
+  installation_id int [pk]
+  software_id int [ref: > Software.software_id]
+  employee_id int [ref: > Employees.employee_id]
+  device_name varchar
+  installation_date date
+}
+
+Table Requests {
+  request_id int [pk]
+  employee_id int [ref: > Employees.employee_id]
+  software_id int [ref: > Software.software_id]
+  request_date date
+  status varchar
+}
+
+Table Reports {
+  report_id int [pk]
+  report_type varchar
+  created_at timestamp
+  generated_by int [ref: > Employees.employee_id]
+}
