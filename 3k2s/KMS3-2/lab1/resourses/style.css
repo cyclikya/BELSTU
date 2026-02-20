@@ -1,0 +1,28 @@
+body {
+	background-color: #ffffff;
+	font-size: 18px;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+.menu {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background-color: #eeeeee;
+	text-align: center;
+	padding: 10px 0;
+}
+
+.content {
+	width: 90%;
+	margin-left: 5%;
+	margin-top: 80px;
+}
+
+.center-block {
+	width: 100%;
+	text-align: center;
+}
