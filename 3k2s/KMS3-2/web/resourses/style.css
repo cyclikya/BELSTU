@@ -1,0 +1,247 @@
+body {
+    background-color: #ffffff;
+    font-size: 2vw;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    font-size: 5vw;
+    margin: 2vw 0;
+}
+
+h2 {
+    font-size: 4vw;
+    margin: 1.5vw 0;
+}
+
+h3 {
+    font-size: 3.5vw;
+    margin: 1.2vw 0;
+}
+
+h4 {
+    font-size: 3vw;
+    margin: 1vw 0;
+}
+
+p, li {
+    font-size: 2.2vw;
+    line-height: 1.4;
+    margin: 1vw 0;
+}
+
+.menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #eeeeee;
+    text-align: center;
+    padding: 0.5% 0;
+    z-index: 1000;
+    box-shadow: 0 0.15vw 0.3vw rgba(0,0,0,0.1);
+}
+
+.menu p {
+    margin: 0;
+    padding: 0;
+}
+
+.menu a {
+    font-size: 2.5vw;
+    text-decoration: none;
+    color: #333;
+    margin: 0 1%;
+    display: inline-block;
+}
+
+.menu a:hover {
+    background-color: #ddd;
+    border-radius: 0.2vw;
+}
+
+.burger-menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #eeeeee;
+    z-index: 1000;
+    box-shadow: 0 0.15vw 0.3vw rgba(0,0,0,0.1);
+}
+
+#burger-toggle {
+    display: none;
+}
+
+.burger-icon {
+    display: block;
+    font-size: 8vw;
+    padding: 2vw 4vw;
+    cursor: pointer;
+    user-select: none;
+    text-align: left;
+}
+
+.burger-items {
+    display: none;
+    flex-direction: column;
+    background-color: #eeeeee;
+    padding: 2vw 0;
+}
+
+.burger-items a {
+    font-size: 5vw;
+    text-decoration: none;
+    color: #333;
+    padding: 3vw 4vw;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+}
+
+.burger-items a:hover {
+    background-color: #ddd;
+}
+
+.burger-items a:last-child {
+    border-bottom: none;
+}
+
+#burger-toggle:checked ~ .burger-items {
+    display: flex;
+}
+
+body {
+    margin-top: 7%;
+}
+
+.content {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.center-block {
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 2vw auto;
+}
+
+@media screen and (max-width: 1024px) {
+    body {
+        margin-top: 15%;
+    }
+    
+    h1 { font-size: 6vw; }
+    h2 { font-size: 5vw; }
+    h3 { font-size: 4.5vw; }
+    h4 { font-size: 4vw; }
+    p, li { font-size: 3.5vw; }
+    
+    .menu {
+        display: none;
+    }
+    
+    .burger-menu {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        margin-top: 18%;
+    }
+    
+    h1 { font-size: 7vw; }
+    h2 { font-size: 6vw; }
+    h3 { font-size: 5.5vw; }
+    h4 { font-size: 5vw; }
+    p, li { font-size: 4.5vw; }
+    
+    .burger-icon {
+        font-size: 10vw;
+        padding: 3vw 5vw;
+    }
+    
+    .burger-items a {
+        font-size: 6vw;
+        padding: 4vw 5vw;
+    }
+    
+    .content, .center-block {
+        width: 95%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    body {
+        margin-top: 22%;
+    }
+    
+    h1 { font-size: 8vw; }
+    h2 { font-size: 7vw; }
+    h3 { font-size: 6.5vw; }
+    h4 { font-size: 6vw; }
+    p, li { font-size: 5.5vw; }
+    
+    .burger-icon {
+        font-size: 12vw;
+        padding: 4vw 6vw;
+    }
+    
+    .burger-items a {
+        font-size: 7vw;
+        padding: 5vw 6vw;
+    }
+    
+    .content, .center-block {
+        width: 98%;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    body {
+        margin-top: 25%;
+    }
+    
+    .burger-icon {
+        font-size: 14vw;
+        padding: 5vw 7vw;
+    }
+    
+    .burger-items a {
+        font-size: 8vw;
+        padding: 6vw 7vw;
+    }
+    
+    h1 { font-size: 9vw; }
+    h2 { font-size: 8vw; }
+    h3 { font-size: 7.5vw; }
+    p, li { font-size: 6.5vw; }
+}
+
+@media screen and (max-height: 500px) and (orientation: landscape) {
+    body {
+        margin-top: 25vh;
+    }
+    
+    .burger-icon {
+        font-size: 8vh;
+        padding: 2vh 3vh;
+    }
+    
+    .burger-items a {
+        font-size: 5vh;
+        padding: 3vh 4vh;
+    }
+}
