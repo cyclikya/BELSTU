@@ -1,0 +1,3 @@
+﻿  serv3.cpp
+C:\6sem\LabsDone\РИС\1\serv3\serv3\serv3.cpp(118,47): warning C4244: =: преобразование "time_t" в "int", возможна потеря данных
+  serv3.vcxproj -> C:\6sem\LabsDone\РИС\1\serv3\x64\Debug\serv3.exe
