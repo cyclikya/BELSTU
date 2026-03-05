@@ -1,10 +1,22 @@
 body {
-    background-color: #ffffff;
     font-size: 2vw;
     margin: 0;
     padding: 0;
     width: 100%;
     font-family: Arial, sans-serif;
+    position: relative;
+}
+
+.background-overlay {
+  position: fixed;
+  top: -20vw;
+  width: 100vw;
+  height: 100ch;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.5;
+  z-index: -1;
 }
 
 h1 {
@@ -137,9 +149,46 @@ img {
     margin: 2vw auto;
 }
 
+.fixed-title {
+    position: fixed;
+    top: 4.4vw;
+    width: 100%;
+    background-color: #ffffff;
+    text-align: center;
+    z-index: 2;
+}
+
+.custom-image {
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .image-left {
+      float: left;
+      margin: 10px 25px 20px 0;
+    }
+
+    .image-right {
+      float: right;
+      margin: 10px 0 20px 25px;
+    }
+
+    h2 {
+      clear: both;
+      color: black;
+      margin-top: 30px;
+    }
+
 @media screen and (max-width: 1024px) {
     body {
         margin-top: 15%;
+    }
+
+    .fixed-title {
+    top: 13vw;
     }
     
     h1 { font-size: 6vw; }
@@ -181,6 +230,17 @@ img {
     .content, .center-block {
         width: 95%;
     }
+    .image-left,
+      .image-right {
+        float: none;
+        display: block;
+        margin: 20px auto;
+        max-width: 90%;
+      }
+
+      .custom-image {
+        pointer-events: none;
+      }
 }
 
 @media screen and (max-width: 480px) {
