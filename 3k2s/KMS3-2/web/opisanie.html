@@ -2,11 +2,14 @@
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-
+<!-- запуск  python -m http.server 5000
+демонстрация http://localhost:5000/opisanie.html -->
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Описание</title>
 	<link rel="stylesheet" type="text/css" href="./resourses/style.css" />
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ruffle/0.1.0/ruffle.min.js"></script>
 </head>
 
 <body>
@@ -43,21 +46,21 @@
 
 		<script>
 		function toimg1() {
-		document.getElementById("p1").innerHTML="<img src='./resourses/kogogin.jpg' width='500' class='with-frame image-right'/>"
+		document.getElementById("p1").innerHTML="<img src='./img/kogogin.jpg' width='500' class='with-frame image-right'/>"
 		}
 		function totext1() {
 		document.getElementById("p1").innerHTML="<b>Когогин</b>"
 		}
 
 		function toimg2() {
-		document.getElementById("p2").innerHTML="<img src='./resourses/kostin.jpg' width='500' class='with-frame image-right'/>"
+		document.getElementById("p2").innerHTML="<img src='./img/kostin.jpg' width='500' class='with-frame image-right'/>"
 		}
 		function totext2() {
 		document.getElementById("p2").innerHTML="<b>Костин</b>"
 		}
 
 		function toimg3() {
-		document.getElementById("p3").innerHTML="<img src='./resourses/vasilev.jpg' width='500' class='with-frame image-right'/>"
+		document.getElementById("p3").innerHTML="<img src='./img/vasilev.jpg' width='500' class='with-frame image-right'/>"
 		}
 		function totext3() {
 		document.getElementById("p3").innerHTML="<b>Васильев</b>"
@@ -95,7 +98,7 @@
 		а также эксплуатации в военной и промышленной сферах.
 		</p>
 
-		<img src="./resourses/kamaz.jpg" class="with-frame image-right"
+		<img src="./img/kamaz.jpg" class="with-frame image-right"
 		onmouseover="this.width=this.width*2"
 		onmouseout="this.width=this.width/2" />
 
@@ -151,25 +154,25 @@
 
 		<h2>Основные функциональные элементы установки</h2>
 
-		<img src="./resourses/kamaz.jpg" id="mainimg" width="400" class="with-frame image-left" />
+		<img src="./img/kamaz.jpg" id="mainimg" width="400" class="with-frame image-left" />
 
-		<p onmousedown="document.getElementById('mainimg').src='./resourses/cabina.jpg'">
+		<p onmousedown="document.getElementById('mainimg').src='./img/cabina.jpg'">
 		<b>Кабина водителя</b> – предназначена для размещения водителя и органов управления автомобилем.
 		</p>
 
-		<p onmousedown="document.getElementById('mainimg').src='./resourses/kuzov.jpg'">
+		<p onmousedown="document.getElementById('mainimg').src='./img/kuzov.jpg'">
 		<b>Кузов</b> – используется для перевозки грузов различного типа.
 		</p>
 
-		<p onmousedown="document.getElementById('mainimg').src='./resourses/dvigatel.jpg'">
+		<p onmousedown="document.getElementById('mainimg').src='./img/dvigatel.jpg'">
 		<b>Двигатель</b> – основной силовой агрегат, обеспечивающий движение автомобиля.
 		</p>
 
-		<p onmousedown="document.getElementById('mainimg').src='./resourses/shassi.jpg'">
+		<p onmousedown="document.getElementById('mainimg').src='./img/shassi.jpg'">
 		<b>Шасси</b> – несущая часть конструкции, объединяющая раму, мосты и подвеску.
 		</p>
 
-		<p onmousedown="document.getElementById('mainimg').src='./resourses/kolesa.jpg'">
+		<p onmousedown="document.getElementById('mainimg').src='./img/kolesa.jpg'">
 		<b>Колеса</b> – обеспечивают контакт автомобиля с дорожным покрытием и передачу тягового усилия.
 		</p>
 
@@ -202,8 +205,24 @@
 		грузовым автомобилем без эксплуатации реальной техники.
 		</p>
 
+		<h2>Симулятор управления</h2>
+
+		<div id="flashContent" style="width:100%; height:600px;"></div>
+		<script>
+		window.RufflePlayer = window.RufflePlayer || {};
+		window.addEventListener("load", () => {
+
+			const ruffle = window.RufflePlayer.newest();
+			const player = ruffle.createPlayer();
+
+			player.style.width = "90%";
+			const container = document.getElementById("flashContent");
+			container.appendChild(player);
+
+			player.load("resourses/animate/map.swf");
+
+		});
+		</script>
 	</div>
-
-
 </body>
 </html>
