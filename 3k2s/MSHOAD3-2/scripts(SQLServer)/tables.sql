@@ -1,3 +1,12 @@
+SELECT * FROM Vendors;
+SELECT * FROM Departments;
+SELECT * FROM Software;
+SELECT * FROM Licenses;
+SELECT * FROM Employees;
+SELECT * FROM LicenseAssignments;
+SELECT * FROM Requests;
+SELECT * FROM Reports;
+
 -- Содержит информацию о поставщиках программного обеспечения
 CREATE TABLE Vendors (
     vendor_id INT PRIMARY KEY IDENTITY(1,1),

@@ -1,0 +1,101 @@
+﻿  stdafx.cpp
+  ConcurrentServer.cpp
+C:\General\BELSTU\3k2s\RIS3-2\lab1\ConcurrentServer\ConcurrentServer\ConcurrentServer.cpp(99,23): warning C4996: 'gethostbyname': Use getaddrinfo() or GetAddrInfoW() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+  (компиляция исходного файла "/ConcurrentServer.cpp")
+  
+C:\General\BELSTU\3k2s\RIS3-2\lab1\ConcurrentServer\ConcurrentServer\ConcurrentServer.cpp(197,9): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  (компиляция исходного файла "/ConcurrentServer.cpp")
+  
+C:\General\BELSTU\3k2s\RIS3-2\lab1\ConcurrentServer\ConcurrentServer\ConcurrentServer.cpp(205,9): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  (компиляция исходного файла "/ConcurrentServer.cpp")
+  
+C:\General\BELSTU\3k2s\RIS3-2\lab1\ConcurrentServer\ConcurrentServer\ConcurrentServer.cpp(257,73): warning C4996: 'inet_ntoa': Use inet_ntop() or InetNtop() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+  (компиляция исходного файла "/ConcurrentServer.cpp")
+  
+C:\General\BELSTU\3k2s\RIS3-2\lab1\ConcurrentServer\ConcurrentServer\ConcurrentServer.cpp(271,73): warning C4996: 'inet_ntoa': Use inet_ntop() or InetNtop() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+  (компиляция исходного файла "/ConcurrentServer.cpp")
+  
+C:\General\BELSTU\3k2s\RIS3-2\lab1\ConcurrentServer\ConcurrentServer\ConcurrentServer.cpp(413,33): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+  (компиляция исходного файла "/ConcurrentServer.cpp")
+  
+C:\General\BELSTU\3k2s\RIS3-2\lab1\ConcurrentServer\ConcurrentServer\ConcurrentServer.cpp(427,29): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+  (компиляция исходного файла "/ConcurrentServer.cpp")
+  
+C:\General\BELSTU\3k2s\RIS3-2\lab1\ConcurrentServer\ConcurrentServer\ConcurrentServer.cpp(565,37): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+  (компиляция исходного файла "/ConcurrentServer.cpp")
+  
+C:\General\BELSTU\3k2s\RIS3-2\lab1\ConcurrentServer\ConcurrentServer\ConcurrentServer.cpp(572,57): warning C4267: аргумент: преобразование из "size_t" в "DWORD"; возможна потеря данных
+  (компиляция исходного файла "/ConcurrentServer.cpp")
+  
+C:\General\BELSTU\3k2s\RIS3-2\lab1\ConcurrentServer\ConcurrentServer\ConcurrentServer.cpp(506,9): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  (компиляция исходного файла "/ConcurrentServer.cpp")
+  
+C:\General\BELSTU\3k2s\RIS3-2\lab1\ConcurrentServer\ConcurrentServer\ConcurrentServer.cpp(568,21): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  (компиляция исходного файла "/ConcurrentServer.cpp")
+  
+C:\General\BELSTU\3k2s\RIS3-2\lab1\ConcurrentServer\ConcurrentServer\ConcurrentServer.cpp(609,45): warning C4267: =: преобразование из "size_t" в "int"; возможна потеря данных
+  (компиляция исходного файла "/ConcurrentServer.cpp")
+  
+C:\General\BELSTU\3k2s\RIS3-2\lab1\ConcurrentServer\ConcurrentServer\ConcurrentServer.cpp(654,82): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+  (компиляция исходного файла "/ConcurrentServer.cpp")
+  
+C:\General\BELSTU\3k2s\RIS3-2\lab1\ConcurrentServer\ConcurrentServer\ConcurrentServer.cpp(652,25): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  (компиляция исходного файла "/ConcurrentServer.cpp")
+  
+C:\General\BELSTU\3k2s\RIS3-2\lab1\ConcurrentServer\ConcurrentServer\ConcurrentServer.cpp(811,20): warning C4477: "printf": в строке форматирования "%d" требуется аргумент типа "int", но вариативный аргумент "4" имеет тип "__int64"
+  (компиляция исходного файла "/ConcurrentServer.cpp")
+      C:\General\BELSTU\3k2s\RIS3-2\lab1\ConcurrentServer\ConcurrentServer\ConcurrentServer.cpp(811,20):
+      рекомендуется использовать "%lld" в строке форматирования
+      C:\General\BELSTU\3k2s\RIS3-2\lab1\ConcurrentServer\ConcurrentServer\ConcurrentServer.cpp(811,20):
+      рекомендуется использовать "%Id" в строке форматирования
+      C:\General\BELSTU\3k2s\RIS3-2\lab1\ConcurrentServer\ConcurrentServer\ConcurrentServer.cpp(811,20):
+      рекомендуется использовать "%I64d" в строке форматирования
+  
+C:\General\BELSTU\3k2s\RIS3-2\lab1\ConcurrentServer\ConcurrentServer\ConcurrentServer.cpp(812,17): warning C4996: 'inet_ntoa': Use inet_ntop() or InetNtop() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+  (компиляция исходного файла "/ConcurrentServer.cpp")
+  
+C:\General\BELSTU\3k2s\RIS3-2\lab1\ConcurrentServer\ConcurrentServer\ConcurrentServer.cpp(843,28): warning C4477: "printf": в строке форматирования "%d" требуется аргумент типа "int", но вариативный аргумент "1" имеет тип "SOCKET"
+  (компиляция исходного файла "/ConcurrentServer.cpp")
+      C:\General\BELSTU\3k2s\RIS3-2\lab1\ConcurrentServer\ConcurrentServer\ConcurrentServer.cpp(843,28):
+      рекомендуется использовать "%lld" в строке форматирования
+      C:\General\BELSTU\3k2s\RIS3-2\lab1\ConcurrentServer\ConcurrentServer\ConcurrentServer.cpp(843,28):
+      рекомендуется использовать "%Id" в строке форматирования
+      C:\General\BELSTU\3k2s\RIS3-2\lab1\ConcurrentServer\ConcurrentServer\ConcurrentServer.cpp(843,28):
+      рекомендуется использовать "%I64d" в строке форматирования
+  
+C:\General\BELSTU\3k2s\RIS3-2\lab1\ConcurrentServer\ConcurrentServer\ConcurrentServer.cpp(855,32): warning C4477: "printf": в строке форматирования "%d" требуется аргумент типа "int", но вариативный аргумент "2" имеет тип "SOCKET"
+  (компиляция исходного файла "/ConcurrentServer.cpp")
+      C:\General\BELSTU\3k2s\RIS3-2\lab1\ConcurrentServer\ConcurrentServer\ConcurrentServer.cpp(855,32):
+      рекомендуется использовать "%lld" в строке форматирования
+      C:\General\BELSTU\3k2s\RIS3-2\lab1\ConcurrentServer\ConcurrentServer\ConcurrentServer.cpp(855,32):
+      рекомендуется использовать "%Id" в строке форматирования
+      C:\General\BELSTU\3k2s\RIS3-2\lab1\ConcurrentServer\ConcurrentServer\ConcurrentServer.cpp(855,32):
+      рекомендуется использовать "%I64d" в строке форматирования
+  
+C:\General\BELSTU\3k2s\RIS3-2\lab1\ConcurrentServer\ConcurrentServer\ConcurrentServer.cpp(858,36): warning C4477: "printf": в строке форматирования "%d" требуется аргумент типа "int", но вариативный аргумент "1" имеет тип "SOCKET"
+  (компиляция исходного файла "/ConcurrentServer.cpp")
+      C:\General\BELSTU\3k2s\RIS3-2\lab1\ConcurrentServer\ConcurrentServer\ConcurrentServer.cpp(858,36):
+      рекомендуется использовать "%lld" в строке форматирования
+      C:\General\BELSTU\3k2s\RIS3-2\lab1\ConcurrentServer\ConcurrentServer\ConcurrentServer.cpp(858,36):
+      рекомендуется использовать "%Id" в строке форматирования
+      C:\General\BELSTU\3k2s\RIS3-2\lab1\ConcurrentServer\ConcurrentServer\ConcurrentServer.cpp(858,36):
+      рекомендуется использовать "%I64d" в строке форматирования
+  
+C:\General\BELSTU\3k2s\RIS3-2\lab1\ConcurrentServer\ConcurrentServer\ConcurrentServer.cpp(883,9): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  (компиляция исходного файла "/ConcurrentServer.cpp")
+  
+C:\General\BELSTU\3k2s\RIS3-2\lab1\ConcurrentServer\ConcurrentServer\ConcurrentServer.cpp(887,9): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  (компиляция исходного файла "/ConcurrentServer.cpp")
+  
+C:\General\BELSTU\3k2s\RIS3-2\lab1\ConcurrentServer\ConcurrentServer\ConcurrentServer.cpp(888,9): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  (компиляция исходного файла "/ConcurrentServer.cpp")
+  
+C:\General\BELSTU\3k2s\RIS3-2\lab1\ConcurrentServer\ConcurrentServer\ConcurrentServer.cpp(892,9): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  (компиляция исходного файла "/ConcurrentServer.cpp")
+  
+C:\General\BELSTU\3k2s\RIS3-2\lab1\ConcurrentServer\ConcurrentServer\ConcurrentServer.cpp(893,9): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  (компиляция исходного файла "/ConcurrentServer.cpp")
+  
+  ErrorFunctions.cpp
+  Создание кода...
+  ConcurrentServer.vcxproj -> C:\General\BELSTU\3k2s\RIS3-2\lab1\x64\Debug\ConcurrentServer.exe
