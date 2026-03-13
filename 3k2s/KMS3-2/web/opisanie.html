@@ -7,9 +7,8 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Описание</title>
-	<link rel="stylesheet" type="text/css" href="./resourses/style.css" />
+	<link rel="stylesheet" type="text/css" href="./resources/css/style.css" />
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/ruffle/0.1.0/ruffle.min.js"></script>
 </head>
 
 <body>
@@ -46,21 +45,21 @@
 
 		<script>
 		function toimg1() {
-		document.getElementById("p1").innerHTML="<img src='./img/kogogin.jpg' width='500' class='with-frame image-right'/>"
+		document.getElementById("p1").innerHTML="<img src='./resources/img/kogogin.jpg' width='500' class='with-frame image-right'/>"
 		}
 		function totext1() {
 		document.getElementById("p1").innerHTML="<b>Когогин</b>"
 		}
 
 		function toimg2() {
-		document.getElementById("p2").innerHTML="<img src='./img/kostin.jpg' width='500' class='with-frame image-right'/>"
+		document.getElementById("p2").innerHTML="<img src='./resources/img/kostin.jpg' width='500' class='with-frame image-right'/>"
 		}
 		function totext2() {
 		document.getElementById("p2").innerHTML="<b>Костин</b>"
 		}
 
 		function toimg3() {
-		document.getElementById("p3").innerHTML="<img src='./img/vasilev.jpg' width='500' class='with-frame image-right'/>"
+		document.getElementById("p3").innerHTML="<img src='./resources/img/vasilev.jpg' width='500' class='with-frame image-right'/>"
 		}
 		function totext3() {
 		document.getElementById("p3").innerHTML="<b>Васильев</b>"
@@ -98,7 +97,7 @@
 		а также эксплуатации в военной и промышленной сферах.
 		</p>
 
-		<img src="./img/kamaz.jpg" class="with-frame image-right"
+		<img src="./resources/img/kamaz.jpg" class="with-frame image-right"
 		onmouseover="this.width=this.width*2"
 		onmouseout="this.width=this.width/2" />
 
@@ -154,25 +153,25 @@
 
 		<h2>Основные функциональные элементы установки</h2>
 
-		<img src="./img/kamaz.jpg" id="mainimg" width="400" class="with-frame image-left" />
+		<img src="./resources/img/kamaz.jpg" id="mainimg" width="400" class="with-frame image-left" />
 
-		<p onmousedown="document.getElementById('mainimg').src='./img/cabina.jpg'">
+		<p onmousedown="document.getElementById('mainimg').src='./resources/img/cabina.jpg'">
 		<b>Кабина водителя</b> – предназначена для размещения водителя и органов управления автомобилем.
 		</p>
 
-		<p onmousedown="document.getElementById('mainimg').src='./img/kuzov.jpg'">
+		<p onmousedown="document.getElementById('mainimg').src='./resources/img/kuzov.jpg'">
 		<b>Кузов</b> – используется для перевозки грузов различного типа.
 		</p>
 
-		<p onmousedown="document.getElementById('mainimg').src='./img/dvigatel.jpg'">
+		<p onmousedown="document.getElementById('mainimg').src='./resources/img/dvigatel.jpg'">
 		<b>Двигатель</b> – основной силовой агрегат, обеспечивающий движение автомобиля.
 		</p>
 
-		<p onmousedown="document.getElementById('mainimg').src='./img/shassi.jpg'">
+		<p onmousedown="document.getElementById('mainimg').src='./resources/img/shassi.jpg'">
 		<b>Шасси</b> – несущая часть конструкции, объединяющая раму, мосты и подвеску.
 		</p>
 
-		<p onmousedown="document.getElementById('mainimg').src='./img/kolesa.jpg'">
+		<p onmousedown="document.getElementById('mainimg').src='./resources/img/kolesa.jpg'">
 		<b>Колеса</b> – обеспечивают контакт автомобиля с дорожным покрытием и передачу тягового усилия.
 		</p>
 
@@ -207,22 +206,15 @@
 
 		<h2>Симулятор управления</h2>
 
-		<div id="flashContent" style="width:100%; height:600px;"></div>
-		<script>
-		window.RufflePlayer = window.RufflePlayer || {};
-		window.addEventListener("load", () => {
-
-			const ruffle = window.RufflePlayer.newest();
-			const player = ruffle.createPlayer();
-
-			player.style.width = "90%";
-			const container = document.getElementById("flashContent");
-			container.appendChild(player);
-
-			player.load("resourses/animate/map.swf");
-
-		});
-		</script>
+		<div style="width:100%; text-align:center;">
+			<iframe 
+				src="map.html"
+				width="1200"
+				height="900"
+				frameborder="0"
+				style="border:none;">
+			</iframe>
+		</div>
 	</div>
 </body>
 </html>

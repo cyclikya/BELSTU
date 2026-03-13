@@ -60,6 +60,8 @@ CREATE TABLE LicenseAssignments (
     employee_id NUMBER NOT NULL,
     assigned_date DATE NOT NULL,
     status VARCHAR2(50),
+    device_type VARCHAR2(100),
+    device_name VARCHAR2(100),
     CONSTRAINT FK_Assignments_Licenses 
         FOREIGN KEY (license_id) REFERENCES Licenses(license_id),
     CONSTRAINT FK_Assignments_Employees 

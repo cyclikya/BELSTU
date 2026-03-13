@@ -95,27 +95,27 @@ INSERT INTO Licenses VALUES (13,2, 'OFF-007', 'Subscription', DATE '2025-12-03',
 --LicenseAssignments
 DELETE FROM LicenseAssignments;
 
-INSERT INTO LicenseAssignments VALUES (1, 1, 4, DATE '2025-01-15', 'Active');
-INSERT INTO LicenseAssignments VALUES (2, 2, 5, DATE '2025-02-18', 'Active');
-INSERT INTO LicenseAssignments VALUES (3, 3, 6, DATE '2025-03-15', 'Active');
-INSERT INTO LicenseAssignments VALUES (4, 4, 7, DATE '2025-04-10', 'Active');
-INSERT INTO LicenseAssignments VALUES (5, 5, 8, DATE '2025-05-20', 'Active');
-INSERT INTO LicenseAssignments VALUES (6, 6, 9, DATE '2025-06-25', 'Active');
-INSERT INTO LicenseAssignments VALUES (7, 10, DATE '2025-07-12', 'Active');
-INSERT INTO LicenseAssignments VALUES (8, 8, 11, DATE '2025-08-30', 'Active');
-INSERT INTO LicenseAssignments VALUES (9, 9, 12, DATE '2025-08-10', 'Active');
-INSERT INTO LicenseAssignments VALUES (10, 9, 13, DATE '2025-08-15', 'Active');
-INSERT INTO LicenseAssignments VALUES (11, 10, 14, DATE '2025-09-20', 'Active');
-INSERT INTO LicenseAssignments VALUES (12, 10, 15, DATE '2025-09-25', 'Active');
-INSERT INTO LicenseAssignments VALUES (13, 10, 16, DATE '2025-09-28', 'Active');
-INSERT INTO LicenseAssignments VALUES (14, 11, 17, DATE '2025-10-22', 'Active');
-INSERT INTO LicenseAssignments VALUES (15, 11, 18, DATE '2025-10-25', 'Active');
-INSERT INTO LicenseAssignments VALUES (16, 12, 19, DATE '2025-11-28', 'Active');
-INSERT INTO LicenseAssignments VALUES (17, 12, 20, DATE '2025-11-30', 'Active');
-INSERT INTO LicenseAssignments VALUES (18, 12, 21, DATE '2025-12-02', 'Active');
-INSERT INTO LicenseAssignments VALUES (19, 13, 22, DATE '2025-12-10', 'Active');
-INSERT INTO LicenseAssignments VALUES (20, 13, 23, DATE '2025-12-15', 'Active');
-INSERT INTO LicenseAssignments VALUES (21, 13, 24, DATE '2025-12-18', 'Active');
+INSERT INTO LicenseAssignments VALUES (1, 1, 4, DATE '2025-01-15', 'Active', 'Laptop', 'Dell Latitude 3420');
+INSERT INTO LicenseAssignments VALUES (2, 2, 5, DATE '2025-02-18', 'Active', 'Laptop', 'HP EliteBook 840');
+INSERT INTO LicenseAssignments VALUES (3, 3, 6, DATE '2025-03-15', 'Active', 'Desktop', 'HP ProDesk 400');
+INSERT INTO LicenseAssignments VALUES (4, 4, 7, DATE '2025-04-10', 'Active', 'Laptop', 'Lenovo ThinkPad X1');
+INSERT INTO LicenseAssignments VALUES (5, 5, 8, DATE '2025-05-20', 'Active', 'Tablet', 'iPad Pro 11');
+INSERT INTO LicenseAssignments VALUES (6, 6, 9, DATE '2025-06-25', 'Active', 'Laptop', 'Dell XPS 15');
+INSERT INTO LicenseAssignments VALUES (7, 7, 10, DATE '2025-07-12', 'Active', 'Desktop', 'Custom PC');
+INSERT INTO LicenseAssignments VALUES (8, 8, 11, DATE '2025-08-30', 'Active', 'Laptop', 'MacBook Pro 14');
+INSERT INTO LicenseAssignments VALUES (9, 9, 12, DATE '2025-08-10', 'Active', 'Laptop', 'ASUS ZenBook');
+INSERT INTO LicenseAssignments VALUES (10, 9, 13, DATE '2025-08-15', 'Active', 'Tablet', 'Samsung Tab S9');
+INSERT INTO LicenseAssignments VALUES (11, 10, 14, DATE '2025-09-20', 'Active', 'Laptop', 'Acer Swift 3');
+INSERT INTO LicenseAssignments VALUES (12, 10, 15, DATE '2025-09-25', 'Active', 'Desktop', 'Dell OptiPlex');
+INSERT INTO LicenseAssignments VALUES (13, 10, 16, DATE '2025-09-28', 'Active', 'Laptop', 'Microsoft Surface');
+INSERT INTO LicenseAssignments VALUES (14, 11, 17, DATE '2025-10-22', 'Active', 'Laptop', 'Lenovo Legion 5');
+INSERT INTO LicenseAssignments VALUES (15, 11, 18, DATE '2025-10-25', 'Active', 'Tablet', 'iPad Air');
+INSERT INTO LicenseAssignments VALUES (16, 12, 19, DATE '2025-11-28', 'Active', 'Desktop', 'HP Z440 Workstation');
+INSERT INTO LicenseAssignments VALUES (17, 12, 20, DATE '2025-11-30', 'Active', 'Laptop', 'Dell Precision 3571');
+INSERT INTO LicenseAssignments VALUES (18, 12, 21, DATE '2025-12-02', 'Active', 'Laptop', 'Razer Blade 15');
+INSERT INTO LicenseAssignments VALUES (19, 13, 22, DATE '2025-12-10', 'Active', 'Desktop', 'Custom Gaming PC');
+INSERT INTO LicenseAssignments VALUES (20, 13, 23, DATE '2025-12-15', 'Active', 'Tablet', 'Microsoft Surface Pro');
+INSERT INTO LicenseAssignments VALUES (21, 13, 24, DATE '2025-12-18', 'Active', 'Laptop', 'MacBook Air M2');
 
 --Requests
 DELETE FROM Requests;

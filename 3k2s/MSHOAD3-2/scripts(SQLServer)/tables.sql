@@ -18,7 +18,8 @@ CREATE TABLE Vendors (
 -- Содержит информацию о подразделениях компании
 CREATE TABLE Departments (
     department_id INT PRIMARY KEY IDENTITY(1,1),
-    department_name VARCHAR(200) NOT NULL
+    department_name VARCHAR(200) NOT NULL,
+    node hierarchyid NOT NULL
 );
 
 -- Содержит информацию о программном обеспечении
@@ -65,6 +66,8 @@ CREATE TABLE LicenseAssignments (
     employee_id INT NOT NULL,
     assigned_date DATE NOT NULL,
     status VARCHAR(50),
+    device_type VARCHAR(100),
+    device_name VARCHAR(100),
     CONSTRAINT FK_Assignments_Licenses 
         FOREIGN KEY (license_id) REFERENCES Licenses(license_id),
     CONSTRAINT FK_Assignments_Employees 
@@ -94,4 +97,3 @@ CREATE TABLE Reports (
         FOREIGN KEY (generated_by) REFERENCES Employees(employee_id)
 );
 
-GO

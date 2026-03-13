@@ -52,29 +52,29 @@ DELETE FROM LicenseAssignments;
 DBCC CHECKIDENT ('LicenseAssignments', RESEED, 0);
 
 INSERT INTO LicenseAssignments
-(license_id, employee_id, assigned_date, status)
+(license_id, employee_id, assigned_date, status, device_type, device_name)
 VALUES
-(1, 4, '2025-01-15', 'Active'),
-(2, 5, '2025-02-18','Active'),
-(3, 6, '2025-03-15', 'Active'),
-(4, 7, '2025-04-10', 'Active'),
-(5, 8, '2025-05-20', 'Active'),
-(6, 9, '2025-06-25', 'Active'),
-(7, 10, '2025-07-12', 'Active'),
-(8, 11, '2025-08-30', 'Active'),
-(9, 12, '2025-08-10', 'Active'),
-(9, 13, '2025-08-15', 'Active'),
-(10, 14, '2025-09-20', 'Active'),
-(10, 15, '2025-09-25', 'Active'),
-(10, 16, '2025-09-28', 'Active'),
-(11, 17, '2025-10-22', 'Active'),
-(11, 18, '2025-10-25', 'Active'),
-(12, 19, '2025-11-28', 'Active'),
-(12, 20, '2025-11-30', 'Active'),
-(12, 21, '2025-12-02', 'Active'),
-(13, 22, '2025-12-10', 'Active'),
-(13, 23, '2025-12-15', 'Active'),
-(13, 24, '2025-12-18', 'Active');
+(1, 4, '2025-01-15', 'Active', 'Laptop', 'Dell Latitude 3420'),
+(2, 5, '2025-02-18', 'Active', 'Laptop', 'HP EliteBook 840'),
+(3, 6, '2025-03-15', 'Active', 'Desktop', 'HP ProDesk 400'),
+(4, 7, '2025-04-10', 'Active', 'Laptop', 'Lenovo ThinkPad X1'),
+(5, 8, '2025-05-20', 'Active', 'Tablet', 'iPad Pro 11'),
+(6, 9, '2025-06-25', 'Active', 'Laptop', 'Dell XPS 15'),
+(7, 10, '2025-07-12', 'Active', 'Desktop', 'Custom PC'),
+(8, 11, '2025-08-30', 'Active', 'Laptop', 'MacBook Pro 14'),
+(9, 12, '2025-08-10', 'Active', 'Laptop', 'ASUS ZenBook'),
+(9, 13, '2025-08-15', 'Active', 'Tablet', 'Samsung Tab S9'),
+(10, 14, '2025-09-20', 'Active', 'Laptop', 'Acer Swift 3'),
+(10, 15, '2025-09-25', 'Active', 'Desktop', 'Dell OptiPlex'),
+(10, 16, '2025-09-28', 'Active', 'Laptop', 'Microsoft Surface'),
+(11, 17, '2025-10-22', 'Active', 'Laptop', 'Lenovo Legion 5'),
+(11, 18, '2025-10-25', 'Active', 'Tablet', 'iPad Air'),
+(12, 19, '2025-11-28', 'Active', 'Desktop', 'HP Z440 Workstation'),
+(12, 20, '2025-11-30', 'Active', 'Laptop', 'Dell Precision 3571'),
+(12, 21, '2025-12-02', 'Active', 'Laptop', 'Razer Blade 15'),
+(13, 22, '2025-12-10', 'Active', 'Desktop', 'Custom Gaming PC'),
+(13, 23, '2025-12-15', 'Active', 'Tablet', 'Microsoft Surface Pro'),
+(13, 24, '2025-12-18', 'Active', 'Laptop', 'MacBook Air M2');
 
 --Requests
 DELETE FROM Requests;
