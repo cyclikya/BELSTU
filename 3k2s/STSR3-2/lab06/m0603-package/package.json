@@ -1,0 +1,11 @@
+{
+  "name": "m0603-vugor",
+  "version": "1.0.0",
+  "description": "It's my first module!!!",
+  "main": "m0603.js",
+  "author": "Ugorenko Violetta",
+  "license": "ISC",
+  "dependencies": {
+    "nodemailer": "^8.0.2"
+  }
+}

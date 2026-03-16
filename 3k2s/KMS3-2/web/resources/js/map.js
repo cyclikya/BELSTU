@@ -27,14 +27,14 @@ lib.ssMetadata = [
 
 
 
-(lib.map_1 = function() {
+(lib.backgr = function() {
 	this.initialize(ss["map_atlas_1"]);
 	this.gotoAndStop(0);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.zabornik = function(mode,startPosition,loop,reversed) {
+(lib.zabornik_btn = function(mode,startPosition,loop,reversed) {
 if (loop == null) { loop = true; }
 if (reversed == null) { reversed = false; }
 	var props = new Object();
@@ -62,7 +62,7 @@ if (reversed == null) { reversed = false; }
 p.nominalBounds = new cjs.Rectangle(-1,-1,48.5,74.3);
 
 
-(lib.podyem = function(mode,startPosition,loop,reversed) {
+(lib.podyem_btn = function(mode,startPosition,loop,reversed) {
 if (loop == null) { loop = true; }
 if (reversed == null) { reversed = false; }
 	var props = new Object();
@@ -90,7 +90,7 @@ if (reversed == null) { reversed = false; }
 p.nominalBounds = new cjs.Rectangle(-1,-1,96.8,197.8);
 
 
-(lib.kyzov = function(mode,startPosition,loop,reversed) {
+(lib.kyzov_btn = function(mode,startPosition,loop,reversed) {
 if (loop == null) { loop = true; }
 if (reversed == null) { reversed = false; }
 	var props = new Object();
@@ -118,7 +118,7 @@ if (reversed == null) { reversed = false; }
 p.nominalBounds = new cjs.Rectangle(-1,-1,773.7,288.8);
 
 
-(lib.kolesa = function(mode,startPosition,loop,reversed) {
+(lib.kolesa_btn = function(mode,startPosition,loop,reversed) {
 if (loop == null) { loop = true; }
 if (reversed == null) { reversed = false; }
 	var props = new Object();
@@ -146,7 +146,7 @@ if (reversed == null) { reversed = false; }
 p.nominalBounds = new cjs.Rectangle(-1,-1,805.1,175.5);
 
 
-(lib.kabina = function(mode,startPosition,loop,reversed) {
+(lib.kabina_btn = function(mode,startPosition,loop,reversed) {
 if (loop == null) { loop = true; }
 if (reversed == null) { reversed = false; }
 	var props = new Object();
@@ -174,7 +174,7 @@ if (reversed == null) { reversed = false; }
 p.nominalBounds = new cjs.Rectangle(-1,-1,294.1,271.5);
 
 
-(lib.filter = function(mode,startPosition,loop,reversed) {
+(lib.filter_btn = function(mode,startPosition,loop,reversed) {
 if (loop == null) { loop = true; }
 if (reversed == null) { reversed = false; }
 	var props = new Object();
@@ -202,7 +202,7 @@ if (reversed == null) { reversed = false; }
 p.nominalBounds = new cjs.Rectangle(-1,-1,56.8,49.4);
 
 
-(lib.bak = function(mode,startPosition,loop,reversed) {
+(lib.bak_btn = function(mode,startPosition,loop,reversed) {
 if (loop == null) { loop = true; }
 if (reversed == null) { reversed = false; }
 	var props = new Object();
@@ -245,22 +245,21 @@ if (reversed == null) { reversed = false; }
 	this.actionFrames = [0];
 	// timeline functions:
 	this.frame_0 = function() {
-
 		this.stop();
-
+		
 		var currentSound = null;
-
+		
 		function playSound(file){
-
+		
 			if(currentSound){
 				currentSound.pause();
 				currentSound.currentTime = 0;
 			}
-
+		
 			currentSound = new Audio("resources/sounds/" + file);
 			currentSound.play();
 		}
-
+		
 		this.cabina.on("click", () => playSound("cabina_s.mp3"));
 		this.kyzov.on("click", () => playSound("kyzov_s.mp3"));
 		this.kolesa.on("click", () => playSound("kolesa_s.mp3"));
@@ -268,77 +267,76 @@ if (reversed == null) { reversed = false; }
 		this.podyem.on("click", () => playSound("podyem_s.mp3"));
 		this.zabornik.on("click", () => playSound("zabornik_s.mp3"));
 		this.filter.on("click", () => playSound("filter_s.mp3"));
-
-		}
+	}
 
 	// actions tween:
 	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(2));
 
 	// filter
-	this.filter = new lib.filter();
+	this.filter = new lib.filter_btn();
 	this.filter.name = "filter";
 	this.filter.setTransform(408.8,440.2,1,1,0,0,0,27.4,23.7);
-	new cjs.ButtonHelper(this.filter, 0, 1, 2, false, new lib.filter(), 3);
+	new cjs.ButtonHelper(this.filter, 0, 1, 2, false, new lib.filter_btn(), 3);
 
 	this.timeline.addTween(cjs.Tween.get(this.filter).to({_off:true},1).wait(1));
 
 	// zabornik
-	this.zabornik = new lib.zabornik();
+	this.zabornik = new lib.zabornik_btn();
 	this.zabornik.name = "zabornik";
 	this.zabornik.setTransform(379.25,351.55,1,1,0,0,0,23.2,36.1);
-	new cjs.ButtonHelper(this.zabornik, 0, 1, 2, false, new lib.zabornik(), 3);
+	new cjs.ButtonHelper(this.zabornik, 0, 1, 2, false, new lib.zabornik_btn(), 3);
 
 	this.timeline.addTween(cjs.Tween.get(this.zabornik).to({_off:true},1).wait(1));
 
 	// podyem
-	this.podyem = new lib.podyem();
+	this.podyem = new lib.podyem_btn();
 	this.podyem.name = "podyem";
 	this.podyem.setTransform(493.35,436.7,1,1,0,0,0,47.4,97.9);
-	new cjs.ButtonHelper(this.podyem, 0, 1, 2, false, new lib.podyem(), 3);
+	new cjs.ButtonHelper(this.podyem, 0, 1, 2, false, new lib.podyem_btn(), 3);
 
 	this.timeline.addTween(cjs.Tween.get(this.podyem).to({_off:true},1).wait(1));
 
 	// bak
-	this.bak = new lib.bak();
+	this.bak = new lib.bak_btn();
 	this.bak.name = "bak";
 	this.bak.setTransform(540.6,586.75,1,1,0,0,0,91.2,50.9);
-	new cjs.ButtonHelper(this.bak, 0, 1, 2, false, new lib.bak(), 3);
+	new cjs.ButtonHelper(this.bak, 0, 1, 2, false, new lib.bak_btn(), 3);
 
 	this.timeline.addTween(cjs.Tween.get(this.bak).to({_off:true},1).wait(1));
 
 	// kolesa
-	this.kolesa = new lib.kolesa();
+	this.kolesa = new lib.kolesa_btn();
 	this.kolesa.name = "kolesa";
 	this.kolesa.setTransform(619.8,627.05,1,1,0,0,0,401.5,86.7);
-	new cjs.ButtonHelper(this.kolesa, 0, 1, 2, false, new lib.kolesa(), 3);
+	new cjs.ButtonHelper(this.kolesa, 0, 1, 2, false, new lib.kolesa_btn(), 3);
 
 	this.timeline.addTween(cjs.Tween.get(this.kolesa).to({_off:true},1).wait(1));
 
 	// kyzov
-	this.kyzov = new lib.kyzov();
+	this.kyzov = new lib.kyzov_btn();
 	this.kyzov.name = "kyzov";
 	this.kyzov.setTransform(733.45,369.25,1,1,0,0,0,385.8,143.3);
-	new cjs.ButtonHelper(this.kyzov, 0, 1, 2, false, new lib.kyzov(), 3);
+	new cjs.ButtonHelper(this.kyzov, 0, 1, 2, false, new lib.kyzov_btn(), 3);
 
 	this.timeline.addTween(cjs.Tween.get(this.kyzov).to({_off:true},1).wait(1));
 
 	// cabina
-	this.cabina = new lib.kabina();
+	this.cabina = new lib.kabina_btn();
 	this.cabina.name = "cabina";
 	this.cabina.setTransform(247.35,411.2,1,1,0,0,0,146,134.7);
-	new cjs.ButtonHelper(this.cabina, 0, 1, 2, false, new lib.kabina(), 3);
+	new cjs.ButtonHelper(this.cabina, 0, 1, 2, false, new lib.kabina_btn(), 3);
 
 	this.timeline.addTween(cjs.Tween.get(this.cabina).to({_off:true},1).wait(1));
 
-	// map_png
-	this.instance = new lib.map_1();
+	// backgr
+	this.instance = new lib.backgr();
 
-	this.timeline.addTween(cjs.Tween.get(this.instance).to({_off:true},1).wait(1));
+	this.timeline.addTween(cjs.Tween.get(this.instance).wait(2));
 
 	this._renderFirstFrame();
 
 }).prototype = p = new lib.AnMovieClip();
-p.nominalBounds = new cjs.Rectangle(0,0,1200,900);
+p.nominalBounds = new cjs.Rectangle(600,450,600,450);
 // library properties:
 lib.properties = {
 	id: 'F4499F306AAB8041B858C7D5935B4AE5',
@@ -348,7 +346,7 @@ lib.properties = {
 	color: "#FFFFFF",
 	opacity: 1.00,
 	manifest: [
-		{src:"resources/img/map_HTML5 Canvas_atlas_1.png", id:"map_atlas_1"},
+		{src:"resources/img/map_atlas_1.png", id:"map_atlas_1"},
 		{src:"resources/sounds/bak_s.mp3", id:"bak_s"},
 		{src:"resources/sounds/cabina_s.mp3", id:"cabina_s"},
 		{src:"resources/sounds/filter_s.mp3", id:"filter_s"},
