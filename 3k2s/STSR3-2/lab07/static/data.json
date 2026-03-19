@@ -1,0 +1,13 @@
+{
+  "title": "Лабораторная работа 07",
+  "student": {
+    "name": "Угоренко Виолетта",
+    "group": "ИСИТ-3-1"
+  },
+  "subjects": [
+    "Node.js",
+    "HTTP",
+    "MIME"
+  ],
+  "completed": true
+}

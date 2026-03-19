@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lab>
+    <title>Лабораторная работа 07</title>
+    
+    <student>
+        <name>ИУгоренко Виолетта</name>
+        <group>ИСИТ-3-1</group>
+    </student>
+
+    <subjects>
+        <subject>Node.js</subject>
+        <subject>HTTP</subject>
+        <subject>MIME</subject>
+    </subjects>
+
+    <completed>true</completed>
+</lab>
