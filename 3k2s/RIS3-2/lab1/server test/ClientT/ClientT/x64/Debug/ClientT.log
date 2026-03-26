@@ -1,5 +1,4 @@
-﻿  stdafx.cpp
-  ClientT.cpp
+﻿  ClientT.cpp
 C:\General\BELSTU\3k2s\RIS3-2\lab1\server test\ClientT\ClientT\ClientT.cpp(69,17): warning C4996: 'gethostbyname': Use getaddrinfo() or GetAddrInfoW() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
   (компиляция исходного файла "/ClientT.cpp")
   

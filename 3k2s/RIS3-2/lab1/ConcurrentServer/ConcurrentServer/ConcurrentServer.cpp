@@ -6,6 +6,8 @@
 #include <list>
 #include <time.h>
 #include <iostream>
+#include <unordered_map>
+#include <cmath>
 #define _CRT_SECURE_NO_WARNINGS
 #define AS_SQ 10
 #define IP_SERVER "127.0.0.1"
@@ -49,10 +51,10 @@ enum TalkersCommand {
     GETCOMMAND,
     LOAD_LIB,
     UNLOAD_LIB,
-    ALGO_OLD,  
-    ALGO_NEW,  
+    ALGO_OLD,
+    ALGO_NEW,
     TIME_LOCAL,
-    TIME_NTP   
+    TIME_NTP
 };
 volatile TalkersCommand  previousCommand = GETCOMMAND;
 // global flag: which correction algorithm is used by UDP time sync
@@ -442,7 +444,8 @@ void CommandsCycle(TalkersCommand& cmd)
                 }
             }
             else SleepEx(0, TRUE);
-        } else {
+        }
+        else {
             SleepEx(100, TRUE); // paused accepting
         }
     }
@@ -752,9 +755,20 @@ DWORD WINAPI ResponseServer(LPVOID pPrm)
     // server time counter start (in ticks of 1/1000 sec) for local mode
     clock_t startClock = clock();
     // statistics for correction algorithms
-    long long sumRawCorrection = 0;    // sum of raw corrections Cs - Cc
-    long long sumUsedCorrection = 0;   // sum of actually sent corrections
-    long long requestCount = 0;
+    __int64 sumRawCorrection = 0;    // sum of raw corrections Cs - Cc (all clients)
+    __int64 sumUsedCorrection = 0;   // sum of actually sent corrections (all clients)
+    long long requestCount = 0;      // number of processed requests (all clients)
+
+    // per-client state for "new" (smoothed) correction algorithm
+    // Goal: behave like OLD on first sync (one big correction),
+    // then smooth only the small residual jitter corrections.
+    struct ClientAlgoState
+    {
+        bool synced = false; // becomes true after first full correction
+        double ema = 0.0;    // EMA of residual rawCorrection after sync
+    };
+    std::unordered_map<unsigned long long, ClientAlgoState> perClient;
+    const double EMA_ALPHA = 0.2; // smoothing factor (0..1). Higher -> faster reaction.
 
     while (*(TalkersCommand*)pPrm != EXIT)
     {
@@ -788,9 +802,25 @@ DWORD WINAPI ResponseServer(LPVOID pPrm)
             __int64 correction;
             if (useNewCorrectionAlgo)
             {
-                // New algorithm: use running average of raw corrections
-                // This smooths jitter and gradually pulls client towards server time.
-                correction = (int)(sumRawCorrection / requestCount);
+                // New algorithm (logical & stable):
+                // - First request per client: do full correction (same as OLD) to align counters.
+                // - Next requests: smooth only residual jitter via per-client EMA.
+                unsigned long long key =
+                    ((unsigned long long)from.sin_addr.S_un.S_addr << 16) |
+                    (unsigned long long)(unsigned short)from.sin_port; // already in network byte order, ok as part of key
+
+                ClientAlgoState& st = perClient[key];
+                if (!st.synced)
+                {
+                    correction = rawCorrection; // full sync on first request
+                    st.synced = true;
+                    st.ema = 0.0; // start smoothing from zero residual
+                }
+                else
+                {
+                    st.ema = st.ema + EMA_ALPHA * ((double)rawCorrection - st.ema);
+                    correction = (__int64)llround(st.ema);
+                }
             }
             else
             {
@@ -808,7 +838,7 @@ DWORD WINAPI ResponseServer(LPVOID pPrm)
             sumUsedCorrection += correction;
             double avgCorrection = (requestCount > 0) ? (double)sumUsedCorrection / requestCount : 0.0;
 
-            printf("UDP client %s:%d, request #%lld, correction=%d, average correction=%.2f\n",
+            printf("UDP client %s:%d, request #%lld, correction=%I64d, average correction=%.2f\n",
                 inet_ntoa(from.sin_addr),
                 htons(from.sin_port),
                 requestCount,
