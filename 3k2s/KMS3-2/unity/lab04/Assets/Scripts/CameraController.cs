@@ -29,7 +29,6 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
-        // Разблокировка курсора
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Cursor.lockState = CursorLockMode.None;
@@ -42,18 +41,16 @@ public class CameraController : MonoBehaviour
             currentX += Input.GetAxis("Mouse X") * mouseSensitivity;
             currentY -= Input.GetAxis("Mouse Y") * mouseSensitivity;
 
-            // Ограничение по вертикали
             currentY = Mathf.Clamp(currentY, minY, maxY);
         }
 
         // Зум
         float scroll = Input.GetAxis("Mouse ScrollWheel");
-        currentDistance += scroll * scrollSensitivity;
+        currentDistance += - scroll * scrollSensitivity;
 
         // Ограничение дистанции
         currentDistance = Mathf.Clamp(currentDistance, minDistance, maxDistance);
 
-        Debug.Log(currentDistance);
     }
 
     void LateUpdate()
