@@ -475,12 +475,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraController
   target: {fileID: 1544772998}
-  mouseSensitivity: 2
+  mouseSensitivity: 3
   scrollSensitivity: 50
-  minDistance: 5
+  minDistance: 15
   maxDistance: 650
   minY: -20
   maxY: 80
+  moveSpeed: 10
+  boostSpeed: 20
 --- !u!1 &217246973 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -5077867154772049317, guid: 0d04e40ce759bd04a8f26d6fc2e1e513, type: 3}
@@ -542,18 +544,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 121701661987308638, guid: 0d04e40ce759bd04a8f26d6fc2e1e513, type: 3}
   m_PrefabInstance: {fileID: 896909903}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &266431224
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 266431220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e684cbfd9e587b499b29a3525383019, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::dworniki
 --- !u!95 &266431225
 Animator:
   serializedVersion: 7
@@ -564,7 +554,7 @@ Animator:
   m_GameObject: {fileID: 266431220}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 59b778423272f8547a5a8d51807e3db9, type: 2}
+  m_Controller: {fileID: 9100000, guid: ecfeb06fa87e227448cb54f865077f95, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -576,6 +566,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &266431229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 266431220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0f1da2a2beccf842ae130c735fede41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::dworniki1
 --- !u!1 &275480141
 GameObject:
   m_ObjectHideFlags: 0
@@ -1308,7 +1310,7 @@ PrefabInstance:
       addedObject: {fileID: 266431225}
     - targetCorrespondingSourceObject: {fileID: 121701661987308638, guid: 0d04e40ce759bd04a8f26d6fc2e1e513, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 266431224}
+      addedObject: {fileID: 266431229}
     - targetCorrespondingSourceObject: {fileID: -8409579340432098158, guid: 0d04e40ce759bd04a8f26d6fc2e1e513, type: 3}
       insertIndex: -1
       addedObject: {fileID: 524172702}
