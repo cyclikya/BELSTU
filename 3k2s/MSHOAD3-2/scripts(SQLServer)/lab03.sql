@@ -1,34 +1,6 @@
 --Я удалила все данные, для заполнения таблицы Departments выполняй код который в самом конце
 
 
-
--- Содержит информацию о сотрудниках компании
-CREATE TABLE Employees (
-    employee_id INT PRIMARY KEY IDENTITY(1,1),
-    full_name VARCHAR(200) NOT NULL,
-    email VARCHAR(200) UNIQUE NOT NULL,
-    position VARCHAR(150),
-    department_id INT,
-    CONSTRAINT FK_Employees_Departments 
-        FOREIGN KEY (department_id) REFERENCES Departments(department_id)
-);
-
--- Содержит информацию о подразделениях компании
-CREATE TABLE Departments (
-    department_id INT PRIMARY KEY IDENTITY(1,1),
-    department_name VARCHAR(200) NOT NULL
-);
-
-ALTER TABLE Departments
-ADD node hierarchyid NOT NULL;
-
-CREATE UNIQUE INDEX IX_Departments_node
-ON Departments(node);
-GO
-
-
-
-
 DELETE FROM Departments;
 DBCC CHECKIDENT ('Departments', RESEED, 0);
 
