@@ -12,6 +12,7 @@ public class CameraController : MonoBehaviour
 
     private ControlMode currentMode = ControlMode.FreeMovement;
     private KeyCode interactKey = KeyCode.E;
+    private KeyCode engineToggleKey = KeyCode.Tab;
 
     private FreeMovementMode freeMovementMode = new FreeMovementMode();
 
@@ -38,9 +39,13 @@ public class CameraController : MonoBehaviour
     private int crosshairSize = 3;
     private Color crosshairColor = Color.white;
     private KamazContext kamazContext;
+    private KamazLightsController kamazLightsController;
 
     private bool showInteractableHighlight = true;
     private Color interactableHighlightColor = new Color(230f / 255f, 230f / 255f, 230f / 255f, 45f / 255f);
+    private bool showInteractionHint = true;
+    private Color interactionHintColor = Color.white;
+    private int interactionHintFontSize = 18;
 
     public bool IsDrivingMode => currentMode == ControlMode.Driving;
 
@@ -60,6 +65,8 @@ public class CameraController : MonoBehaviour
 
     private Transform highlightedRoot;
     private readonly Dictionary<Renderer, RendererColorState> highlightedRenderers = new Dictionary<Renderer, RendererColorState>();
+    private bool engineRunning;
+    private string interactionHintText = string.Empty;
 
     private KamazContext Kamaz => kamazContext;
     private float defaultFieldOfView;
@@ -76,6 +83,7 @@ public class CameraController : MonoBehaviour
         }
 
         ResolveKamazContext();
+        ResolveLightsController();
 
         freeMovementMode.Initialize(controller, playerCamera, transform);
         drivingMode.Initialize(controller, transform, Kamaz);
@@ -97,11 +105,13 @@ public class CameraController : MonoBehaviour
             ResolveKamazContext();
             drivingMode.SetContext(Kamaz);
             Kamaz?.AutoResolve();
+            ResolveLightsController();
         }
 
         TryInitializeNeedles();
 
         UpdateInteractionHighlight();
+        UpdateInteractionHintText();
 
         if (currentMode == ControlMode.FreeMovement)
         {
@@ -158,25 +168,20 @@ public class CameraController : MonoBehaviour
 
     private void HandleDrivingModeInteraction()
     {
-        if (!Input.GetKeyDown(interactKey) || isExitingDrivingMode)
+        if (isExitingDrivingMode)
+        {
+            return;
+        }
+
+        HandleDrivingEngineToggle();
+
+        if (!Input.GetKeyDown(interactKey))
         {
             return;
         }
 
         if (!freeMovementMode.TryGetInteraction(Kamaz, out FreeMovementMode.InteractionResult interaction))
         {
-            return;
-        }
-
-        if (interaction.Type == FreeMovementMode.InteractionType.Key)
-        {
-            HandleKeyInteraction(interaction.KeyAnimator);
-            return;
-        }
-
-        if (interaction.Type == FreeMovementMode.InteractionType.Steering)
-        {
-            HandleKeyInteraction(Kamaz != null ? Kamaz.KeyAnimator : null);
             return;
         }
 
@@ -362,20 +367,56 @@ public class CameraController : MonoBehaviour
         SetMode(ControlMode.Driving);
     }
 
-    private void HandleKeyInteraction(Animator keyAnimator)
+    private void HandleDrivingEngineToggle()
     {
-        if (keyAnimator == null || !HasAnimatorBool(keyAnimator, keyTurnBoolName))
+        if (!Input.GetKeyDown(engineToggleKey))
         {
             return;
         }
 
-        bool alreadyTurned = keyAnimator.GetBool(keyTurnBoolName);
-        keyAnimator.SetBool(keyTurnBoolName, true);
+        if (!freeMovementMode.TryGetInteraction(Kamaz, out FreeMovementMode.InteractionResult interaction))
+        {
+            return;
+        }
 
-        if (!alreadyTurned)
+        if (interaction.Type != FreeMovementMode.InteractionType.Steering)
+        {
+            return;
+        }
+
+        SetEngineRunning(!engineRunning);
+    }
+
+    private void SetEngineRunning(bool value)
+    {
+        if (engineRunning == value)
+        {
+            return;
+        }
+
+        engineRunning = value;
+
+        Animator keyAnimator = Kamaz != null ? Kamaz.KeyAnimator : null;
+        if (keyAnimator != null && HasAnimatorBool(keyAnimator, keyTurnBoolName))
+        {
+            keyAnimator.SetBool(keyTurnBoolName, engineRunning);
+        }
+
+        if (engineRunning)
         {
             StartKabinaStartShake();
             StartStartupNeedleSweep();
+        }
+        else
+        {
+            StopStartupNeedleSweep(true);
+            ApplyNeedleValuesImmediate(0f, 0f);
+        }
+
+        ResolveLightsController();
+        if (kamazLightsController != null)
+        {
+            kamazLightsController.SetEngineRunning(engineRunning);
         }
     }
 
@@ -395,6 +436,7 @@ public class CameraController : MonoBehaviour
 
     private void OnDisable()
     {
+        SetEngineRunning(false);
         StopStartupNeedleSweep(true);
         StopKabinaShakeAndRestore();
         ClearHighlight();
@@ -414,6 +456,8 @@ public class CameraController : MonoBehaviour
         GUI.color = crosshairColor;
         GUI.DrawTexture(new Rect(x, y, crosshairSize, crosshairSize), crosshairTexture);
         GUI.color = previousColor;
+
+        DrawInteractionHint();
     }
 
     private void CreateCrosshairTexture()
@@ -437,6 +481,28 @@ public class CameraController : MonoBehaviour
             kamazContext = FindFirstObjectByType<KamazContext>();
 #else
             kamazContext = FindObjectOfType<KamazContext>();
+#endif
+        }
+    }
+
+    private void ResolveLightsController()
+    {
+        if (kamazLightsController != null)
+        {
+            return;
+        }
+
+        if (Kamaz != null && Kamaz.Root != null)
+        {
+            kamazLightsController = Kamaz.Root.GetComponent<KamazLightsController>();
+        }
+
+        if (kamazLightsController == null)
+        {
+#if UNITY_2023_1_OR_NEWER
+            kamazLightsController = FindFirstObjectByType<KamazLightsController>();
+#else
+            kamazLightsController = FindObjectOfType<KamazLightsController>();
 #endif
         }
     }
@@ -808,5 +874,71 @@ public class CameraController : MonoBehaviour
         {
             tachometerNeedle.SetValueImmediate(tachValue);
         }
+    }
+
+    private void UpdateInteractionHintText()
+    {
+        interactionHintText = string.Empty;
+
+        if (!showInteractionHint || Kamaz == null)
+        {
+            return;
+        }
+
+        if (!freeMovementMode.TryGetInteraction(Kamaz, out FreeMovementMode.InteractionResult interaction))
+        {
+            return;
+        }
+
+        if (interaction.Type == FreeMovementMode.InteractionType.Door)
+        {
+            if (currentMode == ControlMode.FreeMovement)
+            {
+                bool isOpen = interaction.DoorAnimator != null
+                    && HasAnimatorBool(interaction.DoorAnimator, doorOpenBoolName)
+                    && interaction.DoorAnimator.GetBool(doorOpenBoolName);
+                interactionHintText = isOpen ? "Нажмите E чтобы закрыть дверь" : "Нажмите E чтобы открыть дверь";
+                return;
+            }
+
+            interactionHintText = "Нажмите E чтобы выйти из кабины";
+            return;
+        }
+
+        if (interaction.Type == FreeMovementMode.InteractionType.Steering)
+        {
+            if (currentMode == ControlMode.FreeMovement)
+            {
+                interactionHintText = "Нажмите E чтобы сесть за руль";
+                return;
+            }
+
+            interactionHintText = engineRunning
+                ? "Нажмите Tab чтобы заглушить машину"
+                : "Нажмите Tab чтобы завести машину";
+        }
+    }
+
+    private void DrawInteractionHint()
+    {
+        if (!showInteractionHint || string.IsNullOrEmpty(interactionHintText))
+        {
+            return;
+        }
+
+        GUIStyle style = new GUIStyle(GUI.skin.label)
+        {
+            alignment = TextAnchor.MiddleCenter,
+            fontSize = interactionHintFontSize,
+            normal = { textColor = interactionHintColor },
+            richText = false
+        };
+
+        float width = Mathf.Min(Screen.width - 40f, 900f);
+        float height = 28f;
+        float x = (Screen.width - width) * 0.5f;
+        float y = Screen.height - height - 24f;
+
+        GUI.Label(new Rect(x, y, width, height), interactionHintText, style);
     }
 }
