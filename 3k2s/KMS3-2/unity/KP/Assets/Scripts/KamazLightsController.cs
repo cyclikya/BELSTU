@@ -14,6 +14,9 @@ public class KamazLightsController : MonoBehaviour
     [SerializeField] private float blinkInterval = 0.5f;
     [SerializeField] private float turnSignalDuration = 10f;
 
+    [Header("Input Safety")]
+    [SerializeField] private float inputBlockAfterEnterCabinSeconds = 0.25f;
+
     [Header("Lamp Material Highlight")]
     [SerializeField] private Color whiteLampHighlightColor = new Color(230f / 255f, 230f / 255f, 230f / 255f, 100f / 255f);
     [SerializeField] private Color redLampHighlightColor = new Color(1f, 0.25f, 0.25f, 100f / 255f);
@@ -55,6 +58,8 @@ public class KamazLightsController : MonoBehaviour
     private bool headlightsOn;
     private bool hazardEnabled;
     private bool engineRunning;
+    private bool isInCabin;
+    private float inputBlockedUntilTime;
     private Coroutine blinkCoroutine;
     private Coroutine turnTimeoutCoroutine;
 
@@ -69,9 +74,14 @@ public class KamazLightsController : MonoBehaviour
         ForceAllOff();
     }
 
-    private void Update()
+    private void LateUpdate()
     {
-        if (!engineRunning)
+        if (!engineRunning || !isInCabin)
+        {
+            return;
+        }
+
+        if (Time.unscaledTime < inputBlockedUntilTime)
         {
             return;
         }
@@ -107,6 +117,26 @@ public class KamazLightsController : MonoBehaviour
         }
     }
 
+    public void SetInCabin(bool inCabin)
+    {
+        if (!isInCabin && inCabin)
+        {
+            BlockInputForSeconds(inputBlockAfterEnterCabinSeconds);
+        }
+
+        isInCabin = inCabin;
+    }
+
+    public void BlockInputForSeconds(float seconds)
+    {
+        float clamped = Mathf.Max(0f, seconds);
+        float targetTime = Time.unscaledTime + clamped;
+        if (targetTime > inputBlockedUntilTime)
+        {
+            inputBlockedUntilTime = targetTime;
+        }
+    }
+
     public void SetHeadlights(bool enabled)
     {
         headlightsOn = enabled && engineRunning;
@@ -128,7 +158,7 @@ public class KamazLightsController : MonoBehaviour
 
     private void ToggleHazard()
     {
-        if (!engineRunning)
+        if (!engineRunning || !isInCabin)
         {
             return;
         }
@@ -148,7 +178,7 @@ public class KamazLightsController : MonoBehaviour
 
     private void StartTimedTurn(BlinkMode direction)
     {
-        if (!engineRunning || hazardEnabled)
+        if (!engineRunning || !isInCabin || hazardEnabled)
         {
             return;
         }

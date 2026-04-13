@@ -13,6 +13,7 @@ public class CameraController : MonoBehaviour
     private ControlMode currentMode = ControlMode.FreeMovement;
     private KeyCode interactKey = KeyCode.E;
     private KeyCode engineToggleKey = KeyCode.Tab;
+    private KeyCode toggleUiCursorKey = KeyCode.Escape;
 
     private FreeMovementMode freeMovementMode = new FreeMovementMode();
 
@@ -29,31 +30,42 @@ public class CameraController : MonoBehaviour
     private float startupSweepHoldDuration = 0.1f;
     private float startupSweepDownDuration = 0.9f;
     private float startupSpeedometerPeak = 20f;
-    private float startupTachometerPeak = 7.6f;
+    private float startupTachometerPeak = 2800f;
 
     private float exitToFreeModeDelay = 0.35f;
     private float characterControllerEnableDelayAfterExit = 0.2f;
     private float ignoreKamazCollisionAfterExit = 0.8f;
+    private float doorFreezeDuration = 0.85f;
 
     private bool showCrosshairDot = true;
     private int crosshairSize = 3;
     private Color crosshairColor = Color.white;
     private KamazContext kamazContext;
     private KamazLightsController kamazLightsController;
+    private KamazCabinMechanismsController kamazCabinMechanismsController;
 
     private bool showInteractableHighlight = true;
     private Color interactableHighlightColor = new Color(230f / 255f, 230f / 255f, 230f / 255f, 45f / 255f);
     private bool showInteractionHint = true;
     private Color interactionHintColor = Color.white;
     private int interactionHintFontSize = 18;
+    private bool allowUiCursorToggle = true;
+    private bool startWithUnlockedCursor;
 
     public bool IsDrivingMode => currentMode == ControlMode.Driving;
+    public bool IsEngineRunning => engineRunning;
 
     private Camera playerCamera;
     private Texture2D crosshairTexture;
     private bool isExitingDrivingMode;
     private bool waitingControllerReenable;
     private Collider[] playerColliders;
+    private int kamazCollisionIgnoreRequests;
+    private Rigidbody kamazRigidbody;
+    private Coroutine doorFreezeCoroutine;
+    private int kamazFreezeRequests;
+    private bool kamazRigidbodyWasKinematic;
+    private RigidbodyConstraints kamazRigidbodyOriginalConstraints;
     private Coroutine kabinaShakeCoroutine;
     private Coroutine startupNeedleSweepCoroutine;
     private readonly List<Transform> kabinaShakeTargets = new List<Transform>();
@@ -67,6 +79,9 @@ public class CameraController : MonoBehaviour
     private readonly Dictionary<Renderer, RendererColorState> highlightedRenderers = new Dictionary<Renderer, RendererColorState>();
     private bool engineRunning;
     private string interactionHintText = string.Empty;
+    private string temporaryHintText = string.Empty;
+    private float temporaryHintUntilTime;
+    private bool uiCursorActive;
 
     private KamazContext Kamaz => kamazContext;
     private float defaultFieldOfView;
@@ -92,20 +107,26 @@ public class CameraController : MonoBehaviour
         TryInitializeNeedles();
 
         ApplyCurrentMode();
+        SyncLightsControllerState();
         CreateCrosshairTexture();
-
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        SetUiCursorState(startWithUnlockedCursor);
     }
 
     private void Update()
     {
+        HandleUiCursorToggle();
+        if (uiCursorActive)
+        {
+            return;
+        }
+
         if (Kamaz == null)
         {
             ResolveKamazContext();
             drivingMode.SetContext(Kamaz);
             Kamaz?.AutoResolve();
             ResolveLightsController();
+            SyncLightsControllerState();
         }
 
         TryInitializeNeedles();
@@ -202,12 +223,21 @@ public class CameraController : MonoBehaviour
             return;
         }
 
+        ResolveLightsController();
+        if (kamazLightsController != null)
+        {
+            float inputBlockSeconds = exitToFreeModeDelay + 0.25f;
+            kamazLightsController.BlockInputForSeconds(inputBlockSeconds);
+        }
+
         StartCoroutine(ExitDrivingModeWithDelay(interaction.DoorAnimator));
     }
 
     private IEnumerator ExitDrivingModeWithDelay(Animator exitDoorAnimator)
     {
         isExitingDrivingMode = true;
+        RequestKamazCollisionIgnore();
+        RequestKamazFreeze();
 
         if (exitDoorAnimator == null)
         {
@@ -224,13 +254,13 @@ public class CameraController : MonoBehaviour
         waitingControllerReenable = true;
         SetMode(ControlMode.FreeMovement, true);
 
-        SetIgnoreKamazCollisions(true);
         yield return new WaitForSeconds(characterControllerEnableDelayAfterExit);
         drivingMode.SetCharacterControllerEnabled(true);
         RefreshPlayerColliders();
 
         yield return new WaitForSeconds(ignoreKamazCollisionAfterExit);
-        SetIgnoreKamazCollisions(false);
+        ReleaseKamazCollisionIgnore();
+        ReleaseKamazFreeze();
 
         waitingControllerReenable = false;
         isExitingDrivingMode = false;
@@ -263,6 +293,7 @@ public class CameraController : MonoBehaviour
 
         currentMode = mode;
         ApplyCurrentMode(keepControllerDisabledOnFree);
+        SyncLightsControllerState();
     }
 
     private bool IsDoorOpen()
@@ -337,6 +368,155 @@ public class CameraController : MonoBehaviour
         }
     }
 
+    private void RequestKamazCollisionIgnore()
+    {
+        kamazCollisionIgnoreRequests++;
+        if (kamazCollisionIgnoreRequests == 1)
+        {
+            SetIgnoreKamazCollisions(true);
+        }
+    }
+
+    private void ReleaseKamazCollisionIgnore()
+    {
+        if (kamazCollisionIgnoreRequests <= 0)
+        {
+            kamazCollisionIgnoreRequests = 0;
+            return;
+        }
+
+        kamazCollisionIgnoreRequests--;
+        if (kamazCollisionIgnoreRequests == 0)
+        {
+            SetIgnoreKamazCollisions(false);
+        }
+    }
+
+    private void ResetKamazCollisionIgnoreState()
+    {
+        kamazCollisionIgnoreRequests = 0;
+        SetIgnoreKamazCollisions(false);
+    }
+
+    private void ResolveKamazRigidbody()
+    {
+        if (kamazRigidbody != null)
+        {
+            return;
+        }
+
+        if (Kamaz != null && Kamaz.Root != null)
+        {
+            kamazRigidbody = Kamaz.Root.GetComponent<Rigidbody>();
+            if (kamazRigidbody == null)
+            {
+                kamazRigidbody = Kamaz.Root.GetComponentInParent<Rigidbody>();
+            }
+
+            if (kamazRigidbody == null)
+            {
+                kamazRigidbody = Kamaz.Root.GetComponentInChildren<Rigidbody>(true);
+            }
+        }
+    }
+
+    private void StartDoorFreeze()
+    {
+        if (doorFreezeDuration <= 0f)
+        {
+            return;
+        }
+
+        if (doorFreezeCoroutine != null)
+        {
+            StopCoroutine(doorFreezeCoroutine);
+            doorFreezeCoroutine = null;
+            ReleaseKamazFreeze();
+        }
+
+        doorFreezeCoroutine = StartCoroutine(DoorFreezeRoutine());
+    }
+
+    private IEnumerator DoorFreezeRoutine()
+    {
+        RequestKamazFreeze();
+        yield return new WaitForSeconds(doorFreezeDuration);
+        ReleaseKamazFreeze();
+        doorFreezeCoroutine = null;
+    }
+
+    private void RequestKamazFreeze()
+    {
+        ResolveKamazRigidbody();
+        if (kamazRigidbody == null)
+        {
+            return;
+        }
+
+        kamazFreezeRequests++;
+        if (kamazFreezeRequests == 1)
+        {
+            kamazRigidbodyWasKinematic = kamazRigidbody.isKinematic;
+            kamazRigidbodyOriginalConstraints = kamazRigidbody.constraints;
+        }
+
+        if (!kamazRigidbody.isKinematic)
+        {
+            kamazRigidbody.linearVelocity = Vector3.zero;
+            kamazRigidbody.angularVelocity = Vector3.zero;
+        }
+
+        kamazRigidbody.isKinematic = true;
+        kamazRigidbody.constraints = RigidbodyConstraints.FreezeAll;
+    }
+
+    private void ReleaseKamazFreeze()
+    {
+        if (kamazFreezeRequests <= 0)
+        {
+            kamazFreezeRequests = 0;
+            return;
+        }
+
+        kamazFreezeRequests--;
+        if (kamazFreezeRequests > 0)
+        {
+            return;
+        }
+
+        kamazFreezeRequests = 0;
+
+        ResolveKamazRigidbody();
+        if (kamazRigidbody == null)
+        {
+            return;
+        }
+
+        kamazRigidbody.constraints = kamazRigidbodyOriginalConstraints;
+        kamazRigidbody.isKinematic = kamazRigidbodyWasKinematic;
+
+        if (!kamazRigidbody.isKinematic)
+        {
+            kamazRigidbody.linearVelocity = Vector3.zero;
+            kamazRigidbody.angularVelocity = Vector3.zero;
+        }
+    }
+
+    private void ResetKamazFreezeState()
+    {
+        if (doorFreezeCoroutine != null)
+        {
+            StopCoroutine(doorFreezeCoroutine);
+            doorFreezeCoroutine = null;
+        }
+
+        if (kamazFreezeRequests > 0)
+        {
+            kamazFreezeRequests = 1;
+            ReleaseKamazFreeze();
+        }
+    }
+
     private bool HasAnimatorBool(Animator animator, string parameterName)
     {
         foreach (AnimatorControllerParameter parameter in animator.parameters)
@@ -357,6 +537,7 @@ public class CameraController : MonoBehaviour
             return;
         }
 
+        StartDoorFreeze();
         bool isOpen = HasAnimatorBool(doorAnimator, doorOpenBoolName) && doorAnimator.GetBool(doorOpenBoolName);
         SetDoorOpen(doorAnimator, !isOpen);
     }
@@ -374,16 +555,6 @@ public class CameraController : MonoBehaviour
             return;
         }
 
-        if (!freeMovementMode.TryGetInteraction(Kamaz, out FreeMovementMode.InteractionResult interaction))
-        {
-            return;
-        }
-
-        if (interaction.Type != FreeMovementMode.InteractionType.Steering)
-        {
-            return;
-        }
-
         SetEngineRunning(!engineRunning);
     }
 
@@ -392,6 +563,16 @@ public class CameraController : MonoBehaviour
         if (engineRunning == value)
         {
             return;
+        }
+
+        if (value)
+        {
+            ResolveCabinMechanismsController();
+            if (kamazCabinMechanismsController != null && kamazCabinMechanismsController.IsBodyRaised)
+            {
+                ShowTemporaryHint("Сначала опустите кузов (B), затем запускайте двигатель.");
+                return;
+            }
         }
 
         engineRunning = value;
@@ -414,10 +595,12 @@ public class CameraController : MonoBehaviour
         }
 
         ResolveLightsController();
-        if (kamazLightsController != null)
-        {
-            kamazLightsController.SetEngineRunning(engineRunning);
-        }
+        SyncLightsControllerState();
+    }
+
+    public void SetEngineRunningState(bool value)
+    {
+        SetEngineRunning(value);
     }
 
     private void HandleOtherInteraction(Transform hitObject)
@@ -427,11 +610,12 @@ public class CameraController : MonoBehaviour
 
     private void OnApplicationFocus(bool hasFocus)
     {
-        if (hasFocus)
+        if (!hasFocus)
         {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+            return;
         }
+
+        SetUiCursorState(uiCursorActive);
     }
 
     private void OnDisable()
@@ -439,11 +623,20 @@ public class CameraController : MonoBehaviour
         SetEngineRunning(false);
         StopStartupNeedleSweep(true);
         StopKabinaShakeAndRestore();
+        ResetKamazCollisionIgnoreState();
+        ResetKamazFreezeState();
         ClearHighlight();
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     private void OnGUI()
     {
+        if (uiCursorActive)
+        {
+            return;
+        }
+
         if (!showCrosshairDot || crosshairTexture == null)
         {
             return;
@@ -458,6 +651,28 @@ public class CameraController : MonoBehaviour
         GUI.color = previousColor;
 
         DrawInteractionHint();
+    }
+
+    private void HandleUiCursorToggle()
+    {
+        if (!allowUiCursorToggle)
+        {
+            return;
+        }
+
+        if (!Input.GetKeyDown(toggleUiCursorKey))
+        {
+            return;
+        }
+
+        SetUiCursorState(!uiCursorActive);
+    }
+
+    private void SetUiCursorState(bool enabled)
+    {
+        uiCursorActive = enabled;
+        Cursor.lockState = uiCursorActive ? CursorLockMode.None : CursorLockMode.Locked;
+        Cursor.visible = uiCursorActive;
     }
 
     private void CreateCrosshairTexture()
@@ -505,6 +720,40 @@ public class CameraController : MonoBehaviour
             kamazLightsController = FindObjectOfType<KamazLightsController>();
 #endif
         }
+    }
+
+    private void ResolveCabinMechanismsController()
+    {
+        if (kamazCabinMechanismsController != null)
+        {
+            return;
+        }
+
+        if (Kamaz != null && Kamaz.Root != null)
+        {
+            kamazCabinMechanismsController = Kamaz.Root.GetComponent<KamazCabinMechanismsController>();
+        }
+
+        if (kamazCabinMechanismsController == null)
+        {
+#if UNITY_2023_1_OR_NEWER
+            kamazCabinMechanismsController = FindFirstObjectByType<KamazCabinMechanismsController>();
+#else
+            kamazCabinMechanismsController = FindObjectOfType<KamazCabinMechanismsController>();
+#endif
+        }
+    }
+
+    private void SyncLightsControllerState()
+    {
+        ResolveLightsController();
+        if (kamazLightsController == null)
+        {
+            return;
+        }
+
+        kamazLightsController.SetEngineRunning(engineRunning);
+        kamazLightsController.SetInCabin(currentMode == ControlMode.Driving);
     }
 
     private void UpdateInteractionHighlight()
@@ -779,7 +1028,7 @@ public class CameraController : MonoBehaviour
             if (speedometerNeedle != null)
             {
                 speedometerNeedle.SetDebugMode(false);
-                speedometerNeedle.Configure(0f, 180f, 0.3f, 264f);
+                speedometerNeedle.Configure(0f, 90f, 0.3f, 264f);
                 speedometerNeedle.SetValueImmediate(0f);
                 speedometerNeedleConfigured = true;
             }
@@ -795,7 +1044,7 @@ public class CameraController : MonoBehaviour
             if (tachometerNeedle != null)
             {
                 tachometerNeedle.SetDebugMode(false);
-                tachometerNeedle.Configure(0f, 8f, 2f, 240f);
+                tachometerNeedle.Configure(0f, 3000f, 2f, 240f);
                 tachometerNeedle.SetValueImmediate(0f);
                 tachometerNeedleConfigured = true;
             }
@@ -921,7 +1170,13 @@ public class CameraController : MonoBehaviour
 
     private void DrawInteractionHint()
     {
-        if (!showInteractionHint || string.IsNullOrEmpty(interactionHintText))
+        if (!showInteractionHint)
+        {
+            return;
+        }
+
+        string textToDraw = GetActiveHintText();
+        if (string.IsNullOrEmpty(textToDraw))
         {
             return;
         }
@@ -939,6 +1194,27 @@ public class CameraController : MonoBehaviour
         float x = (Screen.width - width) * 0.5f;
         float y = Screen.height - height - 24f;
 
-        GUI.Label(new Rect(x, y, width, height), interactionHintText, style);
+        GUI.Label(new Rect(x, y, width, height), textToDraw, style);
+    }
+
+    private string GetActiveHintText()
+    {
+        if (!string.IsNullOrEmpty(temporaryHintText) && Time.unscaledTime < temporaryHintUntilTime)
+        {
+            return temporaryHintText;
+        }
+
+        return interactionHintText;
+    }
+
+    private void ShowTemporaryHint(string text, float duration = 2.5f)
+    {
+        if (string.IsNullOrEmpty(text))
+        {
+            return;
+        }
+
+        temporaryHintText = text;
+        temporaryHintUntilTime = Time.unscaledTime + Mathf.Max(0.1f, duration);
     }
 }

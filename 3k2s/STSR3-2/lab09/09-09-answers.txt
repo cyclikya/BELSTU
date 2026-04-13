@@ -1,0 +1,8 @@
+26) GET sends parameters in URL query string, so they are visible in the address line, browser history, and logs.
+POST usually sends parameters in the request body, so data is not in URL and can be larger.
+
+27) HTTP response with attached file has:
+- status line (for example: HTTP/1.1 200 OK),
+- headers (especially Content-Type, Content-Length, Content-Disposition: attachment; filename="..."),
+- empty line,
+- message body with raw file bytes.

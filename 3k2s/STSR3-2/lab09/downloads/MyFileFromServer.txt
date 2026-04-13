@@ -1,0 +1,2 @@
+This is MyFile.txt for lab09 task 06.
+Simple text content for upload test.

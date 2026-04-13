@@ -11,6 +11,8 @@ public class DrivingMode
     private Transform playerTransform;
     private bool isActive;
     private KamazContext kamazContext;
+    private Transform originalParent;
+    private bool parentCached;
 
     public void Initialize(CharacterController targetController, Transform targetTransform, KamazContext context)
     {
@@ -39,7 +41,7 @@ public class DrivingMode
             return;
         }
 
-        TeleportTo(seatPoint);
+        AttachPlayerToSeat(seatPoint);
         isActive = true;
 
         if (controller != null)
@@ -60,10 +62,13 @@ public class DrivingMode
 
         if (!isActive)
         {
+            DetachPlayerFromSeat();
             SetCharacterControllerEnabled(!keepControllerDisabled);
 
             return;
         }
+
+        DetachPlayerFromSeat();
 
         if (exitPoint != null)
         {
@@ -90,6 +95,56 @@ public class DrivingMode
         }
 
         playerTransform.SetPositionAndRotation(targetPoint.position, targetPoint.rotation);
+
+        if (wasEnabled)
+        {
+            controller.enabled = true;
+        }
+    }
+
+    private void AttachPlayerToSeat(Transform seatPoint)
+    {
+        if (playerTransform == null || seatPoint == null)
+        {
+            return;
+        }
+
+        if (!parentCached)
+        {
+            originalParent = playerTransform.parent;
+            parentCached = true;
+        }
+
+        bool wasEnabled = controller != null && controller.enabled;
+        if (wasEnabled)
+        {
+            controller.enabled = false;
+        }
+
+        playerTransform.SetParent(seatPoint, false);
+        playerTransform.localPosition = Vector3.zero;
+        playerTransform.localRotation = Quaternion.identity;
+
+        if (wasEnabled)
+        {
+            controller.enabled = true;
+        }
+    }
+
+    private void DetachPlayerFromSeat()
+    {
+        if (playerTransform == null)
+        {
+            return;
+        }
+
+        bool wasEnabled = controller != null && controller.enabled;
+        if (wasEnabled)
+        {
+            controller.enabled = false;
+        }
+
+        playerTransform.SetParent(originalParent, true);
 
         if (wasEnabled)
         {
