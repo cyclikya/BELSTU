@@ -5,7 +5,7 @@ const requestData = {
   y: 3,
   s: "sample",
   m: ["a", "b", "c"],
-  o: { surname: "Ivanov", name: "Ivan" }
+  o: { surname: "Ugorenko", name: "Violetta" }
 };
 
 const data = JSON.stringify(requestData);

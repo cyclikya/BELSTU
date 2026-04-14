@@ -28,18 +28,15 @@ function parseXmlRequest(xmlText) {
 
   const responseId = Math.floor(Math.random() * 1000);
   return `<?xml version="1.0" encoding="UTF-8"?>
-<response id="${responseId}" request="${requestId}">
-  <sum element="x" result="${sumX}" />
-  <concat element="m" result="${concatM}" />
-</response>`;
-}
+  <response id="${responseId}" request="${requestId}">
+    <sum element="x" result="${sumX}" />
+    <concat element="m" result="${concatM}" />
+  </response>`;
+  }
 
 function saveMultipartFile(req, bodyBuffer) {
   const contentType = req.headers["content-type"] || "";
   const boundaryMatch = contentType.match(/boundary=(.+)$/);
-  if (!boundaryMatch) {
-    return { error: "Boundary not found in Content-Type" };
-  }
 
   const boundary = boundaryMatch[1];
   const headersEnd = bodyBuffer.indexOf(Buffer.from("\r\n\r\n"));
@@ -54,9 +51,6 @@ function saveMultipartFile(req, bodyBuffer) {
   const fileStart = headersEnd + 4;
   const closingBoundary = Buffer.from(`\r\n--${boundary}--`);
   const fileEnd = bodyBuffer.indexOf(closingBoundary);
-  if (fileEnd < 0) {
-    return { error: "Closing boundary not found" };
-  }
 
   const fileContent = bodyBuffer.slice(fileStart, fileEnd);
   const savePath = path.join(UPLOAD_DIR, fileName);
@@ -67,12 +61,14 @@ function saveMultipartFile(req, bodyBuffer) {
 const server = http.createServer((req, res) => {
   const url = new URL(req.url, `http://${req.headers.host}`);
 
+  //1
   if (req.method === "GET" && url.pathname === "/task01") {
     res.writeHead(200, { "Content-Type": "text/plain; charset=utf-8" });
     res.end("Task 01 server response");
     return;
   }
 
+  //2
   if (req.method === "GET" && url.pathname === "/task02") {
     const x = Number(url.searchParams.get("x"));
     const y = Number(url.searchParams.get("y"));
@@ -82,6 +78,7 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  //3
   if (req.method === "POST" && url.pathname === "/task03") {
     readBody(req, (bodyBuffer) => {
       const params = new URLSearchParams(bodyBuffer.toString("utf8"));
@@ -95,6 +92,7 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  //4
   if (req.method === "POST" && url.pathname === "/task04") {
     readBody(req, (bodyBuffer) => {
       const input = JSON.parse(bodyBuffer.toString("utf8"));
@@ -110,6 +108,7 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  //5
   if (req.method === "POST" && url.pathname === "/task05") {
     readBody(req, (bodyBuffer) => {
       const xmlResponse = parseXmlRequest(bodyBuffer.toString("utf8"));
@@ -119,6 +118,7 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  //6, //7
   if (req.method === "POST" && (url.pathname === "/task06" || url.pathname === "/task07")) {
     readBody(req, (bodyBuffer) => {
       const result = saveMultipartFile(req, bodyBuffer);
@@ -134,6 +134,7 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  //8
   if (req.method === "GET" && url.pathname === "/task08/download") {
     const data = fs.readFileSync(MY_TEXT_FILE);
     res.writeHead(200, {
