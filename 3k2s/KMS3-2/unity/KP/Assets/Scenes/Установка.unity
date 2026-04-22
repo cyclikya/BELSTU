@@ -253,10 +253,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b68cd8e3db8b77479adf2f6ae43dbb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Lab6PartButton
-  controller: {fileID: 0}
+  controller: {fileID: 1683106712}
   section: 2
   setupSceneBuildIndex: 0
-  setupSceneName: "\u0423\u0441\u0442\u0430\u043D\u043E\u0432\u043A\u0430"
 --- !u!1 &102541403
 GameObject:
   m_ObjectHideFlags: 0
@@ -665,10 +664,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b68cd8e3db8b77479adf2f6ae43dbb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Lab6PartButton
-  controller: {fileID: 0}
+  controller: {fileID: 1683106712}
   section: 4
   setupSceneBuildIndex: 0
-  setupSceneName: "\u0423\u0441\u0442\u0430\u043D\u043E\u0432\u043A\u0430"
 --- !u!1 &397168608
 GameObject:
   m_ObjectHideFlags: 0
@@ -803,10 +801,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b68cd8e3db8b77479adf2f6ae43dbb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Lab6PartButton
-  controller: {fileID: 0}
+  controller: {fileID: 1683106712}
   section: 3
   setupSceneBuildIndex: 0
-  setupSceneName: "\u0423\u0441\u0442\u0430\u043D\u043E\u0432\u043A\u0430"
 --- !u!1 &441432364
 GameObject:
   m_ObjectHideFlags: 0
@@ -840,9 +837,9 @@ RectTransform:
   - {fileID: 864282615}
   m_Father: {fileID: 695491077}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -123.5, y: -191.59999}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0.5, y: 73.1}
   m_SizeDelta: {x: 294.5, y: 120.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &441432366
@@ -1170,8 +1167,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -170.48, y: 28.9}
-  m_SizeDelta: {x: 247.46, y: 372}
+  m_AnchoredPosition: {x: -167.78, y: 0}
+  m_SizeDelta: {x: 294.5, y: 446.45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &695491078
 MonoBehaviour:
@@ -1839,7 +1836,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -19.1}
+  m_AnchoredPosition: {x: 0, y: -53}
   m_SizeDelta: {x: 220, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &864282616
@@ -1869,15 +1866,24 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0412\u044B\u0431\u0435\u0440\u0438\u0442\u0435 \u0443\u0437\u0435\u043B,
-    \u0447\u0442\u043E\u0431\u044B \u043F\u043E\u0441\u043C\u043E\u0442\u0440\u0435\u0442\u044C
-    \u0435\u0433\u043E \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u0435."
+  m_Text: "\u041A\u0410\u041C\u0410\u0417 (\u0441\u0430\u043C\u043E\u0441\u0432\u0430\u043B)
+    \u2014 \u044D\u0442\u043E \u0431\u043E\u043B\u044C\u0448\u0435\u0433\u0440\u0443\u0437\u043D\u044B\u0439
+    \u0430\u0432\u0442\u043E\u043C\u043E\u0431\u0438\u043B\u044C-\u0441\u0430\u043C\u043E\u0441\u0432\u0430\u043B,
+    \u043F\u0440\u0435\u0434\u043D\u0430\u0437\u043D\u0430\u0447\u0435\u043D\u043D\u044B\u0439
+    \u0434\u043B\u044F \u043F\u0435\u0440\u0435\u0432\u043E\u0437\u043A\u0438 \u0441\u044B\u043F\u0443\u0447\u0438\u0445
+    \u0433\u0440\u0443\u0437\u043E\u0432 (\u043F\u0435\u0441\u043A\u0430, \u0449\u0435\u0431\u043D\u044F,
+    \u0437\u0435\u043C\u043B\u0438). \u0415\u0433\u043E \u0433\u043B\u0430\u0432\u043D\u0430\u044F
+    \u043E\u0441\u043E\u0431\u0435\u043D\u043D\u043E\u0441\u0442\u044C \u2014 \u043A\u0443\u0437\u043E\u0432,
+    \u043A\u043E\u0442\u043E\u0440\u044B\u0439 \u043F\u043E\u0434\u043D\u0438\u043C\u0430\u0435\u0442\u0441\u044F
+    \u0433\u0438\u0434\u0440\u0430\u0432\u043B\u0438\u043A\u043E\u0439 \u0438 \u043E\u043F\u0440\u043E\u043A\u0438\u0434\u044B\u0432\u0430\u0435\u0442\u0441\u044F
+    \u043D\u0430\u0437\u0430\u0434 \u0434\u043B\u044F \u0430\u0432\u0442\u043E\u043C\u0430\u0442\u0438\u0447\u0435\u0441\u043A\u043E\u0439
+    \u0440\u0430\u0437\u0433\u0440\u0443\u0437\u043A\u0438."
 --- !u!222 &864282617
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2294,10 +2300,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b68cd8e3db8b77479adf2f6ae43dbb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Lab6PartButton
-  controller: {fileID: 0}
+  controller: {fileID: 1683106712}
   section: 1
   setupSceneBuildIndex: 0
-  setupSceneName: "\u0423\u0441\u0442\u0430\u043D\u043E\u0432\u043A\u0430"
 --- !u!1 &1287994857
 GameObject:
   m_ObjectHideFlags: 0
@@ -2590,10 +2595,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b68cd8e3db8b77479adf2f6ae43dbb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Lab6PartButton
-  controller: {fileID: 0}
+  controller: {fileID: 1683106712}
   section: 5
   setupSceneBuildIndex: 0
-  setupSceneName: "\u0423\u0441\u0442\u0430\u043D\u043E\u0432\u043A\u0430"
 --- !u!1 &1520551234
 GameObject:
   m_ObjectHideFlags: 0
@@ -2691,6 +2695,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 31b347351eb4de04ab6e5f24e97a715d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1683106712}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 31b347351eb4de04ab6e5f24e97a715d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1683106716}
   m_SourcePrefab: {fileID: 100100000, guid: 31b347351eb4de04ab6e5f24e97a715d, type: 3}
 --- !u!1 &1683106707 stripped
 GameObject:
@@ -2709,21 +2716,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2170bc7d07eedfa459e6313875bf0486, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Lab6UIController
-  kamazContext: {fileID: 0}
+  kamazContext: {fileID: 1683106716}
   targetCamera: {fileID: 702706999}
+  descriptionText: {fileID: 864282616}
   startViewPoint: {fileID: 102541404}
-  descriptionTextComponent: {fileID: 864282615}
-  practiceSceneBuildIndex: 1
-  practiceSceneName: "\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430"
   kuzovViewPoint: {fileID: 356813861}
   doorViewPoint: {fileID: 643881007}
   lightsViewPoint: {fileID: 997776488}
   panelViewPoint: {fileID: 248970248}
   steeringViewPoint: {fileID: 1844174738}
   keyViewPoint: {fileID: 968136241}
-  defaultSetupDescription: "\u0412\u044B\u0431\u0435\u0440\u0438\u0442\u0435 \u0443\u0437\u0435\u043B,
-    \u0447\u0442\u043E\u0431\u044B \u043F\u043E\u0441\u043C\u043E\u0442\u0440\u0435\u0442\u044C
-    \u0435\u0433\u043E \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u0435."
+  defaultSetupDescription: "\u041A\u0410\u041C\u0410\u0417 (\u0441\u0430\u043C\u043E\u0441\u0432\u0430\u043B)
+    \u2014 \u044D\u0442\u043E \u0431\u043E\u043B\u044C\u0448\u0435\u0433\u0440\u0443\u0437\u043D\u044B\u0439
+    \u0430\u0432\u0442\u043E\u043C\u043E\u0431\u0438\u043B\u044C-\u0441\u0430\u043C\u043E\u0441\u0432\u0430\u043B,
+    \u043F\u0440\u0435\u0434\u043D\u0430\u0437\u043D\u0430\u0447\u0435\u043D\u043D\u044B\u0439
+    \u0434\u043B\u044F \u043F\u0435\u0440\u0435\u0432\u043E\u0437\u043A\u0438 \u0441\u044B\u043F\u0443\u0447\u0438\u0445
+    \u0433\u0440\u0443\u0437\u043E\u0432 (\u043F\u0435\u0441\u043A\u0430, \u0449\u0435\u0431\u043D\u044F,
+    \u0437\u0435\u043C\u043B\u0438). \u0415\u0433\u043E \u0433\u043B\u0430\u0432\u043D\u0430\u044F
+    \u043E\u0441\u043E\u0431\u0435\u043D\u043D\u043E\u0441\u0442\u044C \u2014 \u043A\u0443\u0437\u043E\u0432,
+    \u043A\u043E\u0442\u043E\u0440\u044B\u0439 \u043F\u043E\u0434\u043D\u0438\u043C\u0430\u0435\u0442\u0441\u044F
+    \u0433\u0438\u0434\u0440\u0430\u0432\u043B\u0438\u043A\u043E\u0439 \u0438 \u043E\u043F\u0440\u043E\u043A\u0438\u0434\u044B\u0432\u0430\u0435\u0442\u0441\u044F
+    \u043D\u0430\u0437\u0430\u0434 \u0434\u043B\u044F \u0430\u0432\u0442\u043E\u043C\u0430\u0442\u0438\u0447\u0435\u0441\u043A\u043E\u0439
+    \u0440\u0430\u0437\u0433\u0440\u0443\u0437\u043A\u0438."
   kuzovDescription: "\u041A\u0443\u0437\u043E\u0432 \u041A\u0430\u043C\u0410\u0417\u0430
     \u0438 \u043F\u043E\u0434\u044A\u0435\u043C\u043D\u044B\u0439 \u043C\u0435\u0445\u0430\u043D\u0438\u0437\u043C."
   doorDescription: "\u0414\u0432\u0435\u0440\u0438 \u043A\u0430\u0431\u0438\u043D\u044B
@@ -2738,31 +2752,19 @@ MonoBehaviour:
   keyDescription: "\u0417\u0430\u043C\u043E\u043A \u0437\u0430\u0436\u0438\u0433\u0430\u043D\u0438\u044F
     \u0438 \u0437\u0430\u043F\u0443\u0441\u043A \u0434\u0432\u0438\u0433\u0430\u0442\u0435\u043B\u044F."
   cameraMoveDuration: 0.8
-  cameraMoveCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
   highlightColor: {r: 0.9019608, g: 0.9019608, b: 0.9019608, a: 0.1764706}
+--- !u!114 &1683106716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1683106707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e358aea4c033da43a4ffff7a79bb077, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::KamazContext
 --- !u!1 &1720427293
 GameObject:
   m_ObjectHideFlags: 0
@@ -3086,10 +3088,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b68cd8e3db8b77479adf2f6ae43dbb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Lab6PartButton
-  controller: {fileID: 0}
+  controller: {fileID: 1683106712}
   section: 0
   setupSceneBuildIndex: 0
-  setupSceneName: "\u0423\u0441\u0442\u0430\u043D\u043E\u0432\u043A\u0430"
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

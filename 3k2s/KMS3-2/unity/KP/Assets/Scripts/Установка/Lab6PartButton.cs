@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
@@ -7,52 +7,34 @@ public class Lab6PartButton : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     [SerializeField] private Lab6UIController controller;
     [SerializeField] private Lab6UIController.InstallationSection section = Lab6UIController.InstallationSection.Kuzov;
     [SerializeField] private int setupSceneBuildIndex = 0;
-    [SerializeField] private string setupSceneName = "Установка";
 
     private void Awake()
     {
-        if (controller != null)
+        if (controller == null)
         {
-            return;
+            controller = GetComponentInParent<Lab6UIController>();
         }
 
-        controller = GetComponentInParent<Lab6UIController>();
-        if (controller != null)
+        if (controller == null)
         {
-            return;
+            Debug.LogError("Lab6PartButton: Lab6UIController не задан и не найден у родителя.");
+            enabled = false;
         }
-
-#if UNITY_2023_1_OR_NEWER
-        controller = FindFirstObjectByType<Lab6UIController>();
-#else
-        controller = FindObjectOfType<Lab6UIController>();
-#endif
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (controller != null)
-        {
-            controller.HoverSection(section);
-        }
+        controller.HoverSection(section);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (controller != null)
-        {
-            controller.UnhoverSection(section);
-        }
+        controller.UnhoverSection(section);
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (eventData.button != PointerEventData.InputButton.Left)
-        {
-            return;
-        }
-
-        if (controller != null)
+        if (eventData.button == PointerEventData.InputButton.Left)
         {
             controller.OpenSection(section);
         }
@@ -60,15 +42,6 @@ public class Lab6PartButton : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void LoadSetupScene()
     {
-        if (setupSceneBuildIndex >= 0 && setupSceneBuildIndex < SceneManager.sceneCountInBuildSettings)
-        {
-            SceneManager.LoadScene(setupSceneBuildIndex);
-            return;
-        }
-
-        if (!string.IsNullOrWhiteSpace(setupSceneName))
-        {
-            SceneManager.LoadScene(setupSceneName);
-        }
+        SceneManager.LoadScene(setupSceneBuildIndex);
     }
 }
