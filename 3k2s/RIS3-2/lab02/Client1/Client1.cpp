@@ -51,11 +51,6 @@ bool SendAndReceive(CA& ca, CA::STATUS expectedResponse) {
     int sent = sendto(clientSocket, (char*)&ca, sizeof(ca), 0,
         (SOCKADDR*)&coordinatorAddr, sizeof(coordinatorAddr));
 
-    if (sent == SOCKET_ERROR) {
-        cout << "[ОШИБКА] Отправка сообщения: " << WSAGetLastError() << endl;
-        return false;
-    }
-
     //получаем ответ
     CA response;
     memset(&response, 0, sizeof(response));                  //обнуляем структуру
@@ -98,11 +93,6 @@ CA InitCA(char ipaddr[15], char resource[20]) {
     }
 
     clientSocket = socket(AF_INET, SOCK_DGRAM, 0);
-    if (clientSocket == INVALID_SOCKET) {
-        cout << "[InitCA] Ошибка создания сокета: " << WSAGetLastError() << endl;
-        WSACleanup();
-        return ca;
-    }
 
     coordinatorAddr.sin_family = AF_INET;
     coordinatorAddr.sin_port = htons(2000);
@@ -155,11 +145,6 @@ bool EnterCA(CA& ca) {
 
     int received = recvfrom(clientSocket, (char*)&response, sizeof(response), 0,
         (SOCKADDR*)&fromAddr, &fromLen);
-
-    if (received == SOCKET_ERROR) {
-        cout << "[EnterCA] Ошибка получения: " << WSAGetLastError() << endl;
-        return false;
-    }
 
     //обработка ответа
     if (response.status == CA::ENTER) {
