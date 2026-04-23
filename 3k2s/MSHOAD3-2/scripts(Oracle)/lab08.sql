@@ -1,5 +1,5 @@
 /* =========================================================
-   2. ОБЪЕКТНЫЙ ТИП "ЛИЦЕНЗИЯ"
+   2.1 ОБЪЕКТНЫЙ ТИП "ЛИЦЕНЗИЯ"
    - дополнительный конструктор
    - MAP метод сравнения
    - метод-функция
@@ -36,7 +36,6 @@ CREATE OR REPLACE TYPE license_obj_t AS OBJECT (
 SHOW ERRORS;
 
 CREATE OR REPLACE TYPE BODY license_obj_t AS
-
     CONSTRUCTOR FUNCTION license_obj_t(
         p_license_id   NUMBER,
         p_software_id  NUMBER,
@@ -87,8 +86,12 @@ END;
 /
 SHOW ERRORS;
 
+--  Демонстрация дополнительного конструктора
+SELECT license_obj_t(999, 2, 'TEST-KEY', 50, 5, 1234.50) AS sample_license
+FROM dual;   
+
 /* =========================================================
-   3. ОБЪЕКТНЫЙ ТИП "МЕСТО ИСПОЛЬЗОВАНИЯ"
+   2.2 ОБЪЕКТНЫЙ ТИП "МЕСТО ИСПОЛЬЗОВАНИЯ"
    - дополнительный конструктор
    - ORDER метод сравнения
    - метод-функция
@@ -179,26 +182,16 @@ END;
 /
 SHOW ERRORS;
 
-/* =========================================================
-   4. ОБЪЕКТНЫЕ ТАБЛИЦЫ
-========================================================= */
+
+-- Демонстрация дополнительного конструктора для usage_place_obj_t
+SELECT usage_place_obj_t(999, 1, 4, 'Laptop', 'Test Device') AS sample_place
+FROM dual;
+
+-- 3. ОБЪЕКТНЫЕ ТАБЛИЦЫ
 
 CREATE TABLE license_obj_tab OF license_obj_t (
     CONSTRAINT pk_license_obj_tab PRIMARY KEY (license_id)
 );
-
-SELECT * FROM license_obj_tab;
-
-
-CREATE TABLE usage_place_obj_tab OF usage_place_obj_t (
-    CONSTRAINT pk_usage_place_obj_tab PRIMARY KEY (assignment_id)
-);
-
-SELECT * FROM usage_place_obj_tab;
-
-/* =========================================================
-   5. КОПИРОВАНИЕ ДАННЫХ ИЗ РЕЛЯЦИОННЫХ ТАБЛИЦ В ОБЪЕКТНЫЕ
-========================================================= */
 
 INSERT INTO license_obj_tab
 SELECT license_obj_t(
@@ -214,6 +207,43 @@ SELECT license_obj_t(
 )
 FROM Licenses l;
 
+SELECT * FROM license_obj_tab;
+
+-- Демонстрация метода-процедуры для лицензии
+DECLARE
+    v_obj license_obj_t;
+BEGIN
+    SELECT VALUE(x)
+    INTO v_obj
+    FROM license_obj_tab x
+    WHERE x.license_id = 1;
+
+    v_obj.increase_cost(10);
+
+    UPDATE license_obj_tab x
+    SET VALUE(x) = v_obj
+    WHERE x.license_id = 1;
+
+    COMMIT;
+END;
+/
+
+SELECT x.license_id,
+       x.license_key,
+       x.cost
+FROM license_obj_tab x
+WHERE x.license_id = 1;
+
+
+
+
+
+CREATE TABLE usage_place_obj_tab OF usage_place_obj_t (
+    CONSTRAINT pk_usage_place_obj_tab PRIMARY KEY (assignment_id)
+);
+
+SELECT * FROM usage_place_obj_tab;
+
 INSERT INTO usage_place_obj_tab
 SELECT usage_place_obj_t(
     a.assignment_id,
@@ -228,10 +258,27 @@ FROM LicenseAssignments a;
 
 COMMIT;
 
-/* =========================================================
-   6. ОБЪЕКТНЫЕ ПРЕДСТАВЛЕНИЯ
-========================================================= */
+--  Демонстрация метода-процедуры для места использования
+DECLARE
+    v_place usage_place_obj_t;
+BEGIN
+    SELECT VALUE(x)
+    INTO v_place
+    FROM usage_place_obj_tab x
+    WHERE x.assignment_id = 1;
 
+    v_place.close_usage;
+
+    UPDATE usage_place_obj_tab x
+    SET VALUE(x) = v_place
+    WHERE x.assignment_id = 1;
+
+    COMMIT;
+END;
+/
+
+
+--  4. ПРИМЕНЕНИЕ ОБЪЕКТНЫХ ПРЕДСТАВЛЕНИЙ
 CREATE OR REPLACE VIEW license_obj_view OF license_obj_t
 WITH OBJECT IDENTIFIER (license_id)
 AS
@@ -263,7 +310,7 @@ SELECT usage_place_obj_t(
 FROM LicenseAssignments a;
 
 /* =========================================================
-   7. ИНДЕКСЫ
+   5. ИНДЕКСЫ
    - по атрибуту
    - по методу
 ========================================================= */
@@ -271,89 +318,14 @@ FROM LicenseAssignments a;
 CREATE INDEX idx_license_obj_cost
 ON license_obj_tab x (x.cost);
 
+SELECT * FROM license_obj_tab x ORDER BY x.cost;
+SELECT * FROM license_obj_tab;
+
+
 CREATE INDEX idx_license_obj_free_seats
 ON license_obj_tab x (x.free_seats());
 
-/* =========================================================
-   8. ДЕМОНСТРАЦИЯ РАБОТЫ
-========================================================= */
+SELECT * FROM license_obj_tab x WHERE x.free_seats() > 0;
+SELECT * FROM license_obj_tab;
 
--- 8.1. Просмотр объектной таблицы
-SELECT x.license_id,
-       x.license_key,
-       x.total_seats,
-       x.used_seats,
-       x.free_seats() AS free_seats,
-       x.get_status() AS status_text
-FROM license_obj_tab x
-ORDER BY VALUE(x);
 
--- 8.2. Просмотр мест использования
-SELECT x.assignment_id,
-       x.license_id,
-       x.employee_id,
-       x.assigned_date,
-       x.get_place_info() AS info
-FROM usage_place_obj_tab x
-ORDER BY VALUE(x);
-
--- 8.3. Использование объектного представления
-SELECT x.license_id,
-       x.license_key,
-       x.get_status() AS status_text
-FROM license_obj_view x
-WHERE x.free_seats() > 10
-ORDER BY VALUE(x);
-
--- 8.4. Демонстрация дополнительного конструктора
-SELECT license_obj_t(999, 2, 'TEST-KEY', 50, 5, 1234.50) AS sample_license
-FROM dual;
-
-SELECT usage_place_obj_t(999, 1, 4, 'Laptop', 'Test Device') AS sample_place
-FROM dual;
-
--- 8.5. Демонстрация метода-процедуры для лицензии
-DECLARE
-    v_obj license_obj_t;
-BEGIN
-    SELECT VALUE(x)
-    INTO v_obj
-    FROM license_obj_tab x
-    WHERE x.license_id = 1;
-
-    v_obj.increase_cost(10);
-
-    UPDATE license_obj_tab x
-    SET VALUE(x) = v_obj
-    WHERE x.license_id = 1;
-
-    COMMIT;
-END;
-/
-
-SELECT x.license_id, x.license_key, x.cost
-FROM license_obj_tab x
-WHERE x.license_id = 1;
-
--- 8.6. Демонстрация метода-процедуры для места использования
-DECLARE
-    v_place usage_place_obj_t;
-BEGIN
-    SELECT VALUE(x)
-    INTO v_place
-    FROM usage_place_obj_tab x
-    WHERE x.assignment_id = 1;
-
-    v_place.close_usage;
-
-    UPDATE usage_place_obj_tab x
-    SET VALUE(x) = v_place
-    WHERE x.assignment_id = 1;
-
-    COMMIT;
-END;
-/
-
-SELECT x.assignment_id, x.status, x.get_place_info()
-FROM usage_place_obj_tab x
-WHERE x.assignment_id = 1;
