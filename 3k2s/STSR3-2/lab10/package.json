@@ -1,0 +1,16 @@
+{
+  "name": "lab10-websocket",
+  "version": "1.0.0",
+  "description": "Lab 10 HTTP and WebSocket",
+  "main": "10-01.js",
+  "type": "commonjs",
+  "scripts": {
+    "start:10-01": "node 10-01.js",
+    "start:10-02": "node 10-02.js",
+    "start:10-03": "node 10-03.js",
+    "start:10-03a": "node 10-03a.js"
+  },
+  "dependencies": {
+    "ws": "^8.18.3"
+  }
+}
