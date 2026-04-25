@@ -1,7 +1,9 @@
-п»їusing System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Главный скрипт игрока: переключает режимы ходьбы и вождения,
+// открывает двери, запускает двигатель и рисует подсказки.
 public class CameraController : MonoBehaviour
 {
     public enum ControlMode
@@ -10,106 +12,114 @@ public class CameraController : MonoBehaviour
         Driving
     }
 
+    [Header("References")]
+    [SerializeField] private KamazContext kamazContext;
+    [SerializeField] private KamazLightsController kamazLightsController;
+    [SerializeField] private KamazCabinMechanismsController kamazCabinMechanismsController;
+
+    [Header("Mode Objects")]
+    [SerializeField] private FreeMovementMode freeMovementMode = new FreeMovementMode();
+    [SerializeField] private DrivingMode drivingMode = new DrivingMode();
+
+    [Header("Keys")]
+    [SerializeField] private KeyCode interactKey = KeyCode.E;
+    [SerializeField] private KeyCode engineToggleKey = KeyCode.Tab;
+    [SerializeField] private KeyCode toggleUiCursorKey = KeyCode.Escape;
+
+    [Header("Door")]
+    [SerializeField] private float switchModeDistance = 20f;
+    [SerializeField] private float exitToFreeModeDelay = 0.35f;
+    [SerializeField] private float characterControllerEnableDelayAfterExit = 0.2f;
+    [SerializeField] private float doorFreezeDuration = 0.85f;
+
+    [Header("View")]
+    [SerializeField] private bool showCrosshairDot = true;
+    [SerializeField] private int crosshairSize = 3;
+    [SerializeField] private Color crosshairColor = Color.white;
+    [SerializeField] private bool allowUiCursorToggle = true;
+    [SerializeField] private bool startWithUnlockedCursor;
+    [SerializeField] private float drivingZoomMultiplier = 2f;
+    [SerializeField] private float drivingZoomLerpSpeed = 12f;
+
+    [Header("Hints")]
+    [SerializeField] private bool showInteractionHint = true;
+    [SerializeField] private Color interactionHintColor = Color.white;
+    [SerializeField] private int interactionHintFontSize = 18;
+
+    [Header("Highlight")]
+    [SerializeField] private bool showInteractableHighlight = true;
+
+    [Header("Engine Effects")]
+    [SerializeField] private float engineStartShakeDuration = 1.5f;
+    [SerializeField] private float engineStartShakeAmplitude = 0.01f;
+    [SerializeField] private float startupSweepUpDuration = 0.28f;
+    [SerializeField] private float startupSweepHoldDuration = 0.1f;
+    [SerializeField] private float startupSweepDownDuration = 0.9f;
+    [SerializeField] private float startupSpeedometerPeak = 20f;
+    [SerializeField] private float startupTachometerPeak = 2800f;
+
     private ControlMode currentMode = ControlMode.FreeMovement;
-    private KeyCode interactKey = KeyCode.E;
-    private KeyCode engineToggleKey = KeyCode.Tab;
-    private KeyCode toggleUiCursorKey = KeyCode.Escape;
+    private CharacterController characterController;
+    private Camera playerCamera;
+    private Texture2D crosshairTexture;
+    private Collider[] playerColliders;
+    private Rigidbody kamazRigidbody;
+    private bool kamazWasKinematic;
+    private float defaultFieldOfView;
 
-    private FreeMovementMode freeMovementMode = new FreeMovementMode();
+    private bool waitingControllerReenable;
+    private bool isExitingDrivingMode;
+    private bool engineRunning;
+    private bool uiCursorActive;
 
-    private DrivingMode drivingMode = new DrivingMode();
+    private Coroutine doorFreezeCoroutine;
+    private Coroutine kabinaShakeCoroutine;
+    private Coroutine startupNeedleSweepCoroutine;
 
-    private string doorOpenBoolName = "isOpen";
-    private string keyTurnBoolName = "turn";
-    private float switchModeDistance = 20f;
-    private float engineStartShakeDuration = 1.5f;
-    private float engineStartShakeAmplitude = 0.01f;
-    private float drivingZoomMultiplier = 2f;
-    private float drivingZoomLerpSpeed = 12f;
-    private float startupSweepUpDuration = 0.28f;
-    private float startupSweepHoldDuration = 0.1f;
-    private float startupSweepDownDuration = 0.9f;
-    private float startupSpeedometerPeak = 20f;
-    private float startupTachometerPeak = 2800f;
-
-    private float exitToFreeModeDelay = 0.35f;
-    private float characterControllerEnableDelayAfterExit = 0.2f;
-    private float ignoreKamazCollisionAfterExit = 0.8f;
-    private float doorFreezeDuration = 0.85f;
-
-    private bool showCrosshairDot = true;
-    private int crosshairSize = 3;
-    private Color crosshairColor = Color.white;
-    private KamazContext kamazContext;
-    private KamazLightsController kamazLightsController;
-    private KamazCabinMechanismsController kamazCabinMechanismsController;
-
-    private bool showInteractableHighlight = true;
-    private Color interactableHighlightColor = new Color(230f / 255f, 230f / 255f, 230f / 255f, 45f / 255f);
-    private bool showInteractionHint = true;
-    private Color interactionHintColor = Color.white;
-    private int interactionHintFontSize = 18;
-    private bool allowUiCursorToggle = true;
-    private bool startWithUnlockedCursor;
+    private readonly Dictionary<Renderer, Material> highlightedRenderers = new Dictionary<Renderer, Material>();
+    private readonly Color highlightOverlayColor = new Color(230f / 255f, 230f / 255f, 230f / 255f, 1f);
+    private const float highlightStrength = 80f / 255f;
+    private Transform highlightedRoot;
+    private string interactionHintText = string.Empty;
+    private string temporaryHintText = string.Empty;
+    private float temporaryHintUntilTime;
+    private readonly List<Transform> shakeTargets = new List<Transform>();
+    private readonly List<Vector3> shakeStartPositions = new List<Vector3>();
 
     public bool IsDrivingMode => currentMode == ControlMode.Driving;
     public bool IsEngineRunning => engineRunning;
 
-    private Camera playerCamera;
-    private Texture2D crosshairTexture;
-    private bool isExitingDrivingMode;
-    private bool waitingControllerReenable;
-    private Collider[] playerColliders;
-    private int kamazCollisionIgnoreRequests;
-    private Rigidbody kamazRigidbody;
-    private Coroutine doorFreezeCoroutine;
-    private int kamazFreezeRequests;
-    private bool kamazRigidbodyWasKinematic;
-    private RigidbodyConstraints kamazRigidbodyOriginalConstraints;
-    private Coroutine kabinaShakeCoroutine;
-    private Coroutine startupNeedleSweepCoroutine;
-    private readonly List<Transform> kabinaShakeTargets = new List<Transform>();
-    private readonly List<Vector3> kabinaShakeOriginalLocalPositions = new List<Vector3>();
-    private GaugeNeedle speedometerNeedle;
-    private GaugeNeedle tachometerNeedle;
-    private bool speedometerNeedleConfigured;
-    private bool tachometerNeedleConfigured;
-
-    private Transform highlightedRoot;
-    private readonly Dictionary<Renderer, RendererColorState> highlightedRenderers = new Dictionary<Renderer, RendererColorState>();
-    private bool engineRunning;
-    private string interactionHintText = string.Empty;
-    private string temporaryHintText = string.Empty;
-    private float temporaryHintUntilTime;
-    private bool uiCursorActive;
-
-    private KamazContext Kamaz => kamazContext;
-    private float defaultFieldOfView;
-
     private void Start()
     {
-        currentMode = ControlMode.FreeMovement;
-
-        CharacterController controller = GetComponent<CharacterController>();
+        characterController = GetComponent<CharacterController>();
         playerCamera = GetComponentInChildren<Camera>();
+        playerColliders = GetComponentsInChildren<Collider>(true);
+
+        if (kamazContext != null)
+        {
+            if (kamazLightsController == null) kamazLightsController = kamazContext.LightsController;
+            if (kamazCabinMechanismsController == null) kamazCabinMechanismsController = kamazContext.CabinMechanismsController;
+            kamazRigidbody = kamazContext.KamazRigidbody;
+        }
+
+        if (kamazRigidbody != null)
+        {
+            kamazWasKinematic = kamazRigidbody.isKinematic;
+        }
+
         if (playerCamera != null)
         {
             defaultFieldOfView = playerCamera.fieldOfView;
         }
 
-        ResolveKamazContext();
-        ResolveLightsController();
+        freeMovementMode.Initialize(characterController, playerCamera, transform);
+        drivingMode.Initialize(characterController, transform, kamazContext);
 
-        freeMovementMode.Initialize(controller, playerCamera, transform);
-        drivingMode.Initialize(controller, transform, Kamaz);
-
-        Kamaz?.AutoResolve();
-        TryInitializeNeedles();
-
-        ApplyCurrentMode();
+        ConfigureNeedles();
         SyncLightsControllerState();
         CreateCrosshairTexture();
         SetUiCursorState(startWithUnlockedCursor);
+        ApplyCurrentMode();
     }
 
     private void Update()
@@ -119,17 +129,6 @@ public class CameraController : MonoBehaviour
         {
             return;
         }
-
-        if (Kamaz == null)
-        {
-            ResolveKamazContext();
-            drivingMode.SetContext(Kamaz);
-            Kamaz?.AutoResolve();
-            ResolveLightsController();
-            SyncLightsControllerState();
-        }
-
-        TryInitializeNeedles();
 
         UpdateInteractionHighlight();
         UpdateInteractionHintText();
@@ -162,91 +161,68 @@ public class CameraController : MonoBehaviour
             return;
         }
 
-        if (!freeMovementMode.TryGetInteraction(Kamaz, out FreeMovementMode.InteractionResult interaction))
+        if (!freeMovementMode.TryGetInteraction(kamazContext, out FreeMovementMode.InteractionResult interaction))
         {
             return;
         }
 
-        switch (interaction.Type)
+        if (interaction.Type == FreeMovementMode.InteractionType.Door)
         {
-            case FreeMovementMode.InteractionType.Door:
-                HandleDoorInteraction(interaction.DoorAnimator);
-                return;
+            ToggleDoor(interaction.DoorAnimator);
+            return;
+        }
 
-            case FreeMovementMode.InteractionType.Steering:
-                HandleSteeringInteraction();
-                return;
-
-            case FreeMovementMode.InteractionType.Key:
-                HandleOtherInteraction(interaction.HitObject);
-                return;
-
-            case FreeMovementMode.InteractionType.Other:
-                HandleOtherInteraction(interaction.HitObject);
-                return;
+        if (interaction.Type == FreeMovementMode.InteractionType.Steering)
+        {
+            EnterDrivingMode();
         }
     }
 
     private void HandleDrivingModeInteraction()
     {
-        if (isExitingDrivingMode)
+        if (Input.GetKeyDown(engineToggleKey))
+        {
+            SetEngineRunning(!engineRunning);
+        }
+
+        if (isExitingDrivingMode || !Input.GetKeyDown(interactKey))
         {
             return;
         }
 
-        HandleDrivingEngineToggle();
-
-        if (!Input.GetKeyDown(interactKey))
+        if (!freeMovementMode.TryGetInteraction(kamazContext, out FreeMovementMode.InteractionResult interaction))
         {
             return;
         }
 
-        if (!freeMovementMode.TryGetInteraction(Kamaz, out FreeMovementMode.InteractionResult interaction))
+        if (interaction.Type != FreeMovementMode.InteractionType.Door || interaction.DoorRoot == null)
         {
             return;
         }
 
-        if (interaction.Type != FreeMovementMode.InteractionType.Door)
-        {
-            return;
-        }
-
-        Transform targetDoor = interaction.DoorRoot;
-        if (targetDoor == null)
-        {
-            return;
-        }
-
-        float distanceToDoor = Vector3.Distance(transform.position, targetDoor.position);
+        float distanceToDoor = Vector3.Distance(transform.position, interaction.DoorRoot.position);
         if (distanceToDoor > switchModeDistance)
         {
             return;
         }
 
-        ResolveLightsController();
         if (kamazLightsController != null)
         {
-            float inputBlockSeconds = exitToFreeModeDelay + 0.25f;
-            kamazLightsController.BlockInputForSeconds(inputBlockSeconds);
+            kamazLightsController.BlockInputForSeconds(exitToFreeModeDelay + 0.25f);
         }
 
-        StartCoroutine(ExitDrivingModeWithDelay(interaction.DoorAnimator));
+        StartCoroutine(ExitDrivingMode(interaction.DoorAnimator));
     }
 
-    private IEnumerator ExitDrivingModeWithDelay(Animator exitDoorAnimator)
+    private IEnumerator ExitDrivingMode(Animator doorAnimator)
     {
         isExitingDrivingMode = true;
-        RequestKamazCollisionIgnore();
-        RequestKamazFreeze();
+        IgnoreKamazCollisions(true);
+        FreezeKamaz(true);
 
-        if (exitDoorAnimator == null)
+        if (doorAnimator != null)
         {
-            exitDoorAnimator = Kamaz != null ? Kamaz.DoorLAnimator : null;
-        }
-
-        if (exitDoorAnimator != null)
-        {
-            SetDoorOpen(exitDoorAnimator, true);
+            doorAnimator.SetBool("isOpen", true);
         }
 
         yield return new WaitForSeconds(exitToFreeModeDelay);
@@ -256,14 +232,40 @@ public class CameraController : MonoBehaviour
 
         yield return new WaitForSeconds(characterControllerEnableDelayAfterExit);
         drivingMode.SetCharacterControllerEnabled(true);
-        RefreshPlayerColliders();
 
-        yield return new WaitForSeconds(ignoreKamazCollisionAfterExit);
-        ReleaseKamazCollisionIgnore();
-        ReleaseKamazFreeze();
+        yield return new WaitForSeconds(0.8f);
+        IgnoreKamazCollisions(false);
+        FreezeKamaz(false);
 
         waitingControllerReenable = false;
         isExitingDrivingMode = false;
+    }
+
+    private void EnterDrivingMode()
+    {
+        if (kamazContext == null)
+        {
+            return;
+        }
+
+        if (kamazContext.DoorLAnimator != null)
+        {
+            kamazContext.DoorLAnimator.SetBool("isOpen", false);
+        }
+
+        if (kamazContext.DoorRAnimator != null)
+        {
+            kamazContext.DoorRAnimator.SetBool("isOpen", false);
+        }
+
+        SetMode(ControlMode.Driving);
+    }
+
+    private void SetMode(ControlMode mode, bool keepControllerDisabledOnFree = false)
+    {
+        currentMode = mode;
+        ApplyCurrentMode(keepControllerDisabledOnFree);
+        SyncLightsControllerState();
     }
 
     private void ApplyCurrentMode(bool keepControllerDisabledOnFree = false)
@@ -271,7 +273,6 @@ public class CameraController : MonoBehaviour
         if (currentMode == ControlMode.FreeMovement)
         {
             drivingMode.ExitMode(keepControllerDisabledOnFree);
-
             if (!keepControllerDisabledOnFree)
             {
                 freeMovementMode.EnterMode();
@@ -284,253 +285,7 @@ public class CameraController : MonoBehaviour
         }
     }
 
-    private void SetMode(ControlMode mode, bool keepControllerDisabledOnFree = false)
-    {
-        if (currentMode == mode)
-        {
-            return;
-        }
-
-        currentMode = mode;
-        ApplyCurrentMode(keepControllerDisabledOnFree);
-        SyncLightsControllerState();
-    }
-
-    private bool IsDoorOpen()
-    {
-        Animator doorAnimator = Kamaz != null ? Kamaz.DoorLAnimator : null;
-        if (doorAnimator == null || !HasAnimatorBool(doorAnimator, doorOpenBoolName))
-        {
-            return false;
-        }
-
-        return doorAnimator.GetBool(doorOpenBoolName);
-    }
-
-    private void EnsureDoorClosed()
-    {
-        Transform[] doors = { Kamaz != null ? Kamaz.DoorL : null, Kamaz != null ? Kamaz.DoorR : null };
-        Animator[] doorAnimators = { Kamaz != null ? Kamaz.DoorLAnimator : null, Kamaz != null ? Kamaz.DoorRAnimator : null };
-
-        for (int i = 0; i < doors.Length; i++)
-        {
-            if (doors[i] != null && doorAnimators[i] != null)
-            {
-                SetDoorOpen(doorAnimators[i], false);
-            }
-        }
-    }
-
-    private void SetDoorOpen(Animator doorAnimator, bool value)
-    {
-        if (doorAnimator == null || !HasAnimatorBool(doorAnimator, doorOpenBoolName))
-        {
-            return;
-        }
-
-        doorAnimator.SetBool(doorOpenBoolName, value);
-    }
-
-    private void RefreshPlayerColliders()
-    {
-        playerColliders = GetComponentsInChildren<Collider>(true);
-    }
-
-    private void SetIgnoreKamazCollisions(bool ignore)
-    {
-        if (playerColliders == null || playerColliders.Length == 0)
-        {
-            RefreshPlayerColliders();
-        }
-
-        Collider[] kamazColliders = Kamaz != null ? Kamaz.AllKamazColliders : null;
-        if (playerColliders == null || kamazColliders == null)
-        {
-            return;
-        }
-
-        foreach (Collider playerCollider in playerColliders)
-        {
-            if (playerCollider == null)
-            {
-                continue;
-            }
-
-            foreach (Collider kamazCollider in kamazColliders)
-            {
-                if (kamazCollider == null)
-                {
-                    continue;
-                }
-
-                Physics.IgnoreCollision(playerCollider, kamazCollider, ignore);
-            }
-        }
-    }
-
-    private void RequestKamazCollisionIgnore()
-    {
-        kamazCollisionIgnoreRequests++;
-        if (kamazCollisionIgnoreRequests == 1)
-        {
-            SetIgnoreKamazCollisions(true);
-        }
-    }
-
-    private void ReleaseKamazCollisionIgnore()
-    {
-        if (kamazCollisionIgnoreRequests <= 0)
-        {
-            kamazCollisionIgnoreRequests = 0;
-            return;
-        }
-
-        kamazCollisionIgnoreRequests--;
-        if (kamazCollisionIgnoreRequests == 0)
-        {
-            SetIgnoreKamazCollisions(false);
-        }
-    }
-
-    private void ResetKamazCollisionIgnoreState()
-    {
-        kamazCollisionIgnoreRequests = 0;
-        SetIgnoreKamazCollisions(false);
-    }
-
-    private void ResolveKamazRigidbody()
-    {
-        if (kamazRigidbody != null)
-        {
-            return;
-        }
-
-        if (Kamaz != null && Kamaz.Root != null)
-        {
-            kamazRigidbody = Kamaz.Root.GetComponent<Rigidbody>();
-            if (kamazRigidbody == null)
-            {
-                kamazRigidbody = Kamaz.Root.GetComponentInParent<Rigidbody>();
-            }
-
-            if (kamazRigidbody == null)
-            {
-                kamazRigidbody = Kamaz.Root.GetComponentInChildren<Rigidbody>(true);
-            }
-        }
-    }
-
-    private void StartDoorFreeze()
-    {
-        if (doorFreezeDuration <= 0f)
-        {
-            return;
-        }
-
-        if (doorFreezeCoroutine != null)
-        {
-            StopCoroutine(doorFreezeCoroutine);
-            doorFreezeCoroutine = null;
-            ReleaseKamazFreeze();
-        }
-
-        doorFreezeCoroutine = StartCoroutine(DoorFreezeRoutine());
-    }
-
-    private IEnumerator DoorFreezeRoutine()
-    {
-        RequestKamazFreeze();
-        yield return new WaitForSeconds(doorFreezeDuration);
-        ReleaseKamazFreeze();
-        doorFreezeCoroutine = null;
-    }
-
-    private void RequestKamazFreeze()
-    {
-        ResolveKamazRigidbody();
-        if (kamazRigidbody == null)
-        {
-            return;
-        }
-
-        kamazFreezeRequests++;
-        if (kamazFreezeRequests == 1)
-        {
-            kamazRigidbodyWasKinematic = kamazRigidbody.isKinematic;
-            kamazRigidbodyOriginalConstraints = kamazRigidbody.constraints;
-        }
-
-        if (!kamazRigidbody.isKinematic)
-        {
-            kamazRigidbody.linearVelocity = Vector3.zero;
-            kamazRigidbody.angularVelocity = Vector3.zero;
-        }
-
-        kamazRigidbody.isKinematic = true;
-        kamazRigidbody.constraints = RigidbodyConstraints.FreezeAll;
-    }
-
-    private void ReleaseKamazFreeze()
-    {
-        if (kamazFreezeRequests <= 0)
-        {
-            kamazFreezeRequests = 0;
-            return;
-        }
-
-        kamazFreezeRequests--;
-        if (kamazFreezeRequests > 0)
-        {
-            return;
-        }
-
-        kamazFreezeRequests = 0;
-
-        ResolveKamazRigidbody();
-        if (kamazRigidbody == null)
-        {
-            return;
-        }
-
-        kamazRigidbody.constraints = kamazRigidbodyOriginalConstraints;
-        kamazRigidbody.isKinematic = kamazRigidbodyWasKinematic;
-
-        if (!kamazRigidbody.isKinematic)
-        {
-            kamazRigidbody.linearVelocity = Vector3.zero;
-            kamazRigidbody.angularVelocity = Vector3.zero;
-        }
-    }
-
-    private void ResetKamazFreezeState()
-    {
-        if (doorFreezeCoroutine != null)
-        {
-            StopCoroutine(doorFreezeCoroutine);
-            doorFreezeCoroutine = null;
-        }
-
-        if (kamazFreezeRequests > 0)
-        {
-            kamazFreezeRequests = 1;
-            ReleaseKamazFreeze();
-        }
-    }
-
-    private bool HasAnimatorBool(Animator animator, string parameterName)
-    {
-        foreach (AnimatorControllerParameter parameter in animator.parameters)
-        {
-            if (parameter.name == parameterName && parameter.type == AnimatorControllerParameterType.Bool)
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    private void HandleDoorInteraction(Animator doorAnimator)
+    private void ToggleDoor(Animator doorAnimator)
     {
         if (doorAnimator == null)
         {
@@ -538,24 +293,78 @@ public class CameraController : MonoBehaviour
         }
 
         StartDoorFreeze();
-        bool isOpen = HasAnimatorBool(doorAnimator, doorOpenBoolName) && doorAnimator.GetBool(doorOpenBoolName);
-        SetDoorOpen(doorAnimator, !isOpen);
+        bool isOpen = doorAnimator.GetBool("isOpen");
+        doorAnimator.SetBool("isOpen", !isOpen);
     }
 
-    private void HandleSteeringInteraction()
+    private void StartDoorFreeze()
     {
-        EnsureDoorClosed();
-        SetMode(ControlMode.Driving);
+        if (doorFreezeCoroutine != null)
+        {
+            StopCoroutine(doorFreezeCoroutine);
+            FreezeKamaz(false);
+        }
+
+        doorFreezeCoroutine = StartCoroutine(DoorFreezeRoutine());
     }
 
-    private void HandleDrivingEngineToggle()
+    private IEnumerator DoorFreezeRoutine()
     {
-        if (!Input.GetKeyDown(engineToggleKey))
+        FreezeKamaz(true);
+        yield return new WaitForSeconds(doorFreezeDuration);
+        FreezeKamaz(false);
+        doorFreezeCoroutine = null;
+    }
+
+    private void FreezeKamaz(bool value)
+    {
+        if (kamazRigidbody == null)
         {
             return;
         }
 
-        SetEngineRunning(!engineRunning);
+        if (value)
+        {
+            kamazRigidbody.linearVelocity = Vector3.zero;
+            kamazRigidbody.angularVelocity = Vector3.zero;
+            kamazRigidbody.isKinematic = true;
+            return;
+        }
+
+        kamazRigidbody.isKinematic = kamazWasKinematic;
+        kamazRigidbody.linearVelocity = Vector3.zero;
+        kamazRigidbody.angularVelocity = Vector3.zero;
+    }
+
+    private void IgnoreKamazCollisions(bool ignore)
+    {
+        if (playerColliders == null || kamazContext == null || kamazContext.AllKamazColliders == null)
+        {
+            return;
+        }
+
+        for (int i = 0; i < playerColliders.Length; i++)
+        {
+            Collider playerCollider = playerColliders[i];
+            if (playerCollider == null)
+            {
+                continue;
+            }
+
+            for (int j = 0; j < kamazContext.AllKamazColliders.Length; j++)
+            {
+                Collider kamazCollider = kamazContext.AllKamazColliders[j];
+                if (kamazCollider != null)
+                {
+                    Physics.IgnoreCollision(playerCollider, kamazCollider, ignore);
+                }
+            }
+        }
+    }
+
+    public void SetEngineRunningState(bool value)
+    {
+        SetEngineRunning(value);
     }
 
     private void SetEngineRunning(bool value)
@@ -565,188 +374,35 @@ public class CameraController : MonoBehaviour
             return;
         }
 
-        if (value)
+        if (value && kamazCabinMechanismsController != null && kamazCabinMechanismsController.IsBodyRaised)
         {
-            ResolveCabinMechanismsController();
-            if (kamazCabinMechanismsController != null && kamazCabinMechanismsController.IsBodyRaised)
-            {
-                ShowTemporaryHint("РЎРЅР°С‡Р°Р»Р° РѕРїСѓСЃС‚РёС‚Рµ РєСѓР·РѕРІ (B), Р·Р°С‚РµРј Р·Р°РїСѓСЃРєР°Р№С‚Рµ РґРІРёРіР°С‚РµР»СЊ.");
-                return;
-            }
+            ShowTemporaryHint("Сначала опустите кузов (B), затем запускайте двигатель.");
+            return;
         }
 
         engineRunning = value;
 
-        Animator keyAnimator = Kamaz != null ? Kamaz.KeyAnimator : null;
-        if (keyAnimator != null && HasAnimatorBool(keyAnimator, keyTurnBoolName))
+        if (kamazContext != null && kamazContext.KeyAnimator != null)
         {
-            keyAnimator.SetBool(keyTurnBoolName, engineRunning);
+            kamazContext.KeyAnimator.SetBool("turn", value);
         }
 
         if (engineRunning)
         {
-            StartKabinaStartShake();
+            StartCabinShake();
             StartStartupNeedleSweep();
         }
         else
         {
+            StopCabinShake();
             StopStartupNeedleSweep(true);
-            ApplyNeedleValuesImmediate(0f, 0f);
         }
 
-        ResolveLightsController();
         SyncLightsControllerState();
-    }
-
-    public void SetEngineRunningState(bool value)
-    {
-        SetEngineRunning(value);
-    }
-
-    private void HandleOtherInteraction(Transform hitObject)
-    {
-        // Р—Р°РіР»СѓС€РєР° РґР»СЏ Р±СѓРґСѓС‰РёС… РёРЅС‚РµСЂР°РєС‚РёРІРЅС‹С… РѕР±СЉРµРєС‚РѕРІ (РїСѓР»СЊС‚С‹, РєРЅРѕРїРєРё Рё С‚.Рґ.)
-    }
-
-    private void OnApplicationFocus(bool hasFocus)
-    {
-        if (!hasFocus)
-        {
-            return;
-        }
-
-        SetUiCursorState(uiCursorActive);
-    }
-
-    private void OnDisable()
-    {
-        SetEngineRunning(false);
-        StopStartupNeedleSweep(true);
-        StopKabinaShakeAndRestore();
-        ResetKamazCollisionIgnoreState();
-        ResetKamazFreezeState();
-        ClearHighlight();
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-    }
-
-    private void OnGUI()
-    {
-        if (uiCursorActive)
-        {
-            return;
-        }
-
-        if (!showCrosshairDot || crosshairTexture == null)
-        {
-            return;
-        }
-
-        float x = (Screen.width - crosshairSize) * 0.5f;
-        float y = (Screen.height - crosshairSize) * 0.5f;
-
-        Color previousColor = GUI.color;
-        GUI.color = crosshairColor;
-        GUI.DrawTexture(new Rect(x, y, crosshairSize, crosshairSize), crosshairTexture);
-        GUI.color = previousColor;
-
-        DrawInteractionHint();
-    }
-
-    private void HandleUiCursorToggle()
-    {
-        if (!allowUiCursorToggle)
-        {
-            return;
-        }
-
-        if (!Input.GetKeyDown(toggleUiCursorKey))
-        {
-            return;
-        }
-
-        SetUiCursorState(!uiCursorActive);
-    }
-
-    private void SetUiCursorState(bool enabled)
-    {
-        uiCursorActive = enabled;
-        Cursor.lockState = uiCursorActive ? CursorLockMode.None : CursorLockMode.Locked;
-        Cursor.visible = uiCursorActive;
-    }
-
-    private void CreateCrosshairTexture()
-    {
-        crosshairTexture = new Texture2D(1, 1, TextureFormat.RGBA32, false);
-        crosshairTexture.SetPixel(0, 0, Color.white);
-        crosshairTexture.Apply();
-    }
-
-    private void ResolveKamazContext()
-    {
-        if (kamazContext != null)
-        {
-            return;
-        }
-
-        kamazContext = KamazContext.Instance;
-        if (kamazContext == null)
-        {
-#if UNITY_2023_1_OR_NEWER
-            kamazContext = FindFirstObjectByType<KamazContext>();
-#else
-            kamazContext = FindObjectOfType<KamazContext>();
-#endif
-        }
-    }
-
-    private void ResolveLightsController()
-    {
-        if (kamazLightsController != null)
-        {
-            return;
-        }
-
-        if (Kamaz != null && Kamaz.Root != null)
-        {
-            kamazLightsController = Kamaz.Root.GetComponent<KamazLightsController>();
-        }
-
-        if (kamazLightsController == null)
-        {
-#if UNITY_2023_1_OR_NEWER
-            kamazLightsController = FindFirstObjectByType<KamazLightsController>();
-#else
-            kamazLightsController = FindObjectOfType<KamazLightsController>();
-#endif
-        }
-    }
-
-    private void ResolveCabinMechanismsController()
-    {
-        if (kamazCabinMechanismsController != null)
-        {
-            return;
-        }
-
-        if (Kamaz != null && Kamaz.Root != null)
-        {
-            kamazCabinMechanismsController = Kamaz.Root.GetComponent<KamazCabinMechanismsController>();
-        }
-
-        if (kamazCabinMechanismsController == null)
-        {
-#if UNITY_2023_1_OR_NEWER
-            kamazCabinMechanismsController = FindFirstObjectByType<KamazCabinMechanismsController>();
-#else
-            kamazCabinMechanismsController = FindObjectOfType<KamazCabinMechanismsController>();
-#endif
-        }
     }
 
     private void SyncLightsControllerState()
     {
-        ResolveLightsController();
         if (kamazLightsController == null)
         {
             return;
@@ -756,15 +412,177 @@ public class CameraController : MonoBehaviour
         kamazLightsController.SetInCabin(currentMode == ControlMode.Driving);
     }
 
+    private void ConfigureNeedles()
+    {
+        if (kamazContext == null)
+        {
+            return;
+        }
+
+        if (kamazContext.SpidometerNeedle != null)
+        {
+            kamazContext.SpidometerNeedle.Configure(0f, 90f, 0.3f, 264f);
+            kamazContext.SpidometerNeedle.SetValueImmediate(0f);
+        }
+
+        if (kamazContext.TachometerNeedle != null)
+        {
+            kamazContext.TachometerNeedle.Configure(0f, 3000f, 2f, 240f);
+            kamazContext.TachometerNeedle.SetValueImmediate(0f);
+        }
+    }
+
+    private void StartStartupNeedleSweep()
+    {
+        if (startupNeedleSweepCoroutine != null)
+        {
+            StopCoroutine(startupNeedleSweepCoroutine);
+        }
+
+        startupNeedleSweepCoroutine = StartCoroutine(StartupNeedleSweepRoutine());
+    }
+
+    private IEnumerator StartupNeedleSweepRoutine()
+    {
+        float elapsed = 0f;
+        while (elapsed < startupSweepUpDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / startupSweepUpDuration);
+            SetNeedlesImmediate(Mathf.Lerp(0f, startupSpeedometerPeak, t), Mathf.Lerp(0f, startupTachometerPeak, t));
+            yield return null;
+        }
+
+        if (startupSweepHoldDuration > 0f)
+        {
+            yield return new WaitForSeconds(startupSweepHoldDuration);
+        }
+
+        elapsed = 0f;
+        while (elapsed < startupSweepDownDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / startupSweepDownDuration);
+            SetNeedlesImmediate(Mathf.Lerp(startupSpeedometerPeak, 0f, t), Mathf.Lerp(startupTachometerPeak, 0f, t));
+            yield return null;
+        }
+
+        SetNeedlesImmediate(0f, 0f);
+        startupNeedleSweepCoroutine = null;
+    }
+
+    private void StopStartupNeedleSweep(bool resetToZero)
+    {
+        if (startupNeedleSweepCoroutine != null)
+        {
+            StopCoroutine(startupNeedleSweepCoroutine);
+            startupNeedleSweepCoroutine = null;
+        }
+
+        if (resetToZero)
+        {
+            SetNeedlesImmediate(0f, 0f);
+        }
+    }
+
+    private void SetNeedlesImmediate(float speedValue, float tachValue)
+    {
+        if (kamazContext == null)
+        {
+            return;
+        }
+
+        if (kamazContext.SpidometerNeedle != null)
+        {
+            kamazContext.SpidometerNeedle.SetValueImmediate(speedValue);
+        }
+
+        if (kamazContext.TachometerNeedle != null)
+        {
+            kamazContext.TachometerNeedle.SetValueImmediate(tachValue);
+        }
+    }
+
+    private void StartCabinShake()
+    {
+        StopCabinShake();
+        if (kamazContext == null || kamazContext.Kabina == null)
+        {
+            return;
+        }
+
+        shakeTargets.Clear();
+        shakeStartPositions.Clear();
+        shakeTargets.Add(kamazContext.Kabina);
+        shakeStartPositions.Add(kamazContext.Kabina.localPosition);
+        kabinaShakeCoroutine = StartCoroutine(CabinShakeRoutine());
+    }
+
+    private IEnumerator CabinShakeRoutine()
+    {
+        float elapsed = 0f;
+
+        while (elapsed < engineStartShakeDuration)
+        {
+            elapsed += Time.deltaTime;
+
+            for (int i = 0; i < shakeTargets.Count; i++)
+            {
+                Vector3 offset = Random.insideUnitSphere * engineStartShakeAmplitude;
+                offset.y *= 0.35f;
+                shakeTargets[i].localPosition = shakeStartPositions[i] + offset;
+            }
+
+            yield return null;
+        }
+
+        StopCabinShake();
+    }
+
+    private void StopCabinShake()
+    {
+        if (kabinaShakeCoroutine != null)
+        {
+            StopCoroutine(kabinaShakeCoroutine);
+            kabinaShakeCoroutine = null;
+        }
+
+        for (int i = 0; i < shakeTargets.Count; i++)
+        {
+            if (shakeTargets[i] != null)
+            {
+                shakeTargets[i].localPosition = shakeStartPositions[i];
+            }
+        }
+
+        shakeTargets.Clear();
+        shakeStartPositions.Clear();
+    }
+
+    private void UpdateDrivingZoom()
+    {
+        if (playerCamera == null)
+        {
+            return;
+        }
+
+        float normalFov = defaultFieldOfView > 0f ? defaultFieldOfView : playerCamera.fieldOfView;
+        float targetFov = currentMode == ControlMode.Driving && Input.GetMouseButton(1)
+            ? normalFov / Mathf.Max(1f, drivingZoomMultiplier)
+            : normalFov;
+
+        playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, targetFov, drivingZoomLerpSpeed * Time.deltaTime);
+    }
+
     private void UpdateInteractionHighlight()
     {
-        if (!showInteractableHighlight || Kamaz == null)
+        if (!showInteractableHighlight || kamazContext == null)
         {
             ClearHighlight();
             return;
         }
 
-        if (!freeMovementMode.TryGetInteraction(Kamaz, out FreeMovementMode.InteractionResult interaction))
+        if (!freeMovementMode.TryGetInteraction(kamazContext, out FreeMovementMode.InteractionResult interaction))
         {
             ClearHighlight();
             return;
@@ -775,16 +593,9 @@ public class CameraController : MonoBehaviour
         {
             target = interaction.DoorRoot;
         }
-        else if (interaction.Type == FreeMovementMode.InteractionType.Steering)
+        else if (interaction.Type == FreeMovementMode.InteractionType.Steering && currentMode == ControlMode.FreeMovement)
         {
-            target = Kamaz.Ryle != null ? Kamaz.Ryle : interaction.HitObject;
-        }
-        else if (interaction.Type == FreeMovementMode.InteractionType.Key)
-        {
-            if (currentMode == ControlMode.Driving)
-            {
-                target = interaction.KeyRoot != null ? interaction.KeyRoot : interaction.HitObject;
-            }
+            target = kamazContext.Ryle;
         }
 
         if (target == null)
@@ -799,95 +610,29 @@ public class CameraController : MonoBehaviour
         }
 
         ClearHighlight();
-        ApplyHighlight(target);
-    }
-
-    private void ApplyHighlight(Transform root)
-    {
-        if (root == null)
-        {
-            return;
-        }
-
-        highlightedRoot = root;
-        Renderer[] renderers = root.GetComponentsInChildren<Renderer>(true);
-
+        highlightedRoot = target;
+        Renderer[] renderers = target.GetComponentsInChildren<Renderer>(true);
         for (int i = 0; i < renderers.Length; i++)
         {
             Renderer renderer = renderers[i];
-            if (renderer == null)
+            if (renderer == null || highlightedRenderers.ContainsKey(renderer))
             {
                 continue;
             }
 
             Material material = renderer.material;
-            RendererColorState state = new RendererColorState
-            {
-                hasBaseColor = material.HasProperty("_BaseColor"),
-                hasColor = material.HasProperty("_Color"),
-                hasEmission = material.HasProperty("_EmissionColor"),
-                baseColor = material.HasProperty("_BaseColor") ? material.GetColor("_BaseColor") : Color.white,
-                color = material.HasProperty("_Color") ? material.GetColor("_Color") : Color.white,
-                emissionColor = material.HasProperty("_EmissionColor") ? material.GetColor("_EmissionColor") : Color.black
-            };
-
-            highlightedRenderers[renderer] = state;
-
-            if (state.hasBaseColor)
-            {
-                float t = Mathf.Clamp01(interactableHighlightColor.a);
-                Color target = Color.Lerp(state.baseColor, Color.white, t);
-                material.SetColor("_BaseColor", target);
-            }
-
-            if (state.hasColor)
-            {
-                float t = Mathf.Clamp01(interactableHighlightColor.a);
-                Color target = Color.Lerp(state.color, Color.white, t);
-                material.SetColor("_Color", target);
-            }
-
-            if (state.hasEmission)
-            {
-                float t = Mathf.Clamp01(interactableHighlightColor.a);
-                Color target = Color.Lerp(state.emissionColor, state.emissionColor + Color.white * 0.15f, t);
-                material.SetColor("_EmissionColor", target);
-            }
+            highlightedRenderers[renderer] = new Material(material);
+            material.color = Color.Lerp(material.color, highlightOverlayColor, highlightStrength);
         }
     }
 
     private void ClearHighlight()
     {
-        if (highlightedRenderers.Count == 0)
+        foreach (KeyValuePair<Renderer, Material> pair in highlightedRenderers)
         {
-            highlightedRoot = null;
-            return;
-        }
-
-        foreach (KeyValuePair<Renderer, RendererColorState> pair in highlightedRenderers)
-        {
-            Renderer renderer = pair.Key;
-            if (renderer == null)
+            if (pair.Key != null)
             {
-                continue;
-            }
-
-            Material material = renderer.material;
-            RendererColorState state = pair.Value;
-
-            if (state.hasBaseColor)
-            {
-                material.SetColor("_BaseColor", state.baseColor);
-            }
-
-            if (state.hasColor)
-            {
-                material.SetColor("_Color", state.color);
-            }
-
-            if (state.hasEmission)
-            {
-                material.SetColor("_EmissionColor", state.emissionColor);
+                pair.Key.material = pair.Value;
             }
         }
 
@@ -895,246 +640,15 @@ public class CameraController : MonoBehaviour
         highlightedRoot = null;
     }
 
-    private struct RendererColorState
-    {
-        public bool hasBaseColor;
-        public bool hasColor;
-        public bool hasEmission;
-        public Color baseColor;
-        public Color color;
-        public Color emissionColor;
-    }
-
-    private void StartKabinaStartShake()
-    {
-        if (kabinaShakeCoroutine != null)
-        {
-            StopKabinaShakeAndRestore();
-        }
-
-        if (!TryCollectKabinaShakeTargets())
-        {
-            return;
-        }
-
-        kabinaShakeCoroutine = StartCoroutine(ShakeKabinaMeshRenderersForSeconds(engineStartShakeDuration));
-    }
-
-    private IEnumerator ShakeKabinaMeshRenderersForSeconds(float durationSeconds)
-    {
-        float elapsed = 0f;
-        while (elapsed < durationSeconds)
-        {
-            elapsed += Time.deltaTime;
-
-            for (int i = 0; i < kabinaShakeTargets.Count; i++)
-            {
-                Transform target = kabinaShakeTargets[i];
-                if (target == null)
-                {
-                    continue;
-                }
-
-                Vector3 offset = Random.insideUnitSphere * engineStartShakeAmplitude;
-                offset.y *= 0.35f;
-                target.localPosition = kabinaShakeOriginalLocalPositions[i] + offset;
-            }
-
-            yield return null;
-        }
-
-        kabinaShakeCoroutine = null;
-        RestoreKabinaShakeTargets();
-    }
-
-    private bool TryCollectKabinaShakeTargets()
-    {
-        kabinaShakeTargets.Clear();
-        kabinaShakeOriginalLocalPositions.Clear();
-
-        Transform kabinaRoot = Kamaz != null ? Kamaz.Kabina : null;
-        if (kabinaRoot == null)
-        {
-            return false;
-        }
-
-        kabinaShakeTargets.Add(kabinaRoot);
-        kabinaShakeOriginalLocalPositions.Add(kabinaRoot.localPosition);
-
-        return kabinaShakeTargets.Count > 0;
-    }
-
-    private void StopKabinaShakeAndRestore()
-    {
-        if (kabinaShakeCoroutine != null)
-        {
-            StopCoroutine(kabinaShakeCoroutine);
-            kabinaShakeCoroutine = null;
-        }
-
-        RestoreKabinaShakeTargets();
-    }
-
-    private void RestoreKabinaShakeTargets()
-    {
-        for (int i = 0; i < kabinaShakeTargets.Count; i++)
-        {
-            Transform target = kabinaShakeTargets[i];
-            if (target == null)
-            {
-                continue;
-            }
-
-            target.localPosition = kabinaShakeOriginalLocalPositions[i];
-        }
-
-        kabinaShakeTargets.Clear();
-        kabinaShakeOriginalLocalPositions.Clear();
-    }
-
-    private void UpdateDrivingZoom()
-    {
-        if (playerCamera == null)
-        {
-            return;
-        }
-
-        float normalFov = defaultFieldOfView > 0f ? defaultFieldOfView : playerCamera.fieldOfView;
-        float zoomedFov = normalFov / Mathf.Max(1f, drivingZoomMultiplier);
-        bool isZooming = currentMode == ControlMode.Driving && Input.GetMouseButton(1);
-        float targetFov = isZooming ? zoomedFov : normalFov;
-
-        playerCamera.fieldOfView = Mathf.Lerp(
-            playerCamera.fieldOfView,
-            targetFov,
-            drivingZoomLerpSpeed * Time.deltaTime
-        );
-    }
-
-    private void TryInitializeNeedles()
-    {
-        if (Kamaz == null)
-        {
-            return;
-        }
-
-        if (!speedometerNeedleConfigured)
-        {
-            if (speedometerNeedle == null)
-            {
-                speedometerNeedle = Kamaz.SpidometerNeedle;
-            }
-
-            if (speedometerNeedle != null)
-            {
-                speedometerNeedle.SetDebugMode(false);
-                speedometerNeedle.Configure(0f, 90f, 0.3f, 264f);
-                speedometerNeedle.SetValueImmediate(0f);
-                speedometerNeedleConfigured = true;
-            }
-        }
-
-        if (!tachometerNeedleConfigured)
-        {
-            if (tachometerNeedle == null)
-            {
-                tachometerNeedle = Kamaz.TachometerNeedle;
-            }
-
-            if (tachometerNeedle != null)
-            {
-                tachometerNeedle.SetDebugMode(false);
-                tachometerNeedle.Configure(0f, 3000f, 2f, 240f);
-                tachometerNeedle.SetValueImmediate(0f);
-                tachometerNeedleConfigured = true;
-            }
-        }
-    }
-
-    private void StartStartupNeedleSweep()
-    {
-        TryInitializeNeedles();
-
-        if (speedometerNeedle == null && tachometerNeedle == null)
-        {
-            return;
-        }
-
-        StopStartupNeedleSweep(false);
-        startupNeedleSweepCoroutine = StartCoroutine(StartupNeedleSweepRoutine());
-    }
-
-    private IEnumerator StartupNeedleSweepRoutine()
-    {
-        float elapsed = 0f;
-        while (elapsed < startupSweepUpDuration)
-        {
-            elapsed += Time.deltaTime;
-            float t = startupSweepUpDuration > 0f ? Mathf.Clamp01(elapsed / startupSweepUpDuration) : 1f;
-            float speedValue = Mathf.Lerp(0f, startupSpeedometerPeak, t);
-            float tachValue = Mathf.Lerp(0f, startupTachometerPeak, t);
-            ApplyNeedleValuesImmediate(speedValue, tachValue);
-            yield return null;
-        }
-
-        if (startupSweepHoldDuration > 0f)
-        {
-            ApplyNeedleValuesImmediate(startupSpeedometerPeak, startupTachometerPeak);
-            yield return new WaitForSeconds(startupSweepHoldDuration);
-        }
-
-        elapsed = 0f;
-        while (elapsed < startupSweepDownDuration)
-        {
-            elapsed += Time.deltaTime;
-            float t = startupSweepDownDuration > 0f ? Mathf.Clamp01(elapsed / startupSweepDownDuration) : 1f;
-            float speedValue = Mathf.Lerp(startupSpeedometerPeak, 0f, t);
-            float tachValue = Mathf.Lerp(startupTachometerPeak, 0f, t);
-            ApplyNeedleValuesImmediate(speedValue, tachValue);
-            yield return null;
-        }
-
-        ApplyNeedleValuesImmediate(0f, 0f);
-        startupNeedleSweepCoroutine = null;
-    }
-
-    private void StopStartupNeedleSweep(bool resetToZero)
-    {
-        if (startupNeedleSweepCoroutine != null)
-        {
-            StopCoroutine(startupNeedleSweepCoroutine);
-            startupNeedleSweepCoroutine = null;
-        }
-
-        if (resetToZero)
-        {
-            ApplyNeedleValuesImmediate(0f, 0f);
-        }
-    }
-
-    private void ApplyNeedleValuesImmediate(float speedValue, float tachValue)
-    {
-        if (speedometerNeedle != null)
-        {
-            speedometerNeedle.SetValueImmediate(speedValue);
-        }
-
-        if (tachometerNeedle != null)
-        {
-            tachometerNeedle.SetValueImmediate(tachValue);
-        }
-    }
-
     private void UpdateInteractionHintText()
     {
         interactionHintText = string.Empty;
-
-        if (!showInteractionHint || Kamaz == null)
+        if (!showInteractionHint || kamazContext == null)
         {
             return;
         }
 
-        if (!freeMovementMode.TryGetInteraction(Kamaz, out FreeMovementMode.InteractionResult interaction))
+        if (!freeMovementMode.TryGetInteraction(kamazContext, out FreeMovementMode.InteractionResult interaction))
         {
             return;
         }
@@ -1143,58 +657,62 @@ public class CameraController : MonoBehaviour
         {
             if (currentMode == ControlMode.FreeMovement)
             {
-                bool isOpen = interaction.DoorAnimator != null
-                    && HasAnimatorBool(interaction.DoorAnimator, doorOpenBoolName)
-                    && interaction.DoorAnimator.GetBool(doorOpenBoolName);
-                interactionHintText = isOpen ? "РќР°Р¶РјРёС‚Рµ E С‡С‚РѕР±С‹ Р·Р°РєСЂС‹С‚СЊ РґРІРµСЂСЊ" : "РќР°Р¶РјРёС‚Рµ E С‡С‚РѕР±С‹ РѕС‚РєСЂС‹С‚СЊ РґРІРµСЂСЊ";
-                return;
+                bool isOpen = interaction.DoorAnimator != null && interaction.DoorAnimator.GetBool("isOpen");
+                interactionHintText = isOpen ? "Нажмите E чтобы закрыть дверь" : "Нажмите E чтобы открыть дверь";
+            }
+            else
+            {
+                interactionHintText = "Нажмите E чтобы выйти из кабины";
             }
 
-            interactionHintText = "РќР°Р¶РјРёС‚Рµ E С‡С‚РѕР±С‹ РІС‹Р№С‚Рё РёР· РєР°Р±РёРЅС‹";
             return;
         }
 
         if (interaction.Type == FreeMovementMode.InteractionType.Steering)
         {
-            if (currentMode == ControlMode.FreeMovement)
-            {
-                interactionHintText = "РќР°Р¶РјРёС‚Рµ E С‡С‚РѕР±С‹ СЃРµСЃС‚СЊ Р·Р° СЂСѓР»СЊ";
-                return;
-            }
-
-            interactionHintText = engineRunning
-                ? "РќР°Р¶РјРёС‚Рµ Tab С‡С‚РѕР±С‹ Р·Р°РіР»СѓС€РёС‚СЊ РјР°С€РёРЅСѓ"
-                : "РќР°Р¶РјРёС‚Рµ Tab С‡С‚РѕР±С‹ Р·Р°РІРµСЃС‚Рё РјР°С€РёРЅСѓ";
+            interactionHintText = currentMode == ControlMode.FreeMovement
+                ? "Нажмите E чтобы сесть за руль"
+                : engineRunning ? "Нажмите Tab чтобы заглушить машину" : "Нажмите Tab чтобы завести машину";
         }
+    }
+
+    private void OnGUI()
+    {
+        if (uiCursorActive)
+        {
+            return;
+        }
+
+        if (showCrosshairDot && crosshairTexture != null)
+        {
+            float x = (Screen.width - crosshairSize) * 0.5f;
+            float y = (Screen.height - crosshairSize) * 0.5f;
+            Color oldColor = GUI.color;
+            GUI.color = crosshairColor;
+            GUI.DrawTexture(new Rect(x, y, crosshairSize, crosshairSize), crosshairTexture);
+            GUI.color = oldColor;
+        }
+
+        DrawInteractionHint();
     }
 
     private void DrawInteractionHint()
     {
-        if (!showInteractionHint)
+        string text = GetActiveHintText();
+        if (!showInteractionHint || string.IsNullOrEmpty(text))
         {
             return;
         }
 
-        string textToDraw = GetActiveHintText();
-        if (string.IsNullOrEmpty(textToDraw))
-        {
-            return;
-        }
-
-        GUIStyle style = new GUIStyle(GUI.skin.label)
-        {
-            alignment = TextAnchor.MiddleCenter,
-            fontSize = interactionHintFontSize,
-            normal = { textColor = interactionHintColor },
-            richText = false
-        };
+        GUIStyle style = new GUIStyle(GUI.skin.label);
+        style.alignment = TextAnchor.MiddleCenter;
+        style.fontSize = interactionHintFontSize;
+        style.normal.textColor = interactionHintColor;
 
         float width = Mathf.Min(Screen.width - 40f, 900f);
-        float height = 28f;
         float x = (Screen.width - width) * 0.5f;
-        float y = Screen.height - height - 24f;
-
-        GUI.Label(new Rect(x, y, width, height), textToDraw, style);
+        float y = Screen.height - 52f;
+        GUI.Label(new Rect(x, y, width, 28f), text, style);
     }
 
     private string GetActiveHintText()
@@ -1209,12 +727,51 @@ public class CameraController : MonoBehaviour
 
     private void ShowTemporaryHint(string text, float duration = 2.5f)
     {
-        if (string.IsNullOrEmpty(text))
-        {
-            return;
-        }
-
         temporaryHintText = text;
-        temporaryHintUntilTime = Time.unscaledTime + Mathf.Max(0.1f, duration);
+        temporaryHintUntilTime = Time.unscaledTime + duration;
+    }
+
+    private void HandleUiCursorToggle()
+    {
+        if (allowUiCursorToggle && Input.GetKeyDown(toggleUiCursorKey))
+        {
+            SetUiCursorState(!uiCursorActive);
+        }
+    }
+
+    private void SetUiCursorState(bool enabled)
+    {
+        uiCursorActive = enabled;
+        Cursor.lockState = enabled ? CursorLockMode.None : CursorLockMode.Locked;
+        Cursor.visible = enabled;
+    }
+
+    private void CreateCrosshairTexture()
+    {
+        crosshairTexture = new Texture2D(1, 1, TextureFormat.RGBA32, false);
+        crosshairTexture.SetPixel(0, 0, Color.white);
+        crosshairTexture.Apply();
+    }
+
+    private void OnApplicationFocus(bool hasFocus)
+    {
+        if (hasFocus)
+        {
+            SetUiCursorState(uiCursorActive);
+        }
+    }
+
+    private void OnDisable()
+    {
+        SetEngineRunning(false);
+        StopCabinShake();
+        StopStartupNeedleSweep(true);
+        ClearHighlight();
+        IgnoreKamazCollisions(false);
+        FreezeKamaz(false);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 }
+
+

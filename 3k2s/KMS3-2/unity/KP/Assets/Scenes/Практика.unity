@@ -268,6 +268,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7256063f6e57b3447bcb22cdd05e9e81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  kamazContext: {fileID: 2011887551}
+  kamazLightsController: {fileID: 2011887557}
+  kamazCabinMechanismsController: {fileID: 2011887561}
+  freeMovementMode:
+    walkSpeed: 40
+    runSpeed: 60
+    jumpForce: 15
+    gravity: -150
+    mouseSensitivity: 3
+    maxLookAngle: 80
+    interactionDistance: 20
+  drivingMode:
+    exitForwardOffset: 0.75
+    exitUpOffset: 0.05
+  interactKey: 101
+  engineToggleKey: 9
+  toggleUiCursorKey: 27
+  switchModeDistance: 20
+  exitToFreeModeDelay: 0.35
+  characterControllerEnableDelayAfterExit: 0.2
+  doorFreezeDuration: 0.85
+  showCrosshairDot: 1
+  crosshairSize: 3
+  crosshairColor: {r: 1, g: 1, b: 1, a: 1}
+  allowUiCursorToggle: 1
+  startWithUnlockedCursor: 0
+  drivingZoomMultiplier: 2
+  drivingZoomLerpSpeed: 12
+  showInteractionHint: 1
+  interactionHintColor: {r: 1, g: 1, b: 1, a: 1}
+  interactionHintFontSize: 18
+  showInteractableHighlight: 1
+  engineStartShakeDuration: 1.5
+  engineStartShakeAmplitude: 0.01
+  startupSweepUpDuration: 0.28
+  startupSweepHoldDuration: 0.1
+  startupSweepDownDuration: 0.9
+  startupSpeedometerPeak: 20
+  startupTachometerPeak: 2800
 --- !u!143 &60769228
 CharacterController:
   m_ObjectHideFlags: 0
@@ -606,7 +645,6 @@ MonoBehaviour:
   controller: {fileID: 0}
   section: 0
   setupSceneBuildIndex: 0
-  setupSceneName: "\u0423\u0441\u0442\u0430\u043D\u043E\u0432\u043A\u0430"
 --- !u!114 &86430446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2042,6 +2080,11 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 7591836924928680663, guid: 31b347351eb4de04ab6e5f24e97a715d, type: 3}
+--- !u!4 &435220053 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -1284253863073964382, guid: 31b347351eb4de04ab6e5f24e97a715d, type: 3}
+  m_PrefabInstance: {fileID: 887940863}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &446695022 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3367394963169872159, guid: 31b347351eb4de04ab6e5f24e97a715d, type: 3}
@@ -2064,6 +2107,11 @@ MonoBehaviour:
   minAngle: 210
   maxAngle: -30
   debugValue: 0
+--- !u!4 &446695029 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2620511857031750842, guid: 31b347351eb4de04ab6e5f24e97a715d, type: 3}
+  m_PrefabInstance: {fileID: 887940863}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &487902982 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6250980471578835302, guid: 9ea793ad24a93f8499716841cf565b61, type: 3}
@@ -2230,6 +2278,11 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!4 &546084308 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2397392938230694571, guid: 31b347351eb4de04ab6e5f24e97a715d, type: 3}
+  m_PrefabInstance: {fileID: 887940863}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &549023912 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3130546278768477521, guid: 31b347351eb4de04ab6e5f24e97a715d, type: 3}
@@ -2650,6 +2703,11 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -6727714009063994906, guid: 31b347351eb4de04ab6e5f24e97a715d, type: 3}
+--- !u!4 &651273943 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6860982839832084816, guid: 31b347351eb4de04ab6e5f24e97a715d, type: 3}
+  m_PrefabInstance: {fileID: 887940863}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &651414472
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3368,6 +3426,11 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4086447653450042812, guid: 31b347351eb4de04ab6e5f24e97a715d, type: 3}
+--- !u!4 &812188234 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6624001411824782138, guid: 31b347351eb4de04ab6e5f24e97a715d, type: 3}
+  m_PrefabInstance: {fileID: 887940863}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &827136572 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6695359086103611142, guid: df18caf6cc60dd84081a7f11e1c098b5, type: 3}
@@ -4136,6 +4199,11 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 172731096519859492, guid: 31b347351eb4de04ab6e5f24e97a715d, type: 3}
+--- !u!4 &887940868 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -4693769036667225072, guid: 31b347351eb4de04ab6e5f24e97a715d, type: 3}
+  m_PrefabInstance: {fileID: 887940863}
+  m_PrefabAsset: {fileID: 0}
 --- !u!64 &887940874
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -4158,6 +4226,11 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -1293040065670196261, guid: 31b347351eb4de04ab6e5f24e97a715d, type: 3}
+--- !u!4 &887940877 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8178613641359592276, guid: 31b347351eb4de04ab6e5f24e97a715d, type: 3}
+  m_PrefabInstance: {fileID: 887940863}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &891387336 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -3348446002707073794, guid: 31b347351eb4de04ab6e5f24e97a715d, type: 3}
@@ -4594,6 +4667,11 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4265504114343547075, guid: 31b347351eb4de04ab6e5f24e97a715d, type: 3}
+--- !u!4 &965202363 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -9012614393017457897, guid: 31b347351eb4de04ab6e5f24e97a715d, type: 3}
+  m_PrefabInstance: {fileID: 887940863}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &980651401
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4703,6 +4781,11 @@ MonoBehaviour:
   minAngle: 2
   maxAngle: 240
   debugValue: 0
+--- !u!4 &991556690 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4179411147361270583, guid: 31b347351eb4de04ab6e5f24e97a715d, type: 3}
+  m_PrefabInstance: {fileID: 887940863}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1010944638 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -4557572461394970644, guid: 31b347351eb4de04ab6e5f24e97a715d, type: 3}
@@ -4730,6 +4813,11 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 6782730278446405497, guid: 31b347351eb4de04ab6e5f24e97a715d, type: 3}
+--- !u!4 &1010944647 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -4025419415822491868, guid: 31b347351eb4de04ab6e5f24e97a715d, type: 3}
+  m_PrefabInstance: {fileID: 887940863}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1019698139 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6695359086103611142, guid: df18caf6cc60dd84081a7f11e1c098b5, type: 3}
@@ -5044,6 +5132,11 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -3055378462299240388, guid: 31b347351eb4de04ab6e5f24e97a715d, type: 3}
+--- !u!4 &1055191132 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -3794305573277154543, guid: 31b347351eb4de04ab6e5f24e97a715d, type: 3}
+  m_PrefabInstance: {fileID: 887940863}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1061708177 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: f52c9568d65830a46906f23c52360d1c, type: 3}
@@ -5277,6 +5370,11 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!4 &1155803108 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -6783356021847904642, guid: 31b347351eb4de04ab6e5f24e97a715d, type: 3}
+  m_PrefabInstance: {fileID: 887940863}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1198607478
 GameObject:
   m_ObjectHideFlags: 0
@@ -5784,6 +5882,11 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 956011418421892437, guid: 31b347351eb4de04ab6e5f24e97a715d, type: 3}
+--- !u!4 &1292301687 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -2482052913696281942, guid: 31b347351eb4de04ab6e5f24e97a715d, type: 3}
+  m_PrefabInstance: {fileID: 887940863}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1307376387 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3660859548860580180, guid: 31b347351eb4de04ab6e5f24e97a715d, type: 3}
@@ -5930,6 +6033,11 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -4438438701489736479, guid: 31b347351eb4de04ab6e5f24e97a715d, type: 3}
+--- !u!4 &1334865396 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -796199358842707120, guid: 31b347351eb4de04ab6e5f24e97a715d, type: 3}
+  m_PrefabInstance: {fileID: 887940863}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1335666267 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8570378518783505418, guid: 31b347351eb4de04ab6e5f24e97a715d, type: 3}
@@ -6905,6 +7013,11 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!4 &1766269544 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3022787094793377522, guid: 31b347351eb4de04ab6e5f24e97a715d, type: 3}
+  m_PrefabInstance: {fileID: 887940863}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1789284468 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8522707898602385078, guid: 2e2fc62a269670f40b1fe7f0a8061b22, type: 3}
@@ -7238,6 +7351,11 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!4 &1824473773 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -3411289693908169831, guid: 31b347351eb4de04ab6e5f24e97a715d, type: 3}
+  m_PrefabInstance: {fileID: 887940863}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1896178897
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7506,7 +7624,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2011887537}
   serializedVersion: 5
-  m_Mass: 1000
+  m_Mass: 6000
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -7542,6 +7660,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e358aea4c033da43a4ffff7a79bb077, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KamazContext
+  root: {fileID: 2011887550}
+  kabina: {fileID: 887940868}
+  fary: {fileID: 812188234}
+  panel: {fileID: 1334865396}
+  seatPoint: {fileID: 263316101}
+  exitPoint: {fileID: 1705971799}
+  doorL: {fileID: 887940877}
+  doorR: {fileID: 1055191132}
+  ryle: {fileID: 1292301687}
+  key: {fileID: 1824473773}
+  speedometerNeedleObject: {fileID: 446695029}
+  tachometerNeedleObject: {fileID: 991556690}
+  wiperLeftObject: {fileID: 1155803108}
+  wiperRightObject: {fileID: 1766269544}
+  bodyObject: {fileID: 1438582327}
+  hydraulicObject: {fileID: 546084308}
+  wheelFrontLeft: {fileID: 1010944647}
+  wheelFrontRight: {fileID: 651273943}
+  wheelMiddle: {fileID: 965202363}
+  wheelBack: {fileID: 435220053}
 --- !u!114 &2011887554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7577,6 +7715,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9ccefc99013fc143ab04794adb93c6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KamazLightsController
+  kamazContext: {fileID: 0}
   headlightsKey: 102
   hazardKey: 120
   leftTurnKey: 113
@@ -7584,11 +7723,6 @@ MonoBehaviour:
   blinkInterval: 0.4
   turnSignalDuration: 5
   inputBlockAfterEnterCabinSeconds: 0.25
-  whiteLampHighlightColor: {r: 0.9019608, g: 0.9019608, b: 0.9019608, a: 0.39215687}
-  redLampHighlightColor: {r: 1, g: 0.25, b: 0.25, a: 0.39215687}
-  yellowLampHighlightColor: {r: 1, g: 0.9, b: 0.2, a: 0.39215687}
-  lampBaseBrightenStrength: 0.45
-  lampEmissionBoost: 1.2
 --- !u!114 &2011887561
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7601,9 +7735,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fca73a607cc4e4945b88841a69d1a636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KamazCabinMechanismsController
+  cameraController: {fileID: 60769227}
+  kamazContext: {fileID: 2011887551}
   toggleWipersKey: 118
   toggleBodyKey: 98
-  turnOnBoolName: turnOn
 --- !u!114 &2011887562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7616,10 +7751,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e7f560218dc46c46aa3709fc9bdf7ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KamazDrivingInputController
-  kamazContext: {fileID: 0}
-  cameraController: {fileID: 0}
-  kamazRigidbody: {fileID: 0}
+  kamazContext: {fileID: 2011887551}
+  cameraController: {fileID: 60769227}
+  kamazRigidbody: {fileID: 2011887547}
   steeringWheel: {fileID: 0}
+  wheelFrontLeft: {fileID: 0}
+  wheelFrontRight: {fileID: 0}
+  wheelMiddle: {fileID: 0}
+  wheelBack: {fileID: 0}
+  speedometerNeedle: {fileID: 0}
+  tachometerNeedle: {fileID: 0}
   onlyWhenPlayerInCabin: 1
   requireEngineRunningForMotion: 1
   throttleKey: 119
@@ -7665,17 +7806,16 @@ MonoBehaviour:
   rollingDragForceThrottle: 0.08
   engineBrakeForce: 40
   engineBrakeThrottleThreshold: 0.05
-  maxForwardSpeedKmh: 90
   maxReverseSpeedKmh: 15
   lowRpmTorqueBoost: 2.6
   lowRpmBoostEnd: 2300
   invertSteering: 0
+  steeringInputChangeSpeed: 1.4
   minTurnRadiusAtFullSteer: 180
   maxTurnRadiusAtLowSteer: 1200
   steeringMinSpeedMps: 2.5
   steeringYawMultiplier: 1
   steeringWheelSpeed: 230
-  steeringWheelReturnSpeed: 300
   steeringMinAngle: -110
   steeringMaxAngle: 110
   wheelRadiusMeters: 0.55

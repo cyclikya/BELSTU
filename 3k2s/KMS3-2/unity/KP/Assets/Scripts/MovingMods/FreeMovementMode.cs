@@ -1,6 +1,7 @@
-ï»¿using System;
+using System;
 using UnityEngine;
 
+// Îòâå÷àåò çà ïåøåå ïåðåäâèæåíèå èãðîêà è îïðåäåëåíèå îáúåêòà ïîä êóðñîðîì.
 [Serializable]
 public class FreeMovementMode
 {
@@ -23,26 +24,26 @@ public class FreeMovementMode
         public Animator KeyAnimator;
     }
 
-    [Header("Ð”Ð²Ð¸Ð¶ÐµÐ½Ð¸Ðµ")]
+    [Header("Movement")]
     [SerializeField] private float walkSpeed = 40f;
     [SerializeField] private float runSpeed = 60f;
     [SerializeField] private float jumpForce = 15f;
     [SerializeField] private float gravity = -150f;
 
-    [Header("ÐŸÐ¾Ð²Ð¾Ñ€Ð¾Ñ‚ ÐºÐ°Ð¼ÐµÑ€Ñ‹")]
+    [Header("Look")]
     [SerializeField] private float mouseSensitivity = 3f;
     [SerializeField] private float maxLookAngle = 80f;
 
-    [Header("Ð’Ð·Ð°Ð¸Ð¼Ð¾Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ðµ")]
+    [Header("Interaction")]
     [SerializeField] private float interactionDistance = 20f;
-
-    public float InteractionDistance => interactionDistance;
 
     private CharacterController controller;
     private Camera playerCamera;
     private Transform playerTransform;
     private Vector3 velocity;
     private float verticalRotation;
+
+    public float InteractionDistance => interactionDistance;
 
     public void Initialize(CharacterController targetController, Camera targetCamera, Transform targetTransform)
     {
@@ -66,12 +67,7 @@ public class FreeMovementMode
 
     public void Tick()
     {
-        if (controller == null || playerCamera == null || playerTransform == null)
-        {
-            return;
-        }
-
-        if (!controller.enabled)
+        if (controller == null || playerCamera == null || playerTransform == null || !controller.enabled)
         {
             return;
         }
@@ -92,47 +88,51 @@ public class FreeMovementMode
 
     public bool TryGetInteraction(KamazContext kamazContext, out InteractionResult result)
     {
-        result = new InteractionResult
-        {
-            Type = InteractionType.None,
-            HitObject = null,
-            DoorRoot = null,
-            DoorAnimator = null,
-            KeyRoot = null,
-            KeyAnimator = null
-        };
-
-        if (playerCamera == null)
+        result = new InteractionResult();
+        if (playerCamera == null || kamazContext == null)
         {
             return false;
         }
 
         Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
-        RaycastHit[] hits = Physics.RaycastAll(
-            ray,
-            interactionDistance,
-            Physics.DefaultRaycastLayers,
-            QueryTriggerInteraction.Collide
-        );
-        if (hits == null || hits.Length == 0)
+        RaycastHit[] hits = Physics.RaycastAll(ray, interactionDistance, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Collide);
+        if (hits.Length == 0)
         {
             return false;
         }
 
-        System.Array.Sort(hits, (a, b) => a.distance.CompareTo(b.distance));
-        Transform firstHit = hits[0].transform;
+        Array.Sort(hits, (a, b) => a.distance.CompareTo(b.distance));
 
         for (int i = 0; i < hits.Length; i++)
         {
-            RaycastHit hit = hits[i];
-            if (kamazContext != null && TryResolveKnownInteraction(kamazContext, hit.transform, hit.collider, out result))
+            Collider hitCollider = hits[i].collider;
+            result.HitObject = hits[i].transform;
+
+            if (kamazContext.TryGetDoorFromCollider(hitCollider, out Transform doorRoot, out Animator doorAnimator))
             {
+                result.Type = InteractionType.Door;
+                result.DoorRoot = doorRoot;
+                result.DoorAnimator = doorAnimator;
+                return true;
+            }
+
+            if (kamazContext.IsRyleCollider(hitCollider))
+            {
+                result.Type = InteractionType.Steering;
+                return true;
+            }
+
+            if (kamazContext.TryGetKeyFromCollider(hitCollider, out Transform keyRoot, out Animator keyAnimator))
+            {
+                result.Type = InteractionType.Key;
+                result.KeyRoot = keyRoot;
+                result.KeyAnimator = keyAnimator;
                 return true;
             }
         }
 
-        result.HitObject = firstHit;
         result.Type = InteractionType.Other;
+        result.HitObject = hits[0].transform;
         return true;
     }
 
@@ -142,7 +142,6 @@ public class FreeMovementMode
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
 
         playerTransform.Rotate(Vector3.up * mouseX);
-
         verticalRotation -= mouseY;
         verticalRotation = Mathf.Clamp(verticalRotation, -maxLookAngle, maxLookAngle);
         playerCamera.transform.localRotation = Quaternion.Euler(verticalRotation, 0f, 0f);
@@ -159,30 +158,16 @@ public class FreeMovementMode
         float horizontal = 0f;
         float vertical = 0f;
 
-        if (Input.GetKey(KeyCode.A))
-        {
-            horizontal -= 1f;
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            horizontal += 1f;
-        }
-        if (Input.GetKey(KeyCode.W))
-        {
-            vertical += 1f;
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            vertical -= 1f;
-        }
+        if (Input.GetKey(KeyCode.A)) horizontal -= 1f;
+        if (Input.GetKey(KeyCode.D)) horizontal += 1f;
+        if (Input.GetKey(KeyCode.W)) vertical += 1f;
+        if (Input.GetKey(KeyCode.S)) vertical -= 1f;
 
-        Vector3 move = playerTransform.right * horizontal + playerTransform.forward * vertical;
-        move = move.normalized;
-        float currentSpeed = Input.GetKey(KeyCode.LeftShift) ? runSpeed : walkSpeed;
+        Vector3 move = (playerTransform.right * horizontal + playerTransform.forward * vertical).normalized;
+        float speed = Input.GetKey(KeyCode.LeftShift) ? runSpeed : walkSpeed;
+        controller.Move(move * speed * Time.deltaTime);
 
-        controller.Move(move * currentSpeed * Time.deltaTime);
-
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (isGrounded && Input.GetButtonDown("Jump"))
         {
             velocity.y = Mathf.Sqrt(jumpForce * -2f * gravity);
         }
@@ -190,42 +175,4 @@ public class FreeMovementMode
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
     }
-
-    private bool TryResolveKnownInteraction(KamazContext kamazContext, Transform hitTransform, Collider hitCollider, out InteractionResult result)
-    {
-        result = new InteractionResult
-        {
-            Type = InteractionType.None,
-            HitObject = hitTransform,
-            DoorRoot = null,
-            DoorAnimator = null,
-            KeyRoot = null,
-            KeyAnimator = null
-        };
-
-        if (kamazContext.TryGetDoorFromCollider(hitCollider, out Transform doorByCollider, out Animator doorAnimatorByCollider))
-        {
-            result.Type = InteractionType.Door;
-            result.DoorRoot = doorByCollider;
-            result.DoorAnimator = doorAnimatorByCollider;
-            return true;
-        }
-
-        if (kamazContext.IsRyleCollider(hitCollider))
-        {
-            result.Type = InteractionType.Steering;
-            return true;
-        }
-
-        if (kamazContext.TryGetKeyFromCollider(hitCollider, out Transform keyRoot, out Animator keyAnimator))
-        {
-            result.Type = InteractionType.Key;
-            result.KeyRoot = keyRoot;
-            result.KeyAnimator = keyAnimator;
-            return true;
-        }
-
-        return false;
-    }
-
 }

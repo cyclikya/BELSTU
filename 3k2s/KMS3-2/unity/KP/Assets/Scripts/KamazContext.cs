@@ -2,202 +2,164 @@ using UnityEngine;
 
 public class KamazContext : MonoBehaviour
 {
-    public static KamazContext Instance { get; private set; }
+    public enum SetupSection
+    {
+        Kuzov,
+        Door,
+        Lights,
+        Panel,
+        Steering,
+        Key
+    }
 
-    private Transform kamazRoot;
+    [Header("Root")]
+    [SerializeField] private Transform root;
 
-    private Transform gidravl;
-    private Transform wheelBack;
-    private Transform wheelMidlle;
-    private Transform wheelRF;
-    private Transform wheelLF;
-    private Transform kabina;
-    private Transform kuzov;
+    [Header("Main Objects")]
+    [SerializeField] private Transform kabina;
+    [SerializeField] private Transform fary;
+    [SerializeField] private Transform panel;
 
-    private Transform doorL;
-    private Transform doorR;
-    private Transform dwornikL;
-    private Transform dwornikR;
-    private Transform key;
-    private Transform pedalGaz;
-    private Transform pedalSceplenie;
-    private Transform pedalTormoz;
-    private Transform peredachi;
-    private Transform ryle;
-    private Transform spidometr;
-    private Transform strelkaSpid;
-    private Transform tachometr;
-    private Transform strelkaTach;
-    private Transform panel;
+    [Header("Points")]
+    [SerializeField] private Transform seatPoint;
+    [SerializeField] private Transform exitPoint;
 
-    private Transform btnL;
-    private Transform btnR;
-    private Transform switcherAvariyka;
-    private Transform switcherDvorniki;
-    private Transform switcherFary;
-    private Transform switcherKuzov;
+    [Header("Doors")]
+    [SerializeField] private Transform doorL;
+    [SerializeField] private Transform doorR;
 
-    private Transform kryshka;
+    [Header("Driving")]
+    [SerializeField] private Transform ryle;
+    [SerializeField] private Transform key;
+    [SerializeField] private Transform speedometerNeedleObject;
+    [SerializeField] private Transform tachometerNeedleObject;
 
-    private Transform seatPoint;
-    private Transform exitPoint;
+    [Header("Mechanisms")]
+    [SerializeField] private Transform wiperLeftObject;
+    [SerializeField] private Transform wiperRightObject;
+    [SerializeField] private Transform bodyObject;
+    [SerializeField] private Transform hydraulicObject;
+
+    [Header("Wheels")]
+    [SerializeField] private Transform wheelFrontLeft;
+    [SerializeField] private Transform wheelFrontRight;
+    [SerializeField] private Transform wheelMiddle;
+    [SerializeField] private Transform wheelBack;
+
+    private Rigidbody kamazRigidbody;
+    private Collider[] allKamazColliders;
 
     private Animator doorLAnimator;
     private Animator doorRAnimator;
-    private Animator keyAnimator;
-    private Collider doorLCollider;
-    private Collider doorRCollider;
-    private Collider ryleCollider;
-    private Collider keyCollider;
     private Collider[] doorLColliders;
     private Collider[] doorRColliders;
+
     private Collider[] ryleColliders;
+    private Animator keyAnimator;
     private Collider[] keyColliders;
-    private Collider[] allKamazColliders;
     private GaugeNeedle spidometerNeedle;
     private GaugeNeedle tachometerNeedle;
 
-    public Transform Root => kamazRoot;
-    public Transform DoorL => doorL;
-    public Transform DoorR => doorR;
+    private Animator wiperLeftAnimator;
+    private Animator wiperRightAnimator;
+    private Animator bodyAnimator;
+    private Animator hydraulicAnimator;
+    private KamazLightsController lightsController;
+    private KamazCabinMechanismsController cabinMechanismsController;
+
+    private Transform[] kuzovSetupTargets;
+    private Transform[] doorSetupTargets;
+    private Transform[] lightsSetupTargets;
+    private Transform[] panelSetupTargets;
+    private Transform[] steeringSetupTargets;
+    private Transform[] keySetupTargets;
+
+    public Transform Root => root;
+    public Rigidbody KamazRigidbody => kamazRigidbody;
+    public Collider[] AllKamazColliders => allKamazColliders;
     public Transform Kabina => kabina;
-    public Transform Ryle => ryle;
-    public Transform Key => key;
+    public Transform Kuzov => bodyObject;
+    public Transform Fary => fary;
+    public Transform Panel => panel;
     public Transform SeatPoint => seatPoint;
     public Transform ExitPoint => exitPoint;
-    public GaugeNeedle SpidometerNeedle => spidometerNeedle;
-    public GaugeNeedle TachometerNeedle => tachometerNeedle;
+    public Transform DoorL => doorL;
+    public Transform DoorR => doorR;
     public Animator DoorLAnimator => doorLAnimator;
     public Animator DoorRAnimator => doorRAnimator;
-    public Animator KeyAnimator => keyAnimator;
-    public Collider DoorLCollider => doorLCollider;
-    public Collider DoorRCollider => doorRCollider;
-    public Collider RyleCollider => ryleCollider;
-    public Collider KeyCollider => keyCollider;
-    public Collider[] DoorLColliders => doorLColliders;
-    public Collider[] DoorRColliders => doorRColliders;
+    public Transform Ryle => ryle;
     public Collider[] RyleColliders => ryleColliders;
+    public Transform Key => key;
+    public Animator KeyAnimator => keyAnimator;
     public Collider[] KeyColliders => keyColliders;
-    public Collider[] AllKamazColliders => allKamazColliders;
-
-    public Transform GetNode(string nodeName)
-    {
-        if (string.IsNullOrEmpty(nodeName))
-        {
-            return null;
-        }
-
-        return FindByName(nodeName);
-    }
-
-    public Collider GetNodeCollider(string nodeName)
-    {
-        return ResolveCollider(GetNode(nodeName));
-    }
-
-    public Animator GetNodeAnimator(string nodeName)
-    {
-        return ResolveAnimator(GetNode(nodeName));
-    }
+    public GaugeNeedle SpidometerNeedle => spidometerNeedle;
+    public GaugeNeedle TachometerNeedle => tachometerNeedle;
+    public Animator WiperLeftAnimator => wiperLeftAnimator;
+    public Animator WiperRightAnimator => wiperRightAnimator;
+    public Animator BodyAnimator => bodyAnimator;
+    public Animator HydraulicAnimator => hydraulicAnimator;
+    public Transform WheelFrontLeft => wheelFrontLeft;
+    public Transform WheelFrontRight => wheelFrontRight;
+    public Transform WheelMiddle => wheelMiddle;
+    public Transform WheelBack => wheelBack;
+    public KamazLightsController LightsController => lightsController;
+    public KamazCabinMechanismsController CabinMechanismsController => cabinMechanismsController;
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            return;
-        }
-
-        Instance = this;
-        AutoResolve();
+        CacheComponents();
     }
 
-    [ContextMenu("Auto Resolve")]
-    public void AutoResolve()
+    private void OnValidate()
     {
-        if (kamazRoot == null)
-        {
-            kamazRoot = transform;
-        }
-
-        gidravl = FindByName("gidravl");
-        wheelBack = FindByName("wheel_back");
-        wheelMidlle = FindByName("wheel_midlle");
-        wheelRF = FindByName("wheelRF");
-        wheelLF = FindByName("wheelLF");
-        kabina = FindByName("kabina");
-        kuzov = FindByName("kuzov");
-
-        doorL = FindByName("doorL", kabina);
-        doorR = FindByName("doorR", kabina);
-        dwornikL = FindByName("dwornikL", kabina);
-        dwornikR = FindByName("dwornikR", kabina);
-        key = FindByName("key", kabina);
-        pedalGaz = FindByName("pedal_gaz", kabina);
-        pedalSceplenie = FindByName("pedal_sceplenie", kabina);
-        pedalTormoz = FindByName("pedal_tormoz", kabina);
-        peredachi = FindByName("peredachi", kabina);
-        ryle = FindByName("ryle", kabina);
-        spidometr = FindByName("spidometr", kabina);
-        tachometr = FindByName("tachometr", kabina);
-        panel = FindByName("panel", kabina);
-
-        strelkaSpid = FindByName("strelka_spid", spidometr);
-        strelkaTach = FindByName("strelka_tach", tachometr);
-
-        btnL = FindByName("btn_L", panel);
-        btnR = FindByName("btn_R", panel);
-        switcherAvariyka = FindByName("switcher_avariyka", panel);
-        switcherDvorniki = FindByName("switcher_dvorniki", panel);
-        switcherFary = FindByName("switcher_fary", panel);
-        switcherKuzov = FindByName("switcher_kuzov", panel);
-
-        kryshka = FindByName("kryshka", kuzov);
-
-        seatPoint = FindByName("SeatPoint");
-        exitPoint = FindByName("ExitPoint");
-
-        doorLAnimator = ResolveAnimator(doorL);
-        doorRAnimator = ResolveAnimator(doorR);
-        keyAnimator = ResolveAnimator(key);
-        doorLCollider = ResolveCollider(doorL);
-        doorRCollider = ResolveCollider(doorR);
-        ryleCollider = ResolveCollider(ryle);
-        keyCollider = ResolveCollider(key);
-        doorLColliders = ResolveAllColliders(doorL);
-        doorRColliders = ResolveAllColliders(doorR);
-        ryleColliders = ResolveAllColliders(ryle);
-        keyColliders = ResolveAllColliders(key);
-        spidometerNeedle = ResolveNeedle(strelkaSpid);
-        tachometerNeedle = ResolveNeedle(strelkaTach);
-
-        allKamazColliders = kamazRoot != null ? kamazRoot.GetComponentsInChildren<Collider>(true) : System.Array.Empty<Collider>();
+        CacheComponents();
     }
 
-    public bool TryGetDoorFromChild(Transform target, out Transform doorRoot, out Animator doorAnimator)
+    private void CacheComponents()
     {
-        doorRoot = null;
-        doorAnimator = null;
-
-        if (target == null)
+        if (root == null)
         {
-            return false;
+            root = transform;
         }
 
-        if (doorL != null && IsRelated(target, doorL))
-        {
-            doorRoot = doorL;
-            doorAnimator = doorLAnimator != null ? doorLAnimator : ResolveAnimator(doorL);
-            return true;
-        }
+        kamazRigidbody = GetComponentFromObject<Rigidbody>(root);
+        allKamazColliders = GetComponentsFromObject<Collider>(root);
 
-        if (doorR != null && IsRelated(target, doorR))
-        {
-            doorRoot = doorR;
-            doorAnimator = doorRAnimator != null ? doorRAnimator : ResolveAnimator(doorR);
-            return true;
-        }
+        doorLAnimator = GetAnimatorFromObject(doorL);
+        doorRAnimator = GetAnimatorFromObject(doorR);
+        doorLColliders = GetComponentsFromObject<Collider>(doorL);
+        doorRColliders = GetComponentsFromObject<Collider>(doorR);
 
-        return false;
+        ryleColliders = GetComponentsFromObject<Collider>(ryle);
+        keyAnimator = GetAnimatorFromObject(key);
+        keyColliders = GetComponentsFromObject<Collider>(key);
+        spidometerNeedle = GetComponentFromObject<GaugeNeedle>(speedometerNeedleObject);
+        tachometerNeedle = GetComponentFromObject<GaugeNeedle>(tachometerNeedleObject);
+
+        wiperLeftAnimator = GetAnimatorFromObject(wiperLeftObject);
+        wiperRightAnimator = GetAnimatorFromObject(wiperRightObject);
+        bodyAnimator = GetAnimatorFromObject(bodyObject);
+        hydraulicAnimator = GetAnimatorFromObject(hydraulicObject);
+
+        lightsController = GetComponentFromObject<KamazLightsController>(root);
+        cabinMechanismsController = GetComponentFromObject<KamazCabinMechanismsController>(root);
+
+        kuzovSetupTargets = BuildTargets(bodyObject);
+        doorSetupTargets = BuildTargets(doorL, doorR);
+        lightsSetupTargets = BuildTargets(fary);
+        panelSetupTargets = BuildTargets(panel);
+        steeringSetupTargets = BuildTargets(ryle);
+        keySetupTargets = BuildTargets(key);
+    }
+
+    public Transform[] GetSetupTargets(SetupSection section)
+    {
+        if (section == SetupSection.Kuzov) return kuzovSetupTargets;
+        if (section == SetupSection.Door) return doorSetupTargets;
+        if (section == SetupSection.Lights) return lightsSetupTargets;
+        if (section == SetupSection.Panel) return panelSetupTargets;
+        if (section == SetupSection.Steering) return steeringSetupTargets;
+        return keySetupTargets;
     }
 
     public bool TryGetDoorFromCollider(Collider hitCollider, out Transform doorRoot, out Animator doorAnimator)
@@ -205,76 +167,26 @@ public class KamazContext : MonoBehaviour
         doorRoot = null;
         doorAnimator = null;
 
-        if (hitCollider == null)
-        {
-            return false;
-        }
-
         if (ContainsCollider(doorLColliders, hitCollider))
         {
             doorRoot = doorL;
-            doorAnimator = doorLAnimator != null ? doorLAnimator : ResolveAnimator(doorL);
+            doorAnimator = doorLAnimator;
             return true;
         }
 
         if (ContainsCollider(doorRColliders, hitCollider))
         {
             doorRoot = doorR;
-            doorAnimator = doorRAnimator != null ? doorRAnimator : ResolveAnimator(doorR);
-            return true;
-        }
-
-        // Fallback на иерархию hit-коллайдера (если кэш коллайдеров устарел).
-        Transform hitTransform = hitCollider.transform;
-        if (doorL != null && (hitTransform == doorL || hitTransform.IsChildOf(doorL)))
-        {
-            doorRoot = doorL;
-            doorAnimator = doorLAnimator != null ? doorLAnimator : ResolveAnimator(doorL);
-            return true;
-        }
-
-        if (doorR != null && (hitTransform == doorR || hitTransform.IsChildOf(doorR)))
-        {
-            doorRoot = doorR;
-            doorAnimator = doorRAnimator != null ? doorRAnimator : ResolveAnimator(doorR);
+            doorAnimator = doorRAnimator;
             return true;
         }
 
         return false;
-    }
-
-    public bool IsRyleOrChild(Transform target)
-    {
-        if (target == null || ryle == null)
-        {
-            return false;
-        }
-
-        return IsRelated(target, ryle);
     }
 
     public bool IsRyleCollider(Collider hitCollider)
     {
-        if (ContainsCollider(ryleColliders, hitCollider))
-        {
-            return true;
-        }
-
-        if (hitCollider == null)
-        {
-            return false;
-        }
-
-        if (ryle != null)
-        {
-            Transform hitTransform = hitCollider.transform;
-            if (hitTransform == ryle || hitTransform.IsChildOf(ryle))
-            {
-                return true;
-            }
-        }
-
-        return false;
+        return ContainsCollider(ryleColliders, hitCollider);
     }
 
     public bool TryGetKeyFromCollider(Collider hitCollider, out Transform keyRoot, out Animator keyAnimatorOut)
@@ -282,111 +194,70 @@ public class KamazContext : MonoBehaviour
         keyRoot = null;
         keyAnimatorOut = null;
 
-        if (hitCollider == null)
+        if (!ContainsCollider(keyColliders, hitCollider))
         {
             return false;
         }
 
-        if (ContainsCollider(keyColliders, hitCollider))
-        {
-            keyRoot = key;
-            keyAnimatorOut = keyAnimator != null ? keyAnimator : ResolveAnimator(key);
-            return true;
-        }
-
-        Transform hitTransform = hitCollider.transform;
-        if (key != null && (hitTransform == key || hitTransform.IsChildOf(key)))
-        {
-            keyRoot = key;
-            keyAnimatorOut = keyAnimator != null ? keyAnimator : ResolveAnimator(key);
-            return true;
-        }
-
-        return false;
+        keyRoot = key;
+        keyAnimatorOut = keyAnimator;
+        return true;
     }
 
-    private Transform FindByName(string objectName, Transform scope = null)
+    private Transform[] BuildTargets(params Transform[] targets)
     {
-        Transform root = scope != null ? scope : kamazRoot;
-        if (root == null)
+        int count = 0;
+        for (int i = 0; i < targets.Length; i++)
         {
-            return null;
-        }
-
-        if (NamesEqual(root.name, objectName))
-        {
-            return root;
-        }
-
-        return FindDeepChild(root, objectName);
-    }
-
-    private Transform FindDeepChild(Transform parent, string objectName)
-    {
-        for (int i = 0; i < parent.childCount; i++)
-        {
-            Transform child = parent.GetChild(i);
-            if (NamesEqual(child.name, objectName))
+            if (targets[i] != null)
             {
-                return child;
-            }
-
-            Transform found = FindDeepChild(child, objectName);
-            if (found != null)
-            {
-                return found;
+                count++;
             }
         }
 
-        return null;
+        Transform[] result = new Transform[count];
+        int index = 0;
+        for (int i = 0; i < targets.Length; i++)
+        {
+            if (targets[i] != null)
+            {
+                result[index] = targets[i];
+                index++;
+            }
+        }
+
+        return result;
     }
 
-    private Animator ResolveAnimator(Transform target)
+    private T GetComponentFromObject<T>(Transform source) where T : Component
     {
-        if (target == null)
+        if (source == null)
         {
             return null;
         }
 
-        Animator animator = target.GetComponent<Animator>();
-        if (animator != null)
+        T component = source.GetComponent<T>();
+        if (component != null)
         {
-            return animator;
+            return component;
         }
 
-        animator = target.GetComponentInChildren<Animator>(true);
-        if (animator != null)
-        {
-            return animator;
-        }
-
-        return target.GetComponentInParent<Animator>();
+        return source.GetComponentInChildren<T>(true);
     }
 
-    private Collider ResolveCollider(Transform target)
+    private T[] GetComponentsFromObject<T>(Transform source) where T : Component
     {
-        if (target == null)
+        if (source == null)
         {
-            return null;
+            return System.Array.Empty<T>();
         }
 
-        Collider collider = target.GetComponent<Collider>();
-        if (collider != null)
-        {
-            return collider;
-        }
-
-        return target.GetComponentInChildren<Collider>(true);
+        return source.GetComponentsInChildren<T>(true);
     }
 
-    private Collider[] ResolveAllColliders(Transform target)
+    private Animator GetAnimatorFromObject(Transform source)
     {
-        if (target == null)
-        {
-            return System.Array.Empty<Collider>();
-        }
-
-        return target.GetComponentsInChildren<Collider>(true);
+        return GetComponentFromObject<Animator>(source);
     }
 
     private bool ContainsCollider(Collider[] colliders, Collider target)
@@ -406,38 +277,4 @@ public class KamazContext : MonoBehaviour
 
         return false;
     }
-
-    private bool IsRelated(Transform a, Transform b)
-    {
-        if (a == null || b == null)
-        {
-            return false;
-        }
-
-        // Взаимодействие считается только при попадании в сам объект
-        // или в один из его дочерних объектов.
-        return a == b || a.IsChildOf(b);
-    }
-
-    private bool NamesEqual(string a, string b)
-    {
-        return string.Equals(a, b, System.StringComparison.OrdinalIgnoreCase);
-    }
-
-    private GaugeNeedle ResolveNeedle(Transform target)
-    {
-        if (target == null)
-        {
-            return null;
-        }
-
-        GaugeNeedle needle = target.GetComponent<GaugeNeedle>();
-        if (needle != null)
-        {
-            return needle;
-        }
-
-        return target.GetComponentInChildren<GaugeNeedle>(true);
-    }
-
 }
