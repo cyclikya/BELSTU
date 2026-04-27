@@ -19,22 +19,9 @@ rl.question('Введите имя файла для загрузки: ', (fileN
     const writeStream = fs.createWriteStream(path.join(__dirname, fileName));
 
     ws.on('message', (data, isBinary) => {
-      if (!isBinary) {
-        try {
-          const msg = JSON.parse(data.toString());
-          if (msg.error) {
-            console.log(`Ошибка: ${msg.error}`);
-            ws.close();
-            rl.close();
-            return;
-          }
-        } catch (e) {
-          // Не JSON, игнорируем
-        }
-      } else {
+      
         writeStream.write(data);
         console.log(`Получен фрагмент (${data.length} байт)`);
-      }
     });
 
     ws.on('close', () => {
