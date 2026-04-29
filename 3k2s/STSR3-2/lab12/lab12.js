@@ -40,6 +40,7 @@ let server = http.createServer((req, res) => {
     let path = url.parse(req.url, true);
     let method = req.method;
 
+    // ===== REQUEST 1: GET / - Получить всех студентов =====
     if (method === 'GET' && path.pathname === '/') {
         let students = loadStudents();
         if (students.error) {
@@ -51,6 +52,7 @@ let server = http.createServer((req, res) => {
         res.end(JSON.stringify(students));
     }
     
+    // ===== REQUEST 2: GET /{id} - Получить студента по ID =====
     else if (method === 'GET' && /^\/\d+$/.test(path.pathname)) {
         let id = parseInt(path.pathname.split('/')[1]);
         let students = loadStudents();
@@ -73,6 +75,7 @@ let server = http.createServer((req, res) => {
         }
     }
 
+    // ===== REQUEST 3: POST / - Добавить нового студента =====
     else if (method === 'POST' && path.pathname === '/') {
         let body = '';
         req.on('data', chunk => {
@@ -130,7 +133,8 @@ let server = http.createServer((req, res) => {
                 res.end(JSON.stringify(newStudent));
             }
         });
-    
+
+    // ===== REQUEST 4: PUT / - Обновить данные студента =====
     } else if (method === 'PUT' && path.pathname === '/') {
         let body = '';
         req.on('data', chunk => {
@@ -159,6 +163,8 @@ let server = http.createServer((req, res) => {
                 }));
             }
         });
+
+    // ===== REQUEST 5: DELETE /{id} - Удалить студента по ID =====
     } else if (method === 'DELETE' && /^\/\d+$/.test(path.pathname)) {
         let id = parseInt(path.pathname.split('/')[1]);
         let students = loadStudents();
@@ -181,12 +187,16 @@ let server = http.createServer((req, res) => {
                 message: `студент с id ${id} не найден`
             }));
         }
+        
+    // ===== REQUEST 6: POST /backup - Создать резервную копию =====
     } else if (method === 'POST' && path.pathname === '/backup') {
         setTimeout(() => {
             let backupFile = backupStudents();
             res.writeHead(201, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify({ message: 'Backup created', backup_file: backupFile }));
         }, 2000);
+
+    // ===== REQUEST 7: DELETE /backup/{date} - Удалить устаревшие резервные копии до указанной даты =====
     } else if (method === 'DELETE' && /^\/backup\/\d{8}$/.test(path.pathname)) {
         let dateStr = path.pathname.split('/')[2];
         
@@ -256,13 +266,14 @@ let server = http.createServer((req, res) => {
                 deleted_count: deletedCount
             }));
         });
+
+    // ===== REQUEST 8: GET /backup - Получить список всех резервных копий =====
     } else if (method === 'GET' && path.pathname === '/backup') {
         if (!fs.existsSync(BACKUP_DIR)) {
             res.writeHead(200, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify([]));
             return;
         }
-        
         fs.readdir(BACKUP_DIR, (err, files) => {
             if (err) {
                 res.writeHead(500, { 'Content-Type': 'application/json' });
@@ -270,11 +281,13 @@ let server = http.createServer((req, res) => {
                     error: 1,
                     message: 'ошибка чтения директории backups' 
                 }));
-            } else {
+            } else { 
                 res.writeHead(200, { 'Content-Type': 'application/json' });
                 res.end(JSON.stringify(files));
             }
         });
+
+    // ===== INVALID REQUEST - Обработка некорректных URL =====
     } else {
         res.writeHead(404, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({    error: 4, 
@@ -283,8 +296,10 @@ let server = http.createServer((req, res) => {
     }
 });
 
+// ===== WebSocket Server для уведомления клиентов об изменениях =====
 let wss = new WebSocket.Server({ server });
 
+// Функция для отправления уведомления всем подключённым клиентам
 function notifyAll() {
     wss.clients.forEach(client => {
         if (client.readyState === WebSocket.OPEN) {
@@ -292,7 +307,7 @@ function notifyAll() {
         }
     });
 }
-
+// Обработка подключения новых WebSocket клиентов
 wss.on('connection', (ws) => {
     console.log('Подключен новый клиент');
     ws.on('close', () => {

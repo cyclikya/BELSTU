@@ -1,3 +1,19 @@
+-- 1. удалить таблицы (сначала те, где есть вложенные коллекции)
+DROP TABLE license_obj_tab CASCADE CONSTRAINTS;
+DROP TABLE usage_place_obj_tab CASCADE CONSTRAINTS;
+
+-- если Oracle создавал storage для nested table
+DROP TABLE usage_places_nt;
+
+-- 2. удалить типы коллекций (если были)
+DROP TYPE usage_place_table_t;
+DROP TYPE license_table_t;
+
+-- 3. удалить основные object types
+DROP TYPE license_obj_t FORCE;
+DROP TYPE usage_place_obj_t FORCE;
+
+
 /* =========================================================
    2.1 ОБЪЕКТНЫЙ ТИП "ЛИЦЕНЗИЯ"
    - дополнительный конструктор

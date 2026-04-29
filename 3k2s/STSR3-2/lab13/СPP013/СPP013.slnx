@@ -1,0 +1,10 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="Client01/Client01.vcxproj" />
+  <Project Path="Client05/Client05.vcxproj" />
+  <Project Path="Server01/Server01.vcxproj" />
+  <Project Path="Server05/Server05.vcxproj" />
+</Solution>

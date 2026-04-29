@@ -1,0 +1,3 @@
+﻿  Client01.cpp
+C:\General\BELSTU\3k2s\STSR3-2\lab13\СPP013\Client01\Client01.cpp(63,59): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+  Client01.vcxproj -> C:\General\BELSTU\3k2s\STSR3-2\lab13\СPP013\x64\Debug\Client01.exe
