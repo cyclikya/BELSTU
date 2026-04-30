@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="lab10/lab10.sqlproj">
+    <Build />
+    <Deploy />
+  </Project>
+</Solution>
