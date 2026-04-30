@@ -8,7 +8,8 @@ CREATE TYPE usage_place_obj_t AS OBJECT (
 );
 
 -- коллекция мест (K2)
-CREATE TYPE usage_place_table_t AS TABLE OF usage_place_obj_t;
+CREATE TYPE usage_place_table_t 
+    AS TABLE OF usage_place_obj_t;
 
 -- тип лицензии (t1) с вложенной коллекцией
 CREATE TYPE license_obj_t AS OBJECT (
@@ -18,7 +19,8 @@ CREATE TYPE license_obj_t AS OBJECT (
 );
 
 -- коллекция лицензий (K1)
-CREATE TYPE license_table_t AS TABLE OF license_obj_t;
+CREATE TYPE license_table_t 
+    AS TABLE OF license_obj_t;
 
 
 
@@ -92,8 +94,8 @@ SELECT *
 
 -- d пустые коллекции
 SELECT *
-FROM license_obj_tab
-WHERE usage_places IS EMPTY;
+    FROM license_obj_tab
+    WHERE usage_places IS EMPTY;
 
 -- e обмен коллекций
 DECLARE
