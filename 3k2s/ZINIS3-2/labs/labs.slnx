@@ -8,4 +8,5 @@
   <Project Path="lab07/lab07.csproj" Id="48f73b6a-24c7-4fab-a60f-29531f4474c0" />
   <Project Path="lab08/lab08.csproj" Id="f24d67ff-88f8-4319-933c-1e7a11a27c1b" />
   <Project Path="lab09/lab09.csproj" Id="113a33f1-6a64-468e-abdd-c5f75c86de95" />
+  <Project Path="lab10/lab10.csproj" Id="bdf37f01-4c07-4d09-bc29-690ca243150d" />
 </Solution>
