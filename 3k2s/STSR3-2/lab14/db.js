@@ -10,13 +10,19 @@ const sequelize = new Sequelize(
         port: process.env.SQL_PORT,
         dialect: process.env.DIALECT,
         dialectOptions: {
-            options: { encrypt: false },
+            options: {
+                encrypt: false,
+                trustServerCertificate: false,
+                enableArithAbort: false
+            },
         },
         pool: {
             max: 10,
             min: 1,
             idle: 20000,
+            acquire: 30000
         },
+        logging: console.log 
     }
 );
 

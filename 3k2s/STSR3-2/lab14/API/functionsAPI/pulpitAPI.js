@@ -92,19 +92,30 @@ module.exports = function (request, response) {
         //---------------------DELETE----------------------------
         case "DELETE":
             {
-                Pulpit.findByPk(request.url.split('/')[3])
-                    .then(result => {
-                        Pulpit.destroy({ where: { pulpit: request.url.split('/')[3] } })
-                            .then(resultD => {
-                                if (resultD == 0) {
-                                    throw new Error('This pulpit not exists');
-                                }
-                                else {
-                                    response.end(JSON.stringify(result));
-                                }
-                            })
-                            .catch(error => errorHandler(response, 500, error.message));
-                    }).catch(error => errorHandler(response, 500, error.message));
+                const pulpitId = decodeURIComponent(request.url.split('/')[3]).trim();
+
+                console.log('DELETE PULPIT ID:', pulpitId);
+
+                Pulpit.destroy({ 
+                    where: { pulpit: pulpitId } 
+                })
+                    .then(resultD => {
+                        console.log('DELETE RESULT:', resultD);
+
+                        if (resultD == 0) {
+                            errorHandler(response, 404, 'Pulpit not exists');
+                        }
+                        else {
+                            response.end(JSON.stringify({
+                                message: 'Pulpit deleted',
+                                pulpit: pulpitId
+                            }));
+                        }
+                    })
+                    .catch(error => {
+                        console.log('DELETE ERROR:', error.message);
+                        errorHandler(response, 500, error.message);
+                    });
 
                 break;
             }

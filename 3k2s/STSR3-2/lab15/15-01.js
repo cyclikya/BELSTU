@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const http = require('http');
 const url = require('url');
 
-const uri = 'mongodb://127.0.0.1:27017/BSTU';
+const uri = 'mongodb+srv://admin:admin@lab15.ehijg0w.mongodb.net/BSTU?retryWrites=true&w=majority&appName=Lab15';
 
 mongoose.connect(uri)
     .then(() => console.log('MongoDB подключена'))

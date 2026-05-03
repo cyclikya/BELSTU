@@ -1,0 +1,247 @@
+{
+  "info": {
+    "name": "Lab15 MongoDB CRUD",
+    "description": "Коллекция Postman для проверки лабораторной работы 15: faculty и pulpit",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "GET faculties",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/faculties",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "faculties"
+          ]
+        }
+      }
+    },
+    {
+      "name": "GET pulpits",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/pulpits",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "pulpits"
+          ]
+        }
+      }
+    },
+    {
+      "name": "POST faculty",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"faculty\": \"ХТиТ\",\n  \"faculty_name\": \"Химической технологии и техники\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/faculties",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "faculties"
+          ]
+        }
+      }
+    },
+    {
+      "name": "POST pulpit",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"pulpit\": \"ТНВ\",\n  \"pulpit_name\": \"Технологии неорганических веществ\",\n  \"faculty\": \"ХТиТ\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/pulpits",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "pulpits"
+          ]
+        }
+      }
+    },
+    {
+      "name": "PUT faculty",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"faculty\": \"ХТиТ\",\n  \"faculty_name\": \"Факультет химической технологии и техники\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/faculties",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "faculties"
+          ]
+        }
+      }
+    },
+    {
+      "name": "PUT pulpit",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"pulpit\": \"ТНВ\",\n  \"pulpit_name\": \"Кафедра технологии неорганических веществ\",\n  \"faculty\": \"ХТиТ\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/pulpits",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "pulpits"
+          ]
+        }
+      }
+    },
+    {
+      "name": "DELETE pulpit",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/pulpits/ТНВ",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "pulpits",
+            "ТНВ"
+          ]
+        }
+      }
+    },
+    {
+      "name": "DELETE faculty",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/faculties/ХТиТ",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "faculties",
+            "ХТиТ"
+          ]
+        }
+      }
+    },
+    {
+      "name": "ERROR POST pulpit with non-existing faculty",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"pulpit\": \"ТЕСТ\",\n  \"pulpit_name\": \"Тестовая кафедра\",\n  \"faculty\": \"НЕСУЩ\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/pulpits",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "pulpits"
+          ]
+        }
+      }
+    },
+    {
+      "name": "ERROR DELETE faculty with pulpits",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/faculties/ИТ",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "faculties",
+            "ИТ"
+          ]
+        }
+      }
+    }
+  ]
+}
