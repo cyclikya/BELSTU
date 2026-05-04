@@ -1,0 +1,446 @@
+{
+  "info": {
+    "name": "GraphQL University API",
+    "description": "Collection for testing GraphQL operations",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Get All Faculties",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"query\": \"{ getFaculties { FACULTY FACULTY_NAME } }\"}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/graphql",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["graphql"]
+        }
+      }
+    },
+    {
+      "name": "2. Get Faculty by ID (ИТ)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"query\": \"{ getFaculties(FACULTY: \\\"ИТ\\\") { FACULTY FACULTY_NAME } }\"}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/graphql",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["graphql"]
+        }
+      }
+    },
+    {
+      "name": "3. Get All Pulpits",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"query\": \"{ getPulpits { PULPIT PULPIT_NAME FACULTY } }\"}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/graphql",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["graphql"]
+        }
+      }
+    },
+    {
+      "name": "4. Get Pulpit by ID (ИСИТ)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"query\": \"{ getPulpits(PULPIT: \\\"ИСИТ\\\") { PULPIT PULPIT_NAME FACULTY } }\"}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/graphql",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["graphql"]
+        }
+      }
+    },
+    {
+      "name": "5. Get All Teachers",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"query\": \"{ getTeachers { TEACHER TEACHER_NAME PULPIT } }\"}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/graphql",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["graphql"]
+        }
+      }
+    },
+    {
+      "name": "6. Get Teacher by ID (СМЛВ)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"query\": \"{ getTeachers(TEACHER: \\\"СМЛВ\\\") { TEACHER TEACHER_NAME PULPIT } }\"}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/graphql",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["graphql"]
+        }
+      }
+    },
+    {
+      "name": "7. Get All Subjects",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"query\": \"{ getSubjects { SUBJECT SUBJECT_NAME PULPIT } }\"}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/graphql",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["graphql"]
+        }
+      }
+    },
+    {
+      "name": "8. Get Subject by ID (БД)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"query\": \"{ getSubjects(SUBJECT: \\\"БД\\\") { SUBJECT SUBJECT_NAME PULPIT } }\"}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/graphql",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["graphql"]
+        }
+      }
+    },
+    {
+      "name": "9. Get Teachers by Faculty (ИТ)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"query\": \"{ getTeachersByFaculty(FACULTY: \\\"ИТ\\\") { FACULTY TEACHERS { TEACHER TEACHER_NAME PULPIT } } }\"}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/graphql",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["graphql"]
+        }
+      }
+    },
+    {
+      "name": "10. Get Subjects by Faculty (ИТ)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"query\": \"{ getSubjectsByFaculties(FACULTY: \\\"ИТ\\\") { PULPIT PULPIT_NAME FACULTY SUBJECTS { SUBJECT SUBJECT_NAME } } }\"}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/graphql",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["graphql"]
+        }
+      }
+    },
+    {
+      "name": "11. Create Faculty",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"query\": \"mutation { setFaculty(FACULTY: \\\"НОВЫЙ\\\", FACULTY_NAME: \\\"Новый тестовый факультет\\\") { FACULTY FACULTY_NAME } }\"}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/graphql",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["graphql"]
+        }
+      }
+    },
+    {
+      "name": "12. Update Faculty",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"query\": \"mutation { setFaculty(FACULTY: \\\"НОВЫЙ\\\", FACULTY_NAME: \\\"Обновлённое название\\\") { FACULTY FACULTY_NAME } }\"}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/graphql",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["graphql"]
+        }
+      }
+    },
+    {
+      "name": "13. Create Pulpit",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"query\": \"mutation { setPulpit(PULPIT: \\\"ТК\\\", PULPIT_NAME: \\\"Тестовая кафедра\\\", FACULTY: \\\"НОВЫЙ\\\") { PULPIT PULPIT_NAME FACULTY } }\"}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/graphql",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["graphql"]
+        }
+      }
+    },
+    {
+      "name": "14. Create Teacher",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"query\": \"mutation { setTeacher(TEACHER: \\\"ИВАН\\\", TEACHER_NAME: \\\"Иванов Иван Иванович\\\", PULPIT: \\\"ИСИТ\\\") { TEACHER TEACHER_NAME PULPIT } }\"}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/graphql",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["graphql"]
+        }
+      }
+    },
+    {
+      "name": "15. Create Subject",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"query\": \"mutation { setSubject(SUBJECT: \\\"АЛГ\\\", SUBJECT_NAME: \\\"Алгоритмы и структуры данных\\\", PULPIT: \\\"ИСИТ\\\") { SUBJECT SUBJECT_NAME PULPIT } }\"}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/graphql",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["graphql"]
+        }
+      }
+    },
+    {
+      "name": "16. Delete Faculty",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"query\": \"mutation { delFaculty(FACULTY: \\\"НОВЫЙ\\\") { success } }\"}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/graphql",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["graphql"]
+        }
+      }
+    },
+    {
+      "name": "17. Delete Teacher",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"query\": \"mutation { delTeacher(TEACHER: \\\"ИВАН\\\") { success } }\"}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/graphql",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["graphql"]
+        }
+      }
+    },
+    {
+      "name": "18. Delete Pulpit",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"query\": \"mutation { delPulpit(PULPIT: \\\"ТК\\\") { success } }\"}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/graphql",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["graphql"]
+        }
+      }
+    },
+    {
+      "name": "19. Delete Subject",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"query\": \"mutation { delSubject(SUBJECT: \\\"АЛГ\\\") { success } }\"}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/graphql",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["graphql"]
+        }
+      }
+    }
+  ]
+}

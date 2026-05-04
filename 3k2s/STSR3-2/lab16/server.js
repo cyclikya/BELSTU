@@ -69,8 +69,8 @@ DB((err, dbContext) => {
         Object.assign(context, dbContext); 
         console.log('\nSuccesfully connected to database.');
 
-        server.listen(3000, () => { 
-            console.log('Server running at http://localhost:3000'); 
+        server.listen(5000, () => { 
+            console.log('Server running at http://localhost:5000'); 
         })
         .on('error', err => { 
             console.log('Ошибка сервера:', err.code); 

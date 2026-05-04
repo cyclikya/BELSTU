@@ -1,15 +1,17 @@
 const mssql = require('mssql');
 
 let config = {
-    user: 'NodeUser', 
-    password: '12345', 
-    server: 'DESKTOP-DMJJTUE',
-    database: 'HKV',
+    user: 'student', 
+    password: 'Pa$$w0rd', 
+    server: '80.94.224.209',
+    database: 'UVR',
     pool: {max: 10, min: 4},
     options: {
-        trustServerCertificate: true,
-        enableArithAbort: true,
+        trustServerCertificate: false,
+        enableArithAbort: false,
+        encrypt: false,
     },
+    port: 1433,
     connectionTimeout: 4500
 };
 
