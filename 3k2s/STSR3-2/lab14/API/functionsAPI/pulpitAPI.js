@@ -96,10 +96,38 @@ module.exports = function (request, response) {
 
                 console.log('DELETE PULPIT ID:', pulpitId);
 
-                Pulpit.destroy({ 
-                    where: { pulpit: pulpitId } 
-                })
+                // First check if pulpit exists
+                Pulpit.findByPk(pulpitId)
+                    .then(pulpit => {
+                        if (!pulpit) {
+                            errorHandler(response, 404, 'Pulpit not exists');
+                            return;
+                        }
+                        
+                        // Check for dependencies (example with Teacher and Subject models)
+                        // You'll need to import these models at the top
+                        const { Teacher, Subject } = require('../../index');
+                        
+                        return Promise.all([
+                            Teacher.count({ where: { pulpit: pulpitId } }),
+                            Subject.count({ where: { pulpit: pulpitId } })
+                        ]).then(([teachersCount, subjectsCount]) => {
+                            if (teachersCount > 0 || subjectsCount > 0) {
+                                const dependencies = [];
+                                if (teachersCount > 0) dependencies.push(`${teachersCount} teacher(s)`);
+                                if (subjectsCount > 0) dependencies.push(`${subjectsCount} subject(s)`);
+                                
+                                errorHandler(response, 409, `Cannot delete pulpit: has dependencies - ${dependencies.join(', ')}`);
+                                return null;
+                            }
+                            
+                            // No dependencies, proceed with deletion
+                            return Pulpit.destroy({ where: { pulpit: pulpitId } });
+                        });
+                    })
                     .then(resultD => {
+                        if (resultD === null) return; // Already handled
+                        
                         console.log('DELETE RESULT:', resultD);
 
                         if (resultD == 0) {
@@ -107,14 +135,18 @@ module.exports = function (request, response) {
                         }
                         else {
                             response.end(JSON.stringify({
-                                message: 'Pulpit deleted',
+                                message: 'Pulpit deleted successfully',
                                 pulpit: pulpitId
                             }));
                         }
                     })
                     .catch(error => {
-                        console.log('DELETE ERROR:', error.message);
-                        errorHandler(response, 500, error.message);
+                        if (error.name === 'SequelizeForeignKeyConstraintError') {
+                            errorHandler(response, 409, 'Cannot delete pulpit: it has existing related records');
+                        } else {
+                            console.log('DELETE ERROR:', error.message);
+                            errorHandler(response, 500, error.message);
+                        }
                     });
 
                 break;

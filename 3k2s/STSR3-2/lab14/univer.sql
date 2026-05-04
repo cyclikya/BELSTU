@@ -4,6 +4,7 @@ SELECT TOP (1000) [PULPIT]
   FROM [UVR_Univer].[dbo].[PULPIT]
 
 
+drop DATABASE UVR_Univer;
 
 
 CREATE DATABASE UVR_Univer;
