@@ -39,28 +39,18 @@ CREATE PROCEDURE dbo.ReadLicenseFile
         AS EXTERNAL NAME lab10.FileOperations.ReadLicenseFile;
 GO
 
--- Демонстрация 1: создание тестового файла с данными лицензий
+-- создание тестового файла с данными лицензий
 EXEC xp_cmdshell 'mkdir C:\CLR_Test';
-GO
-
 EXEC xp_cmdshell 'echo 1^|Visual Studio^|AAAA-BBBB-CCCC^|2027-01-01^|199.99 > C:\CLR_Test\licenses.txt';
-GO
-
 EXEC xp_cmdshell 'echo 2^|Microsoft Office^|DDDD-EEEE-FFFF^|2023-12-31^|149.50 >> C:\CLR_Test\licenses.txt';
-GO
-
 EXEC xp_cmdshell 'echo 3^|Adobe Photoshop^|GGGG-HHHH-IIII^|2026-06-15^|299.00 >> C:\CLR_Test\licenses.txt';
 GO
 
--- Проверка содержимого файла средствами SQL Server
-EXEC xp_cmdshell 'type C:\CLR_Test\licenses.txt';
-GO
-
--- Демонстрация 2: выполнение CLR-процедуры чтения файла
+-- выполнение CLR-процедуры чтения файла
 EXEC dbo.ReadLicenseFile 'C:\CLR_Test\licenses.txt';
 GO
 
--- Демонстрация 3: работа с пользовательским CLR-типом LicenseData
+-- работа с пользовательским CLR-типом LicenseData
 DECLARE @license dbo.LicenseData;
 
 SET @license = dbo.LicenseData::Parse('1|Visual Studio|AAAA-BBBB-CCCC|2027-01-01|199.99');
@@ -71,7 +61,7 @@ SELECT
     @license.IsExpired() AS IsExpired;
 GO
 
--- Демонстрация 4: проверка просроченной лицензии
+-- проверка просроченной лицензии
 DECLARE @expiredLicense dbo.LicenseData;
 
 SET @expiredLicense = dbo.LicenseData::Parse('2|Microsoft Office|DDDD-EEEE-FFFF|2023-12-31|149.50');
