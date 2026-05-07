@@ -58,8 +58,8 @@ public class KamazDrivingInputController : MonoBehaviour
     [SerializeField] private float maxRpm = 3000f;
     [SerializeField] private float stallRpm = 450f;
     [SerializeField] private float rpmRiseSpeed = 1400f;
-    [SerializeField] private float rpmDropSpeed = 1000f;
-    [SerializeField] private float clutchPressedRpmDropMultiplier = 0.4f;
+    [SerializeField] private float rpmDropSpeed = 350f;
+    [SerializeField] private float clutchPressedRpmDropMultiplier = 0.15f;
     [SerializeField] private float stallCheckDelay = 0.6f;
     [SerializeField] private float stallClutchEngagement = 0.9f;
     [SerializeField] private float stallThrottleBypass = 0.3f;
@@ -67,9 +67,9 @@ public class KamazDrivingInputController : MonoBehaviour
     [Header("Movement")]
     [SerializeField] private float baseDriveForce = 26000f;
     [SerializeField] private float brakeForce = 15000f;
-    [SerializeField] private float rollingDragForceCoast = 0.08f;
-    [SerializeField] private float rollingDragForceThrottle = 0.03f;
-    [SerializeField] private float engineBrakeForce = 12f;
+    [SerializeField] private float rollingDragForceCoast = 0.015f;
+    [SerializeField] private float rollingDragForceThrottle = 0.008f;
+    [SerializeField] private float engineBrakeForce = 3.5f;
     [SerializeField] private float engineBrakeThrottleThreshold = 0.05f;
     [SerializeField] private float maxReverseSpeedKmh = 15f;
     [SerializeField] private float lowRpmTorqueBoost = 2.6f;
@@ -78,10 +78,10 @@ public class KamazDrivingInputController : MonoBehaviour
     [Header("Vehicle Steering")]
     [SerializeField] private bool invertSteering;
     [SerializeField] private float steeringInputChangeSpeed = 1.4f;
-    [SerializeField] private float minTurnRadiusAtFullSteer = 180f;
-    [SerializeField] private float maxTurnRadiusAtLowSteer = 1200f;
-    [SerializeField] private float steeringMinSpeedMps = 2.5f;
-    [SerializeField] private float steeringYawMultiplier = 0.3f;
+    [SerializeField] private float minTurnRadiusAtFullSteer = 70f;
+    [SerializeField] private float maxTurnRadiusAtLowSteer = 500f;
+    [SerializeField] private float steeringMinSpeedMps = 0.8f;
+    [SerializeField] private float steeringYawMultiplier = 0.75f;
 
     [Header("Steering Wheel")]
     [SerializeField] private float steeringWheelSpeed = 230f;
@@ -414,7 +414,13 @@ public class KamazDrivingInputController : MonoBehaviour
 
         Vector3 velocity = kamazRigidbody.linearVelocity;
         float massScale = Mathf.Max(1f, kamazRigidbody.mass / 1000f);
+        float clutchEngagement = GetClutchEngagement();
         float drag = throttleInput > engineBrakeThrottleThreshold ? rollingDragForceThrottle : rollingDragForceCoast;
+        if (clutchPedal > 0.6f)
+        {
+            drag *= 0.2f;
+        }
+
         kamazRigidbody.AddForce(-velocity * (drag * massScale), ForceMode.Force);
 
         if (brakeInput > 0.001f)
@@ -422,7 +428,6 @@ public class KamazDrivingInputController : MonoBehaviour
             kamazRigidbody.AddForce(-velocity.normalized * brakeForce * brakeInput, ForceMode.Force);
         }
 
-        float clutchEngagement = GetClutchEngagement();
         float gearRatio = GetCurrentGearRatio();
         Vector3 driveAxis = GetDriveDirectionWorld();
 
