@@ -1,0 +1,42 @@
+[
+  {
+    "licenseName": "Microsoft Office 365",
+    "department": "Accounting",
+    "computer": "PC-101",
+    "responsible": "Ivanov",
+    "installed": true,
+    "tags": ["office", "finance"]
+  },
+  {
+    "licenseName": "Adobe Photoshop",
+    "department": "Design",
+    "computer": "PC-205",
+    "responsible": "Petrova",
+    "installed": true,
+    "tags": ["design", "graphics"]
+  },
+  {
+    "licenseName": "Windows Server 2022",
+    "department": "IT",
+    "computer": "SRV-01",
+    "responsible": "Sidorov",
+    "installed": true,
+    "tags": ["server", "system"]
+  },
+  {
+    "licenseName": "AutoCAD",
+    "department": "Engineering",
+    "computer": "PC-310",
+    "responsible": "Smirnov",
+    "installed": true,
+    "tags": ["engineering"]
+  },
+  {
+    "licenseName": "IntelliJ IDEA",
+    "department": "Development",
+    "computer": "PC-404",
+    "responsible": "Kozlov",
+    "installed": true,
+    "tags": ["development", "java"]
+  }
+]

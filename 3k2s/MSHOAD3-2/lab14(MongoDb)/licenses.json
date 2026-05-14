@@ -1,0 +1,51 @@
+[
+  {
+    "name": "Microsoft Office 365",
+    "type": "subscription",
+    "vendor": "Microsoft",
+    "price": 120,
+    "active": true,
+    "users": ["admin", "manager", "accountant"],
+    "expireDate": "2026-12-31",
+    "paymentModel": "yearly"
+  },
+  {
+    "name": "Adobe Photoshop",
+    "type": "subscription",
+    "vendor": "Adobe",
+    "price": 240,
+    "active": true,
+    "users": ["designer", "manager"],
+    "expireDate": "2026-08-15",
+    "paymentModel": "yearly"
+  },
+  {
+    "name": "Windows Server 2022",
+    "type": "permanent",
+    "vendor": "Microsoft",
+    "price": 900,
+    "active": true,
+    "users": ["admin"],
+    "expireDate": null
+  },
+  {
+    "name": "AutoCAD",
+    "type": "subscription",
+    "vendor": "Autodesk",
+    "price": 700,
+    "active": true,
+    "users": ["engineer"],
+    "expireDate": "2025-11-20",
+    "paymentModel": "yearly"
+  },
+  {
+    "name": "IntelliJ IDEA",
+    "type": "subscription",
+    "vendor": "JetBrains",
+    "price": 170,
+    "active": true,
+    "users": ["developer", "admin"],
+    "expireDate": "2026-06-01",
+    "paymentModel": "yearly"
+  }
+]
