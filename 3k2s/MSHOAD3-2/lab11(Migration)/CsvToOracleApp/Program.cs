@@ -18,4 +18,4 @@ namespace CsvToOracleApp
             Console.WriteLine("Импорт из CSV в Oracle завершен.");
         }
     }
-}
+} 
