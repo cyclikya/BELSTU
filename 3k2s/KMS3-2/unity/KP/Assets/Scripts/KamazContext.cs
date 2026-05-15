@@ -39,6 +39,7 @@ public class KamazContext : MonoBehaviour
     [SerializeField] private Transform wiperRightObject;
     [SerializeField] private Transform bodyObject;
     [SerializeField] private Transform hydraulicObject;
+    [SerializeField] private Transform kryshkaObject;
 
     [Header("Wheels")]
     [SerializeField] private Transform wheelFrontLeft;
@@ -64,6 +65,7 @@ public class KamazContext : MonoBehaviour
     private Animator wiperRightAnimator;
     private Animator bodyAnimator;
     private Animator hydraulicAnimator;
+    private KamazAudioController audioController;
     private KamazLightsController lightsController;
     private KamazCabinMechanismsController cabinMechanismsController;
 
@@ -98,10 +100,12 @@ public class KamazContext : MonoBehaviour
     public Animator WiperRightAnimator => wiperRightAnimator;
     public Animator BodyAnimator => bodyAnimator;
     public Animator HydraulicAnimator => hydraulicAnimator;
+    public Transform Kryshka => kryshkaObject;
     public Transform WheelFrontLeft => wheelFrontLeft;
     public Transform WheelFrontRight => wheelFrontRight;
     public Transform WheelMiddle => wheelMiddle;
     public Transform WheelBack => wheelBack;
+    public KamazAudioController AudioController => audioController;
     public KamazLightsController LightsController => lightsController;
     public KamazCabinMechanismsController CabinMechanismsController => cabinMechanismsController;
 
@@ -141,6 +145,7 @@ public class KamazContext : MonoBehaviour
         bodyAnimator = GetAnimatorFromObject(bodyObject);
         hydraulicAnimator = GetAnimatorFromObject(hydraulicObject);
 
+        audioController = GetComponentFromObject<KamazAudioController>(root);
         lightsController = GetComponentFromObject<KamazLightsController>(root);
         cabinMechanismsController = GetComponentFromObject<KamazCabinMechanismsController>(root);
 

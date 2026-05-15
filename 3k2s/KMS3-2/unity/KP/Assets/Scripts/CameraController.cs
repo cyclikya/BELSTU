@@ -1,9 +1,9 @@
-using System.Collections;
+п»їusing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Главный скрипт игрока: переключает режимы ходьбы и вождения,
-// открывает двери, запускает двигатель и рисует подсказки.
+// Р“Р»Р°РІРЅС‹Р№ СЃРєСЂРёРїС‚ РёРіСЂРѕРєР°: РїРµСЂРµРєР»СЋС‡Р°РµС‚ СЂРµР¶РёРјС‹ С…РѕРґСЊР±С‹ Рё РІРѕР¶РґРµРЅРёСЏ,
+// РѕС‚РєСЂС‹РІР°РµС‚ РґРІРµСЂРё, Р·Р°РїСѓСЃРєР°РµС‚ РґРІРёРіР°С‚РµР»СЊ Рё СЂРёСЃСѓРµС‚ РїРѕРґСЃРєР°Р·РєРё.
 public class CameraController : MonoBehaviour
 {
     public enum ControlMode
@@ -14,6 +14,7 @@ public class CameraController : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private KamazContext kamazContext;
+    [SerializeField] private KamazAudioController kamazAudioController;
     [SerializeField] private KamazLightsController kamazLightsController;
     [SerializeField] private KamazCabinMechanismsController kamazCabinMechanismsController;
 
@@ -98,6 +99,7 @@ public class CameraController : MonoBehaviour
         if (kamazContext != null)
         {
             if (kamazLightsController == null) kamazLightsController = kamazContext.LightsController;
+            if (kamazAudioController == null) kamazAudioController = kamazContext.AudioController;
             if (kamazCabinMechanismsController == null) kamazCabinMechanismsController = kamazContext.CabinMechanismsController;
             kamazRigidbody = kamazContext.KamazRigidbody;
         }
@@ -222,7 +224,12 @@ public class CameraController : MonoBehaviour
 
         if (doorAnimator != null)
         {
+            bool wasOpen = doorAnimator.GetBool("isOpen");
             doorAnimator.SetBool("isOpen", true);
+            if (!wasOpen && kamazAudioController != null)
+            {
+                kamazAudioController.PlayDoorOpen();
+            }
         }
 
         yield return new WaitForSeconds(exitToFreeModeDelay);
@@ -250,12 +257,22 @@ public class CameraController : MonoBehaviour
 
         if (kamazContext.DoorLAnimator != null)
         {
+            bool wasOpen = kamazContext.DoorLAnimator.GetBool("isOpen");
             kamazContext.DoorLAnimator.SetBool("isOpen", false);
+            if (wasOpen && kamazAudioController != null)
+            {
+                kamazAudioController.PlayDoorClose();
+            }
         }
 
         if (kamazContext.DoorRAnimator != null)
         {
+            bool wasOpen = kamazContext.DoorRAnimator.GetBool("isOpen");
             kamazContext.DoorRAnimator.SetBool("isOpen", false);
+            if (wasOpen && kamazAudioController != null)
+            {
+                kamazAudioController.PlayDoorClose();
+            }
         }
 
         SetMode(ControlMode.Driving);
@@ -295,6 +312,11 @@ public class CameraController : MonoBehaviour
         StartDoorFreeze();
         bool isOpen = doorAnimator.GetBool("isOpen");
         doorAnimator.SetBool("isOpen", !isOpen);
+        if (kamazAudioController != null)
+        {
+            if (isOpen) kamazAudioController.PlayDoorClose();
+            else kamazAudioController.PlayDoorOpen();
+        }
     }
 
     private void StartDoorFreeze()
@@ -376,7 +398,7 @@ public class CameraController : MonoBehaviour
 
         if (value && kamazCabinMechanismsController != null && kamazCabinMechanismsController.IsBodyRaised)
         {
-            ShowTemporaryHint("Сначала опустите кузов (B), затем запускайте двигатель.");
+            ShowTemporaryHint("РЎРЅР°С‡Р°Р»Р° РѕРїСѓСЃС‚РёС‚Рµ РєСѓР·РѕРІ (B), Р·Р°С‚РµРј Р·Р°РїСѓСЃРєР°Р№С‚Рµ РґРІРёРіР°С‚РµР»СЊ.");
             return;
         }
 
@@ -389,15 +411,47 @@ public class CameraController : MonoBehaviour
 
         if (engineRunning)
         {
+            if (kamazAudioController != null)
+            {
+                kamazAudioController.StartEngineAudio();
+            }
             StartCabinShake();
             StartStartupNeedleSweep();
         }
         else
         {
+            if (kamazAudioController != null)
+            {
+                kamazAudioController.StopEngineAudio();
+            }
             StopCabinShake();
             StopStartupNeedleSweep(true);
         }
 
+        SyncLightsControllerState();
+    }
+
+    public void HandleEngineStall()
+    {
+        if (!engineRunning)
+        {
+            return;
+        }
+
+        engineRunning = false;
+
+        if (kamazContext != null && kamazContext.KeyAnimator != null)
+        {
+            kamazContext.KeyAnimator.SetBool("turn", false);
+        }
+
+        if (kamazAudioController != null)
+        {
+            kamazAudioController.StallEngineAudio();
+        }
+
+        StopCabinShake();
+        StopStartupNeedleSweep(true);
         SyncLightsControllerState();
     }
 
@@ -658,11 +712,11 @@ public class CameraController : MonoBehaviour
             if (currentMode == ControlMode.FreeMovement)
             {
                 bool isOpen = interaction.DoorAnimator != null && interaction.DoorAnimator.GetBool("isOpen");
-                interactionHintText = isOpen ? "Нажмите E чтобы закрыть дверь" : "Нажмите E чтобы открыть дверь";
+                interactionHintText = isOpen ? "РќР°Р¶РјРёС‚Рµ E С‡С‚РѕР±С‹ Р·Р°РєСЂС‹С‚СЊ РґРІРµСЂСЊ" : "РќР°Р¶РјРёС‚Рµ E С‡С‚РѕР±С‹ РѕС‚РєСЂС‹С‚СЊ РґРІРµСЂСЊ";
             }
             else
             {
-                interactionHintText = "Нажмите E чтобы выйти из кабины";
+                interactionHintText = "РќР°Р¶РјРёС‚Рµ E С‡С‚РѕР±С‹ РІС‹Р№С‚Рё РёР· РєР°Р±РёРЅС‹";
             }
 
             return;
@@ -671,8 +725,8 @@ public class CameraController : MonoBehaviour
         if (interaction.Type == FreeMovementMode.InteractionType.Steering)
         {
             interactionHintText = currentMode == ControlMode.FreeMovement
-                ? "Нажмите E чтобы сесть за руль"
-                : engineRunning ? "Нажмите Tab чтобы заглушить машину" : "Нажмите Tab чтобы завести машину";
+                ? "РќР°Р¶РјРёС‚Рµ E С‡С‚РѕР±С‹ СЃРµСЃС‚СЊ Р·Р° СЂСѓР»СЊ"
+                : engineRunning ? "РќР°Р¶РјРёС‚Рµ Tab С‡С‚РѕР±С‹ Р·Р°РіР»СѓС€РёС‚СЊ РјР°С€РёРЅСѓ" : "РќР°Р¶РјРёС‚Рµ Tab С‡С‚РѕР±С‹ Р·Р°РІРµСЃС‚Рё РјР°С€РёРЅСѓ";
         }
     }
 
@@ -764,6 +818,10 @@ public class CameraController : MonoBehaviour
     private void OnDisable()
     {
         SetEngineRunning(false);
+        if (kamazAudioController != null)
+        {
+            kamazAudioController.StopAllLoops();
+        }
         StopCabinShake();
         StopStartupNeedleSweep(true);
         ClearHighlight();
@@ -773,5 +831,8 @@ public class CameraController : MonoBehaviour
         Cursor.visible = true;
     }
 }
+
+
+
 
 

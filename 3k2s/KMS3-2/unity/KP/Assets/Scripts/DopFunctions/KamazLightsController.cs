@@ -1,9 +1,9 @@
-using System.Collections;
+п»їusing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Управляет фарами, стоп-сигналами и поворотниками.
-// Все лампы ищутся внутри объекта fary из KamazContext.
+// РЈРїСЂР°РІР»СЏРµС‚ С„Р°СЂР°РјРё, СЃС‚РѕРї-СЃРёРіРЅР°Р»Р°РјРё Рё РїРѕРІРѕСЂРѕС‚РЅРёРєР°РјРё.
+// Р’СЃРµ Р»Р°РјРїС‹ РёС‰СѓС‚СЃСЏ РІРЅСѓС‚СЂРё РѕР±СЉРµРєС‚Р° fary РёР· KamazContext.
 public class KamazLightsController : MonoBehaviour
 {
     private class LampNode
@@ -155,6 +155,10 @@ public class KamazLightsController : MonoBehaviour
         if (!engineRunning)
         {
             ForceAllOff();
+            if (kamazContext != null && kamazContext.AudioController != null)
+            {
+                kamazContext.AudioController.SetTurnSignalLoop(false);
+            }
         }
     }
 
@@ -178,6 +182,10 @@ public class KamazLightsController : MonoBehaviour
         headlightsOn = enabled && engineRunning;
         SetLampState(FaraFL, headlightsOn);
         SetLampState(FaraFR, headlightsOn);
+        if (kamazContext != null && kamazContext.AudioController != null)
+        {
+            kamazContext.AudioController.PlayHeadlightSwitch();
+        }
     }
 
     public void SetBrakeSignals(bool enabled)
@@ -252,7 +260,17 @@ public class KamazLightsController : MonoBehaviour
 
         if (blinkMode != BlinkMode.None)
         {
+            if (kamazContext != null && kamazContext.AudioController != null)
+            {
+                kamazContext.AudioController.SetTurnSignalLoop(true);
+            }
             blinkCoroutine = StartCoroutine(BlinkRoutine());
+            return;
+        }
+
+        if (kamazContext != null && kamazContext.AudioController != null)
+        {
+            kamazContext.AudioController.SetTurnSignalLoop(false);
         }
     }
 
@@ -300,6 +318,10 @@ public class KamazLightsController : MonoBehaviour
         }
 
         SetAllTurnSignals(false);
+        if (kamazContext != null && kamazContext.AudioController != null)
+        {
+            kamazContext.AudioController.SetTurnSignalLoop(false);
+        }
     }
 
     private void SetAllTurnSignals(bool enabled)
@@ -330,6 +352,10 @@ public class KamazLightsController : MonoBehaviour
         SetLampState(BackL, false);
         SetLampState(BackR, false);
         SetAllTurnSignals(false);
+        if (kamazContext != null && kamazContext.AudioController != null)
+        {
+            kamazContext.AudioController.SetTurnSignalLoop(false);
+        }
     }
 
     private void CacheLampNodes()

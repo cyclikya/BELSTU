@@ -6,6 +6,7 @@ public class KamazDrivingInputController : MonoBehaviour
     [Header("References")]
     [SerializeField] private KamazContext kamazContext;
     [SerializeField] private CameraController cameraController;
+    [SerializeField] private KamazAudioController kamazAudioController;
     [SerializeField] private Rigidbody kamazRigidbody;
     [SerializeField] private Transform steeringWheel;
     [SerializeField] private Transform wheelFrontLeft;
@@ -32,6 +33,7 @@ public class KamazDrivingInputController : MonoBehaviour
     [SerializeField] private KeyCode gear4Key = KeyCode.Alpha4;
     [SerializeField] private KeyCode gear5Key = KeyCode.Alpha5;
     [SerializeField] private KeyCode reverseKey = KeyCode.R;
+    [SerializeField] private KeyCode hornKey = KeyCode.G;
 
     [Header("Clutch")]
     [SerializeField] private float clutchPressSpeed = 10f;
@@ -130,6 +132,7 @@ public class KamazDrivingInputController : MonoBehaviour
     {
         if (kamazContext != null)
         {
+            if (kamazAudioController == null) kamazAudioController = kamazContext.AudioController;
             if (kamazRigidbody == null) kamazRigidbody = kamazContext.KamazRigidbody;
             if (steeringWheel == null) steeringWheel = kamazContext.Ryle;
             if (wheelFrontLeft == null) wheelFrontLeft = kamazContext.WheelFrontLeft;
@@ -221,13 +224,20 @@ public class KamazDrivingInputController : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown(neutralKey)) currentGear = 0;
+        if (Input.GetKeyDown(neutralKey)) TryShiftToGear(0);
         if (Input.GetKeyDown(gear1Key)) TryShiftToGear(1);
         if (Input.GetKeyDown(gear2Key)) TryShiftToGear(2);
         if (Input.GetKeyDown(gear3Key)) TryShiftToGear(3);
         if (Input.GetKeyDown(gear4Key)) TryShiftToGear(4);
         if (Input.GetKeyDown(gear5Key)) TryShiftToGear(5);
         if (Input.GetKeyDown(reverseKey)) TryShiftToGear(-1);
+
+        if (kamazAudioController != null)
+        {
+            bool hornEnabled = IsPlayerInCabin() && Input.GetKey(hornKey);
+            kamazAudioController.SetHornLoop(hornEnabled);
+            kamazAudioController.SetReverseLoop(currentGear == -1);
+        }
     }
 
     private void TryShiftToGear(int targetGear)
@@ -240,12 +250,20 @@ public class KamazDrivingInputController : MonoBehaviour
         if (targetGear == 0)
         {
             currentGear = 0;
+            if (kamazAudioController != null)
+            {
+                kamazAudioController.PlayGearSwitch();
+            }
             return;
         }
 
         if (clutchPedal >= clutchRequiredForShift)
         {
             currentGear = targetGear;
+            if (kamazAudioController != null)
+            {
+                kamazAudioController.PlayGearSwitch();
+            }
         }
     }
 
@@ -373,7 +391,7 @@ public class KamazDrivingInputController : MonoBehaviour
 
         if (cameraController != null)
         {
-            cameraController.SetEngineRunningState(false);
+            cameraController.HandleEngineStall();
         }
     }
 
