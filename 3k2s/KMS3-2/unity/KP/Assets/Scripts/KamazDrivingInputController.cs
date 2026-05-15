@@ -23,6 +23,7 @@ public class KamazDrivingInputController : MonoBehaviour
     [Header("Input")]
     [SerializeField] private KeyCode throttleKey = KeyCode.W;
     [SerializeField] private KeyCode brakeKey = KeyCode.S;
+    [SerializeField] private KeyCode brakeAltKey = KeyCode.Space;
     [SerializeField] private KeyCode steerLeftKey = KeyCode.A;
     [SerializeField] private KeyCode steerRightKey = KeyCode.D;
     [SerializeField] private KeyCode clutchKey = KeyCode.LeftShift;
@@ -122,6 +123,10 @@ public class KamazDrivingInputController : MonoBehaviour
     private float wheelSpinAngle;
     private float frontWheelSteerVisualAngle;
 
+    public int CurrentGear => currentGear;
+    public float EngineRpm => engineRpm;
+    public float SpeedKmh => speedKmh;
+
     private Quaternion steeringWheelStartRotation;
     private Quaternion wheelFrontLeftStartRotation;
     private Quaternion wheelFrontRightStartRotation;
@@ -206,7 +211,7 @@ public class KamazDrivingInputController : MonoBehaviour
         }
 
         throttleInput = Input.GetKey(throttleKey) ? 1f : 0f;
-        brakeInput = Input.GetKey(brakeKey) ? 1f : 0f;
+        brakeInput = (Input.GetKey(brakeKey) || Input.GetKey(brakeAltKey)) ? 1f : 0f;
 
         float steerDirection = 0f;
         if (Input.GetKey(steerLeftKey)) steerDirection -= 1f;
