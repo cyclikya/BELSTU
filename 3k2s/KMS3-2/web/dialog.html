@@ -6,6 +6,248 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Диалог</title>
     <link rel="stylesheet" type="text/css" href="./resources/css/style.css" />
+
+    <script src="resources/js/knowleage_kamaz.js"></script>
+
+    <script>
+      function big1(str)
+      {
+        return str.substring(0, 1).toUpperCase() + str.substring(1);
+      }
+
+      function clearQuestion(question)
+      {
+        question = question.toLowerCase();
+
+        question = question.replace("?", "");
+        question = question.replace(".", "");
+        question = question.replace(",", "");
+        question = question.replace("!", "");
+        question = question.replace("ё", "е");
+
+        question = question.trim();
+
+        return question;
+      }
+
+      function makeAnswer(i)
+      {
+        return big1(knowleage[i][0]) + " " + knowleage[i][1] + " " + knowleage[i][2] + ".";
+      }
+
+      function findBySubjectAndPredicate(subject, predicate)
+      {
+        subject = subject.trim();
+
+        for (var i = 0; i < knowleage.length; i++)
+        {
+          if (knowleage[i][0].toLowerCase().indexOf(subject) >= 0 &&
+              knowleage[i][1].toLowerCase() == predicate)
+          {
+            return makeAnswer(i);
+          }
+        }
+
+        return "";
+      }
+
+      function findBySubject(subject)
+      {
+        subject = subject.trim();
+
+        for (var i = 0; i < knowleage.length; i++)
+        {
+          if (knowleage[i][0].toLowerCase() == subject)
+          {
+            return makeAnswer(i);
+          }
+        }
+
+        for (var i = 0; i < knowleage.length; i++)
+        {
+          if (knowleage[i][0].toLowerCase().indexOf(subject) >= 0)
+          {
+            return makeAnswer(i);
+          }
+        }
+
+        for (var i = 0; i < knowleage.length; i++)
+        {
+          if (knowleage[i][2].toLowerCase().indexOf(subject) >= 0)
+          {
+            return makeAnswer(i);
+          }
+        }
+
+        return "";
+      }
+
+      function getAnswer(question)
+      {
+        var q = clearQuestion(question);
+        var subject = "";
+        var answer = "";
+
+        if (q == "")
+        {
+          return "Введите вопрос.";
+        }
+
+        if (q.indexOf("что такое ") == 0)
+        {
+          subject = q.replace("что такое ", "");
+          answer = findBySubject(subject);
+          if (answer != "") return answer;
+        }
+
+        if (q.indexOf("кто такой ") == 0)
+        {
+          subject = q.replace("кто такой ", "");
+          answer = findBySubject(subject);
+          if (answer != "") return answer;
+        }
+
+        if (q.indexOf("как выглядит ") == 0)
+        {
+          subject = q.replace("как выглядит ", "");
+          answer = findBySubjectAndPredicate(subject, "выглядит");
+          if (answer != "") return answer;
+        }
+
+        if (q.indexOf("как выглядят ") == 0)
+        {
+          subject = q.replace("как выглядят ", "");
+          answer = findBySubjectAndPredicate(subject, "выглядят");
+          if (answer != "") return answer;
+        }
+
+        if (q.indexOf("как работает ") == 0)
+        {
+          subject = q.replace("как работает ", "");
+          answer = findBySubjectAndPredicate(subject, "работает");
+          if (answer != "") return answer;
+        }
+
+        if (q.indexOf("из чего состоит ") == 0)
+        {
+          subject = q.replace("из чего состоит ", "");
+          answer = findBySubjectAndPredicate(subject, "состоит");
+          if (answer != "") return answer;
+        }
+
+        if (q.indexOf("для чего нужен ") == 0)
+        {
+          subject = q.replace("для чего нужен ", "");
+          answer = findBySubjectAndPredicate(subject, "нужен");
+          if (answer != "") return answer;
+        }
+
+        if (q.indexOf("для чего нужны ") == 0)
+        {
+          subject = q.replace("для чего нужны ", "");
+          answer = findBySubjectAndPredicate(subject, "нужны");
+          if (answer != "") return answer;
+        }
+
+        if (q.indexOf("где находится ") == 0)
+        {
+          subject = q.replace("где находится ", "");
+          answer = findBySubjectAndPredicate(subject, "располагается");
+          if (answer != "") return answer;
+        }
+
+        if (q.indexOf("где располагается ") == 0)
+        {
+          subject = q.replace("где располагается ", "");
+          answer = findBySubjectAndPredicate(subject, "располагается");
+          if (answer != "") return answer;
+        }
+
+        if (q.indexOf("что делает ") == 0)
+        {
+          subject = q.replace("что делает ", "");
+          answer = findBySubject(subject);
+          if (answer != "") return answer;
+        }
+        if (q.indexOf("зачем нужен ") == 0)
+        {
+          subject = q.replace("зачем нужен ", "");
+          answer = findBySubjectAndPredicate(subject, "нужен");
+          if (answer != "") return answer;
+
+          answer = findBySubjectAndPredicate(subject, "используется");
+          if (answer != "") return answer;
+
+          answer = findBySubjectAndPredicate(subject, "предназначен");
+          if (answer != "") return answer;
+        }
+
+        if (q.indexOf("зачем нужна ") == 0)
+        {
+          subject = q.replace("зачем нужна ", "");
+          answer = findBySubjectAndPredicate(subject, "нужна");
+          if (answer != "") return answer;
+
+          answer = findBySubjectAndPredicate(subject, "используется");
+          if (answer != "") return answer;
+
+          answer = findBySubjectAndPredicate(subject, "предназначена");
+          if (answer != "") return answer;
+        }
+
+        if (q.indexOf("зачем нужны ") == 0)
+        {
+          subject = q.replace("зачем нужны ", "");
+          answer = findBySubjectAndPredicate(subject, "нужны");
+          if (answer != "") return answer;
+
+          answer = findBySubjectAndPredicate(subject, "используются");
+          if (answer != "") return answer;
+        }
+
+        if (q.indexOf("для чего используется ") == 0)
+        {
+          subject = q.replace("для чего используется ", "");
+          answer = findBySubjectAndPredicate(subject, "используется");
+          if (answer != "") return answer;
+        }
+
+        if (q.indexOf("зачем используется ") == 0)
+        {
+          subject = q.replace("зачем используется ", "");
+          answer = findBySubjectAndPredicate(subject, "используется");
+          if (answer != "") return answer;
+        }
+        answer = findBySubject(q);
+        if (answer != "") return answer;
+
+        return "Ответ не найден";
+      }
+
+      function startDialog()
+      {
+        var question = "";
+
+        while (true)
+        {
+          question = prompt("Введите вопрос", "");
+
+          if (question == null)
+          {
+            break;
+          }
+
+          if (question == "")
+          {
+            alert("Введите вопрос.");
+          }
+          else
+          {
+            alert(getAnswer(question));
+          }
+        }
+      }
+    </script>
   </head>
 
   <body>
@@ -34,6 +276,239 @@
       </div>
     </div>
 
-    <div class="content"></div>
+    <div class="content">
+      <h1>Диалог с базой знаний</h1>
+      <p>Нажмите кнопку, чтобы задать вопрос по теме симулятора управления КАМАЗом.</p>
+
+      <button onclick="startDialog()">Задать вопрос</button>
+    </div>
+
+    <details style="font-size: 1.1rem; margin-left: 12px;">
+      <summary>Примеры вопросов</summary>
+
+      <ul>
+        <li>Что такое КАМАЗ?</li>
+        <li>Как выглядит КАМАЗ?</li>
+        <li>Как работает КАМАЗ?</li>
+        <li>Из чего состоит КАМАЗ?</li>
+        <li>Для чего нужен КАМАЗ?</li>
+
+        <li>Что такое симулятор управления КАМАЗом?</li>
+        <li>Как работает симулятор управления КАМАЗом?</li>
+        <li>Для чего нужен симулятор управления КАМАЗом?</li>
+
+        <li>Что такое кабина?</li>
+        <li>Как выглядит кабина?</li>
+        <li>Что содержит кабина?</li>
+        <li>Для чего нужна кабина?</li>
+
+        <li>Что такое сиденье водителя?</li>
+        <li>Для чего нужно сиденье водителя?</li>
+
+        <li>Что такое кузов?</li>
+        <li>Как выглядит кузов?</li>
+        <li>Для чего нужен кузов?</li>
+
+        <li>Что такое самосвальный кузов?</li>
+        <li>Что делает самосвальный кузов?</li>
+
+        <li>Что такое бортовой кузов?</li>
+        <li>Для чего нужен бортовой кузов?</li>
+
+        <li>Что такое груз?</li>
+        <li>Что делает груз?</li>
+
+        <li>Что такое топливный бак?</li>
+        <li>Как выглядит топливный бак?</li>
+        <li>Где находится топливный бак?</li>
+        <li>Для чего нужен топливный бак?</li>
+
+        <li>Что такое топливо?</li>
+        <li>Куда поступает топливо?</li>
+
+        <li>Что такое дизельное топливо?</li>
+        <li>Для чего используется дизельное топливо?</li>
+
+        <li>Что такое фары?</li>
+        <li>Как выглядят фары?</li>
+        <li>Для чего нужны фары?</li>
+        <li>Где находятся фары?</li>
+
+        <li>Что такое задние фонари?</li>
+        <li>Что показывают задние фонари?</li>
+
+        <li>Что такое поворотники?</li>
+        <li>Что делают поворотники?</li>
+
+        <li>Что такое двигатель?</li>
+        <li>Как работает двигатель?</li>
+        <li>Для чего нужен двигатель?</li>
+        <li>Где находится двигатель?</li>
+
+        <li>Что такое дизельный двигатель?</li>
+        <li>Что делает дизельный двигатель?</li>
+
+        <li>Что такое турбонаддув?</li>
+        <li>Что делает турбонаддув?</li>
+
+        <li>Что такое система охлаждения?</li>
+        <li>Что делает система охлаждения?</li>
+
+        <li>Что такое радиатор?</li>
+        <li>Что делает радиатор?</li>
+
+        <li>Что такое рама?</li>
+        <li>Как выглядит рама?</li>
+        <li>Для чего нужна рама?</li>
+
+        <li>Что такое шасси?</li>
+        <li>Из чего состоит шасси?</li>
+
+        <li>Что такое колеса?</li>
+        <li>Для чего нужны колеса?</li>
+
+        <li>Что такое шины?</li>
+        <li>Что делают шины?</li>
+
+        <li>Что такое передние колеса?</li>
+        <li>Что делают передние колеса?</li>
+
+        <li>Что такое задние колеса?</li>
+        <li>Что делают задние колеса?</li>
+
+        <li>Что такое трансмиссия?</li>
+        <li>Что делает трансмиссия?</li>
+
+        <li>Что такое коробка передач?</li>
+        <li>Что делает коробка передач?</li>
+
+        <li>Что такое сцепление?</li>
+        <li>Что делает сцепление?</li>
+
+        <li>Что такое карданный вал?</li>
+        <li>Что делает карданный вал?</li>
+
+        <li>Что такое ведущие мосты?</li>
+        <li>Что делают ведущие мосты?</li>
+
+        <li>Что такое пониженные передачи?</li>
+        <li>Для чего нужны пониженные передачи?</li>
+
+        <li>Что такое руль?</li>
+        <li>Для чего нужен руль?</li>
+
+        <li>Что делает руль?</li>
+
+        <li>Что такое педаль газа?</li>
+        <li>Для чего нужна педаль газа?</li>
+        <li>Что делает педаль газа?</li>
+
+        <li>Что такое педаль тормоза?</li>
+        <li>Для чего нужна педаль тормоза?</li>
+        <li>Что делает педаль тормоза?</li>
+
+        <li>Что такое рычаг переключения передач?</li>
+        <li>Для чего нужен рычаг переключения передач?</li>
+
+        <li>Что такое тормозная система?</li>
+        <li>Что делает тормозная система?</li>
+
+        <li>Что такое пневматическая тормозная система?</li>
+        <li>Что делает пневматическая тормозная система?</li>
+
+        <li>Что такое торможение?</li>
+        <li>Что делает торможение?</li>
+
+        <li>Что такое стояночный тормоз?</li>
+        <li>Что делает стояночный тормоз?</li>
+
+        <li>Что такое приборная панель?</li>
+        <li>Что показывает приборная панель?</li>
+
+        <li>Что такое спидометр?</li>
+        <li>Что показывает спидометр?</li>
+
+        <li>Что такое тахометр?</li>
+        <li>Что показывает тахометр?</li>
+
+        <li>Что такое индикаторы?</li>
+        <li>Что делают индикаторы?</li>
+
+        <li>Что такое датчик топлива?</li>
+        <li>Что показывает датчик топлива?</li>
+
+        <li>Что такое подвеска?</li>
+        <li>Что делает подвеска?</li>
+
+        <li>Что такое рессоры?</li>
+        <li>Для чего нужны рессоры?</li>
+
+        <li>Что такое амортизаторы?</li>
+        <li>Что делают амортизаторы?</li>
+
+        <li>Что такое зеркала?</li>
+        <li>Для чего нужны зеркала?</li>
+
+        <li>Что такое лобовое стекло?</li>
+        <li>Для чего нужно лобовое стекло?</li>
+
+        <li>Что такое двери кабины?</li>
+        <li>Для чего нужны двери кабины?</li>
+
+        <li>Что такое стеклоочистители?</li>
+        <li>Что делают стеклоочистители?</li>
+
+        <li>Что такое аккумулятор?</li>
+        <li>Для чего нужен аккумулятор?</li>
+
+        <li>Что такое генератор?</li>
+        <li>Что делает генератор?</li>
+
+        <li>Что такое электросистема?</li>
+        <li>Что делает электросистема?</li>
+
+        <li>Что такое стартер?</li>
+        <li>Что делает стартер?</li>
+
+        <li>Что такое звуковой сигнал?</li>
+        <li>Что делает звуковой сигнал?</li>
+
+        <li>Что такое разгон?</li>
+        <li>Что делает разгон?</li>
+
+        <li>Что такое масса груза?</li>
+        <li>На что влияет масса груза?</li>
+
+        <li>Что такое тормозной путь?</li>
+        <li>Когда увеличивается тормозной путь?</li>
+
+        <li>Что такое скорость?</li>
+        <li>Что характеризует скорость?</li>
+
+        <li>Что такое управление?</li>
+        <li>Что включает управление?</li>
+
+        <li>Что такое водитель?</li>
+        <li>Что делает водитель?</li>
+
+        <li>Что такое база знаний?</li>
+        <li>Что содержит база знаний?</li>
+
+        <li>Что такое семантическая триада?</li>
+        <li>Какую структуру имеет семантическая триада?</li>
+
+        <li>Что такое диалоговая программа?</li>
+        <li>Что использует диалоговая программа?</li>
+
+        <li>Что такое функция getAnswer?</li>
+        <li>Что делает функция getAnswer?</li>
+
+        <li>Что такое вопрос пользователя?</li>
+        <li>Что делает вопрос пользователя?</li>
+
+        <li>Что такое ответ программы?</li>
+        <li>Как формируется ответ программы?</li>
+      </ul>
+    </details>
   </body>
 </html>

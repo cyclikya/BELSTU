@@ -1440,7 +1440,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0421\u0438\u043C\u0443\u043B\u044F\u0442\u043E\u0440 \u041A\u0430\u043C\u0430\u0437\u0430"
+  m_Text: 'Simulator KAMAZa
+
+'
 --- !u!222 &705216052
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2861,6 +2863,7 @@ MonoBehaviour:
   wiperRightObject: {fileID: 562827587}
   bodyObject: {fileID: 1475118159}
   hydraulicObject: {fileID: 612168571}
+  kryshkaObject: {fileID: 0}
   wheelFrontLeft: {fileID: 968975530}
   wheelFrontRight: {fileID: 2013691115}
   wheelMiddle: {fileID: 1582671576}

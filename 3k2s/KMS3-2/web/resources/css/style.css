@@ -69,7 +69,7 @@ h4 {
 }
 
 p,
-li {
+li, details {
   font-size: clamp(15px, 1vw, 18px);
   line-height: 1.6;
   margin: 0.8rem 0;

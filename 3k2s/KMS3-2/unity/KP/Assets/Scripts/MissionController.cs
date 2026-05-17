@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Controls the mission flow on the practice scene without owning vehicle logic.
+// Управляет этапами миссии на сцене практики и не вмешивается в логику КамАЗа.
 public class MissionController : MonoBehaviour
 {
     public enum MissionStage
@@ -48,6 +48,7 @@ public class MissionController : MonoBehaviour
 
     public MissionStage CurrentStage => currentStage;
 
+    // Инициализирует UI миссии и показывает первое активное задание.
     private void Start()
     {
         if (missionUI != null)
@@ -60,6 +61,7 @@ public class MissionController : MonoBehaviour
         RefreshZoneStates();
     }
 
+    // Пока миссия активна, обновляет таймер, статистику и проверку этапов.
     private void Update()
     {
         if (missionCompleted)
@@ -76,6 +78,7 @@ public class MissionController : MonoBehaviour
         UpdateStageState();
     }
 
+    // Принимает сигналы от контрольных точек и зоны разгрузки.
     public void HandleZoneEntered(MissionTriggerZone.ZoneType zoneType, Collider other)
     {
         if (missionCompleted || other == null)
@@ -110,6 +113,7 @@ public class MissionController : MonoBehaviour
         }
     }
 
+    // Открывает таблицу результатов и заполняет ее сохраненными попытками.
     public void OpenResultsTable()
     {
         if (missionUI == null)
@@ -120,6 +124,7 @@ public class MissionController : MonoBehaviour
         missionUI.ShowResults(MissionResultsStorage.LoadResults());
     }
 
+    // Скрывает таблицу результатов, не удаляя сохраненные данные.
     public void CloseResultsTable()
     {
         if (missionUI != null)
@@ -128,17 +133,20 @@ public class MissionController : MonoBehaviour
         }
     }
 
+    // Перезапускает текущую сцену практики для нового прохождения миссии.
     public void RestartMission()
     {
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.buildIndex);
     }
 
+    // Загружает сцену установки по индексу, заданному в Inspector.
     public void LoadSetupScene()
     {
         SceneManager.LoadScene(setupSceneBuildIndex);
     }
 
+    // Начинает считать статистику только после первого запуска двигателя.
     private void UpdateStatistics()
     {
         if (drivingController == null)
@@ -163,6 +171,7 @@ public class MissionController : MonoBehaviour
         }
     }
 
+    // Проверяет условие текущего этапа и при успехе переводит миссию дальше.
     private void UpdateStageState()
     {
         switch (currentStage)
@@ -240,6 +249,7 @@ public class MissionController : MonoBehaviour
         }
     }
 
+    // Переключает этап, обновляет видимые триггеры и меняет текст задания.
     private void AdvanceStage(MissionStage nextStage)
     {
         currentStage = nextStage;
@@ -250,6 +260,7 @@ public class MissionController : MonoBehaviour
         }
     }
 
+    // Завершает миссию, сохраняет попытку и сразу показывает обновленную таблицу.
     private void CompleteMission()
     {
         missionCompleted = true;
@@ -273,6 +284,7 @@ public class MissionController : MonoBehaviour
         RefreshZoneStates();
     }
 
+    // Проверяет, что коллайдер принадлежит корневому объекту КамАЗа.
     private bool IsKamazCollider(Collider other)
     {
         if (kamazRoot == null || other == null)
@@ -283,6 +295,7 @@ public class MissionController : MonoBehaviour
         return other.transform.root == kamazRoot;
     }
 
+    // Возвращает текст задания для текущего этапа миссии.
     private string GetStageText(MissionStage stage)
     {
         switch (stage)
@@ -320,6 +333,7 @@ public class MissionController : MonoBehaviour
         }
     }
 
+    // Оставляет включенной только ту зону, которая нужна на текущем этапе.
     private void RefreshZoneStates()
     {
         if (forwardCheckpointZone != null)

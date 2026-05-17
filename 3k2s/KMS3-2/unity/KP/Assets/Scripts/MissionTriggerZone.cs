@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-// Sends trigger events from mission zones to the mission controller.
+// Передает события от триггерных зон в контроллер миссии.
 public class MissionTriggerZone : MonoBehaviour
 {
     public enum ZoneType

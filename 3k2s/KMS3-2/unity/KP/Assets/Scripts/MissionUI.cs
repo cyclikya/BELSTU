@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-// Displays the current mission objective and fills the results table cell by cell.
+// Показывает текущее задание миссии и заполняет таблицу результатов по ячейкам.
 public class MissionUI : MonoBehaviour
 {
     [Header("References")]
@@ -15,11 +15,13 @@ public class MissionUI : MonoBehaviour
 
     private MissionController controller;
 
+    // Связывает UI с контроллером миссии, чтобы кнопки вызывали его методы.
     public void SetController(MissionController missionController)
     {
         controller = missionController;
     }
 
+    // Выводит текущее задание под миникамерой.
     public void SetObjective(string text)
     {
         if (objectiveText != null)
@@ -28,6 +30,7 @@ public class MissionUI : MonoBehaviour
         }
     }
 
+    // Заполняет таблицу последними сохраненными попытками миссии.
     public void ShowResults(MissionResultRecord[] results)
     {
         if (resultsPanel != null)
@@ -47,6 +50,7 @@ public class MissionUI : MonoBehaviour
         }
     }
 
+    // Скрывает панель результатов, пока игрок не откроет ее снова.
     public void HideResults()
     {
         if (resultsPanel != null)
@@ -55,6 +59,7 @@ public class MissionUI : MonoBehaviour
         }
     }
 
+    // Открывает таблицу результатов через контроллер миссии.
     public void OpenResults()
     {
         if (controller != null)
@@ -63,6 +68,7 @@ public class MissionUI : MonoBehaviour
         }
     }
 
+    // Закрывает таблицу результатов, не удаляя сохраненные данные.
     public void CloseResults()
     {
         if (controller != null)
@@ -75,6 +81,7 @@ public class MissionUI : MonoBehaviour
         }
     }
 
+    // Перезапускает сцену практики по постоянной кнопке в интерфейсе.
     public void RestartMission()
     {
         if (controller != null)
@@ -83,6 +90,7 @@ public class MissionUI : MonoBehaviour
         }
     }
 
+    // Загружает сцену установки по постоянной кнопке в интерфейсе.
     public void OpenSetupScene()
     {
         if (controller != null)
@@ -91,6 +99,7 @@ public class MissionUI : MonoBehaviour
         }
     }
 
+    // Записывает в шапку таблицы номера столбцов от 1 до 5.
     private void FillAttemptHeaders()
     {
         for (int i = 0; i < attemptNumberCells.Length; i++)
@@ -102,6 +111,7 @@ public class MissionUI : MonoBehaviour
         }
     }
 
+    // Заполняет одну строку таблицы, например время, скорость или передачу.
     private void FillValueRow(Text[] cells, MissionResultRecord[] results, System.Func<MissionResultRecord, string> formatter)
     {
         if (cells == null)
@@ -127,6 +137,7 @@ public class MissionUI : MonoBehaviour
         }
     }
 
+    // Форматирует время миссии в минуты и секунды для вывода в таблицу.
     private string FormatTime(float seconds)
     {
         int minutes = Mathf.FloorToInt(seconds / 60f);
