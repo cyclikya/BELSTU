@@ -1,9 +1,12 @@
-п»їusing System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
-// Р“Р»Р°РІРЅС‹Р№ СЃРєСЂРёРїС‚ РёРіСЂРѕРєР°: РїРµСЂРµРєР»СЋС‡Р°РµС‚ СЂРµР¶РёРјС‹ С…РѕРґСЊР±С‹ Рё РІРѕР¶РґРµРЅРёСЏ,
-// РѕС‚РєСЂС‹РІР°РµС‚ РґРІРµСЂРё, Р·Р°РїСѓСЃРєР°РµС‚ РґРІРёРіР°С‚РµР»СЊ Рё СЂРёСЃСѓРµС‚ РїРѕРґСЃРєР°Р·РєРё.
+// Главный скрипт игрока: переключает режимы ходьбы и вождения,
+// открывает двери, запускает двигатель и рисует подсказки.
 public class CameraController : MonoBehaviour
 {
     public enum ControlMode
@@ -45,7 +48,8 @@ public class CameraController : MonoBehaviour
     [Header("Hints")]
     [SerializeField] private bool showInteractionHint = true;
     [SerializeField] private Color interactionHintColor = Color.white;
-    [SerializeField] private int interactionHintFontSize = 18;
+    [SerializeField] private Font interactionHintFont;
+    [SerializeField] private int interactionHintFontSize = 27;
 
     [Header("Highlight")]
     [SerializeField] private bool showInteractableHighlight = true;
@@ -123,6 +127,18 @@ public class CameraController : MonoBehaviour
         SetUiCursorState(startWithUnlockedCursor);
         ApplyCurrentMode();
     }
+
+#if UNITY_EDITOR
+    private void OnValidate()
+    {
+        if (interactionHintFont == null)
+        {
+            interactionHintFont = AssetDatabase.LoadAssetAtPath<Font>("Assets/Materials/arialmt.ttf");
+        }
+
+        interactionHintFontSize = 27;
+    }
+#endif
 
     private void Update()
     {
@@ -398,7 +414,7 @@ public class CameraController : MonoBehaviour
 
         if (value && kamazCabinMechanismsController != null && kamazCabinMechanismsController.IsBodyRaised)
         {
-            ShowTemporaryHint("РЎРЅР°С‡Р°Р»Р° РѕРїСѓСЃС‚РёС‚Рµ РєСѓР·РѕРІ (B), Р·Р°С‚РµРј Р·Р°РїСѓСЃРєР°Р№С‚Рµ РґРІРёРіР°С‚РµР»СЊ.");
+            ShowTemporaryHint("Сначала опустите кузов (B), затем запускайте двигатель.");
             return;
         }
 
@@ -712,11 +728,11 @@ public class CameraController : MonoBehaviour
             if (currentMode == ControlMode.FreeMovement)
             {
                 bool isOpen = interaction.DoorAnimator != null && interaction.DoorAnimator.GetBool("isOpen");
-                interactionHintText = isOpen ? "РќР°Р¶РјРёС‚Рµ E С‡С‚РѕР±С‹ Р·Р°РєСЂС‹С‚СЊ РґРІРµСЂСЊ" : "РќР°Р¶РјРёС‚Рµ E С‡С‚РѕР±С‹ РѕС‚РєСЂС‹С‚СЊ РґРІРµСЂСЊ";
+                interactionHintText = isOpen ? "Нажмите E чтобы закрыть дверь" : "Нажмите E чтобы открыть дверь";
             }
             else
             {
-                interactionHintText = "РќР°Р¶РјРёС‚Рµ E С‡С‚РѕР±С‹ РІС‹Р№С‚Рё РёР· РєР°Р±РёРЅС‹";
+                interactionHintText = "Нажмите E чтобы выйти из кабины";
             }
 
             return;
@@ -725,8 +741,8 @@ public class CameraController : MonoBehaviour
         if (interaction.Type == FreeMovementMode.InteractionType.Steering)
         {
             interactionHintText = currentMode == ControlMode.FreeMovement
-                ? "РќР°Р¶РјРёС‚Рµ E С‡С‚РѕР±С‹ СЃРµСЃС‚СЊ Р·Р° СЂСѓР»СЊ"
-                : engineRunning ? "РќР°Р¶РјРёС‚Рµ Tab С‡С‚РѕР±С‹ Р·Р°РіР»СѓС€РёС‚СЊ РјР°С€РёРЅСѓ" : "РќР°Р¶РјРёС‚Рµ Tab С‡С‚РѕР±С‹ Р·Р°РІРµСЃС‚Рё РјР°С€РёРЅСѓ";
+                ? "Нажмите E чтобы сесть за руль"
+                : engineRunning ? "Нажмите Tab чтобы заглушить машину" : "Нажмите Tab чтобы завести машину";
         }
     }
 
@@ -760,6 +776,7 @@ public class CameraController : MonoBehaviour
 
         GUIStyle style = new GUIStyle(GUI.skin.label);
         style.alignment = TextAnchor.MiddleCenter;
+        style.font = interactionHintFont;
         style.fontSize = interactionHintFontSize;
         style.normal.textColor = interactionHintColor;
 
@@ -831,6 +848,10 @@ public class CameraController : MonoBehaviour
         Cursor.visible = true;
     }
 }
+
+
+
+
 
 
 

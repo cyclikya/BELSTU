@@ -1,6 +1,9 @@
-п»їusing UnityEngine;
+using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
-// РЈРїСЂР°РІР»СЏРµС‚ РґРІРёР¶РµРЅРёРµРј РљР°РјРђР—Р°, РїРµСЂРµРґР°С‡Р°РјРё, РѕР±РѕСЂРѕС‚Р°РјРё, СЂСѓР»РµРј Рё РєРѕР»РµСЃР°РјРё.
+// Управляет движением КамАЗа, передачами, оборотами, рулем и колесами.
 public class KamazDrivingInputController : MonoBehaviour
 {
     [Header("References")]
@@ -102,9 +105,10 @@ public class KamazDrivingInputController : MonoBehaviour
     [SerializeField] private bool showDrivingHud = true;
     [SerializeField] private float hudLeftMargin = 20f;
     [SerializeField] private float hudBottomMargin = 20f;
-    [SerializeField] private float hudWidth = 420f;
-    [SerializeField] private float hudHeight = 150f;
-    [SerializeField] private int hudFontSize = 16;
+    [SerializeField] private float hudWidth = 660f;
+    [SerializeField] private float hudHeight = 225f;
+    [SerializeField] private Font hudFont;
+    [SerializeField] private int hudFontSize = 27;
     [SerializeField] private float recommendUpshiftRpm = 2500f;
     [SerializeField] private float recommendDownshiftRpm = 1100f;
 
@@ -157,6 +161,18 @@ public class KamazDrivingInputController : MonoBehaviour
         engineRpm = idleRpm;
         UpdateGaugeOutput();
     }
+
+#if UNITY_EDITOR
+    private void OnValidate()
+    {
+        if (hudFont == null)
+        {
+            hudFont = AssetDatabase.LoadAssetAtPath<Font>("Assets/Materials/arialmt.ttf");
+        }
+
+        hudFontSize = 27;
+    }
+#endif
 
     private void Update()
     {
@@ -577,11 +593,13 @@ public class KamazDrivingInputController : MonoBehaviour
     {
         GUIStyle boxStyle = new GUIStyle(GUI.skin.box);
         boxStyle.alignment = TextAnchor.UpperLeft;
+        boxStyle.font = hudFont;
         boxStyle.fontSize = hudFontSize;
         boxStyle.normal.textColor = Color.white;
         boxStyle.padding = new RectOffset(12, 12, 10, 10);
 
         GUIStyle labelStyle = new GUIStyle(GUI.skin.label);
+        labelStyle.font = hudFont;
         labelStyle.fontSize = hudFontSize;
         labelStyle.normal.textColor = Color.white;
 
@@ -589,15 +607,14 @@ public class KamazDrivingInputController : MonoBehaviour
         float y = Screen.height - hudHeight - hudBottomMargin;
 
         string text =
-            $"Р”РІРёРіР°С‚РµР»СЊ: {(IsEngineRunning() ? "Р’РљР›" : "Р’Р«РљР›")}\n" +
-            $"РџРµСЂРµРґР°С‡Р°: {GetGearLabel()}\n" +
-            $"РЎРєРѕСЂРѕСЃС‚СЊ: {Mathf.RoundToInt(speedKmh)} РєРј/С‡\n" +
-            $"РћР±РѕСЂРѕС‚С‹: {Mathf.RoundToInt(engineRpm)} RPM\n" +
-            $"РЎС†РµРїР»РµРЅРёРµ: {Mathf.RoundToInt(clutchPedal * 100f)}%\n" +
-            $"РџРѕРґСЃРєР°Р·РєР°: {GetShiftAdvice()}";
+            $"Двигатель: {(IsEngineRunning() ? "ВКЛ" : "ВЫКЛ")}\n" +
+            $"Передача: {GetGearLabel()}\n" +
+            $"Скорость: {Mathf.RoundToInt(speedKmh)} км/ч\n" +
+            $"Обороты: {Mathf.RoundToInt(engineRpm)} RPM\n" +
+            $"Сцепление: {Mathf.RoundToInt(clutchPedal * 100f)}%\n" +
+            $"Подсказка: {GetShiftAdvice()}";
 
         GUI.Box(new Rect(x, y, hudWidth, hudHeight), text, boxStyle);
-        GUI.Label(new Rect(x + 12f, y + hudHeight - 24f, hudWidth - 24f, 22f), "РџРѕРІС‹С€РµРЅРёРµ: Р·Р°Р¶РјРё Left Shift Рё РЅР°Р¶РјРё СЃР»РµРґСѓСЋС‰СѓСЋ С†РёС„СЂСѓ", labelStyle);
     }
 
     private string GetGearLabel()
@@ -609,14 +626,21 @@ public class KamazDrivingInputController : MonoBehaviour
 
     private string GetShiftAdvice()
     {
-        if (!IsEngineRunning()) return "РќР°Р¶РјРё Tab, С‡С‚РѕР±С‹ Р·Р°РїСѓСЃС‚РёС‚СЊ РґРІРёРіР°С‚РµР»СЊ.";
-        if (currentGear == 0) return "Р’РєР»СЋС‡Рё 1 РїРµСЂРµРґР°С‡Сѓ: СѓРґРµСЂР¶РёРІР°Р№ Left Shift + 1.";
-        if (currentGear < 0) return "Р—Р°РґРЅРёР№ С…РѕРґ РІРєР»СЋС‡РµРЅ.";
-        if (engineRpm >= recommendUpshiftRpm && currentGear < 5) return "РџРѕРІС‹С€Р°Р№ РїРµСЂРµРґР°С‡Сѓ.";
-        if (engineRpm <= recommendDownshiftRpm && currentGear > 1) return "РџРѕРЅРёР¶Р°Р№ РїРµСЂРµРґР°С‡Сѓ.";
-        if (engineRpm <= stallRpm + 150f) return "РћР±РѕСЂРѕС‚С‹ РЅРёР·РєРёРµ: РґРѕР±Р°РІСЊ РіР°Р· РёР»Рё РІС‹Р¶РјРё СЃС†РµРїР»РµРЅРёРµ.";
-        return "РџРµСЂРµРґР°С‡Р° РІС‹Р±СЂР°РЅР° РЅРѕСЂРјР°Р»СЊРЅРѕ.";
+        if (!IsEngineRunning()) return "Нажми Tab, чтобы запустить двигатель.";
+        if (currentGear == 0) return "Включи 1 передачу: удерживай Left Shift + 1.";
+        if (currentGear < 0) return "Задний ход включен.";
+        if (engineRpm >= recommendUpshiftRpm && currentGear < 5) return "Повышай передачу.";
+        if (engineRpm <= recommendDownshiftRpm && currentGear > 1) return "Понижай передачу.";
+        if (engineRpm <= stallRpm + 150f) return "Обороты низкие: добавь газ или выжми сцепление.";
+        return "Передача выбрана нормально.";
     }
 }
+
+
+
+
+
+
+
 
 

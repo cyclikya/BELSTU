@@ -30,7 +30,7 @@ public class Lab6UIController : MonoBehaviour
     [SerializeField] private Transform keyViewPoint;
 
     [Header("Descriptions")]
-    [TextArea(2, 6)] [SerializeField] private string defaultSetupDescription = "КАМАЗ (самосвал) — это большегрузный автомобиль-самосвал, предназначенный для перевозки сыпучих грузов (песка, щебня, земли). Его главная особенность — кузов, который поднимается гидравликой и опрокидывается назад для автоматической разгрузки.";
+    [TextArea(2, 6)] [SerializeField] private string defaultSetupDescription = "КАМАЗ (самосвал) — это большегрузный автомобиль-самосвал, предназначенный для перевозки сыпучих грузов (песка, щебня, земли).";
     [TextArea(2, 6)] [SerializeField] private string kuzovDescription = "Кузов автомобиля, который поднимается гидравликой и опрокидывается назад для автоматической разгрузки.";
     [TextArea(2, 6)] [SerializeField] private string doorDescription = "Двери кабины водителя.";
     [TextArea(2, 6)] [SerializeField] private string lightsDescription = "Система внешнего освещения и сигналов.";
