@@ -1,0 +1,353 @@
+{
+  "name": "SemanticModel",
+  "compatibilityLevel": 1700,
+  "model": {
+    "culture": "ru-RU",
+    "dataSources": [
+      {
+        "type": "structured",
+        "name": "SQL/VI;LogisticsDW",
+        "connectionDetails": {
+          "protocol": "tds",
+          "address": {
+            "server": "VI",
+            "database": "LogisticsDW"
+          },
+          "authentication": null,
+          "query": null
+        },
+        "credential": {
+          "AuthenticationKind": "UsernamePassword",
+          "kind": "SQL",
+          "path": "vi;LogisticsDW",
+          "Username": "cube_user",
+          "EncryptConnection": false
+        }
+      }
+    ],
+    "tables": [
+      {
+        "name": "DimClient",
+        "columns": [
+          {
+            "name": "ClientID",
+            "dataType": "int64",
+            "sourceColumn": "ClientID"
+          },
+          {
+            "name": "ClientName",
+            "dataType": "string",
+            "sourceColumn": "ClientName"
+          },
+          {
+            "name": "City",
+            "dataType": "string",
+            "sourceColumn": "City"
+          },
+          {
+            "name": "Segment",
+            "dataType": "string",
+            "sourceColumn": "Segment"
+          },
+          {
+            "name": "RegistrationDate",
+            "dataType": "dateTime",
+            "sourceColumn": "RegistrationDate"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/VI;LogisticsDW\",",
+                "    dbo_DimClient = Source{[Schema=\"dbo\",Item=\"DimClient\"]}[Data]",
+                "in",
+                "    dbo_DimClient"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "DimDate",
+        "columns": [
+          {
+            "name": "DateID",
+            "dataType": "int64",
+            "sourceColumn": "DateID"
+          },
+          {
+            "name": "FullDate",
+            "dataType": "dateTime",
+            "sourceColumn": "FullDate"
+          },
+          {
+            "name": "Year",
+            "dataType": "int64",
+            "sourceColumn": "Year"
+          },
+          {
+            "name": "Quarter",
+            "dataType": "int64",
+            "sourceColumn": "Quarter"
+          },
+          {
+            "name": "QuarterName",
+            "dataType": "string",
+            "sourceColumn": "QuarterName"
+          },
+          {
+            "name": "Month",
+            "dataType": "int64",
+            "sourceColumn": "Month"
+          },
+          {
+            "name": "MonthName",
+            "dataType": "string",
+            "sourceColumn": "MonthName"
+          },
+          {
+            "name": "Week",
+            "dataType": "int64",
+            "sourceColumn": "Week"
+          },
+          {
+            "name": "DayOfWeek",
+            "dataType": "string",
+            "sourceColumn": "DayOfWeek"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/VI;LogisticsDW\",",
+                "    dbo_DimDate = Source{[Schema=\"dbo\",Item=\"DimDate\"]}[Data]",
+                "in",
+                "    dbo_DimDate"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "DimDeliveryType",
+        "columns": [
+          {
+            "name": "DeliveryTypeID",
+            "dataType": "int64",
+            "sourceColumn": "DeliveryTypeID"
+          },
+          {
+            "name": "DeliveryName",
+            "dataType": "string",
+            "sourceColumn": "DeliveryName"
+          },
+          {
+            "name": "Category",
+            "dataType": "string",
+            "sourceColumn": "Category"
+          },
+          {
+            "name": "Subcategory",
+            "dataType": "string",
+            "sourceColumn": "Subcategory"
+          },
+          {
+            "name": "Price",
+            "dataType": "double",
+            "sourceColumn": "Price"
+          },
+          {
+            "name": "Cost",
+            "dataType": "double",
+            "sourceColumn": "Cost"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/VI;LogisticsDW\",",
+                "    dbo_DimDeliveryType = Source{[Schema=\"dbo\",Item=\"DimDeliveryType\"]}[Data]",
+                "in",
+                "    dbo_DimDeliveryType"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "DimStatus",
+        "columns": [
+          {
+            "name": "StatusID",
+            "dataType": "int64",
+            "sourceColumn": "StatusID"
+          },
+          {
+            "name": "StatusName",
+            "dataType": "string",
+            "sourceColumn": "StatusName"
+          },
+          {
+            "name": "StatusGroup",
+            "dataType": "string",
+            "sourceColumn": "StatusGroup"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/VI;LogisticsDW\",",
+                "    dbo_DimStatus = Source{[Schema=\"dbo\",Item=\"DimStatus\"]}[Data]",
+                "in",
+                "    dbo_DimStatus"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "FactDeliveries",
+        "columns": [
+          {
+            "name": "DeliveryID",
+            "dataType": "int64",
+            "sourceColumn": "DeliveryID"
+          },
+          {
+            "name": "ClientID",
+            "dataType": "int64",
+            "sourceColumn": "ClientID"
+          },
+          {
+            "name": "DeliveryTypeID",
+            "dataType": "int64",
+            "sourceColumn": "DeliveryTypeID"
+          },
+          {
+            "name": "DateID",
+            "dataType": "int64",
+            "sourceColumn": "DateID"
+          },
+          {
+            "name": "StatusID",
+            "dataType": "int64",
+            "sourceColumn": "StatusID"
+          },
+          {
+            "name": "Quantity",
+            "dataType": "int64",
+            "sourceColumn": "Quantity"
+          },
+          {
+            "name": "UnitPrice",
+            "dataType": "double",
+            "sourceColumn": "UnitPrice"
+          },
+          {
+            "name": "Discount",
+            "dataType": "double",
+            "sourceColumn": "Discount"
+          },
+          {
+            "name": "TotalAmount",
+            "dataType": "double",
+            "sourceColumn": "TotalAmount"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/VI;LogisticsDW\",",
+                "    dbo_FactDeliveries = Source{[Schema=\"dbo\",Item=\"FactDeliveries\"]}[Data]",
+                "in",
+                "    dbo_FactDeliveries"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "TotalRevenue",
+            "expression": " SUMX(FactDeliveries, FactDeliveries[TotalAmount])"
+          },
+          {
+            "name": "DeliveryCount",
+            "expression": " COUNTROWS(FactDeliveries)"
+          },
+          {
+            "name": "AvgMargin",
+            "expression": [
+              " ",
+              "AVERAGEX(",
+              "    FactDeliveries,",
+              "    (FactDeliveries[TotalAmount] - (FactDeliveries[Quantity] * RELATED(DimDeliveryType[Cost]))) / FactDeliveries[TotalAmount]",
+              ")"
+            ]
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "40523ed1-a49a-4739-89db-d3e6c8dba08c",
+        "fromTable": "FactDeliveries",
+        "fromColumn": "ClientID",
+        "toTable": "DimClient",
+        "toColumn": "ClientID"
+      },
+      {
+        "name": "d4a1d340-2851-439b-bdf0-5d08deab08a6",
+        "fromTable": "FactDeliveries",
+        "fromColumn": "DateID",
+        "toTable": "DimDate",
+        "toColumn": "DateID"
+      },
+      {
+        "name": "9c79d636-1470-4a5d-8c00-6c863db4e79c",
+        "fromTable": "FactDeliveries",
+        "fromColumn": "DeliveryTypeID",
+        "toTable": "DimDeliveryType",
+        "toColumn": "DeliveryTypeID"
+      },
+      {
+        "name": "21e4817c-05a0-4f88-beca-45d05583f61b",
+        "fromTable": "FactDeliveries",
+        "fromColumn": "StatusID",
+        "toTable": "DimStatus",
+        "toColumn": "StatusID"
+      }
+    ],
+    "annotations": [
+      {
+        "name": "ClientCompatibilityLevel",
+        "value": "800"
+      }
+    ]
+  },
+  "id": "SemanticModel"
+}
