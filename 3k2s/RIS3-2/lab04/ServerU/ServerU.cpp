@@ -195,12 +195,14 @@ void announceCoordinator()
 
     writeCoordinator(myIp);
 
-    std::cout << "[Выборы] Сервер " << myIp << " стал новым координатором" << std::endl;
+    std::cout << "[Координатор] Я стал координатором: " << myIp << std::endl;
 
     for (const std::string& ip : nodes)
     {
         if (ip != myIp)
-            sendUdpMessage(ip, "COORDINATOR");
+        {
+            sendUdpMessage(ip, "COORDINATOR " + myIp);
+        }
     }
 }
 
@@ -210,33 +212,46 @@ void startElection()
     electionStarted = true;
     receivedOk = false;
 
-    std::cout << "[Выборы] Координатор не отвечает. Начинаем выборы" << std::endl;
+    std::cout << "[Выборы] Начинаем выборы" << std::endl;
 
     unsigned long myNumber = ipToNumber(myIp);
+    bool hasOlderServer = false;
 
     for (const std::string& ip : nodes)
     {
         if (ipToNumber(ip) > myNumber)
         {
-            std::cout << "[Выборы] Отправлен запрос старшему серверу: " << ip << std::endl;
+            hasOlderServer = true;
+
+            std::cout << "[Выборы] Отправлен запрос старшему серверу: "
+                << ip
+                << std::endl;
+
             sendUdpMessage(ip, "ELECTION");
         }
     }
 
-    Sleep(2000);
-
-    if (!receivedOk)
+    if (!hasOlderServer)
     {
         announceCoordinator();
+        return;
     }
-    else
+
+    Sleep(2000);
+
+    if (receivedOk)
     {
-        std::cout << "[Выборы] Есть сервер старше. Ждём нового координатора" << std::endl;
+        std::cout << "[Выборы] Старший сервер ответил OK. Ждём объявления координатора" << std::endl;
+
+        iAmCoordinator = false;
         electionStarted = false;
         lostAnswers = 0;
-    }
-}
 
+        return;
+    }
+
+    announceCoordinator();
+}
 // Поток проверки координатора
 void coordinatorChecker()
 {
@@ -271,91 +286,142 @@ void coordinatorChecker()
 }
 
 // Поток приёма сообщений
+// Поток для приема и обработки сообщений от других серверов
 void messageListener()
 {
-    char buffer[256];
+    char buffer[1024];
 
     while (true)
     {
-        sockaddr_in sender{};
-        int senderSize = sizeof(sender);
+        sockaddr_in senderAddr{};
+        int senderAddrSize = sizeof(senderAddr);
 
-        int result = recvfrom(
+        int received = recvfrom(
             serverSocket,
             buffer,
             sizeof(buffer) - 1,
             0,
-            (sockaddr*)&sender,
-            &senderSize
+            (sockaddr*)&senderAddr,
+            &senderAddrSize
         );
 
-        if (result <= 0)
+        if (received == SOCKET_ERROR)
+        {
             continue;
+        }
 
-        buffer[result] = '\0';
+        buffer[received] = '\0';
 
         std::string message = buffer;
-        std::string senderIp = inet_ntoa(sender.sin_addr);
+        std::string senderIp = inet_ntoa(senderAddr.sin_addr);
+
+        // Новый сервер появился в кластере
+        if (message == "HELLO")
+        {
+            std::cout << "[Старт] Обнаружен запущенный сервер: "
+                << senderIp
+                << std::endl;
+
+            // Если новый сервер старше текущего координатора, запускаем выборы
+            if (!coordinatorIp.empty() &&
+                ipToNumber(senderIp) > ipToNumber(coordinatorIp))
+            {
+                std::cout << "[Старт] Сервер "
+                    << senderIp
+                    << " старше текущего координатора "
+                    << coordinatorIp
+                    << ". Запускаем выборы"
+                    << std::endl;
+
+                coordinatorIp = "";
+                lostAnswers = 3;
+
+                if (!electionStarted)
+                    startElection();
+            }
+        }
 
         // Запрос времени от посредника
-        if (message == "GET_TIME")
+        else if (message == "GET_TIME")
         {
             if (iAmCoordinator)
             {
-                std::string timeText = getCurrentTime();
+                std::string time = getCurrentTime();
+                sendUdpMessage(senderIp, time);
 
-                sendto(
-                    serverSocket,
-                    timeText.c_str(),
-                    (int)timeText.length(),
-                    0,
-                    (sockaddr*)&sender,
-                    senderSize
-                );
-
-                std::cout << "[Время] Отправлено время посреднику: "
+                std::cout << "Отправлено время посреднику "
                     << senderIp
+                    << ": "
+                    << time
                     << std::endl;
             }
         }
 
-        // Проверка жив ли сервер
+        // Проверка доступности сервера
         else if (message == "PING")
         {
             sendUdpMessage(senderIp, "PONG");
         }
 
-        // Ответ координатора на проверку
+        // Ответ от координатора на проверку
         else if (message == "PONG")
         {
-            lostAnswers = 0;
+            if (senderIp == coordinatorIp)
+            {
+                lostAnswers = 0;
+            }
         }
 
         // Сообщение о начале выборов
         else if (message == "ELECTION")
         {
-            std::cout << "[Выборы] Получен запрос выборов от "
+            std::cout << "Получен ELECTION от "
                 << senderIp
                 << std::endl;
 
-            sendUdpMessage(senderIp, "OK");
+            if (ipToNumber(myIp) > ipToNumber(senderIp))
+            {
+                sendUdpMessage(senderIp, "OK");
 
-            coordinatorIp = "";
-            lostAnswers = 3;
+                if (!electionStarted)
+                    startElection();
+            }
         }
 
-        // Ответ от сервера с большим IP
+        // Ответ от более старшего сервера
         else if (message == "OK")
         {
             receivedOk = true;
+            iAmCoordinator = false;
+
+            std::cout << "[Выборы] Получен OK от "
+                << senderIp
+                << ". Старший сервер продолжит выборы"
+                << std::endl;
         }
 
-        // Уведомление о новом координаторе
-        else if (message == "COORDINATOR")
+        // Сообщение о новом координаторе
+        else if (message.rfind("COORDINATOR ", 0) == 0)
         {
-            coordinatorIp = senderIp;
-            iAmCoordinator = false;
+            std::string newCoordinator = message.substr(12);
+            newCoordinator = trim(newCoordinator);
+
+            if (newCoordinator.empty())
+                continue;
+
+            if (ipToNumber(newCoordinator) < ipToNumber(myIp))
+            {
+                std::cout << "[Координатор] Игнорируем младшего координатора: "
+                    << newCoordinator
+                    << std::endl;
+
+                continue;
+            }
+
+            coordinatorIp = newCoordinator;
+            iAmCoordinator = (coordinatorIp == myIp);
             electionStarted = false;
+            receivedOk = false;
             lostAnswers = 0;
 
             writeCoordinator(coordinatorIp);
@@ -365,6 +431,17 @@ void messageListener()
                 << std::endl;
         }
     }
+}
+// Уведомление остальных серверов о запуске этого сервера
+void announceStart()
+{
+    for (const std::string& ip : nodes)
+    {
+        if (ip != myIp)
+            sendUdpMessage(ip, "HELLO");
+    }
+
+    std::cout << "[Старт] Сервер сообщил остальным о своём запуске" << std::endl;
 }
 
 int main(int argc, char* argv[])
@@ -425,6 +502,15 @@ int main(int argc, char* argv[])
     }
 
     defineStartCoordinator();
+
+    announceStart();
+
+    if (!coordinatorIp.empty() &&
+        ipToNumber(myIp) > ipToNumber(coordinatorIp))
+    {
+        std::cout << "[Старт] Этот сервер старше текущего координатора. Запускаем выборы" << std::endl;
+        startElection();
+    }
 
     std::cout << "[Сервер] UDP-сервер времени запущен: "
         << myIp
