@@ -1,3 +1,2 @@
-﻿C:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Microsoft\VC\v180\Microsoft.CppClean.targets(77,5): warning : Отказано в доступе по пути "c:\general\belstu\3k2s\ris3-2\lab04\x64\debug\serveru_agent.exe".
-  ServerU_Agent.cpp
-LINK : fatal error LNK1104: не удается открыть файл "C:\General\BELSTU\3k2s\RIS3-2\lab04\x64\Debug\ServerU_Agent.exe"
+﻿  ServerU_Agent.cpp
+  ServerU_Agent.vcxproj -> C:\General\BELSTU\3k2s\RIS3-2\lab4\x64\Debug\ServerU_Agent.exe

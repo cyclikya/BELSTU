@@ -28,9 +28,10 @@ config.txt:
 Запуск:
 .\ServerU.exe 192.168.56.101
 .\ServerU.exe 192.168.56.102
-.\ServerU_Agent.exe 192.168.56.103
-.\ServerU.exe 192.168.56.104
-.\ClientU.exe 192.168.56.103
+.\ServerU.exe 192.168.56.103
+
+.\ServerU_Agent.exe 192.168.56.104
+.\ClientU.exe 192.168.56.104
 
 
 192.168.56.101
@@ -52,5 +53,5 @@ config.txt:
 
 
 удаление ip адресов:
-	netsh interface ipv4 delete address "Radmin VPN" 26.83.199.122 255.0.0.0
+	netsh interface ipv4 delete address "Ethernet 4" 26.83.199.122 255.0.0.0
 
