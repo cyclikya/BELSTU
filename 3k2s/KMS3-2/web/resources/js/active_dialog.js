@@ -1,323 +1,197 @@
 var dialogOn = false;
 
-var endings =
-[
-  ["ет", "(ет|ут|ют)"],
-  ["ит", "(ит|ат|ят)"],
-  ["ает", "(ает|ают)"],
-  ["яет", "(яет|яют)"],
-  ["ывает", "(ывает|ывают)"],
-  ["ивает", "(ивает|ивают)"],
-  ["ется", "(ется|ются)"],
-  ["ится", "(ится|ятся)"],
-  ["ен", "(ен|ена|ено|ены)"],
-  ["ан", "(ан|ана|ано|аны)"],
-
-  ["является", "(является|являются)"],
-  ["используется", "(используется|используются)"],
-  ["предназначен", "(предназначен|предназначена|предназначено|предназначены)"],
-  ["состоит", "(состоит|состоят)"],
-  ["имеет", "(имеет|имеют)"],
-  ["показывает", "(показывает|показывают)"],
-  ["покажи", "(показывает|показан|показана|показано|показаны)"],
-  ["покажите", "(показывает|показан|показана|показано|показаны)"],
-  ["содержит", "(содержит|содержат)"],
-  ["поступает", "(поступает|поступают)"],
-  ["включает", "(включает|включают)"],
-  ["выглядит", "(выглядит|выглядят)"],
-  ["выглядят", "(выглядит|выглядят)"],
-  ["показан", "(показан|показана|показано|показаны)"],
-  ["показано", "(показан|показана|показано|показаны)"],
-  ["находится", "располага(ется|ются)"],
-  ["находятся", "располага(ется|ются)"],
-
-  ["нужен", "(нужен|нужна|нужно|нужны|предназначен|предназначена|используется|используются|обеспечивает)"],
-  ["нужна", "(нужен|нужна|нужно|нужны|предназначен|предназначена|используется|используются|обеспечивает)"],
-  ["нужны", "(нужен|нужна|нужно|нужны|предназначен|предназначена|используется|используются|обеспечивает|помогает|освещают)"],
-
-  ["делает", "(работает|создает|обеспечивает|передает|показывает|помогает|освещает|охлаждает|поддерживает|смягчает|повышает|поступает|защищает|содержит|перевозит|движется|управляется|используется|предназначен|нужен|включает|выглядит|показан)"]
+var endings = [
+    ["ет", "(ет|ут|ют)"],
+    ["ит", "(ит|ат|ят)"],
+    ["ает", "(ает|ают)"],
+    ["яет", "(яет|яют)"],
+    ["ется", "(ется|ются)"],
+    ["ится", "(ится|ятся)"],
+    ["ен", "(ен|ена|ено|ены)"],
+    ["ан", "(ан|ана|ано|аны)"],
+    ["является", "(является|являются)"],
+    ["используется", "(используется|используются)"],
+    ["предназначен", "(предназначен|предназначена|предназначено|предназначены)"],
+    ["состоит", "(состоит|состоят)"],
+    ["имеет", "(имеет|имеют)"],
+    ["показывает", "(показывает|показывают)"],
+    ["содержит", "(содержит|содержат)"],
+    ["включает", "(включает|включают)"],
+    ["выглядит", "(выглядит|выглядят)"]
 ];
 
-var questionWords =
-[
-  "что", "кто", "где", "куда", "когда", "как",
-  "какую", "какой", "какая", "какие", "какое",
-  "для", "чего", "зачем", "на", "из", "в", "во",
-  "это", "такое", "такой", "такая", "такие"
-];
-
-function small1(str)
-{
-  if (str == "") return str;
-  return str.substring(0, 1).toLowerCase() + str.substring(1);
+function small1(str) {
+    return str.substring(0, 1).toLowerCase() + str.substring(1);
 }
 
-function big1(str)
-{
-  if (str == "") return str;
-  return str.substring(0, 1).toUpperCase() + str.substring(1);
+function big1(str) {
+    return str.substring(0, 1).toUpperCase() + str.substring(1);
 }
 
-function clearQuestion(question)
-{
-  question = small1(question);
-  question = question.replace(/ё/g, "е");
-  question = question.replace(/([?.,!;:])/g, " $1 ");
-  question = question.replace(/[?.,!;:]/g, " ");
-  question = question.replace(/\s+/g, " ");
-  return question.trim();
+function getEnding(word) {
+    for (var i = 0; i < endings.length; i++) {
+        if (word.endsWith(endings[i][0])) {
+            return word.substring(0, word.length - endings[i][0].length) + endings[i][1];
+        }
+    }
+
+    return "";
 }
 
-function makeAnswer(i)
-{
-  return big1(knowleage[i][0]) + " " + knowleage[i][1] + " " + knowleage[i][2] + ".";
+function getAnswer(question) {
+    question = small1(question);
+    question = question.replace("?", " ");
+    question = question.replace(".", " ");
+    question = question.replace(",", " ");
+
+    var words = question.split(" ");
+    var result = false;
+    var answer = "";
+
+    for (var i = 0; i < words.length; i++) {
+        var predicate = getEnding(words[i]);
+
+        if (predicate != "") {
+            var predicateReg = new RegExp(predicate, "i");
+            var subject = question.replace(words[i], "");
+            subject = subject.replace("что", "");
+            subject = subject.replace("кто", "");
+            subject = subject.replace("где", "");
+            subject = subject.replace("как", "");
+            subject = subject.replace("какой", "");
+            subject = subject.replace("какая", "");
+            subject = subject.replace("какие", "");
+            subject = subject.replace("какое", "");
+            subject = subject.trim();
+            subject = subject.replaceAll(" ", ".*");
+
+            var subjectReg = new RegExp(subject, "i");
+
+            for (var j = 0; j < knowleage.length; j++) {
+                if (predicateReg.test(knowleage[j][1]) && 
+                    (subjectReg.test(knowleage[j][0]) || subjectReg.test(knowleage[j][2]))) {
+                    answer = big1(knowleage[j][0]) + " " + knowleage[j][1] + " " + knowleage[j][2] + ".";
+                    result = true;
+                    break;
+                }
+            }
+        }
+
+        if (result == true) {
+            break;
+        }
+    }
+
+    if (result == false) {
+        var subjectOnly = question;
+        subjectOnly = subjectOnly.replace("что такое", "");
+        subjectOnly = subjectOnly.replace("кто такой", "");
+        subjectOnly = subjectOnly.replace("что", "");
+        subjectOnly = subjectOnly.replace("кто", "");
+        subjectOnly = subjectOnly.replace("где", "");
+        subjectOnly = subjectOnly.replace("как", "");
+        subjectOnly = subjectOnly.replace("какой", "");
+        subjectOnly = subjectOnly.replace("какая", "");
+        subjectOnly = subjectOnly.replace("какие", "");
+        subjectOnly = subjectOnly.replace("какое", "");
+        subjectOnly = subjectOnly.trim();
+        subjectOnly = subjectOnly.replaceAll(" ", ".*");
+
+        var subjectOnlyReg = new RegExp(subjectOnly, "i");
+
+        for (var k = 0; k < knowleage.length; k++) {
+            if (subjectOnlyReg.test(knowleage[k][0]) || subjectOnlyReg.test(knowleage[k][2])) {
+                answer = big1(knowleage[k][0]) + " " + knowleage[k][1] + " " + knowleage[k][2] + ".";
+                result = true;
+                break;
+            }
+        }
+    }
+
+    if (result == true) {
+        return answer;
+    } else {
+        return "Ответ не найден";
+    }
 }
 
-function getPredicateExpression(word)
-{
-  var w = word.toLowerCase();
-
-  for (var i = 0; i < endings.length; i++)
-  {
-    if (w == endings[i][0])
-    {
-      return endings[i][1];
-    }
-  }
-
-  for (var j = 0; j < endings.length; j++)
-  {
-    var pseudo = endings[j][0];
-    var variants = endings[j][1];
-
-    if (w.length > pseudo.length && w.substring(w.length - pseudo.length) == pseudo)
-    {
-      return w.substring(0, w.length - pseudo.length) + variants;
-    }
-  }
-
-  return "";
+function dialog_window() {
+    $("body").append("<div class='dialog' id='dialog'></div>");
+    $("#dialog").append("<div class='dialog_label' onclick='openDialog()'>Диалог</div>");
+    $("#dialog").append("<div class='dialog_header'>База знаний</div>");
+    $("#dialog").append("<div class='dialog_messages' id='dialog_messages'></div>");
+    $("#dialog").append("<div class='dialog_form'><input id='question' placeholder='Введите вопрос'><button onclick='ask()'>Спросить</button><button onclick='speech()'>🎤</button></div>");
 }
 
-function getSubjectExpression(words, predicateIndex)
-{
-  var subjectWords = [];
+let dialogOpen = false;
 
-  for (var i = 0; i < words.length; i++)
-  {
-    if (i == predicateIndex) continue;
-    if (questionWords.indexOf(words[i]) >= 0) continue;
-    subjectWords.push(words[i]);
-  }
+function openDialog() {
+    let dialog = document.getElementById("dialog");
+    let label = document.querySelector(".dialog_label");
 
-  return subjectWords.join(".*");
+    if (dialogOpen) {
+        if (window.innerWidth <= 480) {
+            dialog.style.right = "-100%";
+        } else {
+            dialog.style.right = "-520px";
+            label.style.left = "-78px";
+        }
+
+        dialogOpen = false;
+    } else {
+        if (window.innerWidth <= 480) {
+            dialog.style.right = "0";
+        } else {
+            dialog.style.right = "20px";
+            label.style.left = "-62px";
+        }
+
+        dialogOpen = true;
+    }
 }
 
-function findBySubject(subject)
-{
-  subject = subject.trim().toLowerCase();
-  if (subject == "") return "";
+function ask() {
+    var question = $("#question").val();
 
-  var subjectExpression = subject.split(/\s+/).join(".*");
-  var subjectReg = new RegExp(subjectExpression, "i");
-
-  for (var i = 0; i < knowleage.length; i++)
-  {
-    if (subjectReg.test(knowleage[i][0].toLowerCase()))
-    {
-      return makeAnswer(i);
+    if (question == "") {
+        return;
     }
-  }
 
-  for (var j = 0; j < knowleage.length; j++)
-  {
-    if (subjectReg.test(knowleage[j][2].toLowerCase()))
-    {
-      return makeAnswer(j);
-    }
-  }
+    var answer = getAnswer(question);
 
-  return "";
+    $("#dialog_messages").append("<div class='question'>" + question + "</div>");
+    $("#dialog_messages").append("<div class='answer'>" + answer + "</div>");
+
+    $("#dialog_messages").scrollTop($("#dialog_messages")[0].scrollHeight);
+    $("#question").val("");
+
+    speak(answer);
 }
 
-function findBySubjectAndPredicate(subjectExpression, predicateExpression)
-{
-  if (subjectExpression == "" || predicateExpression == "") return "";
+function speak(text) {
+    var textWithoutTags = text.replace(/<[^>]+>/g, "");
 
-  var subjectReg = new RegExp(subjectExpression, "i");
-  var predicateReg = new RegExp(predicateExpression, "i");
-
-  for (var i = 0; i < knowleage.length; i++)
-  {
-    if (predicateReg.test(knowleage[i][1].toLowerCase()) &&
-        subjectReg.test(knowleage[i][0].toLowerCase()))
-    {
-      return makeAnswer(i);
+    if ("speechSynthesis" in window) {
+        var utterance = new SpeechSynthesisUtterance(textWithoutTags);
+        utterance.lang = "ru-RU";
+        speechSynthesis.speak(utterance);
     }
-  }
-
-  for (var j = 0; j < knowleage.length; j++)
-  {
-    if (predicateReg.test(knowleage[j][1].toLowerCase()) &&
-        subjectReg.test(knowleage[j][2].toLowerCase()))
-    {
-      return makeAnswer(j);
-    }
-  }
-
-  return "";
 }
 
-function getAnswer(question)
-{
-  var q = clearQuestion(question);
-  var answer = "";
+function speech() {
+    var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
-  if (q == "") return "Введите вопрос.";
-
-  if (q.indexOf("что такое ") == 0)
-  {
-    answer = findBySubject(q.replace("что такое ", ""));
-    if (answer != "") return answer;
-  }
-
-  if (q.indexOf("кто такой ") == 0)
-  {
-    answer = findBySubject(q.replace("кто такой ", ""));
-    if (answer != "") return answer;
-  }
-
-  var words = q.split(" ");
-
-  for (var i = 0; i < words.length; i++)
-  {
-    var predicateExpression = getPredicateExpression(words[i]);
-
-    if (predicateExpression != "")
-    {
-      var subjectExpression = getSubjectExpression(words, i);
-      answer = findBySubjectAndPredicate(subjectExpression, predicateExpression);
-
-      if (answer != "") return answer;
+    if (!SpeechRecognition) {
+        alert("Распознавание речи не поддерживается");
+        return;
     }
-  }
 
-  answer = findBySubject(q);
-  if (answer != "") return answer;
+    var recognition = new SpeechRecognition();
+    recognition.lang = "ru-RU";
+    recognition.start();
 
-  return "Ответ не найден";
-}
-
-function dialog_window()
-{
-  var dialog = document.createElement("div");
-  dialog.id = "dialog";
-  dialog.className = "dialog";
-
-  var label = document.createElement("div");
-  label.className = "dialog_label";
-  label.innerHTML = "Диалог";
-  label.onclick = openDialog;
-
-  var header = document.createElement("div");
-  header.className = "dialog_header";
-  header.innerHTML = "Диалог с базой знаний";
-  header.onclick = openDialog;
-
-  var messages = document.createElement("div");
-  messages.id = "dialog_messages";
-  messages.className = "dialog_messages";
-
-  var inputBlock = document.createElement("div");
-  inputBlock.className = "dialog_input_block";
-
-  var input = document.createElement("input");
-  input.id = "dialog_input";
-  input.className = "dialog_input";
-  input.placeholder = "Введите вопрос";
-
-  var button = document.createElement("button");
-  button.className = "dialog_button";
-  button.innerHTML = "Спросить";
-  button.onclick = ask;
-
-  input.onkeydown = function(event)
-  {
-    if (event.keyCode == 13)
-    {
-      ask();
-    }
-  };
-
-  inputBlock.appendChild(input);
-  inputBlock.appendChild(button);
-
-  dialog.appendChild(label);
-  dialog.appendChild(header);
-  dialog.appendChild(messages);
-  dialog.appendChild(inputBlock);
-
-  document.body.appendChild(dialog);
-}
-
-function openDialog()
-{
-  if (window.innerWidth <= 480)
-  {
-    if (dialogOn == false)
-    {
-      $("#dialog").animate({right: "0"}, 500);
-      dialogOn = true;
-    }
-    else
-    {
-      $("#dialog").animate({right: "-100%"}, 500);
-      dialogOn = false;
-    }
-  }
-  else
-  {
-    if (dialogOn == false)
-    {
-      $("#dialog").animate({right: "20px"}, 500);
-      dialogOn = true;
-    }
-    else
-    {
-      $("#dialog").animate({right: "-360px"}, 500);
-      dialogOn = false;
-    }
-  }
-}
-
-function ask()
-{
-  var input = document.getElementById("dialog_input");
-  var question = input.value;
-
-  if (question.trim() == "")
-  {
-    return;
-  }
-
-  if (dialogOn == false)
-  {
-    openDialog();
-  }
-
-  var messages = document.getElementById("dialog_messages");
-
-  var userMessage = document.createElement("div");
-  userMessage.className = "question";
-  userMessage.innerHTML = question;
-  messages.appendChild(userMessage);
-
-  var answerMessage = document.createElement("div");
-  answerMessage.className = "answer";
-  answerMessage.innerHTML = getAnswer(question);
-  messages.appendChild(answerMessage);
-
-  messages.scrollTop = messages.scrollHeight;
-  input.value = "";
-  input.focus();
+    recognition.onresult = function(event) {
+        $("#question").val(event.results[0][0].transcript);
+        ask();
+    };
 }

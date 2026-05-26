@@ -16,7 +16,7 @@ openssl genrsa -out resource-key.pem 2028
 openssl req -new -key resource-key.pem -out resource-csr.pem -subj "/CN=RS-LAB22-DUS"
 
 
-
+ 
 // создаёт файл extensions.cnf, в него записываются разрешённые домены
 echo subjectAltName=DNS:LAB22-DUS,DNS:DUS > extensions.cnf
 

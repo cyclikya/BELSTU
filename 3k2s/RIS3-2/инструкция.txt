@@ -26,11 +26,13 @@ config.txt:
 192.168.56.101
 
 Запуск:
-.\ServerU.exe 192.168.56.101
-.\ServerU.exe 192.168.56.102
-.\ServerU.exe 192.168.56.103
+.\ServerU.exe 172.20.10.101
+.\ServerU.exe 172.20.10.102
+.\ServerU.exe 172.20.10.103
 
-.\ServerU_Agent.exe 192.168.56.104
+.\ServerU_Agent.exe 172.20.10.4
+
+
 .\ClientU.exe 192.168.56.104
 
 
