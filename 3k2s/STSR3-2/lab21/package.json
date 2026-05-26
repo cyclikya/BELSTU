@@ -1,0 +1,16 @@
+{
+  "name": "lab21",
+  "version": "1.0.0",
+  "main": "lab21-01.js",
+  "scripts": {
+    "start:basic": "node lab21-01.js",
+    "start:digest": "node lab21-02.js",
+    "start:forms": "node lab21-03.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "passport": "^0.7.0",
+    "passport-http": "^0.3.0"
+  }
+}
