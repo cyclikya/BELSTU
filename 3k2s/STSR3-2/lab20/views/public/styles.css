@@ -1,0 +1,168 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #eef2f6;
+    color: #222;
+}
+
+.wrapper,
+.container,
+main {
+    width: 620px;
+    margin: 45px auto;
+    padding: 28px;
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+h1,
+h2,
+h3 {
+    margin-top: 0;
+    text-align: center;
+    color: #263445;
+    font-weight: 600;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.list,
+.number-list,
+.contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.list a,
+.number-list a,
+.contacts a,
+.row-button,
+.contact-button {
+    display: block;
+    width: 100%;
+    padding: 13px 16px;
+    background: #f8fafc;
+    border: 1px solid #cfd8e3;
+    border-radius: 10px;
+    color: #263445;
+    font-size: 16px;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.list a:hover,
+.number-list a:hover,
+.contacts a:hover,
+.row-button:hover,
+.contact-button:hover {
+    background: #e6eef7;
+    border-color: #8aa4c2;
+    transform: translateY(-1px);
+}
+
+form {
+    margin-top: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+input {
+    width: 100%;
+    padding: 13px 15px;
+    border: 1px solid #bfc9d6;
+    border-radius: 9px;
+    font-size: 15px;
+    outline: none;
+    background: #ffffff;
+}
+
+input:focus {
+    border-color: #4c78a8;
+    box-shadow: 0 0 0 3px rgba(76, 120, 168, 0.15);
+}
+
+button,
+input[type="submit"],
+input[type="button"] {
+    padding: 12px 18px;
+    border: none;
+    border-radius: 9px;
+    background: #4c78a8;
+    color: #ffffff;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover {
+    background: #365f89;
+}
+
+button:disabled,
+input:disabled {
+    background: #d9dee5;
+    color: #8b95a1;
+    cursor: not-allowed;
+}
+
+.menu,
+.buttons,
+.actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 18px;
+}
+
+.cancel,
+.back,
+.delete {
+    background: #8b95a1;
+}
+
+.cancel:hover,
+.back:hover {
+    background: #6f7884;
+}
+
+.delete {
+    background: #c94f4f;
+}
+
+.delete:hover {
+    background: #a83f3f;
+}
+
+.add {
+    background: #3f9b68;
+}
+
+.add:hover {
+    background: #317a52;
+}
+
+p {
+    text-align: center;
+    color: #606b78;
+}
+
+.disabled,
+[disabled] {
+    opacity: 0.65;
+    pointer-events: none;
+}
