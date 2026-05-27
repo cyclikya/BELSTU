@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Диалог</title>
+
+  <link rel="stylesheet" type="text/css" href="./resources/css/style.css" />
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://webasr.yandex.net/jsapi/v1/webspeechkit.js" type="text/javascript"></script>
+  <script src="resources/js/knowleage_kamaz.js"></script>
+  <script src="resources/js/active_dialog.js"></script>
+  <link href="resources/css/style.css" type="text/css" rel="stylesheet">
+</head>
+
+  <body onLoad="dialog_window()">
+    <div class="menu">
+      <p align="center">
+        <a href="titul.html">Титул</a> | <a href="teoria.html">Теория</a> |
+        <a href="opisanie.html">Описание</a> |
+        <a href="princip.html">Принцип работы</a> |
+        <a href="simulator.html">Симулятор</a> |
+        <a href="dialog.html">Диалог</a>
+      </p>
+    </div>
+
+    <div class="burger-menu">
+      <label for="burger-toggle" class="burger-icon">☰</label>
+      <input type="checkbox" id="burger-toggle" />
+
+      <div class="burger-items">
+        <a href="titul.html">Титул</a>
+        <a href="teoria.html">Теория</a>
+        <a href="opisanie.html">Описание</a>
+        <a href="princip.html">Принцип работы</a>
+        <a href="simulator.html">Симулятор</a>
+        <a href="dialog.html">Диалог</a>
+        <div class="content"></div>
+      </div>
+    </div>
+
+    <div class="content">
+      <h1>Диалог с базой знаний</h1>
+      
+    <details style="font-size: 1.1rem; margin-left: 12px;">
+      <summary>Примеры вопросов</summary>
+
+      <ul>
+        <li>Что такое КАМАЗ?</li>
+        <li>Как работает КАМАЗ?</li>
+        <li>Как выглядит КАМАЗ?</li>
+        <li>Что имеет КАМАЗ?</li>
+        <li>Как движется КАМАЗ?</li>
+
+        <li>Что такое симулятор управления КАМАЗом?</li>
+        <li>Что показывает симулятор управления КАМАЗом?</li>
+        <li>Что моделирует симулятор управления КАМАЗом?</li>
+        <li>Что имитирует симулятор управления КАМАЗом?</li>
+
+        <li>Что такое кабина?</li>
+        <li>Что содержит кабина?</li>
+        <li>Как выглядит кабина?</li>
+
+        <li>Что такое сиденье водителя?</li>
+        <li>Что обеспечивает сиденье водителя?</li>
+
+        <li>Что такое кузов?</li>
+        <li>Как выглядит кузов?</li>
+        <li>Что принимает кузов?</li>
+
+        <li>Что такое топливный бак?</li>
+        <li>Где располагается топливный бак?</li>
+        <li>Что такое дизельное топливо?</li>
+
+        <li>Что такое фары?</li>
+        <li>Как выглядят фары?</li>
+        <li>Что освещают фары?</li>
+        <li>Где располагаются фары?</li>
+
+        <li>Что такое двигатель?</li>
+        <li>Как работает двигатель?</li>
+        <li>Что создает двигатель?</li>
+
+        <li>Что такое рама?</li>
+        <li>Что удерживает рама?</li>
+
+        <li>Что такое колеса?</li>
+        <li>Что обеспечивают колеса?</li>
+        <li>Как выглядят колеса?</li>
+
+        <li>Что такое трансмиссия?</li>
+        <li>Что передает трансмиссия?</li>
+
+        <li>Что такое коробка передач?</li>
+        <li>Что изменяет коробка передач?</li>
+
+        <li>Что такое руль?</li>
+        <li>Что поворачивает руль?</li>
+
+        <li>Что такое педаль газа?</li>
+        <li>Что увеличивает педаль газа?</li>
+
+        <li>Что такое педаль тормоза?</li>
+        <li>Что уменьшает педаль тормоза?</li>
+
+        <li>Что такое тормозная система?</li>
+        <li>Что останавливает тормозная система?</li>
+
+        <li>Что такое приборная панель?</li>
+        <li>Что показывает приборная панель?</li>
+
+        <li>Что такое спидометр?</li>
+        <li>Что показывает спидометр?</li>
+
+        <li>Что такое тахометр?</li>
+        <li>Что показывает тахометр?</li>
+
+        <li>Что такое подвеска?</li>
+        <li>Что смягчает подвеска?</li>
+
+        <li>Что такое зеркала?</li>
+        <li>Что помогают зеркала?</li>
+
+        <li>Что такое аккумулятор?</li>
+        <li>Что обеспечивает аккумулятор?</li>
+
+        <li>Что такое генератор?</li>
+        <li>Что заряжает генератор?</li>
+
+        <li>Что такое стартер?</li>
+        <li>Что запускает стартер?</li>
+
+        <li>Что такое база знаний?</li>
+        <li>Что содержит база знаний?</li>
+
+        <li>Что такое семантическая триада?</li>
+        <li>Что имеет семантическая триада?</li>
+
+        <li>Что такое диалоговая программа?</li>
+        <li>Что использует диалоговая программа?</li>
+
+        <li>Что такое функция getAnswer?</li>
+        <li>Что возвращает функция getAnswer?</li>
+      </ul>
+    </details>
+  </body>
+</html>
