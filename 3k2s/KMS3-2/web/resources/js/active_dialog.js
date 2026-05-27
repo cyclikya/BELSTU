@@ -1,4 +1,6 @@
 var dialogOn = false;
+var recognition = null;
+var speechOn = false;
 
 var endings = [
     ["ет", "(ет|ут|ют)"],
@@ -120,7 +122,7 @@ function dialog_window() {
     $("#dialog").append("<div class='dialog_label' onclick='openDialog()'>Диалог</div>");
     $("#dialog").append("<div class='dialog_header'>База знаний</div>");
     $("#dialog").append("<div class='dialog_messages' id='dialog_messages'></div>");
-    $("#dialog").append("<div class='dialog_form'><input id='question' placeholder='Введите вопрос'><button onclick='ask()'>Спросить</button><button onclick='speech()'>🎤</button></div>");
+    $("#dialog").append("<div class='dialog_form'><input id='question' placeholder='Введите вопрос'><button type='button' onclick='ask()'>Спросить</button><button type='button' id='microphone' onclick='speech()'>🎤</button></div>");
 }
 
 let dialogOpen = false;
@@ -160,25 +162,51 @@ function ask() {
     var answer = getAnswer(question);
 
     $("#dialog_messages").append("<div class='question'>" + question + "</div>");
-    $("#dialog_messages").append("<div class='answer'>" + answer + "</div>");
+
+    var answerBlock = $("<div class='answer'></div>");
+    var answerText = $("<span class='answer_text'></span>");
+    var speakButton = $("<button type='button' class='speak_button'>🔊</button>");
+
+    answerText.html(answer);
+
+    speakButton.click(function() {
+        speak(answerText.html());
+    });
+
+    answerBlock.append(answerText);
+    answerBlock.append(speakButton);
+
+    $("#dialog_messages").append(answerBlock);
 
     $("#dialog_messages").scrollTop($("#dialog_messages")[0].scrollHeight);
     $("#question").val("");
-
-    speak(answer);
 }
 
 function speak(text) {
-    var textWithoutTags = text.replace(/<[^>]+>/g, "");
+    text = text.replace(/<[^>]*>/g, "");
 
     if ("speechSynthesis" in window) {
-        var utterance = new SpeechSynthesisUtterance(textWithoutTags);
+        var utterance = new SpeechSynthesisUtterance(text);
         utterance.lang = "ru-RU";
-        speechSynthesis.speak(utterance);
+        window.speechSynthesis.speak(utterance);
     }
 }
 
 function speech() {
+    var microphone = $("#microphone");
+
+    if (speechOn == true) {
+        speechOn = false;
+        microphone.removeClass("microphone_active");
+        $("#question").attr("placeholder", "Введите вопрос");
+
+        if (recognition != null) {
+            recognition.stop();
+        }
+
+        return;
+    }
+
     var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
     if (!SpeechRecognition) {
@@ -186,12 +214,40 @@ function speech() {
         return;
     }
 
-    var recognition = new SpeechRecognition();
+    recognition = new SpeechRecognition();
     recognition.lang = "ru-RU";
+    recognition.interimResults = true;
+    recognition.maxAlternatives = 1;
+    recognition.continuous = true;
+
+    speechOn = true;
+    microphone.addClass("microphone_active");
+    $("#question").val("");
+    $("#question").attr("placeholder", "Говорите...");
+
     recognition.start();
 
     recognition.onresult = function(event) {
-        $("#question").val(event.results[0][0].transcript);
-        ask();
+        var text = "";
+
+        for (var i = 0; i < event.results.length; i++) {
+            text += event.results[i][0].transcript;
+        }
+
+        $("#question").val(text);
+    };
+
+    recognition.onerror = function(event) {
+        $("#question").attr("placeholder", "Ошибка распознавания, попробуйте ещё раз");
+    };
+
+    recognition.onend = function() {
+        if (speechOn == true) {
+            try {
+                recognition.start();
+            } catch (e) {
+                $("#question").attr("placeholder", "Говорите...");
+            }
+        }
     };
 }
