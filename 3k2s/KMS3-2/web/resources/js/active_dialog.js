@@ -41,80 +41,137 @@ function getEnding(word) {
 }
 
 function getAnswer(question) {
-    question = small1(question);
-    question = question.replace("?", " ");
-    question = question.replace(".", " ");
-    question = question.replace(",", " ");
-
-    var words = question.split(" ");
-    var result = false;
-    var answer = "";
-
-    for (var i = 0; i < words.length; i++) {
-        var predicate = getEnding(words[i]);
-
-        if (predicate != "") {
-            var predicateReg = new RegExp(predicate, "i");
-            var subject = question.replace(words[i], "");
-            subject = subject.replace("что", "");
-            subject = subject.replace("кто", "");
-            subject = subject.replace("где", "");
-            subject = subject.replace("как", "");
-            subject = subject.replace("какой", "");
-            subject = subject.replace("какая", "");
-            subject = subject.replace("какие", "");
-            subject = subject.replace("какое", "");
-            subject = subject.trim();
-            subject = subject.replaceAll(" ", ".*");
-
-            var subjectReg = new RegExp(subject, "i");
-
-            for (var j = 0; j < knowleage.length; j++) {
-                if (predicateReg.test(knowleage[j][1]) && 
-                    (subjectReg.test(knowleage[j][0]) || subjectReg.test(knowleage[j][2]))) {
-                    answer = big1(knowleage[j][0]) + " " + knowleage[j][1] + " " + knowleage[j][2] + ".";
-                    result = true;
-                    break;
-                }
-            }
-        }
-
-        if (result == true) {
-            break;
-        }
+    function normalize(text) {
+        return text
+            .toLowerCase()
+            .replaceAll("ё", "е")
+            .replaceAll("?", " ")
+            .replaceAll(".", " ")
+            .replaceAll(",", " ")
+            .replaceAll("!", " ")
+            .replace(/\s+/g, " ")
+            .trim()
+            .replaceAll(" ", "");
     }
 
-    if (result == false) {
-        var subjectOnly = question;
-        subjectOnly = subjectOnly.replace("что такое", "");
-        subjectOnly = subjectOnly.replace("кто такой", "");
-        subjectOnly = subjectOnly.replace("что", "");
-        subjectOnly = subjectOnly.replace("кто", "");
-        subjectOnly = subjectOnly.replace("где", "");
-        subjectOnly = subjectOnly.replace("как", "");
-        subjectOnly = subjectOnly.replace("какой", "");
-        subjectOnly = subjectOnly.replace("какая", "");
-        subjectOnly = subjectOnly.replace("какие", "");
-        subjectOnly = subjectOnly.replace("какое", "");
-        subjectOnly = subjectOnly.trim();
-        subjectOnly = subjectOnly.replaceAll(" ", ".*");
+    var questionText = question
+        .toLowerCase()
+        .replaceAll("ё", "е")
+        .replaceAll("?", " ")
+        .replaceAll(".", " ")
+        .replaceAll(",", " ")
+        .replaceAll("!", " ")
+        .replace(/\s+/g, " ")
+        .trim();
 
-        var subjectOnlyReg = new RegExp(subjectOnly, "i");
+    var originalQuestion = questionText;
+    var clearQuestion = questionText;
 
-        for (var k = 0; k < knowleage.length; k++) {
-            if (subjectOnlyReg.test(knowleage[k][0]) || subjectOnlyReg.test(knowleage[k][2])) {
-                answer = big1(knowleage[k][0]) + " " + knowleage[k][1] + " " + knowleage[k][2] + ".";
-                result = true;
-                break;
-            }
-        }
+    var neededPredicate = "";
+
+    if (originalQuestion.indexOf("как выглядит") != -1) {
+        neededPredicate = "выгляд";
     }
 
-    if (result == true) {
-        return answer;
-    } else {
+    if (originalQuestion.indexOf("из чего состоит") != -1) {
+        neededPredicate = "состоит|содержит|включает";
+    }
+
+    if (originalQuestion.indexOf("что содержит") != -1) {
+        neededPredicate = "содержит|состоит|включает|имеет";
+    }
+
+    if (originalQuestion.indexOf("что показывает") != -1) {
+        neededPredicate = "показывает";
+    }
+
+    if (
+        originalQuestion.indexOf("зачем") != -1 ||
+        originalQuestion.indexOf("для чего") != -1
+    ) {
+        neededPredicate = "предназначен|предназначена|используется|нужен|нужна|помогает|обеспечивает";
+    }
+
+    if (originalQuestion.indexOf("как работает") != -1) {
+        neededPredicate = "работает|движется|управляется|передает|создает|обеспечивает";
+    }
+
+    if (
+        originalQuestion.indexOf("кто создал") != -1 ||
+        originalQuestion.indexOf("кто разработал") != -1
+    ) {
+        neededPredicate = "создан|разрабатывался";
+    }
+
+    if (
+        originalQuestion.indexOf("где создан") != -1 ||
+        originalQuestion.indexOf("где создали") != -1 ||
+        originalQuestion.indexOf("где производится") != -1 ||
+        originalQuestion.indexOf("где выпускается") != -1
+    ) {
+        neededPredicate = "производится|выпускается";
+    }
+
+    clearQuestion = clearQuestion.replace("что такое", "");
+    clearQuestion = clearQuestion.replace("кто такой", "");
+    clearQuestion = clearQuestion.replace("кто такая", "");
+    clearQuestion = clearQuestion.replace("кто создал", "");
+    clearQuestion = clearQuestion.replace("кто разработал", "");
+    clearQuestion = clearQuestion.replace("что представляет собой", "");
+    clearQuestion = clearQuestion.replace("для чего нужен", "");
+    clearQuestion = clearQuestion.replace("для чего нужна", "");
+    clearQuestion = clearQuestion.replace("для чего нужно", "");
+    clearQuestion = clearQuestion.replace("для чего нужны", "");
+    clearQuestion = clearQuestion.replace("зачем нужен", "");
+    clearQuestion = clearQuestion.replace("зачем нужна", "");
+    clearQuestion = clearQuestion.replace("зачем нужно", "");
+    clearQuestion = clearQuestion.replace("зачем нужны", "");
+    clearQuestion = clearQuestion.replace("из чего состоит", "");
+    clearQuestion = clearQuestion.replace("что показывает", "");
+    clearQuestion = clearQuestion.replace("что содержит", "");
+    clearQuestion = clearQuestion.replace("что делает", "");
+    clearQuestion = clearQuestion.replace("как выглядит", "");
+    clearQuestion = clearQuestion.replace("как работает", "");
+    clearQuestion = clearQuestion.replace("где находится", "");
+    clearQuestion = clearQuestion.replace("где расположен", "");
+    clearQuestion = clearQuestion.replace("где расположена", "");
+    clearQuestion = clearQuestion.replace("где располагается", "");
+    clearQuestion = clearQuestion.replace("где создан", "");
+    clearQuestion = clearQuestion.replace("где создали", "");
+    clearQuestion = clearQuestion.replace("где производится", "");
+    clearQuestion = clearQuestion.replace("где выпускается", "");
+    clearQuestion = clearQuestion.replace("чем является", "");
+    clearQuestion = clearQuestion.replace("что включает", "");
+
+    clearQuestion = normalize(clearQuestion);
+
+    if (clearQuestion == "") {
         return "Ответ не найден";
     }
+
+    for (var i = 0; i < knowleage.length; i++) {
+        var subject = normalize(knowleage[i][0]);
+        var predicate = knowleage[i][1].toLowerCase();
+
+        if (subject == clearQuestion) {
+            if (neededPredicate == "" || new RegExp(neededPredicate, "i").test(predicate)) {
+                return big1(knowleage[i][0]) + " " + knowleage[i][1] + " " + knowleage[i][2] + ".";
+            }
+        }
+    }
+
+    for (var j = 0; j < knowleage.length; j++) {
+        var subject2 = normalize(knowleage[j][0]);
+        var predicate2 = knowleage[j][1].toLowerCase();
+
+        if (subject2.indexOf(clearQuestion) != -1 || clearQuestion.indexOf(subject2) != -1) {
+            if (neededPredicate == "" || new RegExp(neededPredicate, "i").test(predicate2)) {
+                return big1(knowleage[j][0]) + " " + knowleage[j][1] + " " + knowleage[j][2] + ".";
+            }
+        }
+    }
+
+    return "Ответ не найден";
 }
 
 function dialog_window() {
@@ -122,7 +179,7 @@ function dialog_window() {
     $("#dialog").append("<div class='dialog_label' onclick='openDialog()'>Диалог</div>");
     $("#dialog").append("<div class='dialog_header'>База знаний</div>");
     $("#dialog").append("<div class='dialog_messages' id='dialog_messages'></div>");
-    $("#dialog").append("<div class='dialog_form'><input id='question' placeholder='Введите вопрос'><button type='button' onclick='ask()'>Спросить</button><button type='button' id='microphone' onclick='speech()'>🎤</button></div>");
+    $("#dialog").append("<div class='dialog_form'><input id='question' placeholder='Введите вопрос' onkeydown='if(event.key === \"Enter\") ask()'><button type='button' onclick='ask()'>Спросить</button><button type='button' id='microphone' onclick='speech()'>🎤</button></div>");
 }
 
 let dialogOpen = false;
