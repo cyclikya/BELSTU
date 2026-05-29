@@ -1,24 +1,24 @@
-const http = require('http');
-const fs = require('fs')
-const express = require('express');
-
-const app = express();
+const https = require('https');
+const fs = require('fs');
 
 const options = {
     key: fs.readFileSync('resource-key.pem'),
-    cert: fs.readFileSync('resource-csr.pem')
+    cert: fs.readFileSync('resource-cert.pem')
 };
 
-app.get('/', (req, res) => {
-    res.send('https server is working');
-})
-.get('/resource', (req, res) => {
-    res.send('resource - secure resource');
-});
+https.createServer(options, (req, res) => {
+    console.log('GET request:', req.url);
 
-http.createServer(options, app).listen(3000, () => {
-    console.log('HTTPS сервер запущен на порту 3000');
-    console.log('http://localhost:3000');
-    console.log('http://LAB22-DUS:3000');
-    console.log('http://DUS:3000');
-})
+    res.writeHead(200, {
+        'Content-Type': 'text/html; charset=utf-8'
+    });
+
+    res.end(`
+        <h1>LAB22 HTTPS SERVER</h1>
+        <p>Resource: UVR</p>
+        <p>CA: DUS</p>
+        <p>HTTPS работает через сертификат, подписанный CA.</p>
+    `);
+}).listen(3000, () => {
+    console.log('HTTPS server started: https://LAB22-UVR:3000');
+});
