@@ -473,14 +473,6 @@ MonoBehaviour:
   interactionHintColor: {r: 1, g: 1, b: 1, a: 1}
   interactionHintFont: {fileID: 12800000, guid: 24f324e566af83e4b86e0e44d502605a, type: 3}
   interactionHintFontSize: 27
-  showInteractableHighlight: 1
-  engineStartShakeDuration: 1.5
-  engineStartShakeAmplitude: 0.01
-  startupSweepUpDuration: 0.28
-  startupSweepHoldDuration: 0.1
-  startupSweepDownDuration: 0.9
-  startupSpeedometerPeak: 20
-  startupTachometerPeak: 2800
 --- !u!143 &60769228
 CharacterController:
   m_ObjectHideFlags: 0
@@ -13622,19 +13614,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e7f560218dc46c46aa3709fc9bdf7ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KamazDrivingInputController
-  kamazContext: {fileID: 2011887551}
   cameraController: {fileID: 60769227}
   kamazAudioController: {fileID: 2011887565}
   kamazRigidbody: {fileID: 2011887547}
-  steeringWheel: {fileID: 0}
-  wheelFrontLeft: {fileID: 0}
-  wheelFrontRight: {fileID: 0}
-  wheelMiddle: {fileID: 0}
-  wheelBack: {fileID: 0}
-  speedometerNeedle: {fileID: 0}
-  tachometerNeedle: {fileID: 0}
-  onlyWhenPlayerInCabin: 1
-  requireEngineRunningForMotion: 1
+  steeringWheel: {fileID: 1292301687}
+  wheelFrontLeft: {fileID: 1010944647}
+  wheelFrontRight: {fileID: 651273943}
+  wheelMiddle: {fileID: 965202363}
+  wheelBack: {fileID: 435220053}
+  speedometerNeedle: {fileID: 446695026}
+  tachometerNeedle: {fileID: 991556687}
   throttleKey: 119
   brakeKey: 115
   brakeAltKey: 32
@@ -13683,6 +13672,8 @@ MonoBehaviour:
   maxReverseSpeedKmh: 15
   lowRpmTorqueBoost: 2.6
   lowRpmBoostEnd: 2300
+  wheelSpinSpeed: 120
+  turnSpeed: 10
   invertSteering: 0
   steeringInputChangeSpeed: 1.4
   minTurnRadiusAtFullSteer: 180
@@ -13697,15 +13688,6 @@ MonoBehaviour:
   frontWheelMaxSteerAngle: 28
   frontWheelSteerSpeed: 140
   wheelSpinAxisLocal: {x: 1, y: 0, z: 0}
-  showDrivingHud: 1
-  hudLeftMargin: 20
-  hudBottomMargin: 20
-  hudWidth: 660
-  hudHeight: 225
-  hudFont: {fileID: 12800000, guid: 24f324e566af83e4b86e0e44d502605a, type: 3}
-  hudFontSize: 27
-  recommendUpshiftRpm: 2500
-  recommendDownshiftRpm: 1100
   engineRpm: 0
   clutchPedal: 0
   speedKmh: 0

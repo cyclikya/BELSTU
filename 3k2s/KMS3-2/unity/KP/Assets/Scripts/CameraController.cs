@@ -1,12 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
-// ������� ������ ������: ����������� ������ ������ � ��������,
-// ��������� �����, ��������� ��������� � ������ ���������.
+// Главный скрипт игрока: переключает режимы ходьбы и вождения,
+// открывает двери, запускает двигатель и рисует подсказки.
 public class CameraController : MonoBehaviour
 {
     public enum ControlMode
@@ -51,18 +50,6 @@ public class CameraController : MonoBehaviour
     [SerializeField] private Font interactionHintFont;
     [SerializeField] private int interactionHintFontSize = 27;
 
-    [Header("Highlight")]
-    [SerializeField] private bool showInteractableHighlight = true;
-
-    [Header("Engine Effects")]
-    [SerializeField] private float engineStartShakeDuration = 1.5f;
-    [SerializeField] private float engineStartShakeAmplitude = 0.01f;
-    [SerializeField] private float startupSweepUpDuration = 0.28f;
-    [SerializeField] private float startupSweepHoldDuration = 0.1f;
-    [SerializeField] private float startupSweepDownDuration = 0.9f;
-    [SerializeField] private float startupSpeedometerPeak = 20f;
-    [SerializeField] private float startupTachometerPeak = 2800f;
-
     private ControlMode currentMode = ControlMode.FreeMovement;
     private CharacterController characterController;
     private Camera playerCamera;
@@ -71,29 +58,19 @@ public class CameraController : MonoBehaviour
     private Rigidbody kamazRigidbody;
     private bool kamazWasKinematic;
     private float defaultFieldOfView;
-
     private bool waitingControllerReenable;
     private bool isExitingDrivingMode;
     private bool engineRunning;
     private bool uiCursorActive;
-
     private Coroutine doorFreezeCoroutine;
-    private Coroutine kabinaShakeCoroutine;
-    private Coroutine startupNeedleSweepCoroutine;
-
-    private readonly Dictionary<Renderer, Material> highlightedRenderers = new Dictionary<Renderer, Material>();
-    private readonly Color highlightOverlayColor = new Color(230f / 255f, 230f / 255f, 230f / 255f, 1f);
-    private const float highlightStrength = 80f / 255f;
-    private Transform highlightedRoot;
     private string interactionHintText = string.Empty;
     private string temporaryHintText = string.Empty;
     private float temporaryHintUntilTime;
-    private readonly List<Transform> shakeTargets = new List<Transform>();
-    private readonly List<Vector3> shakeStartPositions = new List<Vector3>();
 
     public bool IsDrivingMode => currentMode == ControlMode.Driving;
     public bool IsEngineRunning => engineRunning;
 
+    // Собирает ссылки, инициализирует режимы и подготавливает UI.
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -102,9 +79,9 @@ public class CameraController : MonoBehaviour
 
         if (kamazContext != null)
         {
-            if (kamazLightsController == null) kamazLightsController = kamazContext.LightsController;
-            if (kamazAudioController == null) kamazAudioController = kamazContext.AudioController;
-            if (kamazCabinMechanismsController == null) kamazCabinMechanismsController = kamazContext.CabinMechanismsController;
+            kamazLightsController ??= kamazContext.LightsController;
+            kamazAudioController ??= kamazContext.AudioController;
+            kamazCabinMechanismsController ??= kamazContext.CabinMechanismsController;
             kamazRigidbody = kamazContext.KamazRigidbody;
         }
 
@@ -120,7 +97,6 @@ public class CameraController : MonoBehaviour
 
         freeMovementMode.Initialize(characterController, playerCamera, transform);
         drivingMode.Initialize(characterController, transform, kamazContext);
-
         ConfigureNeedles();
         SyncLightsControllerState();
         CreateCrosshairTexture();
@@ -128,18 +104,7 @@ public class CameraController : MonoBehaviour
         ApplyCurrentMode();
     }
 
-#if UNITY_EDITOR
-    private void OnValidate()
-    {
-        if (interactionHintFont == null)
-        {
-            interactionHintFont = AssetDatabase.LoadAssetAtPath<Font>("Assets/Materials/arialmt.ttf");
-        }
-
-        interactionHintFontSize = 27;
-    }
-#endif
-
+    // Каждый кадр обновляет активный режим игрока, подсказки и зум камеры.
     private void Update()
     {
         HandleUiCursorToggle();
@@ -148,7 +113,6 @@ public class CameraController : MonoBehaviour
             return;
         }
 
-        UpdateInteractionHighlight();
         UpdateInteractionHintText();
 
         if (currentMode == ControlMode.FreeMovement)
@@ -172,6 +136,7 @@ public class CameraController : MonoBehaviour
         UpdateDrivingZoom();
     }
 
+    // Обрабатывает открытие двери и посадку в кабину в пешем режиме.
     private void HandleFreeModeInteraction()
     {
         if (!Input.GetKeyDown(interactKey))
@@ -196,6 +161,7 @@ public class CameraController : MonoBehaviour
         }
     }
 
+    // Обрабатывает запуск двигателя и выход из кабины в режиме вождения.
     private void HandleDrivingModeInteraction()
     {
         if (Input.GetKeyDown(engineToggleKey))
@@ -218,35 +184,22 @@ public class CameraController : MonoBehaviour
             return;
         }
 
-        float distanceToDoor = Vector3.Distance(transform.position, interaction.DoorRoot.position);
-        if (distanceToDoor > switchModeDistance)
+        if (Vector3.Distance(transform.position, interaction.DoorRoot.position) > switchModeDistance)
         {
             return;
         }
 
-        if (kamazLightsController != null)
-        {
-            kamazLightsController.BlockInputForSeconds(exitToFreeModeDelay + 0.25f);
-        }
-
+        kamazLightsController?.BlockInputForSeconds(exitToFreeModeDelay + 0.25f);
         StartCoroutine(ExitDrivingMode(interaction.DoorAnimator));
     }
 
+    // Открывает дверь, выводит игрока из кабины и возвращает пеший режим.
     private IEnumerator ExitDrivingMode(Animator doorAnimator)
     {
         isExitingDrivingMode = true;
         IgnoreKamazCollisions(true);
         FreezeKamaz(true);
-
-        if (doorAnimator != null)
-        {
-            bool wasOpen = doorAnimator.GetBool("isOpen");
-            doorAnimator.SetBool("isOpen", true);
-            if (!wasOpen && kamazAudioController != null)
-            {
-                kamazAudioController.PlayDoorOpen();
-            }
-        }
+        SetDoorState(doorAnimator, true, true);
 
         yield return new WaitForSeconds(exitToFreeModeDelay);
 
@@ -264,6 +217,7 @@ public class CameraController : MonoBehaviour
         isExitingDrivingMode = false;
     }
 
+    // Закрывает двери и переводит игрока в режим вождения.
     private void EnterDrivingMode()
     {
         if (kamazContext == null)
@@ -271,29 +225,12 @@ public class CameraController : MonoBehaviour
             return;
         }
 
-        if (kamazContext.DoorLAnimator != null)
-        {
-            bool wasOpen = kamazContext.DoorLAnimator.GetBool("isOpen");
-            kamazContext.DoorLAnimator.SetBool("isOpen", false);
-            if (wasOpen && kamazAudioController != null)
-            {
-                kamazAudioController.PlayDoorClose();
-            }
-        }
-
-        if (kamazContext.DoorRAnimator != null)
-        {
-            bool wasOpen = kamazContext.DoorRAnimator.GetBool("isOpen");
-            kamazContext.DoorRAnimator.SetBool("isOpen", false);
-            if (wasOpen && kamazAudioController != null)
-            {
-                kamazAudioController.PlayDoorClose();
-            }
-        }
-
+        SetDoorState(kamazContext.DoorLAnimator, false, true);
+        SetDoorState(kamazContext.DoorRAnimator, false, true);
         SetMode(ControlMode.Driving);
     }
 
+    // Меняет режим игрока и синхронизирует состояние света.
     private void SetMode(ControlMode mode, bool keepControllerDisabledOnFree = false)
     {
         currentMode = mode;
@@ -301,6 +238,7 @@ public class CameraController : MonoBehaviour
         SyncLightsControllerState();
     }
 
+    // Включает нужный режим и отключает второй.
     private void ApplyCurrentMode(bool keepControllerDisabledOnFree = false)
     {
         if (currentMode == ControlMode.FreeMovement)
@@ -310,14 +248,14 @@ public class CameraController : MonoBehaviour
             {
                 freeMovementMode.EnterMode();
             }
+            return;
         }
-        else
-        {
-            freeMovementMode.ExitMode();
-            drivingMode.EnterMode();
-        }
+
+        freeMovementMode.ExitMode();
+        drivingMode.EnterMode();
     }
 
+    // Переключает анимацию двери и временно замораживает КамАЗ.
     private void ToggleDoor(Animator doorAnimator)
     {
         if (doorAnimator == null)
@@ -326,15 +264,30 @@ public class CameraController : MonoBehaviour
         }
 
         StartDoorFreeze();
-        bool isOpen = doorAnimator.GetBool("isOpen");
-        doorAnimator.SetBool("isOpen", !isOpen);
-        if (kamazAudioController != null)
-        {
-            if (isOpen) kamazAudioController.PlayDoorClose();
-            else kamazAudioController.PlayDoorOpen();
-        }
+        SetDoorState(doorAnimator, !doorAnimator.GetBool("isOpen"), true);
     }
 
+    // Применяет состояние двери и при необходимости воспроизводит звук.
+    private void SetDoorState(Animator doorAnimator, bool isOpen, bool playAudio)
+    {
+        if (doorAnimator == null)
+        {
+            return;
+        }
+
+        bool wasOpen = doorAnimator.GetBool("isOpen");
+        doorAnimator.SetBool("isOpen", isOpen);
+
+        if (!playAudio || wasOpen == isOpen || kamazAudioController == null)
+        {
+            return;
+        }
+
+        if (isOpen) kamazAudioController.PlayDoorOpen();
+        else kamazAudioController.PlayDoorClose();
+    }
+
+    // Перезапускает короткую заморозку КамАЗа во время анимации двери.
     private void StartDoorFreeze()
     {
         if (doorFreezeCoroutine != null)
@@ -346,6 +299,7 @@ public class CameraController : MonoBehaviour
         doorFreezeCoroutine = StartCoroutine(DoorFreezeRoutine());
     }
 
+    // На короткое время останавливает машину, чтобы дверь открывалась стабильно.
     private IEnumerator DoorFreezeRoutine()
     {
         FreezeKamaz(true);
@@ -354,6 +308,7 @@ public class CameraController : MonoBehaviour
         doorFreezeCoroutine = null;
     }
 
+    // Включает или выключает физику КамАЗа на время переходов и анимаций.
     private void FreezeKamaz(bool value)
     {
         if (kamazRigidbody == null)
@@ -361,19 +316,12 @@ public class CameraController : MonoBehaviour
             return;
         }
 
-        if (value)
-        {
-            kamazRigidbody.linearVelocity = Vector3.zero;
-            kamazRigidbody.angularVelocity = Vector3.zero;
-            kamazRigidbody.isKinematic = true;
-            return;
-        }
-
-        kamazRigidbody.isKinematic = kamazWasKinematic;
         kamazRigidbody.linearVelocity = Vector3.zero;
         kamazRigidbody.angularVelocity = Vector3.zero;
+        kamazRigidbody.isKinematic = value ? true : kamazWasKinematic;
     }
 
+    // Включает или выключает столкновения игрока с КамАЗом.
     private void IgnoreKamazCollisions(bool ignore)
     {
         if (playerColliders == null || kamazContext == null || kamazContext.AllKamazColliders == null)
@@ -384,10 +332,7 @@ public class CameraController : MonoBehaviour
         for (int i = 0; i < playerColliders.Length; i++)
         {
             Collider playerCollider = playerColliders[i];
-            if (playerCollider == null)
-            {
-                continue;
-            }
+            if (playerCollider == null) continue;
 
             for (int j = 0; j < kamazContext.AllKamazColliders.Length; j++)
             {
@@ -400,11 +345,13 @@ public class CameraController : MonoBehaviour
         }
     }
 
+    // Внешняя точка входа для запуска или остановки двигателя.
     public void SetEngineRunningState(bool value)
     {
         SetEngineRunning(value);
     }
 
+    // Запускает или глушит двигатель, ключ и звуки.
     private void SetEngineRunning(bool value)
     {
         if (engineRunning == value)
@@ -414,39 +361,23 @@ public class CameraController : MonoBehaviour
 
         if (value && kamazCabinMechanismsController != null && kamazCabinMechanismsController.IsBodyRaised)
         {
-            ShowTemporaryHint("������� �������� ����� (B), ����� ���������� ���������.");
+            ShowTemporaryHint("Сначала опустите кузов (B), затем запускайте двигатель.");
             return;
         }
 
         engineRunning = value;
-
         if (kamazContext != null && kamazContext.KeyAnimator != null)
         {
             kamazContext.KeyAnimator.SetBool("turn", value);
         }
 
-        if (engineRunning)
-        {
-            if (kamazAudioController != null)
-            {
-                kamazAudioController.StartEngineAudio();
-            }
-            StartCabinShake();
-            StartStartupNeedleSweep();
-        }
-        else
-        {
-            if (kamazAudioController != null)
-            {
-                kamazAudioController.StopEngineAudio();
-            }
-            StopCabinShake();
-            StopStartupNeedleSweep(true);
-        }
+        if (engineRunning) kamazAudioController?.StartEngineAudio();
+        else kamazAudioController?.StopEngineAudio();
 
         SyncLightsControllerState();
     }
 
+    // Вызывается, когда двигатель заглох во время движения.
     public void HandleEngineStall()
     {
         if (!engineRunning)
@@ -455,22 +386,16 @@ public class CameraController : MonoBehaviour
         }
 
         engineRunning = false;
-
         if (kamazContext != null && kamazContext.KeyAnimator != null)
         {
             kamazContext.KeyAnimator.SetBool("turn", false);
         }
 
-        if (kamazAudioController != null)
-        {
-            kamazAudioController.StallEngineAudio();
-        }
-
-        StopCabinShake();
-        StopStartupNeedleSweep(true);
+        kamazAudioController?.StallEngineAudio();
         SyncLightsControllerState();
     }
 
+    // Передает свету состояние двигателя и факт, сидит ли игрок в кабине.
     private void SyncLightsControllerState()
     {
         if (kamazLightsController == null)
@@ -482,6 +407,7 @@ public class CameraController : MonoBehaviour
         kamazLightsController.SetInCabin(currentMode == ControlMode.Driving);
     }
 
+    // Один раз настраивает диапазоны стрелок приборов.
     private void ConfigureNeedles()
     {
         if (kamazContext == null)
@@ -502,133 +428,7 @@ public class CameraController : MonoBehaviour
         }
     }
 
-    private void StartStartupNeedleSweep()
-    {
-        if (startupNeedleSweepCoroutine != null)
-        {
-            StopCoroutine(startupNeedleSweepCoroutine);
-        }
-
-        startupNeedleSweepCoroutine = StartCoroutine(StartupNeedleSweepRoutine());
-    }
-
-    private IEnumerator StartupNeedleSweepRoutine()
-    {
-        float elapsed = 0f;
-        while (elapsed < startupSweepUpDuration)
-        {
-            elapsed += Time.deltaTime;
-            float t = Mathf.Clamp01(elapsed / startupSweepUpDuration);
-            SetNeedlesImmediate(Mathf.Lerp(0f, startupSpeedometerPeak, t), Mathf.Lerp(0f, startupTachometerPeak, t));
-            yield return null;
-        }
-
-        if (startupSweepHoldDuration > 0f)
-        {
-            yield return new WaitForSeconds(startupSweepHoldDuration);
-        }
-
-        elapsed = 0f;
-        while (elapsed < startupSweepDownDuration)
-        {
-            elapsed += Time.deltaTime;
-            float t = Mathf.Clamp01(elapsed / startupSweepDownDuration);
-            SetNeedlesImmediate(Mathf.Lerp(startupSpeedometerPeak, 0f, t), Mathf.Lerp(startupTachometerPeak, 0f, t));
-            yield return null;
-        }
-
-        SetNeedlesImmediate(0f, 0f);
-        startupNeedleSweepCoroutine = null;
-    }
-
-    private void StopStartupNeedleSweep(bool resetToZero)
-    {
-        if (startupNeedleSweepCoroutine != null)
-        {
-            StopCoroutine(startupNeedleSweepCoroutine);
-            startupNeedleSweepCoroutine = null;
-        }
-
-        if (resetToZero)
-        {
-            SetNeedlesImmediate(0f, 0f);
-        }
-    }
-
-    private void SetNeedlesImmediate(float speedValue, float tachValue)
-    {
-        if (kamazContext == null)
-        {
-            return;
-        }
-
-        if (kamazContext.SpidometerNeedle != null)
-        {
-            kamazContext.SpidometerNeedle.SetValueImmediate(speedValue);
-        }
-
-        if (kamazContext.TachometerNeedle != null)
-        {
-            kamazContext.TachometerNeedle.SetValueImmediate(tachValue);
-        }
-    }
-
-    private void StartCabinShake()
-    {
-        StopCabinShake();
-        if (kamazContext == null || kamazContext.Kabina == null)
-        {
-            return;
-        }
-
-        shakeTargets.Clear();
-        shakeStartPositions.Clear();
-        shakeTargets.Add(kamazContext.Kabina);
-        shakeStartPositions.Add(kamazContext.Kabina.localPosition);
-        kabinaShakeCoroutine = StartCoroutine(CabinShakeRoutine());
-    }
-
-    private IEnumerator CabinShakeRoutine()
-    {
-        float elapsed = 0f;
-
-        while (elapsed < engineStartShakeDuration)
-        {
-            elapsed += Time.deltaTime;
-
-            for (int i = 0; i < shakeTargets.Count; i++)
-            {
-                Vector3 offset = Random.insideUnitSphere * engineStartShakeAmplitude;
-                offset.y *= 0.35f;
-                shakeTargets[i].localPosition = shakeStartPositions[i] + offset;
-            }
-
-            yield return null;
-        }
-
-        StopCabinShake();
-    }
-
-    private void StopCabinShake()
-    {
-        if (kabinaShakeCoroutine != null)
-        {
-            StopCoroutine(kabinaShakeCoroutine);
-            kabinaShakeCoroutine = null;
-        }
-
-        for (int i = 0; i < shakeTargets.Count; i++)
-        {
-            if (shakeTargets[i] != null)
-            {
-                shakeTargets[i].localPosition = shakeStartPositions[i];
-            }
-        }
-
-        shakeTargets.Clear();
-        shakeStartPositions.Clear();
-    }
-
+    // Плавно меняет угол обзора при зажатой правой кнопке мыши в режиме вождения.
     private void UpdateDrivingZoom()
     {
         if (playerCamera == null)
@@ -644,72 +444,7 @@ public class CameraController : MonoBehaviour
         playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, targetFov, drivingZoomLerpSpeed * Time.deltaTime);
     }
 
-    private void UpdateInteractionHighlight()
-    {
-        if (!showInteractableHighlight || kamazContext == null)
-        {
-            ClearHighlight();
-            return;
-        }
-
-        if (!freeMovementMode.TryGetInteraction(kamazContext, out FreeMovementMode.InteractionResult interaction))
-        {
-            ClearHighlight();
-            return;
-        }
-
-        Transform target = null;
-        if (interaction.Type == FreeMovementMode.InteractionType.Door)
-        {
-            target = interaction.DoorRoot;
-        }
-        else if (interaction.Type == FreeMovementMode.InteractionType.Steering && currentMode == ControlMode.FreeMovement)
-        {
-            target = kamazContext.Ryle;
-        }
-
-        if (target == null)
-        {
-            ClearHighlight();
-            return;
-        }
-
-        if (highlightedRoot == target)
-        {
-            return;
-        }
-
-        ClearHighlight();
-        highlightedRoot = target;
-        Renderer[] renderers = target.GetComponentsInChildren<Renderer>(true);
-        for (int i = 0; i < renderers.Length; i++)
-        {
-            Renderer renderer = renderers[i];
-            if (renderer == null || highlightedRenderers.ContainsKey(renderer))
-            {
-                continue;
-            }
-
-            Material material = renderer.material;
-            highlightedRenderers[renderer] = new Material(material);
-            material.color = Color.Lerp(material.color, highlightOverlayColor, highlightStrength);
-        }
-    }
-
-    private void ClearHighlight()
-    {
-        foreach (KeyValuePair<Renderer, Material> pair in highlightedRenderers)
-        {
-            if (pair.Key != null)
-            {
-                pair.Key.material = pair.Value;
-            }
-        }
-
-        highlightedRenderers.Clear();
-        highlightedRoot = null;
-    }
-
+    // Формирует текст подсказки в зависимости от того, на что смотрит игрок.
     private void UpdateInteractionHintText()
     {
         interactionHintText = string.Empty;
@@ -728,24 +463,24 @@ public class CameraController : MonoBehaviour
             if (currentMode == ControlMode.FreeMovement)
             {
                 bool isOpen = interaction.DoorAnimator != null && interaction.DoorAnimator.GetBool("isOpen");
-                interactionHintText = isOpen ? "������� E ����� ������� �����" : "������� E ����� ������� �����";
+                interactionHintText = isOpen ? "Нажмите E чтобы закрыть дверь" : "Нажмите E чтобы открыть дверь";
             }
             else
             {
-                interactionHintText = "������� E ����� ����� �� ������";
+                interactionHintText = "Нажмите E чтобы выйти из кабины";
             }
-
             return;
         }
 
         if (interaction.Type == FreeMovementMode.InteractionType.Steering)
         {
             interactionHintText = currentMode == ControlMode.FreeMovement
-                ? "������� E ����� ����� �� ����"
-                : engineRunning ? "������� Tab ����� ��������� ������" : "������� Tab ����� ������� ������";
+                ? "Нажмите E чтобы сесть за руль"
+                : engineRunning ? "Нажмите Tab чтобы заглушить машину" : "Нажмите Tab чтобы завести машину";
         }
     }
 
+    // Рисует точку прицела и нижнюю подсказку.
     private void OnGUI()
     {
         if (uiCursorActive)
@@ -766,6 +501,7 @@ public class CameraController : MonoBehaviour
         DrawInteractionHint();
     }
 
+    // Выводит на экран активную текстовую подсказку.
     private void DrawInteractionHint()
     {
         string text = GetActiveHintText();
@@ -786,22 +522,22 @@ public class CameraController : MonoBehaviour
         GUI.Label(new Rect(x, y, width, 28f), text, style);
     }
 
+    // Возвращает временную подсказку, если она еще активна, иначе обычную.
     private string GetActiveHintText()
     {
-        if (!string.IsNullOrEmpty(temporaryHintText) && Time.unscaledTime < temporaryHintUntilTime)
-        {
-            return temporaryHintText;
-        }
-
-        return interactionHintText;
+        return !string.IsNullOrEmpty(temporaryHintText) && Time.unscaledTime < temporaryHintUntilTime
+            ? temporaryHintText
+            : interactionHintText;
     }
 
+    // Показывает временное сообщение поверх обычной подсказки.
     private void ShowTemporaryHint(string text, float duration = 2.5f)
     {
         temporaryHintText = text;
         temporaryHintUntilTime = Time.unscaledTime + duration;
     }
 
+    // Включает и выключает свободный курсор для работы с UI.
     private void HandleUiCursorToggle()
     {
         if (allowUiCursorToggle && Input.GetKeyDown(toggleUiCursorKey))
@@ -810,6 +546,7 @@ public class CameraController : MonoBehaviour
         }
     }
 
+    // Переключает видимость курсора и режим его блокировки.
     private void SetUiCursorState(bool enabled)
     {
         uiCursorActive = enabled;
@@ -817,6 +554,7 @@ public class CameraController : MonoBehaviour
         Cursor.visible = enabled;
     }
 
+    // Создает простую белую текстуру для точки прицела.
     private void CreateCrosshairTexture()
     {
         crosshairTexture = new Texture2D(1, 1, TextureFormat.RGBA32, false);
@@ -824,6 +562,7 @@ public class CameraController : MonoBehaviour
         crosshairTexture.Apply();
     }
 
+    // Восстанавливает режим курсора после возврата фокуса окну игры.
     private void OnApplicationFocus(bool hasFocus)
     {
         if (hasFocus)
@@ -832,28 +571,14 @@ public class CameraController : MonoBehaviour
         }
     }
 
+    // Отключает двигатель, звуки и временные состояния при выключении объекта.
     private void OnDisable()
     {
         SetEngineRunning(false);
-        if (kamazAudioController != null)
-        {
-            kamazAudioController.StopAllLoops();
-        }
-        StopCabinShake();
-        StopStartupNeedleSweep(true);
-        ClearHighlight();
+        kamazAudioController?.StopAllLoops();
         IgnoreKamazCollisions(false);
         FreezeKamaz(false);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
 }
-
-
-
-
-
-
-
-
-

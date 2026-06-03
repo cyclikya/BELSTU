@@ -1,7 +1,7 @@
-using System;
+﻿using System;
 using UnityEngine;
 
-// �������� �� ������� ������ � ������ � ����� �� ���.
+// Сажает игрока в кабину и возвращает обратно при выходе.
 [Serializable]
 public class DrivingMode
 {
@@ -14,6 +14,7 @@ public class DrivingMode
     private Transform originalParent;
     private bool isActive;
 
+    // Запоминает ссылки, с которыми режим вождения будет работать.
     public void Initialize(CharacterController targetController, Transform targetTransform, KamazContext context)
     {
         controller = targetController;
@@ -22,11 +23,13 @@ public class DrivingMode
         originalParent = targetTransform != null ? targetTransform.parent : null;
     }
 
+    // Позволяет обновить контекст, если он сменился.
     public void SetContext(KamazContext context)
     {
         kamazContext = context;
     }
 
+    // Сажает игрока в точку seatPoint внутри КамАЗа.
     public void EnterMode()
     {
         if (playerTransform == null || kamazContext == null || kamazContext.SeatPoint == null)
@@ -41,6 +44,7 @@ public class DrivingMode
         isActive = true;
     }
 
+    // Возвращает игрока в мир рядом с дверью выхода.
     public void ExitMode(bool keepControllerDisabled = false)
     {
         if (playerTransform == null)
@@ -53,18 +57,20 @@ public class DrivingMode
 
         if (isActive && kamazContext != null && kamazContext.ExitPoint != null)
         {
-            Vector3 targetPosition = kamazContext.ExitPoint.position + kamazContext.ExitPoint.forward * exitForwardOffset + Vector3.up * exitUpOffset;
-            playerTransform.SetPositionAndRotation(targetPosition, kamazContext.ExitPoint.rotation);
+            Vector3 exitPosition = kamazContext.ExitPoint.position + kamazContext.ExitPoint.forward * exitForwardOffset + Vector3.up * exitUpOffset;
+            playerTransform.SetPositionAndRotation(exitPosition, kamazContext.ExitPoint.rotation);
         }
 
         isActive = false;
         SetCharacterControllerEnabled(!keepControllerDisabled);
     }
 
+    // Отдельной логики по кадрам в этом режиме нет.
     public void Tick()
     {
     }
 
+    // Включает или выключает CharacterController игрока.
     public void SetCharacterControllerEnabled(bool value)
     {
         if (controller != null)

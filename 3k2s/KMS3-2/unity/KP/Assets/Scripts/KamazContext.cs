@@ -1,5 +1,7 @@
+﻿using System;
 using UnityEngine;
 
+// Хранит ссылки на части КамАЗа и выдает готовые компоненты другим скриптам.
 public class KamazContext : MonoBehaviour
 {
     public enum SetupSection
@@ -49,18 +51,15 @@ public class KamazContext : MonoBehaviour
 
     private Rigidbody kamazRigidbody;
     private Collider[] allKamazColliders;
-
     private Animator doorLAnimator;
     private Animator doorRAnimator;
     private Collider[] doorLColliders;
     private Collider[] doorRColliders;
-
     private Collider[] ryleColliders;
     private Animator keyAnimator;
     private Collider[] keyColliders;
     private GaugeNeedle spidometerNeedle;
     private GaugeNeedle tachometerNeedle;
-
     private Animator wiperLeftAnimator;
     private Animator wiperRightAnimator;
     private Animator bodyAnimator;
@@ -68,7 +67,6 @@ public class KamazContext : MonoBehaviour
     private KamazAudioController audioController;
     private KamazLightsController lightsController;
     private KamazCabinMechanismsController cabinMechanismsController;
-
     private Transform[] kuzovSetupTargets;
     private Transform[] doorSetupTargets;
     private Transform[] lightsSetupTargets;
@@ -109,16 +107,19 @@ public class KamazContext : MonoBehaviour
     public KamazLightsController LightsController => lightsController;
     public KamazCabinMechanismsController CabinMechanismsController => cabinMechanismsController;
 
+    // Кэширует все нужные компоненты при старте сцены.
     private void Awake()
     {
         CacheComponents();
     }
 
+    // Обновляет кэш в редакторе, когда меняются ссылки в Inspector.
     private void OnValidate()
     {
         CacheComponents();
     }
 
+    // Собирает Rigidbody, Animator, Collider и другие компоненты по заданным объектам.
     private void CacheComponents()
     {
         if (root == null)
@@ -157,6 +158,7 @@ public class KamazContext : MonoBehaviour
         keySetupTargets = BuildTargets(key);
     }
 
+    // Возвращает список объектов для подсветки на сцене установки.
     public Transform[] GetSetupTargets(SetupSection section)
     {
         if (section == SetupSection.Kuzov) return kuzovSetupTargets;
@@ -167,6 +169,7 @@ public class KamazContext : MonoBehaviour
         return keySetupTargets;
     }
 
+    // Определяет, относится ли коллайдер к левой или правой двери.
     public bool TryGetDoorFromCollider(Collider hitCollider, out Transform doorRoot, out Animator doorAnimator)
     {
         doorRoot = null;
@@ -189,11 +192,13 @@ public class KamazContext : MonoBehaviour
         return false;
     }
 
+    // Проверяет, относится ли коллайдер к рулю.
     public bool IsRyleCollider(Collider hitCollider)
     {
         return ContainsCollider(ryleColliders, hitCollider);
     }
 
+    // Определяет, относится ли коллайдер к ключу зажигания.
     public bool TryGetKeyFromCollider(Collider hitCollider, out Transform keyRoot, out Animator keyAnimatorOut)
     {
         keyRoot = null;
@@ -209,6 +214,7 @@ public class KamazContext : MonoBehaviour
         return true;
     }
 
+    // Собирает массив из непустых объектов, чтобы не хранить null внутри подсветки.
     private Transform[] BuildTargets(params Transform[] targets)
     {
         int count = 0;
@@ -226,14 +232,14 @@ public class KamazContext : MonoBehaviour
         {
             if (targets[i] != null)
             {
-                result[index] = targets[i];
-                index++;
+                result[index++] = targets[i];
             }
         }
 
         return result;
     }
 
+    // Ищет один компонент на объекте или в его дочерних объектах.
     private T GetComponentFromObject<T>(Transform source) where T : Component
     {
         if (source == null)
@@ -242,29 +248,22 @@ public class KamazContext : MonoBehaviour
         }
 
         T component = source.GetComponent<T>();
-        if (component != null)
-        {
-            return component;
-        }
-
-        return source.GetComponentInChildren<T>(true);
+        return component != null ? component : source.GetComponentInChildren<T>(true);
     }
 
+    // Возвращает все компоненты нужного типа из объекта и его дочерних объектов.
     private T[] GetComponentsFromObject<T>(Transform source) where T : Component
     {
-        if (source == null)
-        {
-            return System.Array.Empty<T>();
-        }
-
-        return source.GetComponentsInChildren<T>(true);
+        return source == null ? Array.Empty<T>() : source.GetComponentsInChildren<T>(true);
     }
 
+    // Берет Animator с объекта или его дочерних объектов.
     private Animator GetAnimatorFromObject(Transform source)
     {
         return GetComponentFromObject<Animator>(source);
     }
 
+    // Проверяет, содержится ли нужный коллайдер в массиве коллайдеров.
     private bool ContainsCollider(Collider[] colliders, Collider target)
     {
         if (colliders == null || target == null)

@@ -1,7 +1,7 @@
-using System;
+﻿using System;
 using UnityEngine;
 
-// �������� �� ����� ������������ ������ � ����������� ������� ��� ��������.
+// Отвечает за пешее передвижение игрока и определение объекта под прицелом.
 [Serializable]
 public class FreeMovementMode
 {
@@ -45,6 +45,7 @@ public class FreeMovementMode
 
     public float InteractionDistance => interactionDistance;
 
+    // Запоминает ссылки на контроллер, камеру и transform игрока.
     public void Initialize(CharacterController targetController, Camera targetCamera, Transform targetTransform)
     {
         controller = targetController;
@@ -52,6 +53,7 @@ public class FreeMovementMode
         playerTransform = targetTransform;
     }
 
+    // Включает CharacterController при возврате в пеший режим.
     public void EnterMode()
     {
         if (controller != null)
@@ -60,11 +62,13 @@ public class FreeMovementMode
         }
     }
 
+    // Сбрасывает вертикальную скорость при выходе из пешего режима.
     public void ExitMode()
     {
         velocity = Vector3.zero;
     }
 
+    // Обновляет мышь и движение, пока игрок ходит пешком.
     public void Tick()
     {
         if (controller == null || playerCamera == null || playerTransform == null || !controller.enabled)
@@ -76,6 +80,7 @@ public class FreeMovementMode
         HandleMovement();
     }
 
+    // Оставляет только вращение камеры, без шагающего движения.
     public void TickLookOnly()
     {
         if (playerCamera == null || playerTransform == null)
@@ -86,6 +91,7 @@ public class FreeMovementMode
         HandleLook();
     }
 
+    // Ищет объект под прицелом и определяет тип взаимодействия с ним.
     public bool TryGetInteraction(KamazContext kamazContext, out InteractionResult result)
     {
         result = new InteractionResult();
@@ -136,17 +142,18 @@ public class FreeMovementMode
         return true;
     }
 
+    // Поворачивает игрока по горизонтали, а камеру по вертикали.
     private void HandleLook()
     {
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
 
         playerTransform.Rotate(Vector3.up * mouseX);
-        verticalRotation -= mouseY;
-        verticalRotation = Mathf.Clamp(verticalRotation, -maxLookAngle, maxLookAngle);
+        verticalRotation = Mathf.Clamp(verticalRotation - mouseY, -maxLookAngle, maxLookAngle);
         playerCamera.transform.localRotation = Quaternion.Euler(verticalRotation, 0f, 0f);
     }
 
+    // Двигает игрока, прыжок и гравитацию считает через CharacterController.
     private void HandleMovement()
     {
         bool isGrounded = controller.isGrounded;
@@ -157,7 +164,6 @@ public class FreeMovementMode
 
         float horizontal = 0f;
         float vertical = 0f;
-
         if (Input.GetKey(KeyCode.A)) horizontal -= 1f;
         if (Input.GetKey(KeyCode.D)) horizontal += 1f;
         if (Input.GetKey(KeyCode.W)) vertical += 1f;
