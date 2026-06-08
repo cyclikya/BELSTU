@@ -142,7 +142,6 @@ public class KamazDrivingInputController : MonoBehaviour
         wheelMiddleStartRotation = wheelMiddle.localRotation;
         wheelBackStartRotation = wheelBack.localRotation;
 
-        // При старте задаем двигателю холостые обороты и сразу обновляем стрелки приборов.
         engineRpm = idleRpm;
         UpdateGaugeOutput();
     }
@@ -162,7 +161,6 @@ public class KamazDrivingInputController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // FixedUpdate используется для физики
         float forwardSpeed = GetForwardSpeedMps();
 
         speedKmh = GetVehicleGroundSpeedKmh();
@@ -182,11 +180,9 @@ public class KamazDrivingInputController : MonoBehaviour
             return;
         }
 
-        // Газ и тормоз значения 0 или 1.
         throttleInput = Input.GetKey(throttleKey) ? 1f : 0f;
         brakeInput = Input.GetKey(brakeKey) || Input.GetKey(brakeAltKey) ? 1f : 0f;
 
-        // Считывание руля
         float steerDirection = 0f;
         if (Input.GetKey(steerLeftKey)) steerDirection -= 1f;
         if (Input.GetKey(steerRightKey)) steerDirection += 1f;
@@ -201,7 +197,6 @@ public class KamazDrivingInputController : MonoBehaviour
             );
         }
 
-        // Сцепление
         clutchTarget = Input.GetKey(clutchKey) ? 1f : 0f;
     }
 
@@ -217,19 +212,15 @@ public class KamazDrivingInputController : MonoBehaviour
         else if (Input.GetKeyDown(gear5Key)) TryShiftToGear(5);
         else if (Input.GetKeyDown(reverseKey)) TryShiftToGear(-1);
 
-        // Звуковой сигнал
         kamazAudioController.SetHornLoop(Input.GetKey(hornKey));
 
-        // Звук заднего хода
         kamazAudioController.SetReverseLoop(currentGear == -1);
     }
 
     private void TryShiftToGear(int targetGear)
     {
-        // Если выбранная передача уже включена, ничего не делаем.
         if (targetGear == currentGear) return;
 
-        // Проверка выжатого сцепления
         if (targetGear != 0 && clutchPedal < clutchRequiredForShift) return;
 
         currentGear = targetGear;
@@ -258,23 +249,19 @@ public class KamazDrivingInputController : MonoBehaviour
     {
         float forwardSpeed = GetForwardSpeedMps();
 
-        // Крутим колеса пропорционально скорости
         wheelSpinAngle += forwardSpeed * wheelSpinSpeed * deltaTime;
 
         Quaternion spin = Quaternion.AngleAxis(wheelSpinAngle, wheelSpinAxisLocal);
         Quaternion steer = Quaternion.AngleAxis(steerInput * frontWheelMaxSteerAngle, Vector3.forward);
 
-        // Передние колеса
         wheelFrontLeft.localRotation = wheelFrontLeftStartRotation * steer * spin;
         wheelFrontRight.localRotation = wheelFrontRightStartRotation * steer * spin;
 
-        // Средние и задние колеса
         wheelMiddle.localRotation = wheelMiddleStartRotation * spin;
         wheelBack.localRotation = wheelBackStartRotation * spin;
     }
     private void UpdateEngineRpm(float deltaTime)
     {
-        // Если двигатель выключен, обороты падают к нулю.
         if (!cameraController.IsEngineRunning)
         {
             engineRpm = Mathf.MoveTowards(engineRpm, 0f, rpmDropSpeed * deltaTime);
@@ -282,20 +269,15 @@ public class KamazDrivingInputController : MonoBehaviour
             return;
         }
 
-        // Если двигатель до этого заглох, а потом его снова запустили,
-        // возвращаем обороты на холостой ход.
         if (engineStalled)
         {
             engineStalled = false;
             engineRpm = idleRpm;
         }
 
-        // Базовые обороты зависят от газа.
-        // Газ не нажат — холостые обороты.
-        // Газ нажат — максимальные обороты.
         float targetRpm = Mathf.Lerp(idleRpm, maxRpm, throttleInput);
 
-        // Если включена передача, обороты немного зависят от скорости автомобиля.
+        // Синхронизыция со скоростью
         if (currentGear != 0)
         {
             float speedKmh = Mathf.Abs(GetForwardSpeedMps()) * 3.6f;
@@ -305,22 +287,15 @@ public class KamazDrivingInputController : MonoBehaviour
 
             targetRpm = Mathf.Max(targetRpm, rpmFromSpeed);
         }
-
-        // Проверяем неправильное трогание:
-        // передача включена, сцепление отпущено, газ почти не нажат, машина почти стоит.
-        bool badStart =
-            currentGear != 0 &&
+ 
+        if (currentGear != 0 &&
             clutchPedal < 0.2f &&
             throttleInput < stallThrottleBypass &&
-            Mathf.Abs(GetForwardSpeedMps()) < 1f;
-
-        // Если водитель бросил сцепление без газа, обороты начинают падать.
-        if (badStart)
+            Mathf.Abs(GetForwardSpeedMps()) < 1f)
         {
             targetRpm = 0f;
         }
 
-        // Обороты меняются плавно.
         float rpmSpeed = targetRpm > engineRpm ? rpmRiseSpeed : rpmDropSpeed;
 
         engineRpm = Mathf.MoveTowards(
@@ -329,8 +304,6 @@ public class KamazDrivingInputController : MonoBehaviour
             rpmSpeed * deltaTime
         );
 
-        // Если обороты упали ниже допустимого значения,
-        // запускаем таймер заглохания.
         if (badStart && engineRpm < stallRpm)
         {
             stallTimer += deltaTime;
@@ -348,7 +321,6 @@ public class KamazDrivingInputController : MonoBehaviour
 
     private void StallEngine()
     {
-        // Заглох
         engineStalled = true;
         stallTimer = 0f;
         engineRpm = 0f;
@@ -367,19 +339,14 @@ public class KamazDrivingInputController : MonoBehaviour
 
     private void ApplyVehicleSteering(float forwardSpeed)
     {
-        // Машина поворачивает только в режиме вождения.
         if (!cameraController.IsDrivingMode) return;
 
-        // Если машина почти стоит, поворот не выполняется.
         if (Mathf.Abs(forwardSpeed) < steeringMinSpeedMps) return;
 
-        // При движении назад направление поворота меняется.
         float direction = forwardSpeed >= 0f ? 1f : -1f;
 
-        // Считаем угол поворота за один физический кадр.
         float turnAngle = steerInput * turnSpeed * direction * Time.fixedDeltaTime;
 
-        // Поворачиваем физическое тело КАМАЗа.
         kamazRigidbody.MoveRotation(
             kamazRigidbody.rotation * Quaternion.AngleAxis(turnAngle, Vector3.forward)
         );
@@ -387,20 +354,17 @@ public class KamazDrivingInputController : MonoBehaviour
 
     private void ApplyForces(float forwardSpeed)
     {
-        // Берем текущую физическую скорость КАМАЗа.
         Vector3 velocity = kamazRigidbody.linearVelocity;
 
-        // Учитываем массу КАМАЗа.
-        // Если масса большая, сила тяги тоже становится больше.
+        // Учитываем массу
         float massScale = Mathf.Max(1f, kamazRigidbody.mass / 1000f);
 
-        // Небольшое сопротивление, чтобы машина не ехала бесконечно.
+        // Сопротивление
         kamazRigidbody.AddForce(
             -velocity * rollingDragForceCoast * massScale,
             ForceMode.Force
         );
 
-        // Торможение включается только если нажата клавиша тормоза.
         if (brakeInput > 0f && velocity.sqrMagnitude > 0.01f)
         {
             kamazRigidbody.AddForce(
@@ -409,29 +373,22 @@ public class KamazDrivingInputController : MonoBehaviour
             );
         }
 
-        // Если двигатель выключен, тяга не создается.
         if (!cameraController.IsEngineRunning) return;
 
-        // На нейтрали машина не едет от газа.
         if (currentGear == 0) return;
 
-        // Если газ не нажат, тяга не создается.
         if (throttleInput <= 0f) return;
 
-        // Ограничиваем скорость по текущей передаче.
         float speedKmh = Mathf.Abs(forwardSpeed) * 3.6f;
         if (speedKmh >= GetCurrentGearMaxSpeedKmh()) return;
 
-        // Получаем передаточное число текущей передачи.
         float gearRatio = GetCurrentGearRatio();
 
-        // Сцепление показывает, насколько двигатель связан с колесами.
         float clutchEngagement = GetClutchEngagement();
 
-        // Если сцепление полностью выжато, машина не должна ехать.
         if (clutchEngagement <= 0f) return;
 
-        // Сила тяги зависит от газа, передачи, сцепления и массы машины.
+        // Сила тяги
         float driveForce =
             baseDriveForce *
             Mathf.Abs(gearRatio) *
@@ -439,17 +396,15 @@ public class KamazDrivingInputController : MonoBehaviour
             clutchEngagement *
             massScale;
 
-        // Знак передачи определяет направление:
-        // положительный gearRatio — вперед, отрицательный — назад.
         kamazRigidbody.AddForce(
             GetDriveDirectionWorld() * Mathf.Sign(gearRatio) * driveForce,
             ForceMode.Force
         );
     }
     
+    // Возвращает передаточное число текущей передачи.
     private float GetCurrentGearRatio()
     {
-        // Возвращает передаточное число текущей передачи.
         if (currentGear == -1) return reverseGearRatio;
         if (currentGear == 1) return gear1Ratio;
         if (currentGear == 2) return gear2Ratio;
@@ -461,7 +416,6 @@ public class KamazDrivingInputController : MonoBehaviour
 
     private float GetCurrentGearMaxSpeedKmh()
     {
-        // Возвращает максимальную скорость для текущей передачи.
         if (currentGear == -1) return reverseMaxSpeedKmh;
         if (currentGear == 1) return gear1MaxSpeedKmh;
         if (currentGear == 2) return gear2MaxSpeedKmh;
@@ -471,43 +425,43 @@ public class KamazDrivingInputController : MonoBehaviour
         return gear5MaxSpeedKmh;
     }
 
+    // Связь оборотов и скорости
     private float GetRpmPerKmhForCurrentGear()
     {
-        // Связь оборотов и скорости
         float maxSpeed = GetCurrentGearMaxSpeedKmh();
         return maxRpm / maxSpeed;
     }
 
+    // Возвращает выжато ли сцепление   
     private float GetClutchEngagement()
     {
-        // Возвращает выжато ли сцепление
         return Mathf.Clamp01(1f - clutchPedal);
     }
 
+    // Берем скорость Rigidbody в мировых координатах и переводим ее в локальные координаты КАМАЗа.
     private float GetForwardSpeedMps()
     {
-        // Берем скорость Rigidbody в мировых координатах и переводим ее в локальные координаты КАМАЗа.
         Vector3 localVelocity = kamazRigidbody.transform.InverseTransformDirection(kamazRigidbody.linearVelocity);
         return -localVelocity.y;
     }
 
+    // Считаем скорость по плоскости движения
     private float GetVehicleGroundSpeedKmh()
     {
-        // Считаем скорость по плоскости движения и переводим м/с в км/ч умножением на 3.6.
         Vector3 localVelocity = kamazRigidbody.transform.InverseTransformDirection(kamazRigidbody.linearVelocity);
         float planarSpeed = Mathf.Sqrt(localVelocity.x * localVelocity.x + localVelocity.y * localVelocity.y);
         return planarSpeed * 3.6f;
     }
 
+    // Возвращает направление, в котором должна прикладываться сила тяги
     private Vector3 GetDriveDirectionWorld()
     {
-        // Возвращает направление, в котором должна прикладываться сила тяги
         return kamazRigidbody.transform.TransformDirection(-Vector3.up).normalized;
     }
 
+    // Передаем рассчитанные значения на стрелки приборной панели.
     private void UpdateGaugeOutput()
     {
-        // Передаем рассчитанные значения на стрелки приборной панели.
         speedometerNeedle.SetValue(speedKmh);
         tachometerNeedle.SetValue(engineRpm);
     }
