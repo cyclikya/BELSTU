@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+    const socket = new WebSocket('ws://localhost:3000');
+
+    socket.onopen = () => {
+        document.getElementById('result').textContent = 'connected';
+    };
+
+    socket.onmessage = event => {
+        document.getElementById('result').textContent = event.data;
+    };
+
+    function sendMessage() {
+        const message = document.getElementById('message').value;
+        socket.send(message);
+    }
+    </script>
+</head>
+<body>
+    <input id="message" placeholder="Введите сообщение">
+    <button onclick="sendMessage()">Отправить</button>
+
+    <p id="result"></p>
+</body>
+</html>
