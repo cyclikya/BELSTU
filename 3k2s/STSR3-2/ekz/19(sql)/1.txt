@@ -1,4 +1,76 @@
-//1
+//1. ASP.NET CORE: Middlewre, принцип разработки middleware-обработчика ошибок (Use, UseMiddleware, расширение IApplicationBuilder).
+
+Middleware — это фрагмент кода в конвейере приложения, обрабатывающий запросы и ответы. Запрос едет по цепочке middleware; каждый может что-то сделать и передать дальше через next.
+
+Главная идея обработчика ошибок
+    Обработчик ошибок — это особый middleware, задача которого — перехватывать ошибки (исключения), которые возникли в других middleware, и формировать понятный ответ вместо «падения» приложения.
+    Два правила, на которых держится всё (запомни их — это суть вопроса):
+
+    Он должен стоять в самом начале конвейера. Почему: в C# ошибки ловят конструкцией try/catch (в try — код, в catch — что делать при ошибке). Наш обработчик оборачивает в try вызов всех следующих middleware. А раз он первый — внутри его try оказывается вся остальная цепочка. Значит, любая ошибка в любом звене «всплывёт» наверх и попадёт в наш catch.
+    Внутри него обязательно блок try/catch, где в try — вызов следующего middleware (next), а в catch — формирование полезного сообщения об ошибке.
+
+Теперь три способа это реализовать.
+    Способ 1. Через Use (прямо в Program.cs)
+        Самый простой — пишем middleware прямо в Program.cs методом app.Use(...). Важно: ставим его перед всеми остальными middleware. Тогда все ошибки из других звеньев попадут в наш try.
+            app.Use(async (context, next) => {
+                try {
+                    await next(context);          // вызываем всю остальную цепочку
+                }
+                catch (Exception ex) {            // сюда попадёт любая ошибка
+                    context.Response.StatusCode = 500;
+                    await context.Response.WriteAsync("Произошла ошибка: " + ex.Message);
+                }
+            });
+        Читается так: «оберни вызов всех следующих middleware в try; если где-то выскочила ошибка — поймай её здесь и отправь клиенту сообщение». Поскольку этот Use первый, его try накрывает весь конвейер.
+
+    Способ 2. Через UseMiddleware (отдельный класс)
+        Когда логика большая, её выносят в отдельный класс (так чище). Правила к классу строгие:
+
+        Имя класса — желательно со словом Middleware (например, ErrorHandlerMiddleware).
+        Конструктор должен принимать RequestDelegate next (это ссылка на следующий middleware в конвейере) — и может принимать доп. параметры:
+
+            public ErrorHandlerMiddleware(RequestDelegate next, string prefix = "prefix")
+
+        Должен быть метод InvokeAsync(HttpContext context), и в нём обязательно try/catch, где в try — вызов next(context):
+
+        public async Task InvokeAsync(HttpContext context) {
+            try {
+                await _next(context);        // вызываем следующий middleware
+            }
+            catch (Exception ex) {
+                context.Response.StatusCode = 500;
+                await context.Response.WriteAsync("Ошибка: " + ex.Message);
+            }
+        }
+        Подключается в Program.cs так:
+            app.UseMiddleware<ErrorHandlerMiddleware>("префикс");
+        Разбор названий: RequestDelegate — это и есть «следующий обработчик в конвейере» (тот самый next, но в виде типа). InvokeAsync — метод, который вызывается при каждом запросе (помнишь из билета 17 — middleware-класс должен иметь Invoke/InvokeAsync).
+        Итог: способ 2 — то же самое, что способ 1, но логика вынесена в отдельный класс и подключена через UseMiddleware<Класс>().
+
+    Способ 3. Через расширение IApplicationBuilder
+        Это «украшательство» поверх способа 2 — чтобы подключать middleware короче и красивее.
+        IApplicationBuilder — это тип объекта app (того самого, у которого мы вызываем Use, UseMiddleware и т.д.). Идея: создать свой метод-расширение для него, чтобы вместо длинного app.UseMiddleware<...>(...) писать короткое app.UseMyErrorHandler(...).
+        Делается так: создаём класс MiddlewareExtensions со статическим методом, который:
+
+        принимает this IApplicationBuilder app (слово this делает его «методом-расширением» для app);
+        внутри вызывает наш UseMiddleware:
+
+            public static class MiddlewareExtensions {
+                public static IApplicationBuilder UseErrorHandler(this IApplicationBuilder app, string prefix) {
+                    return app.UseMiddleware<ErrorHandlerMiddleware>(prefix);
+                }
+            }
+        После этого в Program.cs подключение выглядит коротко:
+        csharpapp.UseErrorHandler("префикс");
+        Зачем это нужно: удобно, когда у тебя много своих middleware — каждый получает свой красивый метод Use..., и Program.cs читается чисто, как со встроенными (UseRouting, UseStaticFiles).
+
+Три способа в одной мысли
+Это один и тот же обработчик ошибок, просто оформленный по-разному:
+    Use — прямо в Program.cs (быстро, для простого);
+    UseMiddleware — вынесен в отдельный класс (чище, для сложного);
+    расширение IApplicationBuilder — плюс красивый короткий метод подключения (удобно, когда middleware много).
+
+
 
 //3. Пакет Express. Основные принципы работы. Переадресация. Пример(POSTMAN).
 
