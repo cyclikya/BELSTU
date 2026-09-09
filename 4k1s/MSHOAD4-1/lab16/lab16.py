@@ -2,127 +2,160 @@ import sympy as sp
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 
-# 1. SymPy
+
+# SymPy — символьная математика
 
 x = sp.Symbol('x')
-f = x**2 + 1
+f = x**2 + 1      
 
+# 2.1 производная
 derivative = sp.diff(f, x)
+
+# 2.2 определённый интеграл на отрезке [0, 1]
 integral = sp.integrate(f, (x, 0, 1))
-limit = sp.limit(1 / x**2 + 1, x, sp.oo)
+
+# 2.3 предел при x -> бесконечность
+limit_1 = sp.limit(1 / x**2 + 1, x, sp.oo)      # 1/x^2 + 1   -> 1
 
 print("Производная функции x^2 + 1:", derivative)
 print("Интеграл функции x^2 + 1 на [0, 1]:", integral)
-print("Предел функции 1/x^2 + 1 при x -> бесконечность:", limit)
+print("Предел 1/x^2 + 1 при x -> oo:", limit_1)
 
 
-# 2. NumPy
+# NumPy — массивы
 
+# 3.1 одномерный массив из 20 случайных целых чисел от 0 до 9
 array = np.random.randint(0, 10, 20)
 print("\nОдномерный массив:")
 print(array)
 
+# 3.2 преобразование в двумерный массив 4x5
 matrix = array.reshape(4, 5)
 print("\nДвумерный массив 4x5:")
 print(matrix)
 
+# 3.3 деление на 2 массива (по строкам: 2x5 и 2x5)
 first_array, second_array = np.array_split(matrix, 2)
 print("\nПервый массив:")
 print(first_array)
-
 print("\nВторой массив:")
 print(second_array)
 
+# 3.4 поиск всех заданных значений в первом массиве
 value = 6
-found = first_array[first_array == value]
-count = len(found)
+mask = (first_array == value)          # булева маска True/False того же размера
+found = first_array[mask]              # сами значения
+positions = np.argwhere(mask)          # координаты [строка, столбец]
 
-print("\nЭлементы, равные 6, в первом массиве:")
-print(found)
+print(f"\nЭлементы, равные {value}, в первом массиве:", found)
+print("Их позиции [строка, столбец]:")
+print(positions)
+
+# 3.5 количество найденных элементов
+count = np.count_nonzero(mask)
 print("Количество найденных элементов:", count)
 
+# 3.6 мин, макс, среднее во втором массиве
 print("\nМинимум во втором массиве:", second_array.min())
 print("Максимум во втором массиве:", second_array.max())
 print("Среднее во втором массиве:", second_array.mean())
 
 
-# 3. Pandas
+# =========================================================
+# 4. Pandas — Series и DataFrame
+# =========================================================
 
+# 4.2 Series из массива NumPy
 series_from_array = pd.Series(array)
 print("\nSeries из массива NumPy:")
 print(series_from_array)
 
-dictionary = {
-    "a": 10,
-    "b": 20,
-    "c": 30
-}
-
+# 4.2 Series из словаря (ключи становятся индексом)
+dictionary = {"a": 10, "b": 20, "c": 30}
 series_from_dict = pd.Series(dictionary)
 print("\nSeries из словаря:")
 print(series_from_dict)
 
+# 4.3 математические операции над Series
 print("\nSeries + 5:")
 print(series_from_dict + 5)
 
 print("\nSeries * 2:")
 print(series_from_dict * 2)
 
-dataframe_from_array = pd.DataFrame(matrix)
+print("\nSeries ** 2:")
+print(series_from_dict ** 2)
+
+print("\nSeries / 10:")
+print(series_from_dict / 10)
+
+# операция между двумя Series — сложение идёт по совпадающим индексам
+other_series = pd.Series({"a": 1, "b": 2, "d": 100})
+print("\nСложение двух Series (по индексам, 'c' и 'd' дают NaN):")
+print(series_from_dict + other_series)
+
+# агрегатные функции и сводная статистика
+print("\nСумма:", series_from_dict.sum())
+print("Среднее:", series_from_dict.mean())
+print("\nОписательная статистика (describe):")
+print(series_from_dict.describe())
+
+# 4.4 DataFrame из массива NumPy
+dataframe_from_array = pd.DataFrame(matrix, columns=["c1", "c2", "c3", "c4", "c5"])
 print("\nDataFrame из массива NumPy:")
 print(dataframe_from_array)
 
+# 4.4 DataFrame из словаря
 dataframe_from_dict = pd.DataFrame({
     "Имя": ["Анна", "Иван", "Мария"],
     "Возраст": [18, 19, 20],
     "Оценка": [9, 8, 10]
 })
-
 print("\nDataFrame из словаря:")
 print(dataframe_from_dict)
 
+# 4.4 DataFrame из объекта Series
 dataframe_from_series = pd.DataFrame(series_from_dict, columns=["Значение"])
 print("\nDataFrame из Series:")
 print(dataframe_from_series)
 
 
-# 4. Matplotlib
+# =========================================================
+# 5. Matplotlib — графики
+# =========================================================
 
+# 5.1 график функции f(x) = x^2 + 1
 x_values = np.linspace(-10, 10, 100)
 y_values = x_values**2 + 1
 
 plt.figure()
-plt.plot(x_values, y_values)
+plt.plot(x_values, y_values, color="blue")
 plt.title("График функции f(x) = x^2 + 1")
 plt.xlabel("x")
 plt.ylabel("f(x)")
 plt.grid()
 plt.show()
 
-
-# 5. График поверхности
-
+# 5.2 график поверхности f(x, y) = x^2 + 2y^2 + 1
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
 
 x_surface = np.linspace(-5, 5, 50)
 y_surface = np.linspace(-5, 5, 50)
+X, Y = np.meshgrid(x_surface, y_surface)   # сетка координат
+Z = X**2 + 2 * Y**2 + 1                    # значение функции в каждом узле сетки
 
-X, Y = np.meshgrid(x_surface, y_surface)
-Z = X**2 + 2 * Y**2 + 1
-
-ax.plot_surface(X, Y, Z)
+surface = ax.plot_surface(X, Y, Z, cmap="viridis")
+fig.colorbar(surface)
 ax.set_title("Поверхность f(x, y) = x^2 + 2y^2 + 1")
 ax.set_xlabel("x")
 ax.set_ylabel("y")
 ax.set_zlabel("f(x, y)")
-
 plt.show()
 
-
-# 6. Диаграммы
-
+# 5.3 несколько видов диаграмм
 names = ["A", "B", "C", "D"]
 values = [5, 7, 3, 9]
 
@@ -132,11 +165,60 @@ plt.title("Столбчатая диаграмма")
 plt.show()
 
 plt.figure()
-plt.pie(values, labels=names)
+plt.pie(values, labels=names, autopct="%1.1f%%")
 plt.title("Круговая диаграмма")
 plt.show()
 
+# точечная диаграмма строится по числовым данным
 plt.figure()
-plt.scatter(names, values)
+plt.scatter(array, np.arange(len(array)))
 plt.title("Точечная диаграмма")
+plt.xlabel("значение элемента массива")
+plt.ylabel("индекс элемента")
+plt.grid()
 plt.show()
+
+
+# =========================================================
+# 6. Дополнительные пакеты: SciPy, IPython, Sklearn, Mglearn
+#    Установка: pip install scipy ipython scikit-learn mglearn
+# =========================================================
+
+import scipy
+import sklearn
+import IPython
+import mglearn
+from scipy import integrate
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+
+print("\nВерсии дополнительных пакетов:")
+print("SciPy:", scipy.__version__)
+print("scikit-learn:", sklearn.__version__)
+print("IPython:", IPython.__version__)
+
+# SciPy — численные методы (интегрирование, оптимизация, статистика, ОДУ).
+# Тот же интеграл, что в SymPy, но посчитанный численно: 4/3 = 1.333...
+result, error = integrate.quad(lambda t: t**2 + 1, 0, 1)
+print("\nSciPy, численный интеграл x^2+1 на [0,1]:", result, "погрешность:", error)
+
+# Scikit-learn — машинное обучение: готовые датасеты, модели, метрики.
+iris = load_iris()
+X_train, X_test, y_train, y_test = train_test_split(
+    iris.data, iris.target, random_state=0
+)
+knn = KNeighborsClassifier(n_neighbors=3)
+knn.fit(X_train, y_train)
+print("Sklearn, точность модели KNN на тестовой выборке:", knn.score(X_test, y_test))
+
+# Mglearn — вспомогательный пакет с готовыми иллюстрациями
+# к книге "Introduction to Machine Learning with Python".
+mglearn.plots.plot_knn_classification(n_neighbors=3)
+plt.title("Mglearn: классификация методом k ближайших соседей")
+plt.show()
+
+# IPython — интерактивная оболочка Python (основа Jupyter Notebook):
+# подсветка синтаксиса, автодополнение по Tab, magic-команды (%timeit, %run),
+# вывод графиков и таблиц прямо в ячейках. В обычном скрипте не демонстрируется,
+# запускается командой ipython в терминале.
