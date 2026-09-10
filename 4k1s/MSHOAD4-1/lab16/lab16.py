@@ -4,11 +4,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
-
-# SymPy — символьная математика
-
 x = sp.Symbol('x')
-f = x**2 + 1      
+f = x**2 + 1
 
 # 2.1 производная
 derivative = sp.diff(f, x)
@@ -23,8 +20,6 @@ print("Производная функции x^2 + 1:", derivative)
 print("Интеграл функции x^2 + 1 на [0, 1]:", integral)
 print("Предел 1/x^2 + 1 при x -> oo:", limit_1)
 
-
-# NumPy — массивы
 
 # 3.1 одномерный массив из 20 случайных целых чисел от 0 до 9
 array = np.random.randint(0, 10, 20)
@@ -62,10 +57,6 @@ print("\nМинимум во втором массиве:", second_array.min())
 print("Максимум во втором массиве:", second_array.max())
 print("Среднее во втором массиве:", second_array.mean())
 
-
-# =========================================================
-# 4. Pandas — Series и DataFrame
-# =========================================================
 
 # 4.2 Series из массива NumPy
 series_from_array = pd.Series(array)
@@ -122,10 +113,6 @@ print("\nDataFrame из Series:")
 print(dataframe_from_series)
 
 
-# =========================================================
-# 5. Matplotlib — графики
-# =========================================================
-
 # 5.1 график функции f(x) = x^2 + 1
 x_values = np.linspace(-10, 10, 100)
 y_values = x_values**2 + 1
@@ -177,48 +164,3 @@ plt.xlabel("значение элемента массива")
 plt.ylabel("индекс элемента")
 plt.grid()
 plt.show()
-
-
-# =========================================================
-# 6. Дополнительные пакеты: SciPy, IPython, Sklearn, Mglearn
-#    Установка: pip install scipy ipython scikit-learn mglearn
-# =========================================================
-
-import scipy
-import sklearn
-import IPython
-import mglearn
-from scipy import integrate
-from sklearn.datasets import load_iris
-from sklearn.model_selection import train_test_split
-from sklearn.neighbors import KNeighborsClassifier
-
-print("\nВерсии дополнительных пакетов:")
-print("SciPy:", scipy.__version__)
-print("scikit-learn:", sklearn.__version__)
-print("IPython:", IPython.__version__)
-
-# SciPy — численные методы (интегрирование, оптимизация, статистика, ОДУ).
-# Тот же интеграл, что в SymPy, но посчитанный численно: 4/3 = 1.333...
-result, error = integrate.quad(lambda t: t**2 + 1, 0, 1)
-print("\nSciPy, численный интеграл x^2+1 на [0,1]:", result, "погрешность:", error)
-
-# Scikit-learn — машинное обучение: готовые датасеты, модели, метрики.
-iris = load_iris()
-X_train, X_test, y_train, y_test = train_test_split(
-    iris.data, iris.target, random_state=0
-)
-knn = KNeighborsClassifier(n_neighbors=3)
-knn.fit(X_train, y_train)
-print("Sklearn, точность модели KNN на тестовой выборке:", knn.score(X_test, y_test))
-
-# Mglearn — вспомогательный пакет с готовыми иллюстрациями
-# к книге "Introduction to Machine Learning with Python".
-mglearn.plots.plot_knn_classification(n_neighbors=3)
-plt.title("Mglearn: классификация методом k ближайших соседей")
-plt.show()
-
-# IPython — интерактивная оболочка Python (основа Jupyter Notebook):
-# подсветка синтаксиса, автодополнение по Tab, magic-команды (%timeit, %run),
-# вывод графиков и таблиц прямо в ячейках. В обычном скрипте не демонстрируется,
-# запускается командой ipython в терминале.
