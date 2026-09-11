@@ -1,0 +1,68 @@
+{
+  "info": {
+    "name": "TDWA01-01",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "GET",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "http://localhost:40000/NGINX-test"
+      }
+    },
+    {
+      "name": "POST",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"op\": \"sub\",\n    \"x\": 3,\n    \"y\": 5\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "http://localhost:40000/NGINX-test"
+      }
+    },
+    {
+      "name": "PUT",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"op\": \"mul\",\n    \"x\": 6,\n    \"y\": 5\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "http://localhost:40000/NGINX-test"
+      }
+    },
+    {
+      "name": "DELETE",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": "http://localhost:40000/NGINX-test"
+      }
+    }
+  ]
+}
