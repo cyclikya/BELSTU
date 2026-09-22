@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PlaylistServiceTest {
-
     private PlaylistService service;
     private Playlist playlist;
 
