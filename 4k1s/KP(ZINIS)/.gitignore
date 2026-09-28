@@ -1,0 +1,20 @@
+# Виртуальное окружение
+.venv/
+venv/
+
+# Кэш Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Результаты экспериментов и сборка
+results/
+build/
+dist/
+
+# Системное
+.DS_Store
+Thumbs.db
