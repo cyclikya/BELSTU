@@ -1,11 +1,13 @@
+import os
 import mglearn
 import matplotlib.pyplot as plt
 import numpy as np
-from mglearn.datasets import load_boston
+import pandas as pd
 from sklearn.datasets import load_breast_cancer
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.neighbors import KNeighborsRegressor
+from sklearn.preprocessing import MinMaxScaler, PolynomialFeatures
 
 # Синтетический набор forge для задачи бинарной классификации
 X, y = mglearn.datasets.make_forge()
@@ -33,12 +35,17 @@ print("Количество примеров для каждого класса:
 ))
 print("Имена признаков:\n{}".format(cancer.feature_names))
 
-# Реальный набор данных Boston Housing для задачи регрессии
-boston = load_boston()
-print("форма массива data для набора boston: {}".format(boston.data.shape))
+# Реальный набор данных Boston Housing для задачи регрессии.
+# Из scikit-learn он удален, поэтому данные читаются из файла boston.csv рядом со скриптом.
+# Столбец MEDV - целевая переменная (медианная стоимость жилья), остальные 13 - признаки
+boston = pd.read_csv(os.path.join(os.path.dirname(__file__), "boston.csv"))
+boston_data = boston.drop(columns="MEDV").values
+print("форма массива data для набора boston: {}".format(boston_data.shape))
 
-# Тот же набор с производными признаками (конструирование признаков)
-X, y = mglearn.datasets.load_extended_boston()
+# Тот же набор с производными признаками (конструирование признаков):
+# значения приводятся к диапазону от 0 до 1 и дополняются всеми попарными произведениями
+X = MinMaxScaler().fit_transform(boston_data)
+X = PolynomialFeatures(degree=2, include_bias=False).fit_transform(X)
 print("форма массива X: {}".format(X.shape))
 
 # Прогнозы модели одного ближайшего соседа
