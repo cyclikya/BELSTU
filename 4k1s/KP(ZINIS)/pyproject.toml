@@ -7,6 +7,7 @@ name = "textsteg"
 version = "0.1.0"
 description = "Метод на основе совместного применения перемежения и помехоустойчивого кодирования в текстовой стеганографии"
 requires-python = ">=3.12"
+readme = "README.md"
 dependencies = [
     "numpy>=1.26",
 ]
@@ -27,6 +28,9 @@ dev = [
     "mypy>=1.11",
 ]
 
+[project.scripts]
+textsteg = "textsteg.gui.app:main"
+
 [tool.setuptools.packages.find]
 where = ["src"]
 
@@ -45,3 +49,7 @@ select = ["E", "F", "I", "N", "UP", "B", "SIM"]
 python_version = "3.12"
 strict = true
 files = ["src"]
+# Графический интерфейс исключён из строгой проверки: поставляемые
+# с PySide6 заглушки типов неполны, и строгий режим даёт ложные
+# замечания на штатном использовании Qt.
+exclude = ["src/textsteg/gui/"]

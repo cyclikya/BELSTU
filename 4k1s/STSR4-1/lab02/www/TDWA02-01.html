@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>TDWA02-01</title>
+    <link href="TDWA02-01.css" rel="stylesheet">
+</head>
+<body>
+    <h1>TDWA02-01</h1>
+
+    <div class="form">
+        <label>op
+            <select id="op">
+                <option value="add">add</option>
+                <option value="sub">sub</option>
+                <option value="mul">mul</option>
+                <option value="div">div</option>
+            </select>
+        </label>
+        <label>x
+            <input id="x" type="number" value="3">
+        </label>
+        <label>y
+            <input id="y" type="number" value="5">
+        </label>
+    </div>
+
+    <div class="buttons">
+        <button id="btnGet">GET</button>
+        <button id="btnPost">POST</button>
+        <button id="btnPut">PUT</button>
+        <button id="btnDelete">DELETE</button>
+    </div>
+
+    <p class="status">Статус ответа: <span id="status">—</span></p>
+    <pre class="result" id="result">Нажмите кнопку</pre>
+
+    <script src="TDWA02-01.js"></script>
+</body>
+</html>
