@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(доки/**)",
+      "Read(data/**)",
+      "Read(src/**)",
+      "Read(tests/**)",
+      "Bash(.venv/Scripts/python.exe *)",
+      "Bash(./.venv/Scripts/python.exe *)",
+      "Bash(node *)",
+      "Bash(npm install *)",
+      "Bash(npm ls *)"
+    ],
+    "ask": [
+      "Bash(curl *)",
+      "Bash(git push *)",
+      "Bash(git commit *)"
+    ],
+    "deny": [
+      "Edit(доки/ресурсы/**)",
+      "Bash(rm -rf *)"
+    ]
+  }
+}
