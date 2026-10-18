@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "Главная";
+}
+
+<div class="jumbotron">
+    <h1>Добро пожаловать в домен @ViewBag.Domain, @ViewBag.Username!</h1>
+</div>
+
+<div style="color:red;">
+    @ViewBag.Error
+</div>
+
+<div>
+    <h3>Пользователи домена</h3>
+    <table class="table table-bordered">
+        <tr>
+            <th width="25%">ФИО</th>
+            <th width="25%">Логин</th>
+            <th width="25%">Телефон</th>
+            <th width="25%">E-mail</th>
+        </tr>
+        @foreach (var u in ViewBag.UserList)
+        {
+            <tr>
+                <td>@u.Username</td>
+                <td>@u.Login</td>
+                <td>@u.Phone</td>
+                <td>@u.Email</td>
+            </tr>
+        }
+    </table>
+</div>
+
+<hr />
+
+<p>
+    <a href="/Home/FullDesc" class="btn btn-default">Отладочная страница (FullDesc)</a>
+</p>
