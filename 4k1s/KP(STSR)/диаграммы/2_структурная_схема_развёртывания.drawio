@@ -1,0 +1,91 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Диаграмма вариантов использования" id="usecase1">
+    <mxGraphModel dx="7006" dy="3013" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0" adaptiveColors="auto">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="FgiSZ6i8biw-b-LS6v43-3" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2111.5" y="-363.5" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FgiSZ6i8biw-b-LS6v43-4" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2359.5" y="-363.5" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FgiSZ6i8biw-b-LS6v43-5" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2592.5" y="-363.5" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FgiSZ6i8biw-b-LS6v43-53" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2111.5" y="-363.5" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FgiSZ6i8biw-b-LS6v43-54" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2359.5" y="-363.5" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FgiSZ6i8biw-b-LS6v43-55" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2592.5" y="-363.5" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FgiSZ6i8biw-b-LS6v43-535" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;container=1;collapsible=0;verticalAlign=top;spacingTop=2;fillColor=#eaf7ea;strokeColor=#82b366;fontSize=12;rounded=1;align=center;fontFamily=Helvetica;fontColor=default;" value="" vertex="1">
+          <mxGeometry height="161.59" width="210" x="1909" y="2217" as="geometry" />
+        </mxCell>
+        <mxCell id="FgiSZ6i8biw-b-LS6v43-536" parent="FgiSZ6i8biw-b-LS6v43-535" style="shape=component;html=1;jettyWidth=8;jettyHeight=4;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#82b366;fontSize=12;verticalAlign=middle;fontColor=default;rounded=0;align=center;fontFamily=Helvetica;" value="PostgreSQL 16" vertex="1">
+          <mxGeometry height="51.415" width="140" x="35" y="86.05675579678947" as="geometry" />
+        </mxCell>
+        <mxCell id="GPtDwsepIrDZAsUrbLRh-2" parent="FgiSZ6i8biw-b-LS6v43-535" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=top;rounded=0;fontFamily=Helvetica;fontSize=13;fontColor=default;fontStyle=0;spacingTop=4;" value="«device»&lt;br&gt;Сервер БД" vertex="1">
+          <mxGeometry height="36.291645" width="80" x="65.00413793103439" y="27.607068965517172" as="geometry" />
+        </mxCell>
+        <mxCell id="FgiSZ6i8biw-b-LS6v43-537" parent="1" style="shape=cube;size=12;whiteSpace=wrap;html=1;container=1;collapsible=0;verticalAlign=top;spacingTop=2;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;align=center;fontFamily=Helvetica;fontColor=default;" value="" vertex="1">
+          <mxGeometry height="140" width="280" x="2206" y="2225.41" as="geometry" />
+        </mxCell>
+        <mxCell id="FgiSZ6i8biw-b-LS6v43-538" parent="FgiSZ6i8biw-b-LS6v43-537" style="shape=component;html=1;jettyWidth=8;jettyHeight=4;whiteSpace=wrap;fillColor=#eef4fb;strokeColor=#6c8ebf;fontSize=12;verticalAlign=top;rounded=1;align=center;spacingTop=2;fontFamily=Helvetica;fontColor=default;" value="Node.js 22&lt;br&gt;Express 5 · Sequelize 6" vertex="1">
+          <mxGeometry height="46.55146877314243" width="220" x="40" y="74.59215090924053" as="geometry" />
+        </mxCell>
+        <mxCell id="GPtDwsepIrDZAsUrbLRh-1" parent="FgiSZ6i8biw-b-LS6v43-537" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=top;rounded=0;fontFamily=Helvetica;fontSize=13;fontColor=default;fontStyle=0;spacingTop=4;" value="«device»&lt;br&gt;Сервер приложения" vertex="1">
+          <mxGeometry height="30.075652173913046" width="158" x="71" y="18.01130434782609" as="geometry" />
+        </mxCell>
+        <mxCell id="FgiSZ6i8biw-b-LS6v43-539" parent="1" style="shape=cube;size=12;whiteSpace=wrap;html=1;container=1;collapsible=0;verticalAlign=top;spacingTop=2;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;align=center;fontFamily=Helvetica;fontColor=default;" value="" vertex="1">
+          <mxGeometry height="144" width="250" x="2637" y="2223.41" as="geometry" />
+        </mxCell>
+        <mxCell id="FgiSZ6i8biw-b-LS6v43-540" parent="FgiSZ6i8biw-b-LS6v43-539" style="shape=component;html=1;jettyWidth=8;jettyHeight=4;whiteSpace=wrap;fillColor=#eef4fb;strokeColor=#6c8ebf;fontSize=12;verticalAlign=top;rounded=1;align=center;spacingTop=2;fontFamily=Helvetica;fontColor=default;" value="React 19 (SPA)" vertex="1">
+          <mxGeometry height="46.55" width="190" x="40" y="73.59" as="geometry" />
+        </mxCell>
+        <mxCell id="GPtDwsepIrDZAsUrbLRh-3" parent="FgiSZ6i8biw-b-LS6v43-539" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=top;rounded=0;fontFamily=Helvetica;fontSize=13;fontColor=default;fontStyle=0;spacingTop=4;" value="«Client device»&lt;br&gt;Браузер" vertex="1">
+          <mxGeometry height="30.93495652173913" width="100" x="85.00413793103417" y="19.594842578710587" as="geometry" />
+        </mxCell>
+        <mxCell id="FgiSZ6i8biw-b-LS6v43-541" parent="1" style="shape=cube;size=12;whiteSpace=wrap;html=1;container=1;collapsible=0;verticalAlign=top;spacingTop=2;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=13;align=center;fontFamily=Helvetica;fontColor=default;" value="" vertex="1">
+          <mxGeometry height="150" width="260" x="2215.9958620689654" y="2430.0037931034485" as="geometry" />
+        </mxCell>
+        <mxCell id="FgiSZ6i8biw-b-LS6v43-542" parent="FgiSZ6i8biw-b-LS6v43-541" style="shape=component;html=1;jettyWidth=8;jettyHeight=4;whiteSpace=wrap;fillColor=#fff3e6;strokeColor=#d79b00;fontSize=12;verticalAlign=middle;rounded=1;align=center;fontFamily=Helvetica;fontColor=default;" value="Kinopoisk API" vertex="1">
+          <mxGeometry height="65" width="200" x="40" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="GPtDwsepIrDZAsUrbLRh-4" parent="FgiSZ6i8biw-b-LS6v43-541" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=top;rounded=0;fontFamily=Helvetica;fontSize=13;fontColor=default;fontStyle=0;spacingTop=4;" value="«device»&lt;br&gt;Сервер Kinopoisk" vertex="1">
+          <mxGeometry height="49.41" width="122.2" x="78.90413793103471" y="12.58620689655163" as="geometry" />
+        </mxCell>
+        <mxCell id="FgiSZ6i8biw-b-LS6v43-543" edge="1" parent="1" source="FgiSZ6i8biw-b-LS6v43-535" style="html=1;endArrow=open;startArrow=open;endSize=9;startSize=9;fontSize=12;" target="FgiSZ6i8biw-b-LS6v43-537" value="&lt;div&gt;«protocol»&lt;/div&gt;&lt;div&gt;TCP&lt;/div&gt;">
+          <mxGeometry relative="1" x="-0.0047" y="20" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FgiSZ6i8biw-b-LS6v43-544" edge="1" parent="1" source="FgiSZ6i8biw-b-LS6v43-537" style="html=1;endArrow=open;startArrow=open;endSize=9;startSize=9;fontSize=12;" target="FgiSZ6i8biw-b-LS6v43-539" value="&lt;div&gt;&lt;span&gt;«protocol»&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span&gt;HTTPS (REST/JSON)&lt;/span&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" x="-0.0037" y="19" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FgiSZ6i8biw-b-LS6v43-545" edge="1" parent="1" source="FgiSZ6i8biw-b-LS6v43-537" style="html=1;endArrow=open;startArrow=open;endSize=9;startSize=9;fontSize=12;" target="FgiSZ6i8biw-b-LS6v43-541" value="&lt;div&gt;«protocol»&lt;/div&gt;&lt;div&gt;HTTPS (REST)&lt;/div&gt;">
+          <mxGeometry relative="1" x="-0.0186" y="48" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

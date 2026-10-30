@@ -12,6 +12,7 @@ from textsteg.core.hamming import (
     N,
     decode,
     decode_block,
+    decode_blocks,
     encode,
     encode_block,
 )
@@ -69,6 +70,46 @@ def test_single_error_corrected_in_every_position() -> None:
             result = decode_block(damaged)
             assert result.status is BlockStatus.CORRECTED
             assert result.data == list(data)
+
+
+def test_error_position_points_at_the_damaged_bit() -> None:
+    """Декодер называет ту позицию, которая и была повреждена.
+
+    Величина выводится из синдрома, то есть из одного лишь принятого
+    слова: приёмник вправе показать её, не зная переданного.
+    """
+    for data in product((0, 1), repeat=K):
+        codeword = encode_block(list(data))
+        for position in range(N):
+            damaged = list(codeword)
+            damaged[position] ^= 1
+            assert decode_block(damaged).error_position == position
+
+
+def test_error_position_absent_without_correction() -> None:
+    """Без исправления позиции нет ни у целого слова, ни у стёртого."""
+    codeword = encode_block([1, 0, 1, 1])
+    assert decode_block(codeword).error_position is None
+
+    damaged = list(codeword)
+    damaged[0] ^= 1
+    damaged[3] ^= 1
+    erased = decode_block(damaged)
+    assert erased.status is BlockStatus.ERASED
+    assert erased.error_position is None
+
+
+def test_decode_blocks_agrees_with_decode() -> None:
+    """Поблочное декодирование не расходится с потоковым."""
+    bits = [1, 0, 1, 1, 0, 0, 1, 0, 1, 1, 1, 0]
+    stream = encode(bits)
+    stream[5] ^= 1
+
+    blocks = decode_blocks(stream)
+    decoded, statuses = decode(stream)
+
+    assert [bit for block in blocks for bit in block.data] == decoded
+    assert [block.status for block in blocks] == statuses
 
 
 def test_double_error_detected_as_erasure() -> None:

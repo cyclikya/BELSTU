@@ -36,6 +36,7 @@ r"""Сборка конвейера встраивания и извлечени
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from enum import Enum
 
 from ..errors import HeaderError, MessageTooLongError, PipelineError
 from . import hamming
@@ -49,8 +50,9 @@ from .framing import (
     Header,
     crc16,
     find_marker,
+    marker_distance,
 )
-from .hamming import BlockStatus
+from .hamming import BlockStatus, DecodedBlock
 from .interleaver import BlockInterleaver
 
 #: Число кодовых слов в одном кадре.
@@ -153,6 +155,56 @@ class EmbedResult:
         return 1.0 - payload / self.stream_bits if self.stream_bits else 0.0
 
 
+class FrameOutcome(Enum):
+    """Чем кончилась попытка принять очередной кадр."""
+
+    #: Маркер найден, кадр прочитан целиком.
+    CAPTURED = "captured"
+    #: Маркер в окне поиска не найден: кадр пропущен.
+    MARKER_LOST = "marker_lost"
+    #: Маркер найден, но поток оборвался внутри кадра.
+    TRUNCATED = "truncated"
+
+
+@dataclass(frozen=True)
+class FrameReport:
+    """Протокол приёма одного кадра.
+
+    Величины протокола — это всё, что приёмник знает о кадре, не имея
+    переданного потока: где он ожидал маркер, где нашёл, насколько тот
+    отличался от эталонного и что сказал декодер о каждом кодовом слове.
+    Протокол ведёт сама parse_stream: восстановить его вторым проходом
+    снаружи нельзя, а повторная реализация разошлась бы с настоящей молча.
+    """
+
+    number: int
+    expected: int
+    found: int | None
+    window: int
+    mismatches: int | None
+    outcome: FrameOutcome
+    received: Bits = field(default_factory=list)
+    plain: Bits = field(default_factory=list)
+    blocks: list[DecodedBlock] = field(default_factory=list)
+
+    @property
+    def offset(self) -> int:
+        """Смещение найденного маркера от ожидаемого положения."""
+        return 0 if self.found is None else self.found - self.expected
+
+    @property
+    def corrected(self) -> int:
+        """Сколько слов кадра декодер правил."""
+        return sum(
+            1 for b in self.blocks if b.status is BlockStatus.CORRECTED
+        )
+
+    @property
+    def erased(self) -> int:
+        """Сколько слов кадра декодер признал невосстановимыми."""
+        return sum(1 for b in self.blocks if b.status is BlockStatus.ERASED)
+
+
 @dataclass(frozen=True)
 class ExtractResult:
     """Итог извлечения сообщения из стеготекста."""
@@ -164,6 +216,17 @@ class ExtractResult:
     block_statuses: list[BlockStatus] = field(default_factory=list)
     frames_expected: int = 0
     frames_lost: int = 0
+    #: Кодовые слова заголовка. Возвращаются всегда, в том числе при
+    #: успешном извлечении: по ним видно, вмешивался ли код в заголовок.
+    header_blocks: list[DecodedBlock] = field(default_factory=list)
+    #: Протоколы приёма кадров по порядку.
+    frames: list[FrameReport] = field(default_factory=list)
+    #: Позиция первого бита маркера, по которому найден заголовок.
+    header_at: int | None = None
+    #: Восстановленные байты до перевода в строку.
+    data: bytes = b""
+    #: Контрольная сумма, вычисленная по восстановленным байтам.
+    checksum_computed: int | None = None
 
     @property
     def corrected_blocks(self) -> int:
@@ -182,6 +245,60 @@ class ExtractResult:
     def erased_blocks(self) -> int:
         """Число блоков, признанных невосстановимыми."""
         return sum(1 for s in self.block_statuses if s is BlockStatus.ERASED)
+
+    @property
+    def erased_by_code(self) -> int:
+        """Стирания слов кадров, объявленные декодером.
+
+        Отделены от стираний утраченного кадра намеренно. Кадр, маркер
+        которого не найден, не декодируется вовсе: его слова помечаются
+        стёртыми без участия кода. Слитный счётчик приписывал бы коду
+        работу, которой он не делал, и завышал бы его показатели в
+        экспериментальной части.
+
+        Слова заголовка сюда не входят: у них свой счётчик, поскольку и
+        показываются они отдельно от кадров.
+        """
+        return sum(report.erased for report in self.frames)
+
+    @property
+    def erased_by_loss(self) -> int:
+        """Стирания, доставшиеся словам непринятых кадров.
+
+        Считается прямо по протоколу, а не вычитанием из общего числа
+        стираний. Разность была бы неверна на отказных путях: там
+        block_statuses хранит слова ЗАГОЛОВКА, и стирание, объявленное
+        декодером в заголовке, досталось бы утрате кадров — ровно той
+        подмене, ради исключения которой счётчики и разделены.
+        """
+        return FRAME_CODEWORDS * sum(
+            1
+            for report in self.frames
+            if report.outcome is not FrameOutcome.CAPTURED
+        )
+
+    @property
+    def erased_in_header(self) -> int:
+        """Слова заголовка, которые декодер признал невосстановимыми."""
+        return sum(
+            1
+            for block in self.header_blocks
+            if block.status is BlockStatus.ERASED
+        )
+
+    @property
+    def corrected_in_header(self) -> int:
+        """Слова заголовка, в которых декодер перевернул бит.
+
+        Считается отдельно от слов кадров: заголовок идёт по каналу своим
+        участком, и правка в нём — тоже работа кода, которую нельзя терять
+        в сводке только потому, что карта показывает кадры.
+        """
+        return sum(
+            1
+            for block in self.header_blocks
+            if block.status is BlockStatus.CORRECTED
+        )
 
 
 # --------------------------------------------------------------------------
@@ -335,9 +452,11 @@ def parse_stream(bits: Bits, config: PipelineConfig | None = None) -> ExtractRes
         )
 
     cursor = position + SYNC_MARKER_LENGTH
-    header_bits, header_statuses = hamming.decode(
+    header_blocks = hamming.decode_blocks(
         bits[cursor:cursor + HEADER_CODED_BITS]
     )
+    header_bits: Bits = [bit for block in header_blocks for bit in block.data]
+    header_statuses = [block.status for block in header_blocks]
 
     # Стирание в заголовке учитывается до разбора полей. Ради этого признака
     # и выбран код с d_min = 4: без него стёртое поле контрольной суммы было
@@ -360,6 +479,8 @@ def parse_stream(bits: Bits, config: PipelineConfig | None = None) -> ExtractRes
                 + "). Извлечение невозможно"
             ),
             block_statuses=header_statuses,
+            header_blocks=header_blocks,
+            header_at=position,
         )
 
     try:
@@ -370,6 +491,8 @@ def parse_stream(bits: Bits, config: PipelineConfig | None = None) -> ExtractRes
             message="",
             reason=f"заголовок не восстановлен: {error}",
             block_statuses=header_statuses,
+            header_blocks=header_blocks,
+            header_at=position,
         )
 
     # Шаг 2. Настройка деперемежителя по глубине из заголовка.
@@ -381,19 +504,25 @@ def parse_stream(bits: Bits, config: PipelineConfig | None = None) -> ExtractRes
         )
     except PipelineError as error:
         return ExtractResult(
-            success=False, message="", reason=str(error), header=header
+            success=False,
+            message="",
+            reason=str(error),
+            header=header,
+            block_statuses=header_statuses,
+            header_blocks=header_blocks,
+            header_at=position,
         )
 
     # Шаг 3. Покадровое чтение с повторной синхронизацией на каждом кадре.
     cursor += HEADER_CODED_BITS
     total_frames = frames_required(header.message_length)
-    frames: list[Bits | None] = []
+    reports: list[FrameReport] = []
 
     # Число подряд идущих кадров, маркер которых найти не удалось. Служит
     # признаком того, что накопленное смещение вышло за пределы окна поиска.
     misses = 0
 
-    for _ in range(total_frames):
+    for number in range(1, total_frames + 1):
         # Ненайденный маркер означает, как правило, что смещение превысило
         # окно: приёмник ищет границу там, где её уже нет. Отсчёт вслепую
         # смещение не компенсирует, поэтому после каждого промаха окно
@@ -401,14 +530,24 @@ def parse_stream(bits: Bits, config: PipelineConfig | None = None) -> ExtractRes
         # Расширение ограничено: чем шире окно, тем выше вероятность принять
         # за маркер случайный участок полезной нагрузки.
         search = min(window * (misses + 1), MAX_RESYNC_WINDOW)
+        expected = cursor
 
         marker_at = find_marker(
-            bits, expected=cursor, window=search, tolerance=tolerance
+            bits, expected=expected, window=search, tolerance=tolerance
         )
         if marker_at is None:
             # Кадр утрачен. Продолжаем со смещением на номинальную длину
             # кадра — это наилучшая доступная оценка положения следующего.
-            frames.append(None)
+            reports.append(
+                FrameReport(
+                    number=number,
+                    expected=expected,
+                    found=None,
+                    window=search,
+                    mismatches=None,
+                    outcome=FrameOutcome.MARKER_LOST,
+                )
+            )
             cursor += FRAME_TOTAL_BITS
             misses += 1
             continue
@@ -417,13 +556,37 @@ def parse_stream(bits: Bits, config: PipelineConfig | None = None) -> ExtractRes
 
         start = marker_at + SYNC_MARKER_LENGTH
         frame = bits[start:start + FRAME_PAYLOAD_BITS]
+        mismatches = marker_distance(bits, marker_at)
         if len(frame) < FRAME_PAYLOAD_BITS:
             # Поток оборвался внутри кадра: восстановить его нечем.
-            frames.append(None)
+            reports.append(
+                FrameReport(
+                    number=number,
+                    expected=expected,
+                    found=marker_at,
+                    window=search,
+                    mismatches=mismatches,
+                    outcome=FrameOutcome.TRUNCATED,
+                    received=frame,
+                )
+            )
             cursor = start + FRAME_PAYLOAD_BITS
             continue
 
-        frames.append(_deinterleave_frame(frame, frame_config))
+        plain = _deinterleave_frame(frame, frame_config)
+        reports.append(
+            FrameReport(
+                number=number,
+                expected=expected,
+                found=marker_at,
+                window=search,
+                mismatches=mismatches,
+                outcome=FrameOutcome.CAPTURED,
+                received=frame,
+                plain=plain,
+                blocks=hamming.decode_blocks(plain),
+            )
+        )
         cursor = start + FRAME_PAYLOAD_BITS
 
     # Шаг 4. Декодирование и проверка целостности.
@@ -437,19 +600,19 @@ def parse_stream(bits: Bits, config: PipelineConfig | None = None) -> ExtractRes
     statuses: list[BlockStatus] = []
     frames_lost = 0
 
-    for received in frames:
-        if received is None:
+    for report in reports:
+        if report.outcome is not FrameOutcome.CAPTURED:
             data_bits.extend([0] * FRAME_DATA_BITS)
             statuses.extend([BlockStatus.ERASED] * FRAME_CODEWORDS)
             frames_lost += 1
             continue
-        frame_data, frame_statuses = hamming.decode(received)
-        data_bits.extend(frame_data)
-        statuses.extend(frame_statuses)
+        data_bits.extend(bit for block in report.blocks for bit in block.data)
+        statuses.extend(block.status for block in report.blocks)
 
     data = bits_to_bytes(data_bits)[: header.message_length]
     message = data.decode(MESSAGE_ENCODING, errors="replace")
-    checksum_ok = crc16(data) == header.checksum
+    checksum = crc16(data)
+    checksum_ok = checksum == header.checksum
 
     if checksum_ok:
         reason = ""
@@ -472,6 +635,11 @@ def parse_stream(bits: Bits, config: PipelineConfig | None = None) -> ExtractRes
         block_statuses=statuses,
         frames_expected=total_frames,
         frames_lost=frames_lost,
+        header_blocks=header_blocks,
+        header_at=position,
+        frames=reports,
+        data=data,
+        checksum_computed=checksum,
     )
 
 

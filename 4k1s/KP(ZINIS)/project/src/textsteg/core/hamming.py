@@ -93,6 +93,11 @@ class DecodedBlock:
 
     data: Bits
     status: BlockStatus
+    #: Номер бита кодового слова, который декодер перевернул, либо None,
+    #: если исправления не было. Величина выводится из одного лишь
+    #: принятого слова — синдром прямо указывает на позицию, — поэтому
+    #: приёмник вправе её показать, не зная переданного слова.
+    error_position: int | None = None
 
     @property
     def is_reliable(self) -> bool:
@@ -127,8 +132,14 @@ def decode_block(received: Bits) -> DecodedBlock:
 
        s = 0, p = 0  — ошибок нет;
        s != 0, p = 1 — одиночная ошибка, позиция определяется по синдрому;
-       s = 0, p = 1  — ошибка в самом бите общей чётности, данные целы;
+       s = 0, p = 1  — ошибка в самом бите общей чётности, данные не трогаем;
        s != 0, p = 0 — двойная ошибка, исправление невозможно (стирание).
+
+    Решение в каждом случае принимается в предположении, что кратность
+    ошибки не превышает исправляющей способности кода. Ошибка кратности
+    три и выше неотличима от одиночной: декодер выполнит исправление и
+    сообщит CORRECTED, хотя данные искажены. Заключение о целостности
+    сообщения даёт не код, а контрольная сумма заголовка.
 
     Последний случай и есть то, ради чего выбран d_min = 4: код (7,4) в
     этой ситуации выполнил бы ложное исправление.
@@ -142,12 +153,16 @@ def decode_block(received: Bits) -> DecodedBlock:
 
     corrected = word.copy()
     syndrome_is_zero = syndrome == (0,) * (N_BASE - K)
+    position: int | None = None
 
     if syndrome_is_zero and overall_parity == 0:
         status = BlockStatus.OK
     elif syndrome_is_zero and overall_parity == 1:
-        # Синдром нулевой, но общая чётность нарушена: пострадал сам бит
-        # чётности. Информационные биты при этом достоверны.
+        # Синдром нулевой, но общая чётность нарушена: при одиночной ошибке
+        # это означает, что пострадал сам бит чётности, и декодер данных не
+        # касается. Утверждать, что данные целы, нельзя: ту же картину даёт
+        # ошибка кратности три, при которой информационные биты искажены.
+        position = N - 1
         status = BlockStatus.CORRECTED
     elif overall_parity == 1:
         # Нечётное число ошибок при ненулевом синдроме — считаем ошибку
@@ -160,7 +175,11 @@ def decode_block(received: Bits) -> DecodedBlock:
         # ошибка. Исправить её код не в состоянии, блок помечается стёртым.
         status = BlockStatus.ERASED
 
-    return DecodedBlock(data=[int(b) for b in corrected[:K]], status=status)
+    return DecodedBlock(
+        data=[int(b) for b in corrected[:K]],
+        status=status,
+        error_position=position,
+    )
 
 
 def encode(bits: Bits) -> Bits:
@@ -180,23 +199,29 @@ def encode(bits: Bits) -> Bits:
     return encoded
 
 
+def decode_blocks(bits: Bits) -> list[DecodedBlock]:
+    """Декодирует последовательность кодовых слов поблочно.
+
+    Сохраняет сведения о каждом слове целиком, включая позицию
+    исправленного бита. Нужно разбору работы метода, где показывается не
+    только итог декодирования, но и то, где именно декодер вмешался.
+
+    Неполное кодовое слово в конце последовательности (следствие потери
+    части битов при повреждении контейнера) отбрасывается: восстановить
+    его невозможно.
+    """
+    return [
+        decode_block(bits[i:i + N]) for i in range(0, len(bits) - N + 1, N)
+    ]
+
+
 def decode(bits: Bits) -> tuple[Bits, list[BlockStatus]]:
     """Декодирует последовательность кодовых слов.
 
     Возвращает пару: восстановленные информационные биты и список статусов
     по одному на кодовое слово. Статусы нужны разделу экспериментальных
     исследований — по ним считаются доли исправленных и стёртых блоков.
-
-    Неполное кодовое слово в конце последовательности (следствие потери
-    части битов при повреждении контейнера) отбрасывается: восстановить
-    его невозможно.
     """
-    decoded: Bits = []
-    statuses: list[BlockStatus] = []
-
-    for i in range(0, len(bits) - N + 1, N):
-        block = decode_block(bits[i:i + N])
-        decoded.extend(block.data)
-        statuses.append(block.status)
-
-    return decoded, statuses
+    blocks = decode_blocks(bits)
+    decoded: Bits = [bit for block in blocks for bit in block.data]
+    return decoded, [block.status for block in blocks]

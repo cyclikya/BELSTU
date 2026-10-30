@@ -48,12 +48,13 @@ from PySide6.QtWidgets import (
     QWidget,
 )
 
-from ..api import embed, extract
+from ..api import embed
 from ..core.bits import Bits
 from ..core.framing import SYNC_MARKER_LENGTH
 from ..core.hamming import T as CORRECTABLE_ERRORS
 from ..core.pipeline import (
     ALLOWED_DEPTHS,
+    FRAME_CODEWORDS,
     HEADER_CODED_BITS,
     ExtractResult,
     PipelineConfig,
@@ -63,6 +64,10 @@ from ..core.pipeline import (
 from ..embedding import ZeroWidthEmbedder, contains_foreign_symbols
 from ..embedding.zerowidth import WJ, ZWJ, ZWNJ, ZWSP
 from ..errors import TextStegError
+from ..trace import plural, trace_embed, trace_extract
+from . import theme
+from .extract_view import ExtractView
+from .pipeline_view import PipelineView
 
 #: Кодировка файлов. Задана жёстко: в однобайтовых кодировках, принятых на
 #: русской версии Windows по умолчанию, символы нулевой ширины не
@@ -80,8 +85,8 @@ VISIBLE_SYMBOLS: dict[str, str] = {
 
 #: Цвета заключений. Подобраны так, чтобы оставаться читаемыми и на
 #: светлой, и на тёмной теме оформления Windows.
-COLOR_SUCCESS = "#3ba55d"
-COLOR_FAILURE = "#e5534b"
+COLOR_SUCCESS = theme.SUCCESS
+COLOR_FAILURE = theme.DANGER
 
 #: Сообщение, предлагаемое по умолчанию: служебная отметка о копии документа.
 DEFAULT_MESSAGE = "Копия № 17, отдел кадров"
@@ -148,6 +153,11 @@ def monospace() -> QFont:
     return font
 
 
+def percent(value: float) -> str:
+    """Доля в процентах в русской записи: запятая и неразрывный пробел."""
+    return f"{value * 100:.1f}".replace(".", ",") + " %"
+
+
 def depth_selector() -> QComboBox:
     """Выпадающий список допустимых глубин перемежения."""
     box = QComboBox()
@@ -155,6 +165,7 @@ def depth_selector() -> QComboBox:
         label = "1 (без перемежения)" if depth == 1 else str(depth)
         box.addItem(label, depth)
     box.setCurrentIndex(ALLOWED_DEPTHS.index(8))
+    box.setMaximumWidth(220)
     return box
 
 
@@ -197,6 +208,8 @@ class EmbedTab(QWidget):
         )
         self.show_hidden.toggled.connect(self._render_stego)
 
+        self.pipeline = PipelineView()
+
         self.capacity_label = QLabel()
         self.capacity_label.setWordWrap(True)
         self.stats_label = QLabel("Сообщение ещё не встроено.")
@@ -227,18 +240,23 @@ class EmbedTab(QWidget):
         params_layout.addRow("Глубина перемежения d:", self.depth_box)
 
         embed_button = QPushButton("Встроить сообщение")
+        embed_button.setObjectName("primary")
         embed_button.setMinimumHeight(34)
         embed_button.clicked.connect(self._embed)
 
         save_button = QPushButton("Сохранить стеготекст…")
         save_button.clicked.connect(self._save)
 
+        save_row = QHBoxLayout()
+        save_row.addStretch()
+        save_row.addWidget(save_button)
+
         stego_box = QGroupBox("Стеготекст")
         stego_layout = QVBoxLayout(stego_box)
         stego_layout.addWidget(self.stego_edit)
         stego_layout.addWidget(self.show_hidden)
         stego_layout.addWidget(self.stats_label)
-        stego_layout.addWidget(save_button)
+        stego_layout.addLayout(save_row)
 
         left = QWidget()
         left_layout = QVBoxLayout(left)
@@ -252,8 +270,19 @@ class EmbedTab(QWidget):
         splitter.addWidget(stego_box)
         splitter.setSizes([520, 520])
 
+        pipeline_box = QGroupBox("Разбор: как сообщение попадает в текст")
+        pipeline_layout = QVBoxLayout(pipeline_box)
+        pipeline_layout.addWidget(self.pipeline)
+
+        sheet = QSplitter(Qt.Orientation.Vertical)
+        sheet.addWidget(splitter)
+        sheet.addWidget(pipeline_box)
+        sheet.setSizes([430, 320])
+        sheet.setStretchFactor(0, 3)
+        sheet.setStretchFactor(1, 2)
+
         layout = QVBoxLayout(self)
-        layout.addWidget(splitter)
+        layout.addWidget(sheet)
 
     # -- действия ----------------------------------------------------------
 
@@ -296,8 +325,10 @@ class EmbedTab(QWidget):
                 "смешались бы со скрытыми данными."
             )
         self.capacity_label.setText(
-            f"Позиций встраивания: {slots}   •   вместимость: {capacity} бит   "
-            f"•   требуется: {needed} бит   •   {verdict}{note}"
+            f"Позиций встраивания: {slots}   •   "
+            f"вместимость: {plural(capacity, 'бит', 'бита', 'бит')}   "
+            f"•   требуется: {plural(needed, 'бит', 'бита', 'бит')}   "
+            f"•   {verdict}{note}"
         )
 
     def _embed(self) -> None:
@@ -316,13 +347,24 @@ class EmbedTab(QWidget):
         self.stego = result.stego
         self._render_stego()
         self.stats_label.setText(
-            f"Сообщение: {result.message_bytes} байт   •   "
-            f"поток в канале: {result.stream_bits} бит   •   "
-            f"кадров: {result.frames}\n"
-            f"Занято вместимости: {result.utilization:.1%}   •   "
-            f"служебных бит: {result.overhead:.1%}   •   "
+            f"Сообщение: {plural(result.message_bytes, 'байт', 'байта', 'байт')}"
+            f"   •   поток в канале: "
+            f"{plural(result.stream_bits, 'бит', 'бита', 'бит')}   •   "
+            f"кадров: {result.frames}   •   глубина d = {depth}\n"
+            f"Занято вместимости: {percent(result.utilization)}   •   "
+            f"служебных бит: {percent(result.overhead)}   •   "
             f"символов в тексте: {len(container)} → {len(result.stego)}"
         )
+
+        try:
+            self.pipeline.show_trace(
+                trace_embed(
+                    container, message, self.embedder,
+                    PipelineConfig(depth=depth),
+                )
+            )
+        except TextStegError as error:
+            QMessageBox.warning(self, "Разбор не выполнен", str(error))
 
     def _render_stego(self) -> None:
         """Выводит стеготекст в обычном или демонстрационном виде."""
@@ -368,6 +410,8 @@ class ExtractTab(QWidget):
         self.details_label = QLabel()
         self.details_label.setWordWrap(True)
 
+        self.pipeline = ExtractView()
+
         self._build_layout()
 
     def _build_layout(self) -> None:
@@ -386,21 +430,52 @@ class ExtractTab(QWidget):
         source_layout.addLayout(buttons)
 
         extract_button = QPushButton("Извлечь сообщение")
+        extract_button.setObjectName("primary")
         extract_button.setMinimumHeight(34)
         extract_button.clicked.connect(self._extract)
 
+        save_message_button = QPushButton("Сохранить сообщение…")
+        save_message_button.clicked.connect(self._save_message)
+        save_row = QHBoxLayout()
+        save_row.addStretch()
+        save_row.addWidget(save_message_button)
+
         result_box = QGroupBox("Результат")
         result_layout = QVBoxLayout(result_box)
-        result_layout.addWidget(QLabel("Восстановленное сообщение:"))
+        self.result_caption = QLabel("Восстановленное сообщение:")
+        result_layout.addWidget(self.result_caption)
         result_layout.addWidget(self.message_edit)
+        result_layout.addLayout(save_row)
         result_layout.addWidget(self.status_label)
         result_layout.addWidget(self.details_label)
         result_layout.addStretch()
 
+        left = QWidget()
+        left_layout = QVBoxLayout(left)
+        left_layout.setContentsMargins(0, 0, 0, 0)
+        left_layout.addWidget(source_box, stretch=1)
+        left_layout.addWidget(extract_button)
+
+        splitter = QSplitter(Qt.Orientation.Horizontal)
+        splitter.addWidget(left)
+        splitter.addWidget(result_box)
+        splitter.setSizes([520, 520])
+
+        pipeline_box = QGroupBox(
+            "Разбор: как сообщение восстанавливается из текста"
+        )
+        pipeline_layout = QVBoxLayout(pipeline_box)
+        pipeline_layout.addWidget(self.pipeline)
+
+        sheet = QSplitter(Qt.Orientation.Vertical)
+        sheet.addWidget(splitter)
+        sheet.addWidget(pipeline_box)
+        sheet.setSizes([430, 320])
+        sheet.setStretchFactor(0, 3)
+        sheet.setStretchFactor(1, 2)
+
         layout = QVBoxLayout(self)
-        layout.addWidget(source_box, stretch=3)
-        layout.addWidget(extract_button)
-        layout.addWidget(result_box, stretch=2)
+        layout.addWidget(sheet)
 
     # -- действия ----------------------------------------------------------
 
@@ -424,26 +499,56 @@ class ExtractTab(QWidget):
             return
         self.stego_edit.setPlainText(self.embed_tab.stego)
 
+    def _save_message(self) -> None:
+        if not self.message_edit.toPlainText():
+            QMessageBox.information(
+                self, "Нечего сохранять", "Сначала извлеките сообщение."
+            )
+            return
+        write_text_file(
+            self, "Сохранить сообщение", self.message_edit.toPlainText()
+        )
+
     def _extract(self) -> None:
         stego = self.stego_edit.toPlainText()
 
+        # Извлечение и разбор берутся из одного прогона: иначе сводка вверху
+        # и разбор внизу могли бы показывать числа от двух разных попыток.
         try:
-            result = extract(stego, self.embedder)
+            trace = trace_extract(stego, self.embedder)
         except TextStegError as error:
             QMessageBox.warning(self, "Извлечение не выполнено", str(error))
             return
 
+        result = trace.result
+        self.pipeline.show_trace(trace)
+
         self.message_edit.setPlainText(result.message)
 
         if result.success:
+            self.result_caption.setText("Восстановленное сообщение:")
             self.status_label.setText(
-                "<b style='color:#3ba55d'>Сообщение восстановлено полностью.</b> "
+                f"<b style='color:{COLOR_SUCCESS}'>Сообщение восстановлено "
+                "полностью.</b> "
                 "Контрольная сумма совпала."
             )
         else:
+            # Поле показывает не сообщение, а то, что вышло из декодера.
+            # Без этой оговорки мусор в нём выглядит как неисправность
+            # программы, тогда как это и есть честный отказ: байты, которых
+            # код не восстановил, подставить неоткуда.
+            self.result_caption.setText(
+                "Что вышло из декодера (сообщению не соответствует):"
+            )
             self.status_label.setText(
-                f"<b style='color:#e5534b'>Сообщение не восстановлено.</b> "
-                f"{result.reason}"
+                f"<b style='color:{COLOR_FAILURE}'>Сообщение не "
+                f"восстановлено.</b> "
+                f"{result.reason}<br>"
+                "В поле выше не сообщение, а то, что выдал декодер. Байты из "
+                "слов, которые код восстановить не смог, и из непринятых "
+                "кадров взять неоткуда, поэтому на их месте случайные знаки "
+                "и символы замены «�». Уцелевшие куски текста при этом "
+                "читаются — по ним видно, какая часть сообщения дошла."
             )
 
         if result.header is None:
@@ -452,15 +557,45 @@ class ExtractTab(QWidget):
             )
             return
 
-        total = len(result.block_statuses)
-        self.details_label.setText(
-            f"Из заголовка: длина {result.header.message_length} байт, "
+        # Заголовок идёт по каналу своим участком, и код работает в нём
+        # тоже. Без отдельной строки правка в заголовке пропадала бы из
+        # сводки: карта показывает только слова кадров.
+        header_work = (
+            "без правок"
+            if not result.corrected_in_header and not result.erased_in_header
+            else f"правлено слов: {result.corrected_in_header}, не "
+            f"восстановлено: {result.erased_in_header}"
+        )
+        head = (
+            "Из заголовка: длина "
+            f"{plural(result.header.message_length, 'байт', 'байта', 'байт')}, "
             f"глубина перемежения d = {result.header.depth}, "
             f"контрольная сумма 0x{result.header.checksum:04X}\n"
+            "Заголовок: "
+            f"{plural(len(result.header_blocks), 'кодовое слово',
+                      'кодовых слова', 'кодовых слов')}, "
+            f"{header_work}"
+        )
+        if not result.frames:
+            # Заголовок прочитан, но до кадров дело не дошло: показывать
+            # счётчики по ним значило бы выдавать нули за итог работы.
+            self.details_label.setText(
+                f"{head}\nКадры не читались: {result.reason}"
+            )
+            return
+
+        # Стирания разделены намеренно: слова непринятого кадра помечаются
+        # стёртыми без участия кода, и слитный счётчик приписывал бы коду
+        # работу, которой он не делал.
+        total = FRAME_CODEWORDS * len(result.frames)
+        corrected = sum(report.corrected for report in result.frames)
+        self.details_label.setText(
+            f"{head}\n"
             f"Кадров ожидалось: {result.frames_expected}, "
             f"утрачено: {result.frames_lost}\n"
-            f"Блоков всего: {total}, исправлено: {result.corrected_blocks}, "
-            f"стёрто: {result.erased_blocks}"
+            f"Кодовых слов: {total}, правлено: {corrected}, "
+            f"стёрто кодом: {result.erased_by_code}, помечено стёртыми "
+            f"из-за утраты кадров: {result.erased_by_loss}"
         )
 
 
@@ -523,6 +658,7 @@ class RobustnessTab(QWidget):
         explanation.setWordWrap(True)
 
         run_button = QPushButton("Прогнать по всем глубинам")
+        run_button.setObjectName("primary")
         run_button.setMinimumHeight(34)
         run_button.clicked.connect(self._run)
 
@@ -606,9 +742,9 @@ class RobustnessTab(QWidget):
             item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
             if column == 3:
                 item.setForeground(
-                    QColor(0x3B, 0xA5, 0x5D)
+                    QColor(COLOR_SUCCESS)
                     if outcome.success
-                    else QColor(0xE5, 0x53, 0x4B)
+                    else QColor(COLOR_FAILURE)
                 )
                 font = item.font()
                 font.setBold(True)
@@ -652,6 +788,7 @@ class MainWindow(QMainWindow):
 def main() -> int:
     """Точка входа приложения."""
     app = QApplication(sys.argv)
+    theme.apply(app)
     window = MainWindow()
     window.show()
     return app.exec()
