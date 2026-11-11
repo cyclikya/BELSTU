@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Velo.Core.Tests/Velo.Core.Tests.csproj" />
+  <Project Path="Velo.Core/Velo.Core.csproj" />
+</Solution>
