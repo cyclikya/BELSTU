@@ -9,10 +9,14 @@ gateway
 
     dotnet run
 
+
+
 lab05
 
     powershell -ExecutionPolicy Bypass -File .\test.ps1
 
+
+в ocelot.json меняем 
 
     "LoadBalancerOptions": { "Type": "RoundRobin" }
 

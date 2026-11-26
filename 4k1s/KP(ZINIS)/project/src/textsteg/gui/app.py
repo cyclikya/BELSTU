@@ -5,17 +5,14 @@
 
     «Встраивание»  — поместить служебное сообщение в текст-контейнер;
     «Извлечение»   — восстановить сообщение из полученного документа;
-    «Устойчивость» — наглядно показать вклад перемежения в восстановление
-                     сообщения после пакетного повреждения.
+    «Устойчивость к помехам» — сравнить восстановление сообщения при
+                               искусственных битовых ошибках.
 
-Третья вкладка носит исследовательский характер: она воспроизводит на одном
-и том же контейнере все допустимые глубины перемежения при одинаковом пакете
-ошибок и показывает, при какой глубине сообщение восстанавливается. Именно
-это сопоставление составляет содержание темы работы.
+В третьей вкладке программа сравнивает все допустимые глубины перемежения
+для одного набора позиций ошибок в кодированных данных первого кадра.
 
-Интерфейс обращается к программному средству только через модуль api и не
-содержит ни одной строки, относящейся к методу: кодирование, перемежение и
-кадрирование целиком остаются в ядре.
+Кодирование, перемежение и кадрирование остаются в ядре, а интерфейс
+передаёт ему входные данные и показывает результаты.
 """
 
 from __future__ import annotations
@@ -24,7 +21,7 @@ import sys
 from pathlib import Path
 
 from PySide6.QtCore import Qt
-from PySide6.QtGui import QColor, QFont
+from PySide6.QtGui import QFont
 from PySide6.QtWidgets import (
     QApplication,
     QCheckBox,
@@ -33,32 +30,22 @@ from PySide6.QtWidgets import (
     QFormLayout,
     QGroupBox,
     QHBoxLayout,
-    QHeaderView,
     QLabel,
     QMainWindow,
     QMessageBox,
     QPlainTextEdit,
     QPushButton,
-    QSpinBox,
     QSplitter,
-    QTableWidget,
-    QTableWidgetItem,
     QTabWidget,
     QVBoxLayout,
     QWidget,
 )
 
 from ..api import embed
-from ..core.bits import Bits
-from ..core.framing import SYNC_MARKER_LENGTH
-from ..core.hamming import T as CORRECTABLE_ERRORS
 from ..core.pipeline import (
     ALLOWED_DEPTHS,
     FRAME_CODEWORDS,
-    HEADER_CODED_BITS,
-    ExtractResult,
     PipelineConfig,
-    parse_stream,
     required_capacity,
 )
 from ..embedding import ZeroWidthEmbedder, contains_foreign_symbols
@@ -68,6 +55,7 @@ from ..trace import plural, trace_embed, trace_extract
 from . import theme
 from .extract_view import ExtractView
 from .pipeline_view import PipelineView
+from .robustness_view import RobustnessTab
 
 #: Кодировка файлов. Задана жёстко: в однобайтовых кодировках, принятых на
 #: русской версии Windows по умолчанию, символы нулевой ширины не
@@ -597,163 +585,6 @@ class ExtractTab(QWidget):
             f"стёрто кодом: {result.erased_by_code}, помечено стёртыми "
             f"из-за утраты кадров: {result.erased_by_loss}"
         )
-
-
-# --------------------------------------------------------------------------
-# Вкладка «Устойчивость»
-# --------------------------------------------------------------------------
-
-class RobustnessTab(QWidget):
-    """Сопоставление глубин перемежения при одинаковом пакете ошибок.
-
-    Вкладка воспроизводит основной эксперимент работы: в стеготекст,
-    собранный с разной глубиной перемежения, вносится пакет ошибок одной и
-    той же длины, после чего выполняется извлечение. Теория предсказывает,
-    что пакет длиной B исправляется при d * t >= B и не исправляется при
-    меньшей глубине; таблица позволяет убедиться в этом непосредственно.
-    """
-
-    COLUMNS = (
-        "Глубина d",
-        "B_max = d·t",
-        "Пакет, бит",
-        "Результат",
-        "Исправлено блоков",
-        "Стёрто блоков",
-    )
-
-    def __init__(self, embed_tab: EmbedTab) -> None:
-        super().__init__()
-        self.embedder = ZeroWidthEmbedder()
-        self.embed_tab = embed_tab
-
-        self.burst_spin = QSpinBox()
-        self.burst_spin.setRange(1, 64)
-        self.burst_spin.setValue(8)
-        self.burst_spin.setSuffix(" бит")
-
-        self.table = QTableWidget(0, len(self.COLUMNS))
-        self.table.setHorizontalHeaderLabels(self.COLUMNS)
-        self.table.verticalHeader().setVisible(False)
-        header = self.table.horizontalHeader()
-        header.setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
-
-        self.summary_label = QLabel(
-            "Задайте длину пакета ошибок и выполните прогон."
-        )
-        self.summary_label.setWordWrap(True)
-
-        self._build_layout()
-
-    def _build_layout(self) -> None:
-        explanation = QLabel(
-            "В стеготекст вносится пакет подряд идущих ошибочных бит — так "
-            "выглядит повреждение, вызванное правкой фрагмента документа. "
-            "Код Хэмминга (8,4) исправляет одну ошибку в кодовом слове, "
-            "поэтому без перемежения пакет уничтожает блок целиком. "
-            "Перемежитель глубины d распределяет пакет по d кодовым словам, "
-            "и теоретический предел исправляемого пакета составляет "
-            "B_max = d·t, где t = 1."
-        )
-        explanation.setWordWrap(True)
-
-        run_button = QPushButton("Прогнать по всем глубинам")
-        run_button.setObjectName("primary")
-        run_button.setMinimumHeight(34)
-        run_button.clicked.connect(self._run)
-
-        controls = QHBoxLayout()
-        controls.addWidget(QLabel("Длина пакета ошибок:"))
-        controls.addWidget(self.burst_spin)
-        controls.addStretch()
-
-        layout = QVBoxLayout(self)
-        layout.addWidget(explanation)
-        layout.addLayout(controls)
-        layout.addWidget(run_button)
-        layout.addWidget(self.table, stretch=1)
-        layout.addWidget(self.summary_label)
-
-    # -- действия ----------------------------------------------------------
-
-    def _run(self) -> None:
-        container = self.embed_tab.container_edit.toPlainText()
-        message = self.embed_tab.message_edit.toPlainText()
-        burst = self.burst_spin.value()
-
-        self.table.setRowCount(0)
-        recovered: list[int] = []
-
-        for depth in ALLOWED_DEPTHS:
-            config = PipelineConfig(depth=depth)
-            try:
-                result = embed(container, message, self.embedder, config)
-            except TextStegError as error:
-                QMessageBox.warning(self, "Прогон не выполнен", str(error))
-                return
-
-            bits = self.embedder.extract(result.stego)
-            damaged = self._damage(bits, burst)
-            outcome = parse_stream(damaged, config)
-
-            if outcome.success:
-                recovered.append(depth)
-            self._add_row(depth, burst, outcome)
-
-        predicted = [d for d in ALLOWED_DEPTHS if d * CORRECTABLE_ERRORS >= burst]
-        self.summary_label.setText(
-            f"Пакет {burst} бит восстановлен при глубинах: "
-            f"{self._format(recovered)}.\n"
-            f"Теоретический предел B_max = d·t предсказывает: "
-            f"{self._format(predicted)}."
-        )
-
-    def _damage(self, bits: Bits, burst: int) -> Bits:
-        """Инвертирует пакет бит в начале полезной части первого кадра.
-
-        Служебная часть потока (первый маркер, заголовок и маркер кадра) при
-        этом не затрагивается: повреждается именно переносимое сообщение.
-        """
-        start = SYNC_MARKER_LENGTH + HEADER_CODED_BITS + SYNC_MARKER_LENGTH
-        damaged = list(bits)
-        for index in range(start, min(start + burst, len(damaged))):
-            damaged[index] ^= 1
-        return damaged
-
-    def _add_row(
-        self, depth: int, burst: int, outcome: ExtractResult
-    ) -> None:
-        """Добавляет строку с итогом одного режима."""
-        row = self.table.rowCount()
-        self.table.insertRow(row)
-
-        verdict = "восстановлено" if outcome.success else "не восстановлено"
-        values = (
-            "1 (без перемежения)" if depth == 1 else str(depth),
-            str(depth * CORRECTABLE_ERRORS),
-            str(burst),
-            verdict,
-            str(outcome.corrected_blocks),
-            str(outcome.erased_blocks),
-        )
-
-        for column, value in enumerate(values):
-            item = QTableWidgetItem(value)
-            item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
-            if column == 3:
-                item.setForeground(
-                    QColor(COLOR_SUCCESS)
-                    if outcome.success
-                    else QColor(COLOR_FAILURE)
-                )
-                font = item.font()
-                font.setBold(True)
-                item.setFont(font)
-            self.table.setItem(row, column, item)
-
-    @staticmethod
-    def _format(depths: list[int]) -> str:
-        return ", ".join(str(d) for d in depths) if depths else "ни при одной"
 
 
 # --------------------------------------------------------------------------
